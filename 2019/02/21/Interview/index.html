@@ -99,24 +99,25 @@
 
 
 
-  <meta name="description" content="1. Interview: Tencent">
+  <meta name="description" content="This is the Tencent experience of interview collected from the Internet.">
+<meta name="keywords" content="Interview">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Blogs">
-<meta property="og:url" content="http://yoursite.com/2019/02/20/Directory/index.html">
+<meta property="og:title" content="Interview">
+<meta property="og:url" content="http://yoursite.com/2019/02/21/Interview/index.html">
 <meta property="og:site_name" content="Alex">
-<meta property="og:description" content="1. Interview: Tencent">
+<meta property="og:description" content="This is the Tencent experience of interview collected from the Internet.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-21T01:37:52.510Z">
+<meta property="og:updated_time" content="2019-02-21T02:03:41.026Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blogs">
-<meta name="twitter:description" content="1. Interview: Tencent">
+<meta name="twitter:title" content="Interview">
+<meta name="twitter:description" content="This is the Tencent experience of interview collected from the Internet.">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/20/Directory/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/21/Interview/">
 
 
 
@@ -126,7 +127,7 @@
   };
 </script>
 
-  <title>Blogs | Alex</title>
+  <title>Interview | Alex</title>
   
 
 
@@ -291,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/Directory/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/Interview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Alex">
@@ -308,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Blogs
+          <h1 class="post-title" itemprop="name headline">Interview
 
               
             
@@ -334,24 +335,12 @@
                 
               
 
-              <time title="Created: 2019-02-20 23:41:31" itemprop="dateCreated datePublished" datetime="2019-02-20T23:41:31+00:00">2019-02-20</time>
+              <time title="Created: 2019-02-21 00:26:09 / Modified: 02:03:41" itemprop="dateCreated datePublished" datetime="2019-02-21T00:26:09+00:00">2019-02-21</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-21 01:37:52" itemprop="dateModified" datetime="2019-02-21T01:37:52+00:00">2019-02-21</time>
               
             
           </span>
@@ -385,7 +374,23 @@
       
 
       
-        <h3 id="1-Interview-Tencent"><a href="#1-Interview-Tencent" class="headerlink" title="1. Interview: Tencent"></a>1. <a href="https://www.hellscript.cc/2019/02/21/Interview-Tencent/" target="_blank" rel="noopener">Interview: Tencent</a></h3>
+        <p>This is the Tencent experience of interview collected from the Internet.<br><a id="more"></a></p>
+<h1 id="1-Turn-on-off-lamps"><a href="#1-Turn-on-off-lamps" class="headerlink" title="1. Turn on/off lamps"></a>1. Turn on/off lamps</h1><hr>
+<p>Imaging that there are N lamps(<code>1,2,3...</code>), and in the first time there are <strong>lit</strong>:</p>
+<ul>
+<li>The 1st person will turn off all of the N lamps;</li>
+<li>The 2nd person will turn on the 2nd lamps and the multiple of 2 lamps;</li>
+<li>The 3rd person will turn off the 3rd lamps and the multiple of 3 lamps;<br>…</li>
+<li>the nth person will turn on/off(<strong>reverse operation</strong>) the nth lamps and the multiple of nth lamps.</li>
+</ul>
+<p><strong>Question:</strong> Print the ID of the lamps which are lit in order after the nth person did the reverse operation. E.g., After the 8th operation, the lamps with ID <code>2 3 5 6 7 8</code> are lit.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>The core idea of this question is that we only need to take <strong>the operation times of lamps</strong> into account. For example, if we know the 5th lamps are turned on/off 4 times, then it is still lit. Therefore, the most thing is to know the times of turn on/off operation for each light.</p>
+<p>Then note that the <code>i</code> person can only turn on/off the <code>i</code> and the multiple of <code>i</code> lamps. In other words, as for the lamps <code>i</code>, only the person of the submultiple of <code>i</code> can turn on/off the lamps. For example, with respect to the lamp <code>8</code>, only the <code>1 2 4 8</code> person can turn on/off this lamp. Therefore, <strong>the number of the submultiple of lamp <code>i</code> is the times of the operations of lamp <code>i</code>.</strong></p>
+<p>Given these points, the question can be transfered to find the submultiple for the <code>i</code> lamp.  </p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a href="https://ask.csdn.net/questions/203246" target="_blank" rel="noopener">csdn</a></li>
+</ul>
+
       
     </div>
 
@@ -405,6 +410,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Interview/" rel="tag"># Interview</a>
+          
+        </div>
       
 
       
@@ -494,7 +505,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">0</span>
+                    <span class="site-state-item-count">1</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -556,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Interview-Tencent"><span class="nav-number">1.</span> <span class="nav-text">1. Interview: Tencent</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Turn-on-off-lamps"><span class="nav-number">1.</span> <span class="nav-text">1. Turn on/off lamps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">1.0.1.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">1.0.2.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
             
 
           </div>
