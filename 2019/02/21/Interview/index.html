@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="This is the Tencent experience of interview collected from the Internet.">
+  <meta name="description" content="Turn on/off lamps">
 <meta name="keywords" content="Interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Interview">
 <meta property="og:url" content="http://yoursite.com/2019/02/21/Interview/index.html">
-<meta property="og:site_name" content="Alex">
-<meta property="og:description" content="This is the Tencent experience of interview collected from the Internet.">
+<meta property="og:site_name" content="Alex Zou">
+<meta property="og:description" content="Turn on/off lamps">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-21T02:03:41.026Z">
+<meta property="og:updated_time" content="2019-02-21T16:05:15.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Interview">
-<meta name="twitter:description" content="This is the Tencent experience of interview collected from the Internet.">
+<meta name="twitter:description" content="Turn on/off lamps">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>Interview | Alex</title>
+  <title>Interview | Alex Zou</title>
   
 
 
@@ -186,10 +186,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Alex</span>
+        <span class="site-title">Alex Zou</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
+      
+        <p class="site-subtitle">Dereference a pointer to soul?</p>
+      
     
     
   </div>
@@ -301,7 +305,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alex">
+      <meta itemprop="name" content="Alex Zou">
     </span>
 
     
@@ -335,7 +339,7 @@
                 
               
 
-              <time title="Created: 2019-02-21 00:26:09 / Modified: 02:03:41" itemprop="dateCreated datePublished" datetime="2019-02-21T00:26:09+00:00">2019-02-21</time>
+              <time title="Created: 2019-02-21 00:26:09 / Modified: 16:05:15" itemprop="dateCreated datePublished" datetime="2019-02-21T00:26:09+00:00">2019-02-21</time>
             
 
             
@@ -374,23 +378,11 @@
       
 
       
-        <p>This is the Tencent experience of interview collected from the Internet.<br><a id="more"></a></p>
-<h1 id="1-Turn-on-off-lamps"><a href="#1-Turn-on-off-lamps" class="headerlink" title="1. Turn on/off lamps"></a>1. Turn on/off lamps</h1><hr>
-<p>Imaging that there are N lamps(<code>1,2,3...</code>), and in the first time there are <strong>lit</strong>:</p>
-<ul>
-<li>The 1st person will turn off all of the N lamps;</li>
-<li>The 2nd person will turn on the 2nd lamps and the multiple of 2 lamps;</li>
-<li>The 3rd person will turn off the 3rd lamps and the multiple of 3 lamps;<br>…</li>
-<li>the nth person will turn on/off(<strong>reverse operation</strong>) the nth lamps and the multiple of nth lamps.</li>
-</ul>
-<p><strong>Question:</strong> Print the ID of the lamps which are lit in order after the nth person did the reverse operation. E.g., After the 8th operation, the lamps with ID <code>2 3 5 6 7 8</code> are lit.</p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>The core idea of this question is that we only need to take <strong>the operation times of lamps</strong> into account. For example, if we know the 5th lamps are turned on/off 4 times, then it is still lit. Therefore, the most thing is to know the times of turn on/off operation for each light.</p>
-<p>Then note that the <code>i</code> person can only turn on/off the <code>i</code> and the multiple of <code>i</code> lamps. In other words, as for the lamps <code>i</code>, only the person of the submultiple of <code>i</code> can turn on/off the lamps. For example, with respect to the lamp <code>8</code>, only the <code>1 2 4 8</code> person can turn on/off this lamp. Therefore, <strong>the number of the submultiple of lamp <code>i</code> is the times of the operations of lamp <code>i</code>.</strong></p>
-<p>Given these points, the question can be transfered to find the submultiple for the <code>i</code> lamp.  </p>
-<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
-<li><a href="https://ask.csdn.net/questions/203246" target="_blank" rel="noopener">csdn</a></li>
-</ul>
-
+        <blockquote><ol>
+<li><a href="/2019/02/21/subposts_interview/switch_lamps/" title="Turn on/off lamps">Turn on/off lamps</a></li>
+</ol>
+</blockquote>
+<a id="more"></a>
       
     </div>
 
@@ -422,6 +414,26 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/subposts_interview/switch_lamps/" rel="next" title="Turn on/off lamps">
+                <i class="fa fa-chevron-left"></i> Turn on/off lamps
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/21/Parallelization/" rel="prev" title="Parallelization">
+                Parallelization <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -463,17 +475,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -488,7 +491,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -556,23 +559,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Turn-on-off-lamps"><span class="nav-number">1.</span> <span class="nav-text">1. Turn on/off lamps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">1.0.1.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">1.0.2.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
