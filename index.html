@@ -288,164 +288,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/Interview-Tencent/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Alex">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alex">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/21/Interview-Tencent/" class="post-title-link" itemprop="url">Interview: Tencent</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-21 00:26:09 / Modified: 01:20:16" itemprop="dateCreated datePublished" datetime="2019-02-21T00:26:09+00:00">2019-02-21</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><h3 id="Turn-on-off-lamps"><a href="#Turn-on-off-lamps" class="headerlink" title="Turn on/off lamps"></a>Turn on/off lamps</h3><hr>
-<p>Imaging that there are N lamps(<code>1,2,3...</code>), and in the first time there are <strong>lit</strong>:</p>
-<ul>
-<li>The 1st person will turn off all of the N lamps;</li>
-<li>The 2nd person will turn on the 2nd lamps and the multiple of 2 lamps;</li>
-<li>The 3rd person will turn off the 3rd lamps and the multiple of 3 lamps;<br>…</li>
-<li>the nth person will turn on/off(<strong>reverse operation</strong>) the nth lamps and the multiple of nth lamps.</li>
-</ul>
-<p><strong>Question:</strong> Print the ID of the lamps which are lit in order after the nth person did the reverse operation. E.g., After the 8th operation, the lamps with ID <code>2 3 5 6 7 8</code> are lit.</p>
-<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h4><p>The core idea of this question is that we only need to take <strong>the operation times of lamps</strong> into account. For example, if we know the 5th lamps are turned on/off 4 times, then it is still lit. Therefore, the most thing is to know the times of turn on/off operation for each light.</p>
-<p>Then note that the <code>i</code> person can only turn on/off the <code>i</code> and the multiple of <code>i</code> lamps. In other words, as for the lamps <code>i</code>, only the person of the submultiple of <code>i</code> can turn on/off the lamps. For example, with respect to the lamp <code>8</code>, only the <code>1 2 4 8</code> person can turn on/off this lamp. Therefore, <strong>the number of the submultiple of lamp <code>i</code> is the times of the operations of lamp <code>i</code>.</strong></p>
-<p>Given these points, the question can be transfered to find the submultiple for the <code>i</code> lamp.  </p>
-<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><hr>
-<ul>
-<li><a href="https://ask.csdn.net/questions/203246" target="_blank" rel="noopener">csdn</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/Directory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -631,7 +473,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">1</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -648,7 +490,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-count">0</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

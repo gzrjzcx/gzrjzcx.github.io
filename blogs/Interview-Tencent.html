@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="AlgorithmTurn on/off lampsImaging that there are N lamps(1,2,3...), and in the first time there are lit:  The 1st person will turn off all of the N lamps; The 2nd person will turn on the 2nd lamps and">
+  <meta name="description" content="Turn on/off lamps Imaging that there are N lamps(1,2,3...), and in the first time there are lit:  The 1st person will turn off all of the N lamps; The 2nd person will turn on the 2nd lamps and the mul">
 <meta name="keywords" content="Interview">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Interview: Tencent">
 <meta property="og:url" content="http://yoursite.com/blogs/Interview-Tencent.html">
 <meta property="og:site_name" content="Alex">
-<meta property="og:description" content="AlgorithmTurn on/off lampsImaging that there are N lamps(1,2,3...), and in the first time there are lit:  The 1st person will turn off all of the N lamps; The 2nd person will turn on the 2nd lamps and">
+<meta property="og:description" content="Turn on/off lamps Imaging that there are N lamps(1,2,3...), and in the first time there are lit:  The 1st person will turn off all of the N lamps; The 2nd person will turn on the 2nd lamps and the mul">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-21T01:04:34.442Z">
+<meta property="og:updated_time" content="2019-02-21T01:29:43.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Interview: Tencent">
-<meta name="twitter:description" content="AlgorithmTurn on/off lampsImaging that there are N lamps(1,2,3...), and in the first time there are lit:  The 1st person will turn off all of the N lamps; The 2nd person will turn on the 2nd lamps and">
+<meta name="twitter:description" content="Turn on/off lamps Imaging that there are N lamps(1,2,3...), and in the first time there are lit:  The 1st person will turn off all of the N lamps; The 2nd person will turn on the 2nd lamps and the mul">
 
 
 
@@ -316,7 +316,8 @@
       <div class="post-body">
         
         
-          <h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><h3 id="Turn-on-off-lamps"><a href="#Turn-on-off-lamps" class="headerlink" title="Turn on/off lamps"></a>Turn on/off lamps</h3><p>Imaging that there are N lamps(<code>1,2,3...</code>), and in the first time there are <strong>lit</strong>:</p>
+          <h1 id="Turn-on-off-lamps"><a href="#Turn-on-off-lamps" class="headerlink" title="Turn on/off lamps"></a>Turn on/off lamps</h1><hr>
+<p>Imaging that there are N lamps(<code>1,2,3...</code>), and in the first time there are <strong>lit</strong>:</p>
 <ul>
 <li>The 1st person will turn off all of the N lamps;</li>
 <li>The 2nd person will turn on the 2nd lamps and the multiple of 2 lamps;</li>
@@ -324,9 +325,12 @@
 <li>the nth person will turn on/off(<strong>reverse operation</strong>) the nth lamps and the multiple of nth lamps.</li>
 </ul>
 <p><strong>Question:</strong> Print the ID of the lamps which are lit in order after the nth person did the reverse operation. E.g., After the 8th operation, the lamps with ID <code>2 3 5 6 7 8</code> are lit.</p>
-<h5 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h5><p>The core idea of this question is that we only need to take <strong>the operation times of lamps</strong> into account. For example, if we know the 5th lamps are turned on/off 4 times, then it is still lit. Therefore, the most thing is to know the times of turn on/off operation for each light.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>The core idea of this question is that we only need to take <strong>the operation times of lamps</strong> into account. For example, if we know the 5th lamps are turned on/off 4 times, then it is still lit. Therefore, the most thing is to know the times of turn on/off operation for each light.</p>
 <p>Then note that the <code>i</code> person can only turn on/off the <code>i</code> and the multiple of <code>i</code> lamps. In other words, as for the lamps <code>i</code>, only the person of the submultiple of <code>i</code> can turn on/off the lamps. For example, with respect to the lamp <code>8</code>, only the <code>1 2 4 8</code> person can turn on/off this lamp. Therefore, <strong>the number of the submultiple of lamp <code>i</code> is the times of the operations of lamp <code>i</code>.</strong></p>
 <p>Given these points, the question can be transfered to find the submultiple for the <code>i</code> lamp.  </p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a href="https://ask.csdn.net/questions/203246" target="_blank" rel="noopener">csdn</a></li>
+</ul>
 
         
       </div>
@@ -395,7 +399,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">1</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -412,7 +416,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-count">0</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -474,7 +478,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Turn-on-off-lamps"><span class="nav-number">1.0.1.</span> <span class="nav-text">Turn on/off lamps</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Turn-on-off-lamps"><span class="nav-number">1.</span> <span class="nav-text">Turn on/off lamps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">1.0.1.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">1.0.2.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
             
 
           </div>
