@@ -99,25 +99,25 @@
 
 
 
-  <meta name="description" content="1. Turn on/off lamps Imaging that there are N lamps(1,2,3...), and in the first time there are lit:  The 1st person will turn off all of the N lamps; The 2nd person will turn on the 2nd lamps and the">
-<meta name="keywords" content="Interview">
+  <meta name="description" content="Conclusionchar* and char[] are different types in most cases, but it’s not immediately apparent in all cases. Essentially, char* means a pointer to a constant stored in the .data segment, char[] is a">
+<meta name="keywords" content="c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Turn on&#x2F;off lamps">
-<meta property="og:url" content="http://yoursite.com/2019/02/21/subposts_interview/switch_lamps/index.html">
+<meta property="og:title" content="char* VS char[]">
+<meta property="og:url" content="http://yoursite.com/2019/02/22/subposts_c/charPointer-VS-charArray/index.html">
 <meta property="og:site_name" content="Alex Zou">
-<meta property="og:description" content="1. Turn on/off lamps Imaging that there are N lamps(1,2,3...), and in the first time there are lit:  The 1st person will turn off all of the N lamps; The 2nd person will turn on the 2nd lamps and the">
+<meta property="og:description" content="Conclusionchar* and char[] are different types in most cases, but it’s not immediately apparent in all cases. Essentially, char* means a pointer to a constant stored in the .data segment, char[] is a">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-21T15:50:57.843Z">
+<meta property="og:updated_time" content="2019-02-22T23:20:06.586Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Turn on&#x2F;off lamps">
-<meta name="twitter:description" content="1. Turn on/off lamps Imaging that there are N lamps(1,2,3...), and in the first time there are lit:  The 1st person will turn off all of the N lamps; The 2nd person will turn on the 2nd lamps and the">
+<meta name="twitter:title" content="char* VS char[]">
+<meta name="twitter:description" content="Conclusionchar* and char[] are different types in most cases, but it’s not immediately apparent in all cases. Essentially, char* means a pointer to a constant stored in the .data segment, char[] is a">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/21/subposts_interview/switch_lamps/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/22/subposts_c/charPointer-VS-charArray/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>Turn on/off lamps | Alex Zou</title>
+  <title>char* VS char[] | Alex Zou</title>
   
 
 
@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/subposts_interview/switch_lamps/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/subposts_c/charPointer-VS-charArray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Alex">
@@ -313,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Turn on/off lamps
+          <h1 class="post-title" itemprop="name headline">char* VS char[]
 
               
             
@@ -339,7 +339,7 @@
                 
               
 
-              <time title="Created: 2019-02-21 00:26:09 / Modified: 15:50:57" itemprop="dateCreated datePublished" datetime="2019-02-21T00:26:09+00:00">2019-02-21</time>
+              <time title="Created: 2019-02-22 22:59:41 / Modified: 23:20:06" itemprop="dateCreated datePublished" datetime="2019-02-22T22:59:41+00:00">2019-02-22</time>
             
 
             
@@ -378,20 +378,33 @@
       
 
       
-        <h1 id="1-Turn-on-off-lamps"><a href="#1-Turn-on-off-lamps" class="headerlink" title="1. Turn on/off lamps"></a>1. Turn on/off lamps</h1><hr>
-<p>Imaging that there are N lamps(<code>1,2,3...</code>), and in the first time there are <strong>lit</strong>:</p>
-<ul>
-<li>The 1st person will turn off all of the N lamps;</li>
-<li>The 2nd person will turn on the 2nd lamps and the multiple of 2 lamps;</li>
-<li>The 3rd person will turn off the 3rd lamps and the multiple of 3 lamps;<br>…</li>
-<li>the nth person will turn on/off(<strong>reverse operation</strong>) the nth lamps and the multiple of nth lamps.</li>
-</ul>
-<p><strong>Question:</strong> Print the ID of the lamps which are lit in order after the nth person did the reverse operation. E.g., After the 8th operation, the lamps with ID <code>2 3 5 6 7 8</code> are lit.</p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>The core idea of this question is that we only need to take <strong>the operation times of lamps</strong> into account. For example, if we know the 5th lamps are turned on/off 4 times, then it is still lit. Therefore, the most thing is to know the times of turn on/off operation for each light.</p>
-<p>Then note that the <code>i</code> person can only turn on/off the <code>i</code> and the multiple of <code>i</code> lamps. In other words, as for the lamps <code>i</code>, only the person of the submultiple of <code>i</code> can turn on/off the lamps. For example, with respect to the lamp <code>8</code>, only the <code>1 2 4 8</code> person can turn on/off this lamp. Therefore, <strong>the number of the submultiple of lamp <code>i</code> is the times of the operations of lamp <code>i</code>.</strong></p>
-<p>Given these points, the question can be transfered to find the submultiple for the <code>i</code> lamp.  </p>
+        <h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p><code>char*</code> and <code>char[]</code> are different <strong>types</strong> in most cases, but it’s not immediately apparent in all cases. Essentially, <code>char*</code> means a pointer to a constant stored in the <code>.data</code> segment, <code>char[]</code> is a <code>character array</code> data type.</p>
+<p>More information about the difference between <code>array</code> and <code>pointer</code> <a href="https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><h3 id="Method-1-char"><a href="#Method-1-char" class="headerlink" title="Method 1: char*"></a>Method 1: <code>char*</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* a = <span class="string">"abc"</span>;</span><br></pre></td></tr></table></figure>
+<p>When executing the above instruction, there are 3 steps in total:</p>
+<ol>
+<li>Create a pointer <code>a</code> to char type and store it in <strong><code>stack</code></strong> segment in <a href="https://www.hellscript.cc/2019/02/22/subposts_c/c-memory-layout/" target="_blank" rel="noopener">C memory layout</a>. </li>
+<li>Allocate the necessary memory in <strong><code>DS</code></strong> segment for the string <code>abc</code>.</li>
+<li>Return the address of this memory as the value and assign to the pointer <code>a</code>.<br>Finally, it is a <code>char*</code> pointer to an initialized data stored in <code>DS</code> segment. </li>
+</ol>
+<p>In fact, if now we set <code>char* aa = &quot;abc&quot;</code>, then only will execute the step 1 and 3, because the string constant <code>abc</code> has been created in the <code>DS</code> segment. </p>
+<p>Therefore, it is can be assigned other string like below operation:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">"def"</span>; <span class="comment">// It is legal because a is a pointer</span></span><br></pre></td></tr></table></figure></p>
+<p>However, because the <code>abc</code> is constant, stored in the <strong><code>DS</code></strong> segment(i.e. <code>data segment</code>), <strong>it can not be modified</strong>. In other words, the <strong>subscript operation</strong> are illegal in the below example:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* a = <span class="string">"abc"</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c\n"</span>, a[<span class="number">0</span>]); <span class="comment">// It is illegal because a is a pointer</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Method-2-char"><a href="#Method-2-char" class="headerlink" title="Method 2: char[]"></a>Method 2: <code>char[]</code></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> b[<span class="number">3</span>] = <span class="string">"abc"</span>;              <span class="comment">// it is string, has '\0' in the end as default</span></span><br><span class="line"><span class="keyword">char</span> b[<span class="number">3</span>] = &#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>&#125;;      <span class="comment">// it is character array, has no '\0' in the end as default</span></span><br></pre></td></tr></table></figure>
+<p><code>char[]</code> is the <strong>character array</strong> in C language. When executing the above instruction, there are only 2 steps in total:</p>
+<ol>
+<li>Declare an array with <code>char</code> type, please note in this context <code>b</code> is an array, if you are not clear about the difference between <code>array</code> and <code>pointer</code>, <a href="https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/" target="_blank" rel="noopener">click here</a>. This moment, the array variable <code>b</code> stored in the <code>stack</code> segment, and: <strong><code>&amp;b == b == &amp;b[0]</code></strong>.</li>
+<li>Assign each character of <code>123</code> to the each element of array <code>b</code>.<br>Finally, the value of this <strong>array</strong> is equal to <code>abc</code>, instead of a pointer to point the constant like <code>char*</code>. Because it is an <code>array</code> type, it is contrary with <code>char*</code>: the assignment with string constant is illegal, but the subscript operation is legal.<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = <span class="string">"def"</span>; <span class="comment">// reassign with string constant will cause crash</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c\n"</span>, b[<span class="number">0</span>]); <span class="comment">//legal</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Array-decay"><a href="#Array-decay" class="headerlink" title="Array decay"></a>Array decay</h3><p>In terms of a special situation, like using they as the <strong>function parameters</strong>. Specifically, if an expression of type <code>char[]</code> is provided where one of type <code>char*</code> is expected, the compiler automatically converts the <code>array</code> into a <code>pointer</code> to its first element.</p>
+<p>For example, in the function <code>printSomething</code> expects a pointer is passed, but if you try to pass an array to it like this:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s[<span class="number">10</span>] = <span class="string">"hello"</span>;</span><br><span class="line">printSomething(s);</span><br></pre></td></tr></table></figure></p>
+<p>Then the compiler pretends that your code like this:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s[<span class="number">10</span>] = <span class="string">"hello"</span>;</span><br><span class="line">printSomething(&amp;s[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure></p>
+<h3 id="Dynamic-memory"><a href="#Dynamic-memory" class="headerlink" title="Dynamic memory"></a>Dynamic memory</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* s = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">10</span>*<span class="keyword">sizeof</span>(<span class="keyword">char</span>));</span><br><span class="line">s = <span class="string">"abc"</span>; <span class="comment">// legal</span></span><br><span class="line">s = <span class="string">"def"</span>; <span class="comment">// legal</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c\n"</span>, s[<span class="number">0</span>]); <span class="comment">// legal</span></span><br></pre></td></tr></table></figure>
+<p>This method defines a pointer that point an allocated memory. Therefore, it is legal for <code>s</code> to be reassigned by the constant string like <code>def</code>. Also, it can do the subscript operation.</p>
 <h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
-<li><a href="https://ask.csdn.net/questions/203246" target="_blank" rel="noopener">csdn</a></li>
+<li><a href="https://stackoverflow.com/questions/10186765/what-is-the-difference-between-char-array-vs-char-pointer-in-c" target="_blank" rel="noopener">Array decay</a></li>
+<li><a href="https://blog.csdn.net/ksws0292756/article/details/79432329" target="_blank" rel="noopener"><code>char*</code> Vs. <code>char[]</code></a></li>
 </ul>
 
       
@@ -416,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Interview/" rel="tag"># Interview</a>
+            <a href="/tags/c/" rel="tag"># c</a>
           
         </div>
       
@@ -429,15 +442,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/02/22/subposts_c/c-memory-layout/" rel="next" title="Static keyword & C memory layout">
+                <i class="fa fa-chevron-left"></i> Static keyword & C memory layout
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/21/Interview/" rel="prev" title="Interview">
-                Interview <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -592,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Turn-on-off-lamps"><span class="nav-number">1.</span> <span class="nav-text">1. Turn on/off lamps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">1.0.1.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">1.0.2.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.</span> <span class="nav-text">Conclusion</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementation"><span class="nav-number">1.1.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-1-char"><span class="nav-number">1.1.1.</span> <span class="nav-text">Method 1: char*</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Method-2-char"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Method 2: char[]</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-decay"><span class="nav-number">1.1.2.</span> <span class="nav-text">Array decay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-memory"><span class="nav-number">1.1.3.</span> <span class="nav-text">Dynamic memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">1.1.4.</span> <span class="nav-text">References</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
