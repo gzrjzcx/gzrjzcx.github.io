@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://yoursite.com/res/c/pointer/pointer1.png">
 <meta property="og:image" content="http://yoursite.com/res/c/pointer/pointer2.png">
 <meta property="og:image" content="http://yoursite.com/res/c/pointer/pointer2.png">
-<meta property="og:updated_time" content="2019-02-22T19:41:36.194Z">
+<meta property="og:updated_time" content="2019-03-05T17:22:11.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The nature of pointer">
 <meta name="twitter:description" content="What is a pointerEssentially, what must be emphasized is that pointer is a data type in C context, like int data type. Therefore:  pointer need memory space to store. pointer has its own address of th">
@@ -360,12 +360,24 @@
                 
               
 
-              <time title="Created: 2019-02-22 13:37:59 / Modified: 19:41:36" itemprop="dateCreated datePublished" datetime="2019-02-22T13:37:59+00:00">2019-02-22</time>
+              <time title="Created: 2019-02-22 13:37:59" itemprop="dateCreated datePublished" datetime="2019-02-22T13:37:59+00:00">2019-02-22</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-05 17:22:11" itemprop="dateModified" datetime="2019-03-05T17:22:11+00:00">2019-03-05</time>
               
             
           </span>
@@ -442,6 +454,19 @@
 <li><code>a</code>, i.e. the address of the first element of array can be acquired <strong>in the compilation stage</strong>. In the assembly code, the address of the array are solid. For example, assuming that the address of <code>a</code> is <code>0x8048000</code>, then <code>a[1]</code> will be transfered to <code>*(0x8048000 + 4)</code>, (<code>int</code> are 4 bytes). However, pointer is a variable, the value cannot be acquired when compiling.</li>
 <li>Reference to array(<code>a[1]</code>) will access the memory <code>1</code> time, reference to pointer <code>*(p+1)</code> will access the memory 2 times. Because <code>a</code> is the constant, what need to do is use constant <code>a</code> plus <code>1</code> and deference the address to the value. However, pointer is a variable, need to deference it firstly and plus <code>1</code>, and then deference the obtained address.</li>
 </ul>
+<h1 id="pointer-to-array-Vs-array-of-pointers"><a href="#pointer-to-array-Vs-array-of-pointers" class="headerlink" title="pointer to array Vs. array of pointers"></a>pointer to array Vs. array of pointers</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *array1[<span class="number">10</span>];  <span class="comment">// An array of pointers. Each element of this array is one pointer. </span></span><br><span class="line">                  <span class="comment">// There are 10 pointers in total</span></span><br><span class="line"><span class="keyword">int</span> (*array2)[<span class="number">10</span>];  <span class="comment">// A pointer to an array. Each element of this array is one integer.</span></span><br><span class="line">                    <span class="comment">// There are 10 integers in total, and a pointer to this array.</span></span><br><span class="line"><span class="keyword">int</span> *(array3[<span class="number">10</span>]);  <span class="comment">// same as the first one. An array of pointers.</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The reason is that the operator precedence of <code>[](array subscripting)</code> is higher than <code>* (dereference)</code>.</p>
+</blockquote>
+<p>In fact, </p>
+<ul>
+<li>In the first case, initially is the <code>array1[10]</code> operation, i.e. an array <code>array1[10]</code>, then is the <code>*array1[10]</code> operation, i.e. each element of this array is one int pointer. </li>
+<li>In the second case, the bracket <code>()</code> improves the operator precedence of <code>*</code> to the same level of <code>[]</code>. The practical associativity order is (*array2) firstly, i.e., a pointer <code>array2</code>, then is an array of ten integers.</li>
+</ul>
+<h2 id="Initialize-array-of-pointers"><a href="#Initialize-array-of-pointers" class="headerlink" title="Initialize array of pointers"></a>Initialize array of pointers</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> *pos[<span class="number">10</span>];</span><br><span class="line">pos[<span class="number">0</span>] = <span class="built_in">calloc</span>(<span class="number">10</span>*<span class="number">5</span>,<span class="keyword">sizeof</span>(<span class="keyword">double</span>));</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    pos[i] = pos[<span class="number">0</span>] + i * <span class="number">5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Here, we cannot do this: <code>pos = calloc(10*5, sizeof(double))</code> directly, because here <code>pos</code> is the <strong><code>array name</code></strong>, it is a <strong>constant</strong>!</p>
+<h2 id="2-d-array-of-pointers"><a href="#2-d-array-of-pointers" class="headerlink" title="2-d array of pointers"></a>2-d array of pointers</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*a[<span class="number">10</span>])[<span class="number">5</span>]; <span class="comment">// a is an array of pointers, each pointer to an array of 5 integers.</span></span><br></pre></td></tr></table></figure>
+<p>Here, using the bracket <code>()</code> to associate the <code>*</code> with the first dimension <code>a[10]</code>, i.e., the first dimension is an array pointers, and then the second dimension is the <code>[5]</code>. In a word, what each element within <code>a</code> points to is an array with 5 integers.<br>In other words, <code>a</code> is an array of pointers, there are 10 pointer within <code>a</code> in total, each element is a pointer to an array with 5 integers.</p>
 <h1 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h1><ul>
 <li><a href="https://www.zhihu.com/question/24466000" target="_blank" rel="noopener">pointer</a></li>
 <li><a href="https://www.zhihu.com/question/31022750" target="_blank" rel="noopener">pointer type</a></li>
@@ -653,7 +678,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-a-pointer"><span class="nav-number">1.</span> <span class="nav-text">What is a pointer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Memory-address-of-pointer"><span class="nav-number">2.</span> <span class="nav-text">Memory address of pointer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-type-of-the-pointer"><span class="nav-number">3.</span> <span class="nav-text">The type of the pointer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#void-pointer"><span class="nav-number">3.1.</span> <span class="nav-text">void pointer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pointer-operation"><span class="nav-number">4.</span> <span class="nav-text">Pointer operation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#array-name-Vs-pointer"><span class="nav-number">5.</span> <span class="nav-text">array name Vs. pointer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">5.1.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Analysis"><span class="nav-number">5.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Differences"><span class="nav-number">5.3.</span> <span class="nav-text">Differences</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Declaration"><span class="nav-number">5.3.1.</span> <span class="nav-text">1. Declaration:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-pointer-is-a-variable-array-name-is-a-constant"><span class="nav-number">5.3.2.</span> <span class="nav-text">2. pointer is a variable, array name is a constant</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">6.</span> <span class="nav-text">References:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-a-pointer"><span class="nav-number">1.</span> <span class="nav-text">What is a pointer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Memory-address-of-pointer"><span class="nav-number">2.</span> <span class="nav-text">Memory address of pointer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-type-of-the-pointer"><span class="nav-number">3.</span> <span class="nav-text">The type of the pointer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#void-pointer"><span class="nav-number">3.1.</span> <span class="nav-text">void pointer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pointer-operation"><span class="nav-number">4.</span> <span class="nav-text">Pointer operation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#array-name-Vs-pointer"><span class="nav-number">5.</span> <span class="nav-text">array name Vs. pointer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">5.1.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Analysis"><span class="nav-number">5.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Differences"><span class="nav-number">5.3.</span> <span class="nav-text">Differences</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Declaration"><span class="nav-number">5.3.1.</span> <span class="nav-text">1. Declaration:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-pointer-is-a-variable-array-name-is-a-constant"><span class="nav-number">5.3.2.</span> <span class="nav-text">2. pointer is a variable, array name is a constant</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pointer-to-array-Vs-array-of-pointers"><span class="nav-number">6.</span> <span class="nav-text">pointer to array Vs. array of pointers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Initialize-array-of-pointers"><span class="nav-number">6.1.</span> <span class="nav-text">Initialize array of pointers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-d-array-of-pointers"><span class="nav-number">6.2.</span> <span class="nav-text">2-d array of pointers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">7.</span> <span class="nav-text">References:</span></a></li></ol></div>
             
 
           </div>
