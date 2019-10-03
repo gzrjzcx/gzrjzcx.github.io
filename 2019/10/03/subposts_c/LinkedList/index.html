@@ -99,25 +99,28 @@
 
 
 
-  <meta name="description" content="C++: struct Vs. classFirstly, in C++, Both class and struct declare a class. The struct is intended for backward compatibility with C(different with C, because it is a class). Accessibility struct: ha">
+  <meta name="description" content="Singly-Linked List In computer science, a linked list is a linear collection of data elements, called nodes, each pointing to the next node by means of a pointer. It is a data structure consisting of">
 <meta name="keywords" content="c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="struct VS. class">
-<meta property="og:url" content="http://yoursite.com/2019/02/23/subposts_c/struct-VS-class/index.html">
+<meta property="og:title" content="LinkedList">
+<meta property="og:url" content="http://yoursite.com/2019/10/03/subposts_c/LinkedList/index.html">
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
-<meta property="og:description" content="C++: struct Vs. classFirstly, in C++, Both class and struct declare a class. The struct is intended for backward compatibility with C(different with C, because it is a class). Accessibility struct: ha">
+<meta property="og:description" content="Singly-Linked List In computer science, a linked list is a linear collection of data elements, called nodes, each pointing to the next node by means of a pointer. It is a data structure consisting of">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-23T01:04:50.887Z">
+<meta property="og:image" content="http://yoursite.com/res/c/linkedlist/linkedlist.png">
+<meta property="og:image" content="http://yoursite.com/res/c/linkedlist/addnode.png">
+<meta property="og:updated_time" content="2019-10-03T07:31:04.153Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="struct VS. class">
-<meta name="twitter:description" content="C++: struct Vs. classFirstly, in C++, Both class and struct declare a class. The struct is intended for backward compatibility with C(different with C, because it is a class). Accessibility struct: ha">
+<meta name="twitter:title" content="LinkedList">
+<meta name="twitter:description" content="Singly-Linked List In computer science, a linked list is a linear collection of data elements, called nodes, each pointing to the next node by means of a pointer. It is a data structure consisting of">
+<meta name="twitter:image" content="http://yoursite.com/res/c/linkedlist/linkedlist.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/23/subposts_c/struct-VS-class/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/03/subposts_c/LinkedList/">
 
 
 
@@ -127,7 +130,7 @@
   };
 </script>
 
-  <title>struct VS. class | Alex's Epitaph</title>
+  <title>LinkedList | Alex's Epitaph</title>
   
 
 
@@ -313,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/23/subposts_c/struct-VS-class/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/03/subposts_c/LinkedList/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Alex">
@@ -330,7 +333,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">struct VS. class
+          <h1 class="post-title" itemprop="name headline">LinkedList
 
               
             
@@ -356,7 +359,7 @@
                 
               
 
-              <time title="Created: 2019-02-23 01:03:10 / Modified: 09:04:50" itemprop="dateCreated datePublished" datetime="2019-02-23T01:03:10+08:00">2019-02-23</time>
+              <time title="Created: 2019-10-03 12:27:40 / Modified: 15:31:04" itemprop="dateCreated datePublished" datetime="2019-10-03T12:27:40+08:00">2019-10-03</time>
             
 
             
@@ -395,25 +398,16 @@
       
 
       
-        <h1 id="C-struct-Vs-class"><a href="#C-struct-Vs-class" class="headerlink" title="C++: struct Vs. class"></a>C++: <code>struct</code> Vs. <code>class</code></h1><p>Firstly, in <code>C++</code>, <strong>Both <code>class</code> and <code>struct</code> declare a class</strong>. The <code>struct</code> is intended for backward compatibility with <code>C</code>(different with <code>C</code>, because it is a class).</p>
-<h2 id="Accessibility"><a href="#Accessibility" class="headerlink" title="Accessibility"></a>Accessibility</h2><ul>
-<li><code>struct:</code> have default <strong><code>public</code></strong> members and bases. It means when inheriting, <code>struct</code> defaults to <code>public</code> inheritance.</li>
-<li><code>class:</code> have default <strong><code>private</code></strong> members and bases. It means when inheriting, <code>class</code> defaults to <code>private</code> inheritance.</li>
-</ul>
-<p>Both directives allows a mixture of <code>public</code>, <code>protected</code> and <code>private</code> data and member functions.<br>In fact, two formats below are absolutely equivalent in every way except their name:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> x;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="When-to-use"><a href="#When-to-use" class="headerlink" title="When to use:"></a>When to use:</h2><ul>
-<li>If we want to use structs as plain-old-data(POD) structures without any class-like features, then we need to use <code>struct</code>. <strong>Note</strong>, the <code>POD</code> means that is a class (whether defined with the keyword struct or the keyword class) without <code>constructors</code>, <code>destructors</code> and <code>virtual members functions</code>.</li>
-<li>Then other situations is suitable to use <code>class</code>.</li>
-</ul>
-<h2 id="Using-struct-as-lambda-function"><a href="#Using-struct-as-lambda-function" class="headerlink" title="Using struct as lambda function"></a>Using <code>struct</code> as <code>lambda</code> function</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Compare</span> &#123;</span><span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span> </span>&#123;...&#125;&#125;;</span><br><span class="line"><span class="built_in">std</span>::sort(collection.begin(), collection.end(), Compare());</span><br></pre></td></tr></table></figure>
-<p>However, the <code>lambda</code> function has been supported in <code>C++11</code> by all the major compilers.</p>
-<h2 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h2><p>Since both directives are <code>class</code>, both are able to have <code>constructor</code> and <code>destructor</code>.<br>But some people would like to stick with the <code>struct</code> keyword for classes without member functions, because the resulting definition “looks like” a simple structure from C.</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a href="https://stackoverflow.com/questions/54585/when-should-you-use-a-class-vs-a-struct-in-c/54596#54596" target="_blank" rel="noopener">when to use</a></li>
-<li><a href="https://stackoverflow.com/questions/146452/what-are-pod-types-in-c" target="_blank" rel="noopener">POD</a></li>
-<li><a href="https://stackoverflow.com/questions/1127396/struct-constructor-in-c" target="_blank" rel="noopener">Constructor</a></li>
-<li><a href="https://stackoverflow.com/questions/32719880/why-is-there-not-an-stdis-struct-type-trait/34108140#34108140" target="_blank" rel="noopener">overflow</a></li>
-</ul>
+        <h1 id="Singly-Linked-List"><a href="#Singly-Linked-List" class="headerlink" title="Singly-Linked List"></a>Singly-Linked List</h1><blockquote>
+<p>In computer science, a linked list is a linear collection of data elements, called nodes, each pointing to the next node by means of a pointer. It is a <em>data structure</em> consisting of a group of nodes which together represent a sequence.  –WIKI</p>
+</blockquote>
+<h3 id="Define"><a href="#Define" class="headerlink" title="Define"></a>Define</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> <span class="title">node</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// or simply define</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;node;  <span class="comment">// `node` is the new struct name</span></span><br></pre></td></tr></table></figure>
+<h3 id="Head-Node"><a href="#Head-Node" class="headerlink" title="Head Node"></a>Head Node</h3><p>Typically, there are two ways to initial a linked list: has a head node or hasn’t a head node. It can be diagrammed by the below figure:</p>
+<p><img src="/res/c/linkedlist/linkedlist.png" alt="linkedlist"></p>
+<p>An important note here is that the <em>head node</em> is <strong>not</strong> necessary for the linked list, it is leveraged to simply iterate the linked list. But the <em>root pointer</em> is essential for the linked list.</p>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><p>Here assuming that we have initialized a linked list without head node, and then we need add the elements to the end in order. For example, we want to store 6,7,8 to the list in order:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">node *root=<span class="literal">NULL</span>; <span class="comment">// a root pointer for the linked list</span></span><br><span class="line">node *prev=<span class="literal">NULL</span>; <span class="comment">// a temp node for adding node to the end of the list</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>] = &#123;<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">	node *cur = (node *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">	cur-&gt;val = a[i];</span><br><span class="line">	cur-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(!root)</span><br><span class="line">		root = cur; <span class="comment">// Need to assign the first node to the root pointer</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		prev-&gt;next = cur;</span><br><span class="line">	prev = cur;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>The idea is showed by the below figure:</p>
+<p><img src="/res/c/linkedlist/addnode.png" alt="addnode"></p>
 
       
     </div>
@@ -450,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/23/subposts_c/Typical-error-of-pointer/" rel="next" title="Typical error of pointer">
-                <i class="fa fa-chevron-left"></i> Typical error of pointer
+              <a href="/2019/04/05/subposts_interview/OJ-IO/" rel="next" title="OJ IO">
+                <i class="fa fa-chevron-left"></i> OJ IO
               </a>
             
           </div>
@@ -459,10 +453,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/24/subposts_interview/Tencent-Timi/" rel="prev" title="Tencent Timi Game engineer first interview">
-                Tencent Timi Game engineer first interview <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -621,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-struct-Vs-class"><span class="nav-number">1.</span> <span class="nav-text">C++: struct Vs. class</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Accessibility"><span class="nav-number">1.1.</span> <span class="nav-text">Accessibility</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#When-to-use"><span class="nav-number">1.2.</span> <span class="nav-text">When to use:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-struct-as-lambda-function"><span class="nav-number">1.3.</span> <span class="nav-text">Using struct as lambda function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constructor"><span class="nav-number">1.4.</span> <span class="nav-text">Constructor</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">2.</span> <span class="nav-text">References</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Singly-Linked-List"><span class="nav-number">1.</span> <span class="nav-text">Singly-Linked List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define"><span class="nav-number">1.0.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Head-Node"><span class="nav-number">1.0.2.</span> <span class="nav-text">Head Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Usage"><span class="nav-number">1.0.3.</span> <span class="nav-text">Usage</span></a></li></ol></li></ol></div>
             
 
           </div>
