@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
 <meta property="og:description" content="Several tricks of scanfThe scanf function is used to scan input from the stdin stream according to the format specification. In some cases, the collocation of other input functions(e.g., gets) will ca">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-05T05:35:40.929Z">
+<meta property="og:updated_time" content="2019-10-05T05:40:41.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="scanf and its left white-space character problem">
 <meta name="twitter:description" content="Several tricks of scanfThe scanf function is used to scan input from the stdin stream according to the format specification. In some cases, the collocation of other input functions(e.g., gets) will ca">
@@ -373,7 +373,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-10-05 13:35:40" itemprop="dateModified" datetime="2019-10-05T13:35:40+08:00">2019-10-05</time>
+                <time title="Modified: 2019-10-05 13:40:41" itemprop="dateModified" datetime="2019-10-05T13:40:41+08:00">2019-10-05</time>
               
             
           </span>
@@ -423,14 +423,14 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d\n"</span>, &amp;n); <span class="comment">// equal to scanf("%d ", &amp;n);</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, n);</span><br><span class="line">	<span class="keyword">while</span>(n--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">char</span> str[<span class="number">100</span>];</span><br><span class="line">		gets(str);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, str);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>An alternative is adding the WSC to the format string of <code>scanf</code>.</p>
 <blockquote>
-<p>Note: the meaning of the WSC in the format string of <code>scanf</code> is to explicitly read and ignore as many whitespace characters as it can<a href="https://stackoverflow.com/questions/19499060/what-is-the-effect-of-trailing-white-space-in-a-scanf-format-string" target="_blank" rel="noopener">1</a>, instead of expecting a <code>\n</code> new line sign. Therefore, the <code>scanf(&quot;%d\n&quot;)</code> means after reading an integer, it will continue to read characters, discarding all whitespace until it sees a non-whitespace character on the input. That non-whitespace character will be left as the next character to be read by an input function.</p>
+<p>Note: the meaning of the WSC in the format string of <code>scanf</code> is to explicitly read and ignore as many whitespace characters as it can<a href="https://stackoverflow.com/questions/19499060/what-is-the-effect-of-trailing-white-space-in-a-scanf-format-string" target="_blank" rel="noopener">[1]</a>, instead of expecting a <code>\n</code> new line sign. Therefore, the <code>scanf(&quot;%d\n&quot;)</code> means after reading an integer, it will continue to read characters, discarding all whitespace until it sees a non-whitespace character on the input. That non-whitespace character will be left as the next character to be read by an input function.</p>
 </blockquote>
-<p>Therefore, the first <code>scanf(&quot;%d\n&quot;)</code> will read the integer <code>3</code> and discard the <code>\n</code>, then encounter the next non-white-space character(i.e. ‘c’) and stop. But the ‘c’ will be left to the buffer to the next input function(e.g. <code>gets()</code>).</p>
+<p>Therefore, the first <code>scanf(&quot;%d\n&quot;)</code> will read the integer <code>3</code> and discard the <code>\n</code>, then encounter the next non-white-space character(i.e. <code>c</code>) and stop. But the <code>c</code> will be left to the buffer to the next input function(e.g. <code>gets()</code>).</p>
 <p><strong>Note:</strong> <code>gets()</code> is unsafe because it is potential to cause overflow for the string. Therefore, we can try to use <code>fgets(str,MAXLEN,stdin);</code></p>
 <h3 id="References-and-relative-reading"><a href="#References-and-relative-reading" class="headerlink" title="References and relative reading:"></a>References and relative reading:</h3><ul>
-<li><code>[scanf detail](https://blog.csdn.net/xuelongyinyue/article/details/47358193)</code></li>
-<li><code>[scanf(&quot;%c&quot;) vs scanf(&quot;%s&quot;)](https://blog.csdn.net/Wmll1234567/article/details/82463573)</code></li>
-<li><code>[man scanf](http://www.man7.org/linux/man-pages/man3/scanf.3.html)</code></li>
+<li><a href="https://blog.csdn.net/xuelongyinyue/article/details/47358193" target="_blank" rel="noopener">scanf detail</a></li>
+<li><a href="https://blog.csdn.net/Wmll1234567/article/details/82463573" target="_blank" rel="noopener">scanf(“%c”) vs scanf(“%s”)</a></li>
+<li><a href="http://www.man7.org/linux/man-pages/man3/scanf.3.html" target="_blank" rel="noopener">man scanf</a></li>
 </ul>
 
       
