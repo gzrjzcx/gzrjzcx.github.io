@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
 <meta property="og:description" content="Dangling references Vs. Memory leakDangling references A dangling reference(i.e., wild pointer or dangling pinter) is a reference to an object that no longer exists or cannot access.  For example:1234">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-23T00:18:18.449Z">
+<meta property="og:updated_time" content="2019-10-17T06:08:24.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Typical error of pointer">
 <meta name="twitter:description" content="Dangling references Vs. Memory leakDangling references A dangling reference(i.e., wild pointer or dangling pinter) is a reference to an object that no longer exists or cannot access.  For example:1234">
@@ -356,12 +356,24 @@
                 
               
 
-              <time title="Created: 2019-02-23 00:15:35 / Modified: 08:18:18" itemprop="dateCreated datePublished" datetime="2019-02-23T00:15:35+08:00">2019-02-23</time>
+              <time title="Created: 2019-02-23 00:15:35" itemprop="dateCreated datePublished" datetime="2019-02-23T00:15:35+08:00">2019-02-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-17 14:08:24" itemprop="dateModified" datetime="2019-10-17T14:08:24+08:00">2019-10-17</time>
               
             
           </span>
@@ -409,7 +421,7 @@
 <h3 id="A-typical-example"><a href="#A-typical-example" class="headerlink" title="A typical example"></a>A typical example</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* i = func();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">func</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">1234</span>;</span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">    <span class="keyword">return</span> &amp;num; <span class="comment">//return an address of a local variable</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Here, we try to return the address of the local variable <code>&amp;num</code>. However, <code>num</code> is a local variable which stored at <code>stack</code> segment, once the function have been executed, this memory will be released. In this stage, <code>i</code> is the <code>dangling reference</code>.<br>If we want to return the pointer to <code>num</code>, a feasible method is to guarantee the lifecycle of <code>num</code> is the whole runtime. E.g., we can set the <code>num</code> as <code>static int num</code>.</p>
 <h2 id="Memory-leak"><a href="#Memory-leak" class="headerlink" title="Memory leak"></a>Memory leak</h2><blockquote>
-<p><code>Memory leak</code> is refer to the <code>heap</code> memory segment. It means that the allocated memory by <code>malloc</code> dynamically cannot be released by <code>free</code> correctly. Then this memory block can not be reused until the end of the program.</p>
+<p><code>Memory leak</code> refers to the <code>heap</code> memory segment. It means that the allocated memory by <code>malloc</code> dynamically cannot be released by <code>free</code> correctly. Then this memory block can not be reused until the end of the program.</p>
 </blockquote>
 <h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In a word, below is a safer method to avoid the <code>dangling pointer</code> and <code>wild pointer</code>:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* p = <span class="literal">NULL</span>; <span class="comment">//initialize to address 0 or pointer to valid memory</span></span><br><span class="line">p = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">...</span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">p = <span class="literal">NULL</span>; <span class="comment">// reference to NULL to avoid the later dereference operation of p</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>Note:</strong> here the <code>free</code> function only means free the memory <strong>instead of delete <code>p</code></strong>. Pointer <code>p</code> is a data type, which will be destroyed until out of the scope.</p>
@@ -538,7 +550,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
