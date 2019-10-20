@@ -108,7 +108,7 @@
 <meta property="og:description" content="腾讯游戏研发校招电话面试一面本来还在写着创梦天地的笔试，腾讯突然打电话过来要面试。没办法，果断放弃笔试，hah。 首先进行了自我介绍，项目上的简单介绍。然后问了熟不熟悉C++，没办法，只会C艹不会C++… 问题1. ++i和i++的区别。 i++指的是先用i进行其他操作，在执行i+=1的操作。  ++i指的是先执行i+=1的操作，在用i进行其他操作。  实际上，i++和++i的实现可以由以下函数模">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/res/interview/tencent/findPoisonousWater.png">
-<meta property="og:updated_time" content="2019-10-20T13:26:04.429Z">
+<meta property="og:updated_time" content="2019-10-20T13:28:13.442Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tencent 2019 campus recruitment: Game Developer Engineer first interview">
 <meta name="twitter:description" content="腾讯游戏研发校招电话面试一面本来还在写着创梦天地的笔试，腾讯突然打电话过来要面试。没办法，果断放弃笔试，hah。 首先进行了自我介绍，项目上的简单介绍。然后问了熟不熟悉C++，没办法，只会C艹不会C++… 问题1. ++i和i++的区别。 i++指的是先用i进行其他操作，在执行i+=1的操作。  ++i指的是先执行i+=1的操作，在用i进行其他操作。  实际上，i++和++i的实现可以由以下函数模">
@@ -375,7 +375,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-10-20 21:26:04" itemprop="dateModified" datetime="2019-10-20T21:26:04+08:00">2019-10-20</time>
+                <time title="Modified: 2019-10-20 21:28:13" itemprop="dateModified" datetime="2019-10-20T21:28:13+08:00">2019-10-20</time>
               
             
           </span>
@@ -447,7 +447,7 @@
 <h3 id="6-有1000瓶水，其中只有一瓶有毒，有10只老鼠，如何一次找出那瓶有毒的水？"><a href="#6-有1000瓶水，其中只有一瓶有毒，有10只老鼠，如何一次找出那瓶有毒的水？" class="headerlink" title="6. 有1000瓶水，其中只有一瓶有毒，有10只老鼠，如何一次找出那瓶有毒的水？"></a><code>6. 有1000瓶水，其中只有一瓶有毒，有10只老鼠，如何一次找出那瓶有毒的水？</code></h3><blockquote>
 <p>关键是考察如何应用二进制数来表示每一瓶水。因为有10只老鼠，其实也暗示了2^10=1024&gt;1000，即可以用10位二进制数来无重复表示1000瓶水。然后让10只老鼠分别对应二进制的10位数，第一只老鼠喝右数第一位中值为1的水，第二只老鼠喝右数第二位中值为1的水，依次类推。最终，检查老鼠死亡状态，死亡老鼠所对应的位数记为1，没死的老鼠所对应的位数记为0，得到的二进制数化为十进制数则为有毒的那瓶水。</p>
 </blockquote>
-<div align="center"><br>  <img width="200" src="/res/interview/tencent/findPoisonousWater.png"><br></div>
+<div align="center"><br>  <img width="400" src="/res/interview/tencent/findPoisonousWater.png"><br></div>
 
 <p>如图，第一只老鼠<code>m1</code>喝的水为二进制表示中右数第一位的值为1的水。如果第一只老鼠死亡，则可以说明有毒的水此位为1的水中，反过来也说明有毒的水在此位为0的水中。此时可以看到第一位数实际上已经过滤了一半（500瓶）的水。接着看第二只老鼠<code>m2</code>所在的第二位。同样地，<code>m2</code>喝了第二位中值为1的水，如果<code>m2</code>死了的话则说明有毒的水在第二位为1的水中，否则有毒的水在第二位为0的水中。需要注意的是，如果第一只第二只老鼠都死了，则说明有毒的水在第一位和第二位都为1的水中；或者第二只老鼠没死，第一只老鼠死了，则说明有毒的水在第二位为0，第一位为1的水当中…即老鼠越多则越能确定有毒的水的位置。如此往前推，则可以知道有毒的水为10只老鼠的死亡状态的组合，该组合的十进制值则是有毒的水的位置。</p>
 <p>例如，如果最后10只老鼠的死亡状态(i.e. 10只老鼠所对应的二进制各个位数的值)为<code>0000000001</code>，则可以说明第一瓶就是有毒的水。或者说，如果第十只老鼠（从右数，即<code>m10</code>）死亡，也就是说有毒的水一定在第512瓶或它之后的水中。</p>
