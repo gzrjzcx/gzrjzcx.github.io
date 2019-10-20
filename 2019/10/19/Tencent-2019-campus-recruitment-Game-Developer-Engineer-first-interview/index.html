@@ -108,7 +108,7 @@
 <meta property="og:description" content="腾讯游戏研发校招电话面试一面本来还在写着创梦天地的笔试，腾讯突然打电话过来要面试。没办法，果断放弃笔试，hah。 首先进行了自我介绍，项目上的简单介绍。然后问了熟不熟悉C++，没办法，只会C艹不会C++… 问题1. ++i和i++的区别。 i++指的是先用i进行其他操作，在执行i+=1的操作。  ++i指的是先执行i+=1的操作，在用i进行其他操作。  实际上，i++和++i的实现可以由以下函数模">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/res/interview/tencent/findPoisonousWater.png">
-<meta property="og:updated_time" content="2019-10-20T12:40:24.571Z">
+<meta property="og:updated_time" content="2019-10-20T12:43:16.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tencent 2019 campus recruitment: Game Developer Engineer first interview">
 <meta name="twitter:description" content="腾讯游戏研发校招电话面试一面本来还在写着创梦天地的笔试，腾讯突然打电话过来要面试。没办法，果断放弃笔试，hah。 首先进行了自我介绍，项目上的简单介绍。然后问了熟不熟悉C++，没办法，只会C艹不会C++… 问题1. ++i和i++的区别。 i++指的是先用i进行其他操作，在执行i+=1的操作。  ++i指的是先执行i+=1的操作，在用i进行其他操作。  实际上，i++和++i的实现可以由以下函数模">
@@ -375,7 +375,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-10-20 20:40:24" itemprop="dateModified" datetime="2019-10-20T20:40:24+08:00">2019-10-20</time>
+                <time title="Modified: 2019-10-20 20:43:16" itemprop="dateModified" datetime="2019-10-20T20:43:16+08:00">2019-10-20</time>
               
             
           </span>
@@ -457,6 +457,7 @@
 <li>第三只老鼠喝1-125，250-375，500-625，750-875；</li>
 <li>…<br>比如，如果第一只老鼠死了，则说明有毒的水在1-500瓶当中，如果第二只老鼠没死，则说明有毒的水在250-500瓶中，如果第三只老鼠死了，则说明有毒的水在250-375瓶当中…如此继续，最终可以确定有毒的那瓶水。其实本质上这个方法和二进制表示一样，每只老鼠最终都会喝到500瓶水，只不过喝的500瓶水不一样。这样就可以通过每只老鼠的状态来分析出有毒的水。例如，在二分法中第一只老鼠其实相当于二进制表示中最左边的老鼠(i.e. <code>m10</code>)，它喝了前500瓶水；最后一只老鼠则相当于二进制方法中最右边的老鼠(i.e. <code>m1</code>)，其相当于每隔一瓶喝一次（例如，第1，3，5…瓶），总计也喝了500瓶。</li>
 </ul>
+<p>Essentially, this is a problem of <em><a href="https://blog.csdn.net/jiaomeng/article/details/1495500" target="_blank" rel="noopener">Bloom Filter</a></em>.</p>
 
       
     </div>
