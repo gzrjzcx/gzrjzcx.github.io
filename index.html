@@ -295,6 +295,307 @@
   <section id="posts" class="posts-expand">
     
     	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alex">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex's Epitaph">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/" class="post-title-link" itemprop="url">ByteDance: Clinet Developer First Interview</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-11-01 11:06:19 / Modified: 13:58:01" itemprop="dateCreated datePublished" datetime="2019-11-01T11:06:19+08:00">2019-11-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="字节跳动客户端开发一面"><a href="#字节跳动客户端开发一面" class="headerlink" title="字节跳动客户端开发一面"></a>字节跳动客户端开发一面</h1><p>总体来说一面大部分都是基础问题，但是因为我很久没用C++了，所以手写代码的时候没用写出来，结果凉凉。</p>
+<h2 id="1-static关键字的作用"><a href="#1-static关键字的作用" class="headerlink" title="1. static关键字的作用"></a>1. <code>static</code>关键字的作用</h2><p>常见问题，但是有一点回答的时候还是不太确定。那就是<code>static</code>修饰的函数（静态函数）一般情况下只能被定义它的源文件所调用，因为其他文件找不到它的地址。但是，如果通过间接调用，也是可以强行调用这个静态函数，只要拿到这个函数的地址。以下有两种方法：</p>
+<ul>
+<li>通过函数指针拿到静态函数的地址，则可以调用该函数。</li>
+<li>或者直接在定义静态函数的<code>.c</code>文件中来定义一个非静态函数来调用这个静态函数，然后在<code>main</code>函数中调用这个非静态函数即可。</li>
+</ul>
+<p>不过就我个人理解，<code>static</code>的本意即为了限制作用域，这样虽然可以强行在别的文件中（即非定义静态函数的源文件）调用静态函数，但是并不是符合函数最初设计的。另外，<strong><code>extern</code>是不能作用在<code>static</code>上的</strong>。</p>
+<h2 id="2-pointer-VS-reference"><a href="#2-pointer-VS-reference" class="headerlink" title="2. pointer VS. reference"></a>2. <code>pointer</code> VS. <code>reference</code></h2><p><a href="https://www.hellscript.cc/2019/02/22/subposts_c/reference-Vs-pointer/" target="_blank" rel="noopener">Here</a></p>
+<h2 id="3-C-实现智能指针"><a href="#3-C-实现智能指针" class="headerlink" title="3. C++实现智能指针"></a>3. C++实现智能指针</h2><h2 id="4-有一个随机数生成器能够生成-1-5-的随机数，问如何使用它产生-1-7-的随机数生成器？"><a href="#4-有一个随机数生成器能够生成-1-5-的随机数，问如何使用它产生-1-7-的随机数生成器？" class="headerlink" title="4. 有一个随机数生成器能够生成[1-5]的随机数，问如何使用它产生[1-7]的随机数生成器？"></a>4. 有一个随机数生成器能够生成[1-5]的随机数，问如何使用它产生[1-7]的随机数生成器？</h2><ol>
+<li>先生成一个[1-5]的随机数<code>a</code>，然后<code>a-=1</code>即可得到一个[0-4]的随机数<code>a~(0,1,2,3,4)</code>，在生成另一个[1-5]的随机数<code>b~(1,2,3,4,5)</code>，所以可以得到一个[1-25]的随机数<code>c=5*a+b</code>。例如，<code>a=1</code>时则<code>c</code>可以是<code>6,7,8,9,10</code>。也即是通过此操作可以获得一个1-25的均匀随机数生成器，为了采样效率更高，可以将<code>1,2,3</code>映射为<code>1</code>，<code>4,5,6</code>映射为<code>2</code>… 依次类推。如果得到的数大于21，则重新生成即可。</li>
+<li>用[1-5]的随机数生成器生成3个随机数<code>a,b,c</code>，其中<code>1,2 -&gt; 0, 4,5 -&gt; 1, 3重置</code>。用这三个数分别表示为一个二进制位，则<code>a,b,c</code>三个数可以表示为[1-8]的三个数（因为&amp;&amp;2^3=8&amp;&amp;）。例如，三次生成得到的随机数分别为<code>a=1,b=1,c=1</code>，则最终得到的随机数为7。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/Subposts_dataStructure/Data-Structure-Stack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alex">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex's Epitaph">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/30/Subposts_dataStructure/Data-Structure-Stack/" class="post-title-link" itemprop="url">Data Structure: Stack</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-30 14:22:04 / Modified: 14:32:38" itemprop="dateCreated datePublished" datetime="2019-10-30T14:22:04+08:00">2019-10-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="栈（Stack）"><a href="#栈（Stack）" class="headerlink" title="栈（Stack）"></a>栈（Stack）</h1><p>栈是最简单数据结构之一，<strong>其本质是一个操作受到限制的线性表</strong>（n个具有相同特性的数据元素的有限序列）。栈最显著的特点就是<strong>只有一个出入口</strong>，即数据的入口和出口都是同一个口，这也就导致了栈的<strong>后进先出</strong>的特点。如下图所示，可以把栈想象成一个立着的容器，放入数据则是往容器里面放盘子，最先进入容器的盘子被放到最底部，也即是只能最后拿出来。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    	
+    
+    	
     
     	
     
@@ -819,8 +1120,6 @@
     	
     
     	
-    
-    	
       		
 
   
@@ -985,6 +1284,8 @@
 
     	
     
+    	
+    
   </section>
 
   
@@ -1028,7 +1329,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1053,7 +1354,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

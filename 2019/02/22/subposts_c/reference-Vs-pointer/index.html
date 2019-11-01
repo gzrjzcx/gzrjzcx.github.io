@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
 <meta property="og:description" content="pointer Vs. referenceFirstly, reference is the concept of C++, it is a simple reference data type that is less powerful but safer than the pointer type.123int a=2;int&amp;amp; ra=a; // define a reference">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-23T00:06:00.361Z">
+<meta property="og:updated_time" content="2019-11-01T04:05:50.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="reference Vs. pointer">
 <meta name="twitter:description" content="pointer Vs. referenceFirstly, reference is the concept of C++, it is a simple reference data type that is less powerful but safer than the pointer type.123int a=2;int&amp;amp; ra=a; // define a reference">
@@ -373,7 +373,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-02-23 08:06:00" itemprop="dateModified" datetime="2019-02-23T08:06:00+08:00">2019-02-23</time>
+                <time title="Modified: 2019-11-01 12:05:50" itemprop="dateModified" datetime="2019-11-01T12:05:50+08:00">2019-11-01</time>
               
             
           </span>
@@ -420,6 +420,7 @@
 <li><code>Reference</code> is the <strong>target value</strong> execute the increment(<code>++</code>) or decrement(<code>--</code>) operation, but the <code>pointer</code> is itself executes the increment or decrement operation.</li>
 </ul>
 <p>Particularly, the <code>reference</code> can be used as the <code>formal parameter</code> to avoid the check of if the passed parameter is <code>0</code>. For example:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun1</span><span class="params">(<span class="keyword">int</span> *point)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// need to check whether the point is NULL</span></span><br><span class="line">     <span class="keyword">if</span>(!point)</span><br><span class="line">     &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">(<span class="keyword">int</span> &amp;reference)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="comment">// reference is must be non-null </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong><code>sizeof(*pointer)</code> will get the memory space of a pointer, <code>sizeof(&amp;reference)</code> will get the referenced object’s memory space.</strong></p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
 <li><a href="https://www.zhihu.com/question/37608201" target="_blank" rel="noopener">zhihu</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Reference_(C%2B%2B" target="_blank" rel="noopener">wiki</a>)</li>
@@ -544,7 +545,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -569,7 +570,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>

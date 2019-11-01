@@ -99,25 +99,25 @@
 
 
 
-  <meta name="description" content="Difference between thread and process  Process is the instance of the program, thread is the subset of process. One program has at least one process, one process has at least one thread. Process runs">
-<meta name="keywords" content="Parallel">
+  <meta name="description" content="栈（Stack）栈是最简单数据结构之一，其本质是一个操作受到限制的线性表（n个具有相同特性的数据元素的有限序列）。栈最显著的特点就是只有一个出入口，即数据的入口和出口都是同一个口，这也就导致了栈的后进先出的特点。如下图所示，可以把栈想象成一个立着的容器，放入数据则是往容器里面放盘子，最先进入容器的盘子被放到最底部，也即是只能最后拿出来。">
+<meta name="keywords" content="Data Structure">
 <meta property="og:type" content="article">
-<meta property="og:title" content="thread Vs. process">
-<meta property="og:url" content="http://yoursite.com/2019/02/21/subposts_parallel/thread-vs-process/index.html">
+<meta property="og:title" content="Data Structure: Stack">
+<meta property="og:url" content="http://yoursite.com/2019/10/30/Subposts_dataStructure/Data-Structure-Stack/index.html">
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
-<meta property="og:description" content="Difference between thread and process  Process is the instance of the program, thread is the subset of process. One program has at least one process, one process has at least one thread. Process runs">
+<meta property="og:description" content="栈（Stack）栈是最简单数据结构之一，其本质是一个操作受到限制的线性表（n个具有相同特性的数据元素的有限序列）。栈最显著的特点就是只有一个出入口，即数据的入口和出口都是同一个口，这也就导致了栈的后进先出的特点。如下图所示，可以把栈想象成一个立着的容器，放入数据则是往容器里面放盘子，最先进入容器的盘子被放到最底部，也即是只能最后拿出来。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-21T18:24:41.135Z">
+<meta property="og:updated_time" content="2019-10-30T06:32:38.667Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="thread Vs. process">
-<meta name="twitter:description" content="Difference between thread and process  Process is the instance of the program, thread is the subset of process. One program has at least one process, one process has at least one thread. Process runs">
+<meta name="twitter:title" content="Data Structure: Stack">
+<meta name="twitter:description" content="栈（Stack）栈是最简单数据结构之一，其本质是一个操作受到限制的线性表（n个具有相同特性的数据元素的有限序列）。栈最显著的特点就是只有一个出入口，即数据的入口和出口都是同一个口，这也就导致了栈的后进先出的特点。如下图所示，可以把栈想象成一个立着的容器，放入数据则是往容器里面放盘子，最先进入容器的盘子被放到最底部，也即是只能最后拿出来。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/21/subposts_parallel/thread-vs-process/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/30/Subposts_dataStructure/Data-Structure-Stack/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>thread Vs. process | Alex's Epitaph</title>
+  <title>Data Structure: Stack | Alex's Epitaph</title>
   
 
 
@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/subposts_parallel/thread-vs-process/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/Subposts_dataStructure/Data-Structure-Stack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Alex">
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">thread Vs. process
+          <h1 class="post-title" itemprop="name headline">Data Structure: Stack
 
               
             
@@ -356,24 +356,12 @@
                 
               
 
-              <time title="Created: 2019-02-21 16:29:01" itemprop="dateCreated datePublished" datetime="2019-02-21T16:29:01+08:00">2019-02-21</time>
+              <time title="Created: 2019-10-30 14:22:04 / Modified: 14:32:38" itemprop="dateCreated datePublished" datetime="2019-10-30T14:22:04+08:00">2019-10-30</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-22 02:24:41" itemprop="dateModified" datetime="2019-02-22T02:24:41+08:00">2019-02-22</time>
               
             
           </span>
@@ -407,44 +395,7 @@
       
 
       
-        <h1 id="Difference-between-thread-and-process"><a href="#Difference-between-thread-and-process" class="headerlink" title="Difference between thread and process"></a>Difference between <code>thread</code> and <code>process</code></h1><hr>
-<ol>
-<li>Process is the instance of the program, thread is the subset of process.</li>
-<li>One program has at least one process, one process has at least one thread.</li>
-<li>Process runs in a separate memory space, thread runs in a shared memory space.</li>
-<li>Process has its own address space, once crash, have no impact for other processes. Thread only has its own stack but shared other resources, once crashed, whole program crashed.</li>
-</ol>
-<h1 id="What-is-thread"><a href="#What-is-thread" class="headerlink" title="What is thread"></a>What is thread</h1><hr>
-<blockquote><p><em>Thread is <strong>subset</strong> of the process.</em></p>
-</blockquote>
-<h4 id="Shared-Memory-System"><a href="#Shared-Memory-System" class="headerlink" title="Shared Memory System"></a>Shared Memory System</h4><p>In terms of the thread, we need to know the base of <strong>shared memory</strong>:<br>In the shared memory system, there is <strong>only one single address space</strong> across the whole memory system.<br><blockquote><ul>
-<li>Every CPU/core can read/write all memory locations in the system.</li>
-<li>Only one logical memory space.</li>
-<li>All CPUs/cores refer to a memory location using the same address.</li>
-</ul>
-</blockquote></p>
-<h4 id="Multiple-threads"><a href="#Multiple-threads" class="headerlink" title="Multiple threads"></a>Multiple threads</h4><p>Given these points, typically, we can say that the term of <code>multiple threads</code> is mainly used in the <strong>shared memory system</strong>. Because threads can access the shared data within the whole memory system by <code>read/write</code> method instead of message. It is the communication in different threads.<br><blockquote><p>Each thread has its own <code>stack</code> memory, but <code>heap</code> memory segment are shared.</p>
-</blockquote></p>
-<h4 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h4><p>There are two different kinds of data in <code>multiple threads</code> contexts:</p>
-<ul>
-<li><code>Shared data:</code> can be accessed by all threads.</li>
-<li><code>Private data:</code> can be accessed by the owning thread.</li>
-</ul>
-<p>Each thread has its own copy the executable(i.e., the codes), however, different threads can follow different control flow through the program because each thread has its own program counter(i.e. <strong>register</strong>).</p>
-<p>Typically, <em>run one thread per CPU/core</em>. The register contains the address of the instruction being executed at the current time. Therefore, a program can control different threads.</p>
-<h4 id="Synchronization"><a href="#Synchronization" class="headerlink" title="Synchronization"></a>Synchronization</h4><p>By default, threads execute <strong>asynchronously</strong>.<br>Each thread executes through the program instructions <strong>independently</strong> of other threads. Therefore, it is very important to guarantee the correct order of shared variables processed.</p>
-<h1 id="What-is-process"><a href="#What-is-process" class="headerlink" title="What is process"></a>What is process</h1><hr>
-<blockquote><p><em>A process is the instance of a computer program that is being executed.</em></p>
-</blockquote>
-<p>It contains the program code and its activity. It has distinct address space, different from other executing instance of program in what it has separate resources.</p>
-<h4 id="Distributed-Memory-Architecture"><a href="#Distributed-Memory-Architecture" class="headerlink" title="Distributed-Memory Architecture"></a>Distributed-Memory Architecture</h4><p>Distributed-memory refers to a multiprocessor computer system in which each processor has its own <strong>private memory</strong>. Computational tasks can only operate on local data, and if remote data is required, the computational task must communicate with one or more remote processors.<br>Not only a single memory space used like <code>shared memory</code>. Which can avoid <code>**data race conditions**</code>.</p>
-<h4 id="Data-1"><a href="#Data-1" class="headerlink" title="Data"></a>Data</h4><p>All variables are <strong>private</strong>. Each process has access only to its own data.<br>All processes run the same program(their own copy), each process has a separate copy of data.<br>Processes can follow different control paths through the program, depending on their process ID</p>
-<h4 id="Communication-amp-Synchronization"><a href="#Communication-amp-Synchronization" class="headerlink" title="Communication &amp; Synchronization"></a>Communication &amp; Synchronization</h4><p>By sending and receiving message to other processes to finish communication. Therefore, there is no <code>data race</code>, rather than <code>dead lock</code>:</p>
-<ul>
-<li>A <code>synchronous send</code> is not completed until the message has started to be received.</li>
-<li>An <code>asynchronous send</code> completes as soon as the message has gone.</li>
-<li><code>Receives</code> are usually synchronous - the receiving process must wait until the message arrives</li>
-</ul>
+        <h1 id="栈（Stack）"><a href="#栈（Stack）" class="headerlink" title="栈（Stack）"></a>栈（Stack）</h1><p>栈是最简单数据结构之一，<strong>其本质是一个操作受到限制的线性表</strong>（n个具有相同特性的数据元素的有限序列）。栈最显著的特点就是<strong>只有一个出入口</strong>，即数据的入口和出口都是同一个口，这也就导致了栈的<strong>后进先出</strong>的特点。如下图所示，可以把栈想象成一个立着的容器，放入数据则是往容器里面放盘子，最先进入容器的盘子被放到最底部，也即是只能最后拿出来。</p>
 
       
     </div>
@@ -468,7 +419,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Parallel/" rel="tag"># Parallel</a>
+            <a href="/tags/Data-Structure/" rel="tag"># Data Structure</a>
           
         </div>
       
@@ -481,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/21/Parallelization/" rel="next" title="Parallelization">
-                <i class="fa fa-chevron-left"></i> Parallelization
+              <a href="/2019/10/19/subposts_interview/Tencent-2019-campus-recruitment-Game-Developer-Engineer-first-interview/" rel="next" title="Tencent 2019 campus recruitment: Game Developer Engineer first interview">
+                <i class="fa fa-chevron-left"></i> Tencent 2019 campus recruitment: Game Developer Engineer first interview
               </a>
             
           </div>
@@ -491,8 +442,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/22/subposts_c/The-nature-of-pointer/" rel="prev" title="The nature of pointer">
-                The nature of pointer <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/" rel="prev" title="ByteDance: Clinet Developer First Interview">
+                ByteDance: Clinet Developer First Interview <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -652,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Difference-between-thread-and-process"><span class="nav-number">1.</span> <span class="nav-text">Difference between thread and process</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-thread"><span class="nav-number">2.</span> <span class="nav-text">What is thread</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Shared-Memory-System"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">Shared Memory System</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multiple-threads"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">Multiple threads</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Synchronization"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">Synchronization</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-process"><span class="nav-number">3.</span> <span class="nav-text">What is process</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Distributed-Memory-Architecture"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">Distributed-Memory Architecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-1"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Communication-amp-Synchronization"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">Communication &amp; Synchronization</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#栈（Stack）"><span class="nav-number">1.</span> <span class="nav-text">栈（Stack）</span></a></li></ol></div>
             
 
           </div>
