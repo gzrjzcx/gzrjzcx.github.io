@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Static keywordThe static keyword in C language, is mainly intended to control the scopes of the variable.  static global variable: It is a file-level operation. The static global variable will cannot">
+<meta name="keywords" content="c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Static keyword &amp; C memory layout">
+<meta property="og:url" content="http://yoursite.com/2019/02/22/subposts_c/c-memory-layout/index.html">
+<meta property="og:site_name" content="Alex&#39;s Epitaph">
+<meta property="og:description" content="Static keywordThe static keyword in C language, is mainly intended to control the scopes of the variable.  static global variable: It is a file-level operation. The static global variable will cannot">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-17T05:57:29.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Static keyword &amp; C memory layout">
+<meta name="twitter:description" content="Static keywordThe static keyword in C language, is mainly intended to control the scopes of the variable.  static global variable: It is a file-level operation. The static global variable will cannot">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/22/subposts_c/c-memory-layout/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Static keyword & C memory layout | Alex's Epitaph</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Alex's Epitaph</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Dereference a pointer to soul?</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/subposts_c/c-memory-layout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alex">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex's Epitaph">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Static keyword & C memory layout
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-22 21:54:33" itemprop="dateCreated datePublished" datetime="2019-02-22T21:54:33+08:00">2019-02-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-17 13:57:29" itemprop="dateModified" datetime="2019-10-17T13:57:29+08:00">2019-10-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Static-keyword"><a href="#Static-keyword" class="headerlink" title="Static keyword"></a>Static keyword</h1><p>The <code>static</code> keyword in C language, is mainly intended to control the scopes of the variable.</p>
+<ul>
+<li><code>static global variable</code>: It is a <strong>file-level</strong> operation. The static global variable will cannot be found by other <code>.o</code> files when linking them.  Only the file where the variable are defined can use these global variable.</li>
+<li><code>general global variable</code>: It is can be found by any file by using the <code>extern</code> directive.</li>
+<li><code>static local variable</code>: It is stored in the <code>.BSS</code> segment so that the lifecycle will be the whole runtime of the program. And then it will be initialized to <code>0</code>.</li>
+<li><code>general local variable</code>: It is stored in the <code>slack</code> segment, then it will be destroyed in the end of the current scope(e.g., the current function).</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: The <code>static</code> and <code>extern</code> directive are both the <strong>file-level</strong> operations, which means that they are used to prevent/support the different files to access the described variables.</p>
+</blockquote>
+<p>Particularly, it also makes the <strong>local variable</strong> stored from <code>stack</code> area to the <code>static</code> area(i.e., <code>.BSS</code> segment) in the <code>C</code> memory layout below; therefore, the lifecycle of <code>static local variable</code> will last to the <strong>entire running period of the program</strong>. Additionally, this <code>static local variable</code> will be initialized to <code>0</code> because they are stored in the <code>.BSS</code> segment.</p>
+<h1 id="C-memory-layout"><a href="#C-memory-layout" class="headerlink" title="C memory layout"></a>C memory layout</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">High Addresses ---&gt; .----------------------.</span><br><span class="line">                    |      Environment     |</span><br><span class="line">                    |----------------------|</span><br><span class="line">                    |                      |   Functions and variable are declared</span><br><span class="line">                    |         STACK        |   on the stack.</span><br><span class="line">base pointer -&gt;     | - - - - - - - - - - -|</span><br><span class="line">                    |           |          |</span><br><span class="line">                    |           v          |</span><br><span class="line">                    :                      :</span><br><span class="line">                    .                      .   The stack grows down into unused space</span><br><span class="line">                    .         Empty        .   while the heap grows up. </span><br><span class="line">                    .                      .</span><br><span class="line">                    .                      .   (other memory maps do occur here, such </span><br><span class="line">                    .                      .    as dynamic libraries, and different memory</span><br><span class="line">                    :                      :    allocate)</span><br><span class="line">                    |           ^          |</span><br><span class="line">                    |           |          |</span><br><span class="line"> brk point -&gt;       | - - - - - - - - - - -|   Dynamic memory is declared on the heap</span><br><span class="line">                    |          HEAP        |</span><br><span class="line">                    |                      |</span><br><span class="line">                    |----------------------|</span><br><span class="line">                    |          BSS         |   Uninitialized data (BSS) 静态区</span><br><span class="line">                    |----------------------|   </span><br><span class="line">                    |          Data        |   Initialized data (DS) 文字常量区</span><br><span class="line">                    |----------------------|</span><br><span class="line">                    |          Text        |   Binary code 代码区</span><br><span class="line">Low Addresses ----&gt; &apos;----------------------&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="Stack-segment"><a href="#Stack-segment" class="headerlink" title="Stack segment"></a>Stack segment</h2><p>The <code>stack</code> segment contains the <code>local variables</code> and the <code>parameters</code> from functions mainly. Its memory are allocated and released  by the <strong><code>compiler</code></strong> automatically. It is fast but the available memory is limited. </p>
+<p>When a function is called, a <code>stack frame</code> will be created in the <code>stack</code> segment:</p>
+<ul>
+<li>Each function has one stack frame.</li>
+<li>Stack frames contain the function’s local variables, parameters and return value.</li>
+</ul>
+<p>The operation of <code>stack</code> segment is similar to the <code>stack</code> in <code>data structure</code> context.<br>Therefore, the memory space of the <code>stack</code> segment is <strong>contiguous</strong>.</p>
+<p>Function variables are pushed onto the stack when called, and the functions variables are popped off the stack when return. The <code>stack pointer register</code> tracks the top pf the stack.</p>
+<blockquote>
+<p><strong>The lifecycle of each stack frame is the scoop of function</strong>. Once the function has been executed, the memory of this stack frame will be released.</p>
+</blockquote>
+<h2 id="Heap-segment"><a href="#Heap-segment" class="headerlink" title="Heap segment"></a>Heap segment</h2><p>It is used to allocate the memory at runtime. It allocated and released by the memory management functions like <code>malloc</code> and <code>free</code> <strong>manually</strong>. Its total memory space depends on the system. It is slow but the available space is adequate. The <code>heap</code> segment is shared by all shared libraries and dynamically loaded modules in a process. </p>
+<p><strong>Note:</strong> It is totally different to the <code>heap</code> in the <code>data structure</code> context. In fact, its operation model is similar to the <code>linked list</code>. Therefore, the memory space of the <code>heap</code> segment is <strong>not contiguous</strong>.</p>
+<blockquote>
+<p><strong>Its maximum lifecycle is the whole runtime of the program</strong>, but must be released manually.</p>
+</blockquote>
+<h2 id="BSS-static-segment"><a href="#BSS-static-segment" class="headerlink" title="BSS(static segment)"></a>BSS(static segment)</h2><p>Also known as the <code>Uninitialized data segment</code> or <strong><code>static</code></strong> segment.</p>
+<ul>
+<li>All <strong>uninitialized</strong> <code>global variable</code> and <code>static variable</code> stored here.</li>
+<li>All variables in <code>static</code> segment initialized by the <code>0</code>(pointer with the <code>null pointer</code>)</li>
+</ul>
+<p><strong>Note:</strong> the <code>static</code> means the variable in the segment would not be changed with the function calling, instead of the meaning that the value of these variables would not be changed.</p>
+<blockquote>
+<p><strong>Its lifecycle is the whole runtime of the program</strong>, and will be released by the system automatically.</p>
+</blockquote>
+<h2 id="DS-data-segment"><a href="#DS-data-segment" class="headerlink" title="DS(.data segment)"></a>DS(.data segment)</h2><p>Also known as the <code>Initialized data segment</code>:</p>
+<ul>
+<li>The <strong><code>explicitly initialized global and static</code> variables are stored here</strong>.</li>
+<li>The size of this segment is determined by the size of the values in the program’s source code and does not change at runtime.</li>
+<li>It has read-write permission so the value of the variable of this segment can be changed at run time.</li>
+<li>This segment can be further classified into an initialized read-only area and initialized read-write area.</li>
+</ul>
+<blockquote>
+<p><strong>Its lifecycle is the whole runtime of the program</strong>, and will be released by the system automatically.</p>
+</blockquote>
+<h2 id="Text-segment"><a href="#Text-segment" class="headerlink" title="Text segment"></a>Text segment</h2><p>This area contains binary of the compiled program.</p>
+<ul>
+<li>The text segment is a read-only segment that prevents a program from being accidentally modified.</li>
+<li>It is sharable so that only a single copy needs to be in memory for frequently executed programs such as text editors etc.</li>
+</ul>
+<blockquote>
+<p><strong>Its lifecycle is the whole runtime of the program</strong>, and will be released by the system automatically.</p>
+</blockquote>
+<h1 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h1><ul>
+<li><a href="https://aticleworld.com/memory-layout-of-c-program/" target="_blank" rel="noopener">Memory Layout of C program</a></li>
+<li><a href="http://www.cnblogs.com/dc10101/archive/2007/08/22/865556.html" target="_blank" rel="noopener">Static key word in C</a></li>
+<li><a href="https://wongxingjun.github.io/2015/07/25/C%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" target="_blank" rel="noopener">Verify memory layout of C program</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/22/c-programming/" rel="next" title="C Notes">
+                <i class="fa fa-chevron-left"></i> C Notes
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/22/subposts_c/charPointer-VS-charArray/" rel="prev" title="char* VS char[]">
+                char* VS char[] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alex</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/gzrjzcx" title="GitHub &rarr; https://github.com/gzrjzcx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:gzrjzcx@gmail.com" title="E-Mail &rarr; mailto:gzrjzcx@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Static-keyword"><span class="nav-number">1.</span> <span class="nav-text">Static keyword</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-memory-layout"><span class="nav-number">2.</span> <span class="nav-text">C memory layout</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stack-segment"><span class="nav-number">2.1.</span> <span class="nav-text">Stack segment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Heap-segment"><span class="nav-number">2.2.</span> <span class="nav-text">Heap segment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BSS-static-segment"><span class="nav-number">2.3.</span> <span class="nav-text">BSS(static segment)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DS-data-segment"><span class="nav-number">2.4.</span> <span class="nav-text">DS(.data segment)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-segment"><span class="nav-number">2.5.</span> <span class="nav-text">Text segment</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">3.</span> <span class="nav-text">References:</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

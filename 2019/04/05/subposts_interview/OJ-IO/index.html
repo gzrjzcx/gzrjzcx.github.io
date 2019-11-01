@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="OJ IOThe motivation of this blog is learning the method of implementation of input and output of OJ mode. Because I used to practice programming in LeetCode, it is very verdant for me to program in th">
+<meta name="keywords" content="Interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OJ IO">
+<meta property="og:url" content="http://yoursite.com/2019/04/05/subposts_interview/OJ-IO/index.html">
+<meta property="og:site_name" content="Alex&#39;s Epitaph">
+<meta property="og:description" content="OJ IOThe motivation of this blog is learning the method of implementation of input and output of OJ mode. Because I used to practice programming in LeetCode, it is very verdant for me to program in th">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-05T05:31:07.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OJ IO">
+<meta name="twitter:description" content="OJ IOThe motivation of this blog is learning the method of implementation of input and output of OJ mode. Because I used to practice programming in LeetCode, it is very verdant for me to program in th">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/05/subposts_interview/OJ-IO/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>OJ IO | Alex's Epitaph</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Alex's Epitaph</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Dereference a pointer to soul?</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/05/subposts_interview/OJ-IO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alex">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex's Epitaph">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OJ IO
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-05 22:34:12" itemprop="dateCreated datePublished" datetime="2019-04-05T22:34:12+08:00">2019-04-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-05 13:31:07" itemprop="dateModified" datetime="2019-10-05T13:31:07+08:00">2019-10-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="OJ-IO"><a href="#OJ-IO" class="headerlink" title="OJ IO"></a>OJ IO</h1><p>The motivation of this blog is learning the method of implementation of input and output of OJ mode. Because I used to practice programming in <code>LeetCode</code>, it is very verdant for me to program in the <code>NowCoder</code>. In the light of this, several common IO situations of <code>OJ</code> mode will be discussed here, as well as an practical example.</p>
+<p>In conclusion, <strong>input data will be written in line by line from <code>stdin</code> in terms of <code>OJ</code> mode.</strong> Particularly, the different types of data will be taken into account with respect to <code>C</code> language. </p>
+<h2 id="Int"><a href="#Int" class="headerlink" title="Int"></a>Int</h2><h3 id="1-Multiple-sets-of-input-data-without-a-specific-limitation-of-quantity-Write-data-until-the-end-of-input-file"><a href="#1-Multiple-sets-of-input-data-without-a-specific-limitation-of-quantity-Write-data-until-the-end-of-input-file" class="headerlink" title="1. Multiple sets of input data without a specific limitation of quantity. Write data until the end of input file."></a>1. Multiple sets of input data without a specific limitation of quantity. Write data until the end of input file.</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m;</span><br><span class="line">	<span class="keyword">while</span>( <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;m) != EOF )</span><br><span class="line">		...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Here, <code>EOF</code> is a defined macro with value of <code>-1</code>. The return value will be the total number of characters written successfully. Otherwise, it will be a negative value. Therefore, the <code>while</code> loop is intended to write data from <code>stdin</code> continuously(line by line) until the end of the file.</p>
+<p>In addition, due to the value of <code>EOF</code>(i.e. <code>-1</code>), the code can be simplified as below:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m;</span><br><span class="line">	<span class="keyword">while</span>( ~<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;m) )</span><br><span class="line">		...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Because of <code>~-1=0</code>, above code is the other form of aforementioned write method.</p>
+<h3 id="2-Multiple-sets-of-input-data-without-a-specific-limitation-of-quantity-Write-data-until-the-end-of-input-file-But-a-special-symbol-is-used-as-the-ending-sign"><a href="#2-Multiple-sets-of-input-data-without-a-specific-limitation-of-quantity-Write-data-until-the-end-of-input-file-But-a-special-symbol-is-used-as-the-ending-sign" class="headerlink" title="2. Multiple sets of input data without a specific limitation of quantity. Write data until the end of input file. But a special symbol is used as the ending sign."></a>2. Multiple sets of input data without a specific limitation of quantity. Write data until the end of input file. But a special symbol is used as the ending sign.</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m;</span><br><span class="line">	<span class="keyword">while</span>( <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;m) != EOF &amp;&amp; m != <span class="number">0</span>) <span class="comment">// == while( ~scanf("%d", &amp;m) &amp;&amp; m != 0)</span></span><br><span class="line">		...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//input data example:</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"><span class="comment">// 81</span></span><br><span class="line"><span class="comment">// 0  // the end of sign, we should not deal with this line.</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-Given-a-specific-N-multiple-sets-of-input-data-then-write-data-these-N-sets-of-data"><a href="#3-Given-a-specific-N-multiple-sets-of-input-data-then-write-data-these-N-sets-of-data" class="headerlink" title="3. Given a specific N multiple sets of input data, then write data these N sets of data."></a>3. Given a specific N multiple sets of input data, then write data these N sets of data.</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> N;</span><br><span class="line">	<span class="keyword">int</span> a,b;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;N);</span><br><span class="line">	<span class="keyword">while</span>(N--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;a, &amp;b);</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This is the most common situation in fact, the practical example is on the basis of this situation.</p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><h3 id="1-No-Whitespace-Newline-n-Carriage-Return-r-and-Tab-t-at-each-String"><a href="#1-No-Whitespace-Newline-n-Carriage-Return-r-and-Tab-t-at-each-String" class="headerlink" title="1. No Whitespace(), Newline(\n), Carriage Return(\r), and Tab(\t) at each String."></a>1. No Whitespace(<code></code>), Newline(<code>\n</code>), Carriage Return(<code>\r</code>), and Tab(<code>\t</code>) at each String.</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// input: </span></span><br><span class="line"><span class="comment">// abc def</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s1[<span class="number">100</span>], s2[<span class="number">100</span>];</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s %s"</span>, s1, s2);</span><br></pre></td></tr></table></figure>
+<h3 id="2-No-Newline-n-or-Carriage-Return-r-at-each-String"><a href="#2-No-Newline-n-or-Carriage-Return-r-at-each-String" class="headerlink" title="2. No Newline(\n) or Carriage Return(\r) at each String."></a>2. No Newline(<code>\n</code>) or Carriage Return(<code>\r</code>) at each String.</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// input: </span></span><br><span class="line"><span class="comment">// Hello World!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s1[<span class="number">100</span>];</span><br><span class="line">gets(s1);</span><br></pre></td></tr></table></figure>
+<p><code>gets()</code> function will be used to write the <code>String</code> in terms of this situation. Because we are facing a training environment, the length of input will be guaranteed. Therefore, the risk of <code>gets</code> function can be ignored. We can also use <code>fgets()</code> to assign a specific length of <code>String</code> will be write. Additionally, the return value of <code>NULL</code> means the end of file or error generated.</p>
+<blockquote>
+<p>Note that using <code>scanf</code> before <code>gets</code> may cause an unexpected problem, click <a href="/_post/subposts_c/scanf">here</a> to check the detail.</p>
+</blockquote>
+<h2 id="An-example"><a href="#An-example" class="headerlink" title="An example"></a>An example</h2><p>In this case, we will read 3 sets of data, each set contains one line(2 integers) to describe the value of <code>rows</code> and <code>cols</code>. Then are values of a matrix with <code>rows</code> row and <code>cols</code> columns.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// input:</span></span><br><span class="line"><span class="comment">// 3              // There are 3 datasets in total</span></span><br><span class="line"><span class="comment">// 5 10           // There are 5 rows and 10 columns in the first dataset</span></span><br><span class="line"><span class="comment">// AAAAAADROW</span></span><br><span class="line"><span class="comment">// WORDBBBBBB</span></span><br><span class="line"><span class="comment">// OCCCWCCCCC</span></span><br><span class="line"><span class="comment">// RFFFFOFFFF</span></span><br><span class="line"><span class="comment">// DHHHHHRHHH</span></span><br><span class="line"><span class="comment">// WORD           // The target word of the first dataset</span></span><br><span class="line"><span class="comment">// 3 3            // There are 3 rows and 3 columns in the second dataset</span></span><br><span class="line"><span class="comment">// AAA</span></span><br><span class="line"><span class="comment">// AAA</span></span><br><span class="line"><span class="comment">// AAA</span></span><br><span class="line"><span class="comment">// AA             // The target word of the second dataset</span></span><br><span class="line"><span class="comment">// 5 8            // There are 5 rows and 8 columns in the third dataset</span></span><br><span class="line"><span class="comment">// WORDSWOR</span></span><br><span class="line"><span class="comment">// ORDSWORD</span></span><br><span class="line"><span class="comment">// RDSWORDS</span></span><br><span class="line"><span class="comment">// DSWORDSW</span></span><br><span class="line"><span class="comment">// SWORDSWO</span></span><br><span class="line"><span class="comment">// SWORD          // The target word of the third dataset</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">(<span class="keyword">int</span> *rows, <span class="keyword">int</span> *cols, <span class="keyword">char</span> *target, <span class="keyword">char</span> **matrix)</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d\n"</span>, rows, cols); <span class="comment">// MUST ADD '\n'!!</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;*rows; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		matrix[i] = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(*cols * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));</span><br><span class="line">		gets(matrix[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	gets(target);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> N;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d\n"</span>, &amp;N); <span class="comment">// MUST ADD '\n'!!</span></span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> rows, cols;</span><br><span class="line">	<span class="keyword">char</span> *target = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">9</span> * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));</span><br><span class="line">	<span class="keyword">char</span> **matrix = (<span class="keyword">char</span> **)<span class="built_in">malloc</span>(<span class="number">99</span> * <span class="keyword">sizeof</span>(<span class="keyword">char</span> *));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">99</span>; i++)</span><br><span class="line">		matrix[i] = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>( <span class="number">99</span> * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));</span><br><span class="line">	<span class="keyword">while</span>(N--)</span><br><span class="line">	&#123;</span><br><span class="line">		input(&amp;rows, &amp;cols, target, matrix);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>An important note here is that if we read integer by <code>scanf</code> firstly, and then read String by <code>gets</code>, we must add the <code>\n</code> in the <code>scanf</code> function. Because the <code>scanf(&quot;%d\n&quot;, &amp;N);</code> will stop writing once finishing the integer written. Therefore, the last new-line character will not be consumed by <code>scanf</code>. </p>
+<h1 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h1><ul>
+<li><a href="https://blog.csdn.net/qq_27848507/article/details/53145100" target="_blank" rel="noopener">OJ IO</a></li>
+<li><a href="https://www.quora.com/What-does-this-statement-mean-while-scanf-d-d-d-a-b-n" target="_blank" rel="noopener">~scanf</a></li>
+<li><a href="https://www.cnblogs.com/yunf/archive/2011/04/20/2021830.html" target="_blank" rel="noopener">Newline and Return</a></li>
+<li><a href="https://stackoverflow.com/questions/14484431/scanf-getting-skipped" target="_blank" rel="noopener">scanf not deal with new-line character</a> </li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Interview/" rel="tag"># Interview</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/25/Life/" rel="next" title="Ideal Life">
+                <i class="fa fa-chevron-left"></i> Ideal Life
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/03/subposts_c/LinkedList/" rel="prev" title="Singly-Linked List">
+                Singly-Linked List <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alex</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/gzrjzcx" title="GitHub &rarr; https://github.com/gzrjzcx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:gzrjzcx@gmail.com" title="E-Mail &rarr; mailto:gzrjzcx@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OJ-IO"><span class="nav-number">1.</span> <span class="nav-text">OJ IO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Int"><span class="nav-number">1.1.</span> <span class="nav-text">Int</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Multiple-sets-of-input-data-without-a-specific-limitation-of-quantity-Write-data-until-the-end-of-input-file"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. Multiple sets of input data without a specific limitation of quantity. Write data until the end of input file.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Multiple-sets-of-input-data-without-a-specific-limitation-of-quantity-Write-data-until-the-end-of-input-file-But-a-special-symbol-is-used-as-the-ending-sign"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. Multiple sets of input data without a specific limitation of quantity. Write data until the end of input file. But a special symbol is used as the ending sign.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Given-a-specific-N-multiple-sets-of-input-data-then-write-data-these-N-sets-of-data"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. Given a specific N multiple sets of input data, then write data these N sets of data.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.2.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-No-Whitespace-Newline-n-Carriage-Return-r-and-Tab-t-at-each-String"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. No Whitespace(), Newline(\n), Carriage Return(\r), and Tab(\t) at each String.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-No-Newline-n-or-Carriage-Return-r-at-each-String"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. No Newline(\n) or Carriage Return(\r) at each String.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#An-example"><span class="nav-number">1.3.</span> <span class="nav-text">An example</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">2.</span> <span class="nav-text">References:</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
