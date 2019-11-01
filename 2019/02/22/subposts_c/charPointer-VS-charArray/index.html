@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Conclusionchar* and char[] are different types in most cases, but it’s not immediately apparent in all cases. Essentially, char* means a pointer to a constant stored in the .data segment, char[] is a">
+<meta name="keywords" content="c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="char* VS char[]">
+<meta property="og:url" content="http://yoursite.com/2019/02/22/subposts_c/charPointer-VS-charArray/index.html">
+<meta property="og:site_name" content="Alex&#39;s Epitaph">
+<meta property="og:description" content="Conclusionchar* and char[] are different types in most cases, but it’s not immediately apparent in all cases. Essentially, char* means a pointer to a constant stored in the .data segment, char[] is a">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-22T23:20:06.586Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="char* VS char[]">
+<meta name="twitter:description" content="Conclusionchar* and char[] are different types in most cases, but it’s not immediately apparent in all cases. Essentially, char* means a pointer to a constant stored in the .data segment, char[] is a">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/22/subposts_c/charPointer-VS-charArray/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>char* VS char[] | Alex's Epitaph</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Alex's Epitaph</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Dereference a pointer to soul?</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/subposts_c/charPointer-VS-charArray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alex">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex's Epitaph">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">char* VS char[]
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-22 22:59:41" itemprop="dateCreated datePublished" datetime="2019-02-22T22:59:41+08:00">2019-02-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-23 07:20:06" itemprop="dateModified" datetime="2019-02-23T07:20:06+08:00">2019-02-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p><code>char*</code> and <code>char[]</code> are different <strong>types</strong> in most cases, but it’s not immediately apparent in all cases. Essentially, <code>char*</code> means a pointer to a constant stored in the <code>.data</code> segment, <code>char[]</code> is a <code>character array</code> data type.</p>
+<p>More information about the difference between <code>array</code> and <code>pointer</code> <a href="https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><h3 id="Method-1-char"><a href="#Method-1-char" class="headerlink" title="Method 1: char*"></a>Method 1: <code>char*</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* a = <span class="string">"abc"</span>;</span><br></pre></td></tr></table></figure>
+<p>When executing the above instruction, there are 3 steps in total:</p>
+<ol>
+<li>Create a pointer <code>a</code> to char type and store it in <strong><code>stack</code></strong> segment in <a href="https://www.hellscript.cc/2019/02/22/subposts_c/c-memory-layout/" target="_blank" rel="noopener">C memory layout</a>. </li>
+<li>Allocate the necessary memory in <strong><code>DS</code></strong> segment for the string <code>abc</code>.</li>
+<li>Return the address of this memory as the value and assign to the pointer <code>a</code>.<br>Finally, it is a <code>char*</code> pointer to an initialized data stored in <code>DS</code> segment. </li>
+</ol>
+<p>In fact, if now we set <code>char* aa = &quot;abc&quot;</code>, then only will execute the step 1 and 3, because the string constant <code>abc</code> has been created in the <code>DS</code> segment. </p>
+<p>Therefore, it is can be assigned other string like below operation:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">"def"</span>; <span class="comment">// It is legal because a is a pointer</span></span><br></pre></td></tr></table></figure></p>
+<p>However, because the <code>abc</code> is constant, stored in the <strong><code>DS</code></strong> segment(i.e. <code>data segment</code>), <strong>it can not be modified</strong>. In other words, the <strong>subscript operation</strong> are illegal in the below example:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* a = <span class="string">"abc"</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c\n"</span>, a[<span class="number">0</span>]); <span class="comment">// It is illegal because a is a pointer</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Method-2-char"><a href="#Method-2-char" class="headerlink" title="Method 2: char[]"></a>Method 2: <code>char[]</code></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> b[<span class="number">3</span>] = <span class="string">"abc"</span>;              <span class="comment">// it is string, has '\0' in the end as default</span></span><br><span class="line"><span class="keyword">char</span> b[<span class="number">3</span>] = &#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>&#125;;      <span class="comment">// it is character array, has no '\0' in the end as default</span></span><br></pre></td></tr></table></figure>
+<p><code>char[]</code> is the <strong>character array</strong> in C language. When executing the above instruction, there are only 2 steps in total:</p>
+<ol>
+<li>Declare an array with <code>char</code> type, please note in this context <code>b</code> is an array, if you are not clear about the difference between <code>array</code> and <code>pointer</code>, <a href="https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/" target="_blank" rel="noopener">click here</a>. This moment, the array variable <code>b</code> stored in the <code>stack</code> segment, and: <strong><code>&amp;b == b == &amp;b[0]</code></strong>.</li>
+<li>Assign each character of <code>123</code> to the each element of array <code>b</code>.<br>Finally, the value of this <strong>array</strong> is equal to <code>abc</code>, instead of a pointer to point the constant like <code>char*</code>. Because it is an <code>array</code> type, it is contrary with <code>char*</code>: the assignment with string constant is illegal, but the subscript operation is legal.<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = <span class="string">"def"</span>; <span class="comment">// reassign with string constant will cause crash</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c\n"</span>, b[<span class="number">0</span>]); <span class="comment">//legal</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Array-decay"><a href="#Array-decay" class="headerlink" title="Array decay"></a>Array decay</h3><p>In terms of a special situation, like using they as the <strong>function parameters</strong>. Specifically, if an expression of type <code>char[]</code> is provided where one of type <code>char*</code> is expected, the compiler automatically converts the <code>array</code> into a <code>pointer</code> to its first element.</p>
+<p>For example, in the function <code>printSomething</code> expects a pointer is passed, but if you try to pass an array to it like this:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s[<span class="number">10</span>] = <span class="string">"hello"</span>;</span><br><span class="line">printSomething(s);</span><br></pre></td></tr></table></figure></p>
+<p>Then the compiler pretends that your code like this:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s[<span class="number">10</span>] = <span class="string">"hello"</span>;</span><br><span class="line">printSomething(&amp;s[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure></p>
+<h3 id="Dynamic-memory"><a href="#Dynamic-memory" class="headerlink" title="Dynamic memory"></a>Dynamic memory</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* s = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">10</span>*<span class="keyword">sizeof</span>(<span class="keyword">char</span>));</span><br><span class="line">s = <span class="string">"abc"</span>; <span class="comment">// legal</span></span><br><span class="line">s = <span class="string">"def"</span>; <span class="comment">// legal</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c\n"</span>, s[<span class="number">0</span>]); <span class="comment">// legal</span></span><br></pre></td></tr></table></figure>
+<p>This method defines a pointer that point an allocated memory. Therefore, it is legal for <code>s</code> to be reassigned by the constant string like <code>def</code>. Also, it can do the subscript operation.</p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a href="https://stackoverflow.com/questions/10186765/what-is-the-difference-between-char-array-vs-char-pointer-in-c" target="_blank" rel="noopener">Array decay</a></li>
+<li><a href="https://blog.csdn.net/ksws0292756/article/details/79432329" target="_blank" rel="noopener"><code>char*</code> Vs. <code>char[]</code></a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/22/subposts_c/c-memory-layout/" rel="next" title="Static keyword & C memory layout">
+                <i class="fa fa-chevron-left"></i> Static keyword & C memory layout
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/22/subposts_c/c-preprocess/" rel="prev" title="C preprocess">
+                C preprocess <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alex</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/gzrjzcx" title="GitHub &rarr; https://github.com/gzrjzcx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:gzrjzcx@gmail.com" title="E-Mail &rarr; mailto:gzrjzcx@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.</span> <span class="nav-text">Conclusion</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementation"><span class="nav-number">1.1.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-1-char"><span class="nav-number">1.1.1.</span> <span class="nav-text">Method 1: char*</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Method-2-char"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Method 2: char[]</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-decay"><span class="nav-number">1.1.2.</span> <span class="nav-text">Array decay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-memory"><span class="nav-number">1.1.3.</span> <span class="nav-text">Dynamic memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">1.1.4.</span> <span class="nav-text">References</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alex</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
