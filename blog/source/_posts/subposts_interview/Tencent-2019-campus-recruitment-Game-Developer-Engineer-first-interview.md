@@ -2,6 +2,7 @@
 title: 'Tencent 2019 campus recruitment: Game Developer Engineer first interview'
 date: 2019-10-19 20:47:44
 tags: Interview
+categories: Interview
 hide: true
 ---
 # 腾讯游戏研发校招电话面试一面

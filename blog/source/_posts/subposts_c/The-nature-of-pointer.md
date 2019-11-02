@@ -2,6 +2,7 @@
 title: The nature of pointer
 date: 2019-02-22 13:37:59
 tags: c
+categories: C
 hide: true
 ---
 # What is a pointer

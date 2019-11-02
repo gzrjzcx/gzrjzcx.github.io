@@ -1,6 +1,7 @@
 ---
 title: 'ByteDance: Clinet Developer First Interview'
 date: 2019-11-01 11:06:19
+categories: Interview
 tags: Interview
 hide: true
 ---

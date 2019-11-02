@@ -2,6 +2,7 @@
 title: NetEasy AI Engineer Interview
 date: 2019-10-16 12:08:30
 tags: Interview
+categories: Interview
 hide: true
 ---
 

@@ -2,6 +2,7 @@
 title: Singly-Linked List
 date: 2019-10-03 12:27:40
 tags: c
+categories: DataStructure
 hide: true
 ---
 # Singly-Linked List

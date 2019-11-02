@@ -2,6 +2,7 @@
 title: Tencent Timi Game engineer first interview
 date: 2019-02-24 13:49:58
 tags: Interview
+categories: Interview
 hide: true
 ---
 # 面试记录

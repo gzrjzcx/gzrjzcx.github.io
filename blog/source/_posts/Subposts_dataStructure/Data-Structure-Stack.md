@@ -1,7 +1,8 @@
 ---
 title: 'Data Structure: Stack'
 date: 2019-10-30 14:22:04
-tags: Data Structure
+tags: DataStructure
+categories: DataStructure
 hide: true
 ---
 

@@ -2,6 +2,7 @@
 title: C preprocess
 date: 2019-02-22 23:23:13
 tags: c
+categories: C
 hide: true
 ---
 # Preprocessor

@@ -2,6 +2,7 @@
 title: 'Turn on/off lamps'
 date: 2019-02-21 00:26:09
 tags: Interview
+categories: Interview
 hide: true
 ---
 

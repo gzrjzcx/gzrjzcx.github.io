@@ -1,6 +1,7 @@
 ---
 title: Game Categroy
 date: 2019-02-27 22:14:48
+categories: Interview
 tags: Interview
 hide: true
 ---

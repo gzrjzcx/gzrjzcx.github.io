@@ -2,6 +2,7 @@
 title: Typical error of pointer
 date: 2019-02-23 00:15:35
 tags: c
+categories: C
 hide: true
 ---
 # Dangling references Vs. Memory leak

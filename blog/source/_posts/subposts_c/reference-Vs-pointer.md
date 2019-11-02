@@ -2,6 +2,7 @@
 title: reference Vs. pointer
 date: 2019-02-22 23:44:05
 tags: c
+categories: C
 hide: true
 ---
 # pointer Vs. reference

@@ -2,6 +2,7 @@
 title: 'char* VS char[]'
 date: 2019-02-22 22:59:41
 tags: c
+categories: C
 hide: true
 ---
 

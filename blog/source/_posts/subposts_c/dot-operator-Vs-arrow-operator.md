@@ -2,6 +2,7 @@
 title: dot operator Vs. arrow operator
 date: 2019-02-23 00:11:13
 tags: c
+categories: C
 hide: true
 ---
 # C structure:  dot operator(.) VS. arrow operator(->)

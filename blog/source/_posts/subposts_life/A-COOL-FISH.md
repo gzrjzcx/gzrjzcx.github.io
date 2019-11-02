@@ -2,6 +2,7 @@
 title: A Cool Fish
 date: 2019-03-24 00:28:22
 tags: life
+categories: Life
 hide: true
 ---
 > 过了桥， 就翻篇了。

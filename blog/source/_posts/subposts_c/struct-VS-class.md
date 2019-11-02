@@ -2,6 +2,7 @@
 title: struct VS. class
 date: 2019-02-23 01:03:10
 tags: c
+categories: C
 hide: true
 ---
 # C++: `struct` Vs. `class`

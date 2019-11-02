@@ -7,13 +7,13 @@ title: Alex's Epitaph
 subtitle: Dereference a pointer to soul?
 description:
 keywords:
-author: Alex
+author: Alex Zou
 language:
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: www.hellscript.cc
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -39,7 +39,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: 3-hexo
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

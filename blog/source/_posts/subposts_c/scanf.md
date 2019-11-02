@@ -2,6 +2,7 @@
 title: scanf and its left white-space character problem
 date: 2019-10-04 14:13:44
 tags: c
+categories: C
 hide: true
 ---
 # Several tricks of scanf

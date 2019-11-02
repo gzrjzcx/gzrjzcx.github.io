@@ -2,6 +2,7 @@
 title: Static keyword & C memory layout 
 date: 2019-02-22 21:54:33
 tags: c
+categories: C
 hide: true
 ---
 # Static keyword
