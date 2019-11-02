@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>Typical error of pointer | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" c ">
+  <meta name="description" content="Typical error of pointer | Alex&#39;s Epitaph">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="The wolf I will follow into the storm.                                        To find your heart, its passion displaced.                                         T">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alex&#39;s Epitaph">
+<meta property="og:url" content="www.hellscript.cc/about/index.html">
+<meta property="og:site_name" content="Alex&#39;s Epitaph">
+<meta property="og:description" content="The wolf I will follow into the storm.                                        To find your heart, its passion displaced.                                         T">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-02T12:45:37.397Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Alex&#39;s Epitaph">
+<meta name="twitter:description" content="The wolf I will follow into the storm.                                        To find your heart, its passion displaced.                                         T">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/gruvbox-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value>
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg">
+</a>
+<div class="author">
+    <span>Alex Zou</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/gzrjzcx" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:gzrjzcx@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"/>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">All<small>(26)</small></div></li>
+    
+        
+            
+            <li><div data-rel="DataStructure">DataStructure<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="C">C<small>(10)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Interview">Interview<small>(8)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Life">Life<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Parallel">Parallel<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url" href="/about">About</a><a style="width: 50%" class="friends">Friends</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="26">
+<input type="hidden" id="yelog_site_word_count" value="15.2k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.hellscript.cc/Pointer2SSP/">Pointer2SSP</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off" id="local-search-input">
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none">
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Interview</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Life</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Parallel</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">c</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">DataStructure</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">life</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a class href="/2019/02/21/Interview/" data-tag="Interview" data-author>
+            <span class="post-title" title="Interview">Interview</span>
+            <span class="post-date" title="2019-02-21 00:26:09">2019/02/21</span>
+        </a>
+        
+        <a class href="/2019/03/25/Life/" data-tag="Life" data-author>
+            <span class="post-title" title="Ideal Life">Ideal Life</span>
+            <span class="post-date" title="2019-03-25 21:55:55">2019/03/25</span>
+        </a>
+        
+        <a class href="/2019/02/21/Parallelization/" data-tag="Parallel" data-author>
+            <span class="post-title" title="Parallelization">Parallelization</span>
+            <span class="post-date" title="2019-02-21 15:18:51">2019/02/21</span>
+        </a>
+        
+        <a class href="/2019/02/22/c-programming/" data-tag="c" data-author>
+            <span class="post-title" title="C Notes">C Notes</span>
+            <span class="post-date" title="2019-02-22 19:43:41">2019/02/22</span>
+        </a>
+        
+        <a class="DataStructure " href="/2019/10/30/Subposts_dataStructure/Data-Structure-Stack/" data-tag="DataStructure" data-author>
+            <span class="post-title" title="Data Structure: Stack">Data Structure: Stack</span>
+            <span class="post-date" title="2019-10-30 14:22:04">2019/10/30</span>
+        </a>
+        
+        <a class="DataStructure " href="/2019/10/03/Subposts_dataStructure/LinkedList/" data-tag="c" data-author>
+            <span class="post-title" title="Singly-Linked List">Singly-Linked List</span>
+            <span class="post-date" title="2019-10-03 12:27:40">2019/10/03</span>
+        </a>
+        
+        <a class="C " href="/2019/02/23/subposts_c/Typical-error-of-pointer/" data-tag="c" data-author>
+            <span class="post-title" title="Typical error of pointer">Typical error of pointer</span>
+            <span class="post-date" title="2019-02-23 00:15:35">2019/02/23</span>
+        </a>
+        
+        <a class="C " href="/2019/02/22/subposts_c/c-memory-layout/" data-tag="c" data-author>
+            <span class="post-title" title="Static keyword &amp; C memory layout">Static keyword &amp; C memory layout</span>
+            <span class="post-date" title="2019-02-22 21:54:33">2019/02/22</span>
+        </a>
+        
+        <a class="C " href="/2019/02/22/subposts_c/c-preprocess/" data-tag="c" data-author>
+            <span class="post-title" title="C preprocess">C preprocess</span>
+            <span class="post-date" title="2019-02-22 23:23:13">2019/02/22</span>
+        </a>
+        
+        <a class="C " href="/2019/02/22/subposts_c/charPointer-VS-charArray/" data-tag="c" data-author>
+            <span class="post-title" title="char* VS char[]">char* VS char[]</span>
+            <span class="post-date" title="2019-02-22 22:59:41">2019/02/22</span>
+        </a>
+        
+        <a class="C " href="/2019/02/23/subposts_c/dot-operator-Vs-arrow-operator/" data-tag="c" data-author>
+            <span class="post-title" title="dot operator Vs. arrow operator">dot operator Vs. arrow operator</span>
+            <span class="post-date" title="2019-02-23 00:11:13">2019/02/23</span>
+        </a>
+        
+        <a class="C " href="/2019/02/22/subposts_c/pass-parameters-in-function/" data-tag="c" data-author>
+            <span class="post-title" title="Pass parameters in function">Pass parameters in function</span>
+            <span class="post-date" title="2019-02-22 23:57:46">2019/02/22</span>
+        </a>
+        
+        <a class="C " href="/2019/02/22/subposts_c/reference-Vs-pointer/" data-tag="c" data-author>
+            <span class="post-title" title="reference Vs. pointer">reference Vs. pointer</span>
+            <span class="post-date" title="2019-02-22 23:44:05">2019/02/22</span>
+        </a>
+        
+        <a class="C " href="/2019/10/04/subposts_c/scanf/" data-tag="c" data-author>
+            <span class="post-title" title="scanf and its left white-space character problem">scanf and its left white-space character problem</span>
+            <span class="post-date" title="2019-10-04 14:13:44">2019/10/04</span>
+        </a>
+        
+        <a class="C " href="/2019/02/23/subposts_c/struct-VS-class/" data-tag="c" data-author>
+            <span class="post-title" title="struct VS. class">struct VS. class</span>
+            <span class="post-date" title="2019-02-23 01:03:10">2019/02/23</span>
+        </a>
+        
+        <a class="Interview " href="/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/" data-tag="Interview" data-author>
+            <span class="post-title" title="ByteDance: Clinet Developer First Interview">ByteDance: Clinet Developer First Interview</span>
+            <span class="post-date" title="2019-11-01 11:06:19">2019/11/01</span>
+        </a>
+        
+        <a class="Interview " href="/2019/02/27/subposts_interview/Game-Categroy/" data-tag="Interview" data-author>
+            <span class="post-title" title="Game Categroy">Game Categroy</span>
+            <span class="post-date" title="2019-02-27 22:14:48">2019/02/27</span>
+        </a>
+        
+        <a class="Interview " href="/2019/10/16/subposts_interview/NetEasy-AI-Engineer-Interview/" data-tag="Interview" data-author>
+            <span class="post-title" title="NetEasy AI Engineer Interview">NetEasy AI Engineer Interview</span>
+            <span class="post-date" title="2019-10-16 12:08:30">2019/10/16</span>
+        </a>
+        
+        <a class="Interview " href="/2019/11/01/subposts_interview/NetEasy-RL-Interview/" data-tag="Interview" data-author>
+            <span class="post-title" title="NetEasy RL Interview">NetEasy RL Interview</span>
+            <span class="post-date" title="2019-11-01 14:54:50">2019/11/01</span>
+        </a>
+        
+        <a class="Interview " href="/2019/04/05/subposts_interview/OJ-IO/" data-tag="Interview" data-author>
+            <span class="post-title" title="OJ IO">OJ IO</span>
+            <span class="post-date" title="2019-04-05 22:34:12">2019/04/05</span>
+        </a>
+        
+        <a class="Interview " href="/2019/02/24/subposts_interview/Tencent-Timi/" data-tag="Interview" data-author>
+            <span class="post-title" title="Tencent Timi Game engineer first interview">Tencent Timi Game engineer first interview</span>
+            <span class="post-date" title="2019-02-24 13:49:58">2019/02/24</span>
+        </a>
+        
+        <a class="Interview " href="/2019/02/21/subposts_interview/switch_lamps/" data-tag="Interview" data-author>
+            <span class="post-title" title="Turn on/off lamps">Turn on/off lamps</span>
+            <span class="post-date" title="2019-02-21 00:26:09">2019/02/21</span>
+        </a>
+        
+        <a class="Life " href="/2019/03/24/subposts_life/A-COOL-FISH/" data-tag="life" data-author>
+            <span class="post-title" title="A Cool Fish">A Cool Fish</span>
+            <span class="post-date" title="2019-03-24 00:28:22">2019/03/24</span>
+        </a>
+        
+        <a class="Parallel " href="/2019/02/21/subposts_parallel/thread-vs-process/" data-tag="Parallel" data-author>
+            <span class="post-title" title="thread Vs. process">thread Vs. process</span>
+            <span class="post-date" title="2019-02-21 16:29:01">2019/02/21</span>
+        </a>
+        
+        <a class="C " href="/2019/02/22/subposts_c/The-nature-of-pointer/" data-tag="c" data-author>
+            <span class="post-title" title="The nature of pointer">The nature of pointer</span>
+            <span class="post-date" title="2019-02-22 13:37:59">2019/02/22</span>
+        </a>
+        
+        <a class="Interview " href="/2019/10/19/subposts_interview/Tencent-2019-campus-recruitment-Game-Developer-Engineer-first-interview/" data-tag="Interview" data-author>
+            <span class="post-title" title="Tencent 2019 campus recruitment: Game Developer Engineer first interview">Tencent 2019 campus recruitment: Game Developer Engineer first interview</span>
+            <span class="post-date" title="2019-10-19 20:47:44">2019/10/19</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-subposts_c/Typical-error-of-pointer" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Typical error of pointer</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="C">C</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color2">c</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title="更新时间: 2019-11-02 12:45:37">2019-02-23 00:15</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:373</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dangling-references-Vs-Memory-leak"><span class="toc-text">Dangling references Vs. Memory leak</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dangling-references"><span class="toc-text">Dangling references</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Uninitialized-pointer"><span class="toc-text">Uninitialized pointer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-typical-example"><span class="toc-text">A typical example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-leak"><span class="toc-text">Memory leak</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Dangling-references-Vs-Memory-leak"><a href="#Dangling-references-Vs-Memory-leak" class="headerlink" title="Dangling references Vs. Memory leak"></a>Dangling references Vs. Memory leak</h1><h2 id="Dangling-references"><a href="#Dangling-references" class="headerlink" title="Dangling references"></a>Dangling references</h2><blockquote>
+<p>A dangling reference(i.e., <code>wild pointer</code> or <code>dangling pinter</code>) is a reference to an object that no longer exists or cannot access.</p>
+</blockquote>
+<p>For example:</p>
+<pre><code class="c">int* p = new int;
+delete p;
+
+int i = *p; // error, p has been deleted!
+</code></pre>
+<p>Practically, if there are multiple pointer to the same memory, once one of the pointer has released the memory and other pointers still reference it, this is <code>dangling references</code>.</p>
+<h3 id="Uninitialized-pointer"><a href="#Uninitialized-pointer" class="headerlink" title="Uninitialized pointer"></a>Uninitialized pointer</h3><p>In some cases, the uninitialized pointer is intended as the <code>wild pointer</code>:</p>
+<pre><code class="c">char* str;  // wild pointer
+static char* str; // not wild pointer because it is initialized to 0 in the .bss memory segment
+</code></pre>
+<p><strong>Note:</strong> In this case the pointer <code>str</code> to a random memory(i.e. <code>garbage value</code>) instead of <code>NULL</code>. Therefore, <code>wild pointer</code> and <code>NULL pointer</code> are different.</p>
+<ul>
+<li><code>NULL pointer</code> to address <code>0</code>.</li>
+<li><code>wild pointer</code> to a random address(garbage).</li>
+</ul>
+<h3 id="A-typical-example"><a href="#A-typical-example" class="headerlink" title="A typical example"></a>A typical example</h3><pre><code class="c">int main()
+{
+    int* i = func();
+}
+
+int* func(void)
+{
+    int num = 1234;
+    /* ... */
+    return &amp;num; //return an address of a local variable
+}
+</code></pre>
+<p>Here, we try to return the address of the local variable <code>&amp;num</code>. However, <code>num</code> is a local variable which stored at <code>stack</code> segment, once the function have been executed, this memory will be released. In this stage, <code>i</code> is the <code>dangling reference</code>.<br>If we want to return the pointer to <code>num</code>, a feasible method is to guarantee the lifecycle of <code>num</code> is the whole runtime. E.g., we can set the <code>num</code> as <code>static int num</code>.</p>
+<h2 id="Memory-leak"><a href="#Memory-leak" class="headerlink" title="Memory leak"></a>Memory leak</h2><blockquote>
+<p><code>Memory leak</code> refers to the <code>heap</code> memory segment. It means that the allocated memory by <code>malloc</code> dynamically cannot be released by <code>free</code> correctly. Then this memory block can not be reused until the end of the program.</p>
+</blockquote>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In a word, below is a safer method to avoid the <code>dangling pointer</code> and <code>wild pointer</code>:</p>
+<pre><code class="c">int* p = NULL; //initialize to address 0 or pointer to valid memory
+p = (int*)malloc(sizeof(int));
+...
+free(p);
+p = NULL; // reference to NULL to avoid the later dereference operation of p
+</code></pre>
+<p><strong>Note:</strong> here the <code>free</code> function only means free the memory <strong>instead of delete <code>p</code></strong>. Pointer <code>p</code> is a data type, which will be destroyed until out of the scope.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a href="https://www.cnblogs.com/submarinex/archive/2013/03/02/2940169.html" target="_blank" rel="noopener">wild pointer</a></li>
+<li><a href="https://www.quora.com/What-is-the-difference-between-a-wild-and-a-dangling-pointer-in-C" target="_blank" rel="noopener">wild pointer 2</a></li>
+<li><a href="https://www.jianshu.com/p/e4919f1c3a28" target="_blank" rel="noopener">shared_ptr</a></li>
+<li><a href="https://stackoverflow.com/questions/5900165/what-is-the-difference-between-garbage-and-dangling-references" target="_blank" rel="noopener">dangling pointer</a></li>
+<li><a href="https://blog.csdn.net/yuxikuo_1/article/details/41326899" target="_blank" rel="noopener">memory leak</a></li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Typical error of pointer</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">373</span></p>
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-02-23, 00:15:35</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-02, 12:45:37</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/02/23/subposts_c/Typical-error-of-pointer/" title="Typical error of pointer">www.hellscript.cc/2019/02/23/subposts_c/Typical-error-of-pointer/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: 'gzrjzcx.github.io',
+            owner: 'gzrjzcx',
+            admin: ['gzrjzcx'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 AlexZou</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>有钱的捧个钱场，没钱的借钱也捧个钱场</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/wechat.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">Alipay</label></span><span><label><input type="radio" name="pay" value="weixin">Wechat</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1"></script>
+
+<script src="/js/script.js?v=1.0.1"></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#Interview','#Life','#Parallel','#c','#DataStructure','#life',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
