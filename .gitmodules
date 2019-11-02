@@ -1,0 +1,3 @@
+[submodule "blog/themes/3-hexo"]
+	path = blog/themes/3-hexo
+	url = https://github.com/gzrjzcx/hexo-theme-3-hexo
