@@ -19,4 +19,4 @@ deploy:
   keep-history: true
   on:
     branch: src
-  local-dir: public
+  local-dir: ./blog/public
