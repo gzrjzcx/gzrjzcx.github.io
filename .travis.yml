@@ -18,5 +18,5 @@ deploy:
   github-token: $TOKEN
   keep-history: true
   on:
-    branch: src
+    branch: master
   local-dir: ./blog/public
