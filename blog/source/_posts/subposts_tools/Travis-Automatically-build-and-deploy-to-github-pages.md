@@ -1,8 +1,8 @@
 ---
 title: 'Travis: Automatically build and deploy to github pages'
 date: 2019-11-03 11:29:19
-categories:Tools
-tags:Tools
+categories: Tools
+tags: Tools
 ---
 
 # 1. Github仓库branch设置

@@ -1,8 +1,8 @@
 ---
 title: 'Gitalk: A plugin for static website'
 date: 2019-11-03 15:59:20
-categories:Tools
-tags:Tools
+categories: Tools
+tags: Tools
 ---
 
 # Gitalk：符合国情的评论插件
