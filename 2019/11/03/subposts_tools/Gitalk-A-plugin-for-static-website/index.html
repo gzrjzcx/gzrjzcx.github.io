@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>Pass parameters in function | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" c ">
-  <meta name="description" content="Pass parameters in function | Alex&#39;s Epitaph">
+  <title>Gitalk: A plugin for static website | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" Tools ">
+  <meta name="description" content="Gitalk: A plugin for static website | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -345,9 +345,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_c/pass-parameters-in-function" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_tools/Gitalk-A-plugin-for-static-website" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Pass parameters in function</h1>
+        <h1 class="article-title">Gitalk: A plugin for static website</h1>
     
     <div class="article-meta">
         
@@ -355,26 +355,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="C">C</a>
+                <a href="javascript:" data-rel="Tools">Tools</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">c</a>
+            <a href="javascript:" class="color1">Tools</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-03 10:43:21">2019-02-22 23:57</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-03 10:43:21">2019-11-03 15:59</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:565</span>
+        <span>字数:1.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -404,7 +404,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer"><span class="toc-text">pass by value Vs. pass by reference Vs. pass by pointer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pass-by-value"><span class="toc-text">pass by value</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-by-reference"><span class="toc-text">pass by reference</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-by-pointer"><span class="toc-text">pass by pointer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Gitalk：符合国情的评论插件"><span class="toc-text">Gitalk：符合国情的评论插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-基本使用"><span class="toc-text">1. 基本使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Error-Validation-Failed"><span class="toc-text">2. Error: Validation Failed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-自动添加Gitalk模块"><span class="toc-text">3.自动添加Gitalk模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Error-401-unauthrized"><span class="toc-text">4. Error: 401(unauthrized)</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -420,80 +420,100 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>If you are not clear about the concept of <code>pointer</code>, please click <a href="https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/">here</a>:</p>
-<h1 id="pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer"><a href="#pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer" class="headerlink" title="pass by value Vs. pass by reference Vs. pass by pointer"></a>pass by value Vs. pass by reference Vs. pass by pointer</h1><p>Firstly, in <code>C</code> language, there is only <strong><code>pass by value</code></strong> method to pass parameters. Therefore, we must use <code>pointer</code> to access the local variable of other function. <code>pass by reference</code> is the strategy supported by <code>C++</code>.</p>
-<h2 id="pass-by-value"><a href="#pass-by-value" class="headerlink" title="pass by value"></a>pass by value</h2><pre><code class="c">void f( int  p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12ff44
-    printf(&quot;\n%x&quot;,p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12fef4
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //10
-}
-</code></pre>
-<p>In terms of the <code>passing by value</code> strategy, the variable will be copy to the memory as a new local variable(this is why the address of <code>a</code> is different than the <code>p</code>). Therefore, modifying the value of the <code>p</code> in the function <code>f</code> cannot modify the value of the <code>a</code>.</p>
-<h3 id="pass-by-reference"><a href="#pass-by-reference" class="headerlink" title="pass by reference"></a>pass by reference</h3><pre><code class="c">void f( int  &amp;p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12ff44
-    printf(&quot;\n%x&quot;,p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12ff44
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //ff
-}
-</code></pre>
-<p><code>passing by reference</code> strategy will pass the address of the actual parameter to the formal parameter, therefore, in fact, the variable <code>p</code> in the function <code>c</code> is same as the variable <code>a</code>. If we modify the value of <code>p</code>, the value of <code>a</code> also could be modified. This is why the address of both <code>p</code> and <code>a</code> are <code>12ff44</code>, and the value of <code>a</code> has been modified to <code>ff</code> after calling the function <code>f</code>.</p>
-<h3 id="pass-by-pointer"><a href="#pass-by-pointer" class="headerlink" title="pass by pointer"></a>pass by pointer</h3><pre><code class="c">void f( int  *p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12fef4
-    printf(&quot;\n%x&quot;,p);            //12ff44
-    printf(&quot;\n%x&quot;,*p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12ff44
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //ff
-}
-</code></pre>
-<p><code>pass by pointer</code> will also pass the address of the variable <code>a</code> to the <code>pointer p</code> in the function <code>f</code>. <strong>Note</strong> that <code>12fef4</code> is the actual address of the <code>pointer p</code> itself. And then the value of the pointer is <code>12ff44</code>, i.e. the address of the <code>a</code>. Therefore the <strong>dereference</strong> operation will get the value of the variable <code>a</code>. And this method will also can change the value of <code>a</code> after calling the function <code>f</code>.</p>
-<p><code>**Note: If you want to modify the value of a pointer, you still need to pass the address of this pointer to the other context(function).**</code></p>
-<pre><code class="c">typedef struct ListNode
-{
-    char word[100];
-    struct ListNode *next;
-}node;
+        <h1 id="Gitalk：符合国情的评论插件"><a href="#Gitalk：符合国情的评论插件" class="headerlink" title="Gitalk：符合国情的评论插件"></a>Gitalk：符合国情的评论插件</h1><p>大家都知道<code>Disqus</code>使用起来很方便，但是在国内却不能正常使用。后面发现<a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener">Gitalk</a>这个利用Github上的issue来做评论模块的插件，感觉不错。不过在使用过程中还是碰到了不少坑，记录在此以供参考。</p>
+<h2 id="1-基本使用"><a href="#1-基本使用" class="headerlink" title="1. 基本使用"></a>1. 基本使用</h2><p>官方文档上写着使用方法， 看上去也是比较简单，但是对于从没有接触过html的人来说（比如我这个菜鸡），还是会碰到一些问题。</p>
+<pre><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css&quot;&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js&quot;&gt;&lt;/script&gt;
+&lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;
+&lt;!--Then use the Javascript code below to generate the gitalk plugin:--&gt;
+const gitalk = new Gitalk({
+  clientID: &#39;GitHub Application Client ID&#39;,
+  clientSecret: &#39;GitHub Application Client Secret&#39;,
+  repo: &#39;GitHub repo&#39;,
+  owner: &#39;GitHub repo owner&#39;,
+  admin: [&#39;GitHub repo owner and collaborators, only these guys can initialize github issues&#39;],
+  id: location.pathname,      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
 
-int main()
-{
-    ...
-    node *prev;
-    insert(root, cur, &amp;prev); // must pass the address of the pointer
-}
-
-void insert(node *root, node *cur, node **prev)
-{
-    ...
-    *prev = cur;
-    // must pass the address of the pointer so as to modify the value of the original pointer
-}
+gitalk.render(&#39;gitalk-container&#39;)
 </code></pre>
-<p>Here, if you only pass the <code>prev</code> instead of the <code>&amp;prev</code>, it will be the <code>pass by value</code>. The pointer <code>prev</code> will be copied in the <code>insert()</code> scoop(stored in the <code>stack</code> segment, will be collected in the end of the function). Therefore, the actual value <code>prev</code> pointer has not been modified.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
-<li><a href="https://blog.csdn.net/whzhaochao/article/details/12891329" target="_blank" rel="noopener">details</a></li>
-<li><a href="https://www.zhihu.com/question/51582974" target="_blank" rel="noopener">zhihu</a></li>
-</ul>
+<p>这是官网上的介绍，然而我对于<code>use the Javascript code below to generate the gitalk plugin</code>并没有什么概念，只是单纯的直接复制以上代码加入到生成的html文件中，结果自然是无论如何都无法出现评论模块。后面通过直接查看官方提供的<a href="https://gitalk.github.io/" target="_blank" rel="noopener">demo</a>的源代码才发现需要将这段代码标记为JavaScript：</p>
+<pre><code class="html">&lt;script type=&quot;test/javascript&quot;&gt;
+const gitalk = new Gitalk({
+  clientID: &#39;GitHub Application Client ID&#39;,
+  clientSecret: &#39;GitHub Application Client Secret&#39;,
+  repo: &#39;GitHub repo&#39;,
+  owner: &#39;GitHub repo owner&#39;,
+  admin: [&#39;GitHub repo owner and collaborators, only these guys can initialize github issues&#39;],
+  id: location.pathname,      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+gitalk.render(&#39;gitalk-container&#39;)
+&lt;/script&gt;
+</code></pre>
+<p>这样才能正确在Html中载入评论模块。如果实在不明白的话建议先去了解一下html的基本语法。</p>
+<h2 id="2-Error-Validation-Failed"><a href="#2-Error-Validation-Failed" class="headerlink" title="2. Error: Validation Failed"></a>2. Error: Validation Failed</h2><p>这是因为Github限制了issue的label长度不能超过50引起的问题，具体可以查看<a href="https://github.com/gitalk/gitalk/issues/102" target="_blank" rel="noopener">here</a>。在此只介绍<a href="https://github.com/gitalk/gitalk/issues/115" target="_blank" rel="noopener">#115</a>提出的解决方法，其核心思想就是用将label转为md5值：</p>
+<ol>
+<li><p>自己创建gist文件或者直接下载<a href="https://github.com/blueimp/JavaScript-MD5/blob/master/js/md5.min.js" target="_blank" rel="noopener">此js文件</a>。</p>
+</li>
+<li><p>上传到自己的Github上，如果按照我之前<a href="https://www.hellscript.cc/Pointer2SSP/">gitbook</a>上的设置，则应该上传到<code>src</code>分支上。</p>
+</li>
+<li><p>在想要添加<code>Gitalk</code>的html文件中引入该js文件：</p>
+<pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;https://raw.githack.com/gzrjzcx/Pointer2SSP/src/md5.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p><strong>一定要注意嵌入js的时候将原来的<code>githubusercontent.com</code>改为<code>raw.githack.com</code>才能成功嵌入，不然会找不到此js文件。</strong></p>
+</li>
+<li><p>将上述代码中的id一项加入md函数：</p>
+<pre><code class="html">id: md5(location.pathname), 
+</code></pre>
+</li>
+</ol>
+<h2 id="3-自动添加Gitalk模块"><a href="#3-自动添加Gitalk模块" class="headerlink" title="3.自动添加Gitalk模块"></a>3.自动添加Gitalk模块</h2><p>上述手动在html中添加代码的方法显示并不方便，不可能每写一篇文章就加一段代码。在此，根据<a href="https://juejin.im/post/5ca8881951882543e85f155d#heading-17" target="_blank" rel="noopener">here</a>提出的方法，我们可以利用<code>tbfed-pagefooter</code>插件进行自动集成Gitalk模块（以Gitbook为例）。在Gitbook对于仓库目录下的<code>node_modules</code>文件夹中，存放着各种plugin的文件。找到其中<code>tbfed-pagefooter</code>文件夹下的<code>index.js</code>文件，编辑器打开：</p>
+<pre><code class="javascript">  hooks: {
+    &#39;page:before&#39;: function(page) {
+      var _label = &#39;File Modify: &#39;,
+          _format = &#39;YYYY-MM-DD HH:mm:ss&#39;,
+          _copy = &#39;powered by Gitbook&#39;
+      if(this.options.pluginsConfig[&#39;tbfed-pagefooter&#39;]) {
+        _label = this.options.pluginsConfig[&#39;tbfed-pagefooter&#39;][&#39;modify_label&#39;] || _label;
+        _format = this.options.pluginsConfig[&#39;tbfed-pagefooter&#39;][&#39;modify_format&#39;] || _format;
+
+        var _c = this.options.pluginsConfig[&#39;tbfed-pagefooter&#39;][&#39;copyright&#39;];
+        _copy = _c ? _c + &#39; all right reserved，&#39; + _copy : _copy;
+      }
+      var _copy = &#39;&lt;span class=&quot;copyright&quot;&gt;&#39;+_copy+&#39;&lt;/span&gt;&#39;
+      var str = &#39; \n\n&lt;footer class=&quot;page-footer&quot;&gt;&#39; + _copy +
+        &#39;&lt;span class=&quot;footer-modification&quot;&gt;&#39; +
+        _label +
+        &#39;\n{{file.mtime | date("' + _format +
+        '")}}\n&lt;/span&gt;&lt;/footer&gt;&#39;
+            // 主要修改此处, 在此处引入Gitalk和我们自己存储的gitalk_config文件
+      str += &#39;\n\n&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/gitalk/dist/gitalk.css&quot;&gt;&#39;+
+      &#39;\n\n&lt;script src=&quot;https://unpkg.com/gitalk@latest/dist/gitalk.min.js&quot;&gt;&lt;/script&gt;&#39;+
+      &#39;\n\n&lt;script type=&quot;text/javascript&quot; src=&quot;https://raw.githack.com/gzrjzcx/Pointer2SSP/src/md5.min.js&quot;&gt;&lt;/script&gt;&#39;+
+      &#39;\n\n&lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;&#39;+
+      &#39;\n\n&lt;script src=&quot;https://raw.githack.com/gzrjzcx/Pointer2SSP/src/gitalk_config.js&quot;&gt;&lt;/script&gt;&#39;;
+
+      page.content = page.content + str;
+      return page;
+    }
+  },
+</code></pre>
+<p>根据代码中的注释，我们只需要让<code>tbfed-pagefooter</code>在构建html的时候帮我们一块把Gitalk也给引入集成就好了。其中需要注意的是我们需要自己创建一个<code>gitalk_config</code>文件来保存gitalk的配置信息，并push到<code>src</code>分支上即可。例如，我的<code>gitalk_config</code>内容为：</p>
+<pre><code class="javascript">    var gitalk = new Gitalk({
+        clientID: &#39;891633df9540ec724578&#39;,
+        clientSecret: &#39;012103e75c027bbbe2b6687fb84be518d7bb9994&#39;,
+        repo: &#39;Pointer2SSP&#39;,
+        owner: &#39;gzrjzcx&#39;,
+        admin: [&#39;gzrjzcx&#39;],
+        id: md5(location.pathname),
+    });
+    gitalk.render(&#39;gitalk-container&#39;);
+</code></pre>
+<p>如果不明白，也可以直接去我的Github上查看源文件: <a href="https://github.com/gzrjzcx/Pointer2SSP" target="_blank" rel="noopener">Pointer2SSP</a>。</p>
+<h2 id="4-Error-401-unauthrized"><a href="#4-Error-401-unauthrized" class="headerlink" title="4. Error: 401(unauthrized)"></a>4. Error: 401(unauthrized)</h2><p>这个问题主要出现的原因为在Github上的OAuth App上的配置中 Callback URL与Chrome中的redirect URL不匹配，有很多种情况，具体可以查看<a href="https://github.com/gitalk/gitalk/issues/183" target="_blank" rel="noopener">Issue #183</a>。</p>
+<p>在此，我只介绍我碰到的情况。我是用了自己的域名，在GitHub上的OAuth App上配置的时候直接复制了自己域名粘贴过去，是<br><code>http://www.hellscript.cc/</code><br>后面在chrome中看发现redirect URL是<br><code>https://www.hellscript.cc/</code><br>二者不一致会验证失败。改一致就行了。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -507,12 +527,12 @@ void insert(node *root, node *cur, node **prev)
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Pass parameters in function</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">565</span></p>
+    <p><span class="copy-title">文章标题:</span>Gitalk: A plugin for static website</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-02-22, 23:57:46</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-03, 15:59:20</p>
     <p><span class="copy-title">最后更新:</span>2019-11-03, 10:43:21</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/02/22/subposts_c/pass-parameters-in-function/" title="Pass parameters in function">www.hellscript.cc/2019/02/22/subposts_c/pass-parameters-in-function/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/03/subposts_tools/Gitalk-A-plugin-for-static-website/" title="Gitalk: A plugin for static website">www.hellscript.cc/2019/11/03/subposts_tools/Gitalk-A-plugin-for-static-website/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

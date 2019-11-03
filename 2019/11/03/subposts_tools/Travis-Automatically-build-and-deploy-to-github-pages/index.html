@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>Pass parameters in function | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" c ">
-  <meta name="description" content="Pass parameters in function | Alex&#39;s Epitaph">
+  <title>Travis: Automatically build and deploy to github pages | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" Tools ">
+  <meta name="description" content="Travis: Automatically build and deploy to github pages | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -345,9 +345,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_c/pass-parameters-in-function" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_tools/Travis-Automatically-build-and-deploy-to-github-pages" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Pass parameters in function</h1>
+        <h1 class="article-title">Travis: Automatically build and deploy to github pages</h1>
     
     <div class="article-meta">
         
@@ -355,26 +355,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="C">C</a>
+                <a href="javascript:" data-rel="Tools">Tools</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">c</a>
+            <a href="javascript:" class="color1">Tools</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-03 10:43:21">2019-02-22 23:57</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-03 10:43:21">2019-11-03 11:29</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:565</span>
+        <span>字数:1.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -404,7 +404,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer"><span class="toc-text">pass by value Vs. pass by reference Vs. pass by pointer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pass-by-value"><span class="toc-text">pass by value</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-by-reference"><span class="toc-text">pass by reference</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-by-pointer"><span class="toc-text">pass by pointer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Github仓库branch设置"><span class="toc-text">1. Github仓库branch设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo所需文件解释"><span class="toc-text">Hexo所需文件解释</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#2-配置Travis"><span class="toc-text">2. 配置Travis</span></a></li>
     
 <style>
     .left-col .switch-btn,
@@ -420,80 +420,81 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>If you are not clear about the concept of <code>pointer</code>, please click <a href="https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/">here</a>:</p>
-<h1 id="pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer"><a href="#pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer" class="headerlink" title="pass by value Vs. pass by reference Vs. pass by pointer"></a>pass by value Vs. pass by reference Vs. pass by pointer</h1><p>Firstly, in <code>C</code> language, there is only <strong><code>pass by value</code></strong> method to pass parameters. Therefore, we must use <code>pointer</code> to access the local variable of other function. <code>pass by reference</code> is the strategy supported by <code>C++</code>.</p>
-<h2 id="pass-by-value"><a href="#pass-by-value" class="headerlink" title="pass by value"></a>pass by value</h2><pre><code class="c">void f( int  p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12ff44
-    printf(&quot;\n%x&quot;,p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12fef4
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //10
-}
-</code></pre>
-<p>In terms of the <code>passing by value</code> strategy, the variable will be copy to the memory as a new local variable(this is why the address of <code>a</code> is different than the <code>p</code>). Therefore, modifying the value of the <code>p</code> in the function <code>f</code> cannot modify the value of the <code>a</code>.</p>
-<h3 id="pass-by-reference"><a href="#pass-by-reference" class="headerlink" title="pass by reference"></a>pass by reference</h3><pre><code class="c">void f( int  &amp;p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12ff44
-    printf(&quot;\n%x&quot;,p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12ff44
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //ff
-}
-</code></pre>
-<p><code>passing by reference</code> strategy will pass the address of the actual parameter to the formal parameter, therefore, in fact, the variable <code>p</code> in the function <code>c</code> is same as the variable <code>a</code>. If we modify the value of <code>p</code>, the value of <code>a</code> also could be modified. This is why the address of both <code>p</code> and <code>a</code> are <code>12ff44</code>, and the value of <code>a</code> has been modified to <code>ff</code> after calling the function <code>f</code>.</p>
-<h3 id="pass-by-pointer"><a href="#pass-by-pointer" class="headerlink" title="pass by pointer"></a>pass by pointer</h3><pre><code class="c">void f( int  *p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12fef4
-    printf(&quot;\n%x&quot;,p);            //12ff44
-    printf(&quot;\n%x&quot;,*p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12ff44
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //ff
-}
-</code></pre>
-<p><code>pass by pointer</code> will also pass the address of the variable <code>a</code> to the <code>pointer p</code> in the function <code>f</code>. <strong>Note</strong> that <code>12fef4</code> is the actual address of the <code>pointer p</code> itself. And then the value of the pointer is <code>12ff44</code>, i.e. the address of the <code>a</code>. Therefore the <strong>dereference</strong> operation will get the value of the variable <code>a</code>. And this method will also can change the value of <code>a</code> after calling the function <code>f</code>.</p>
-<p><code>**Note: If you want to modify the value of a pointer, you still need to pass the address of this pointer to the other context(function).**</code></p>
-<pre><code class="c">typedef struct ListNode
-{
-    char word[100];
-    struct ListNode *next;
-}node;
-
-int main()
-{
-    ...
-    node *prev;
-    insert(root, cur, &amp;prev); // must pass the address of the pointer
-}
-
-void insert(node *root, node *cur, node **prev)
-{
-    ...
-    *prev = cur;
-    // must pass the address of the pointer so as to modify the value of the original pointer
-}
-</code></pre>
-<p>Here, if you only pass the <code>prev</code> instead of the <code>&amp;prev</code>, it will be the <code>pass by value</code>. The pointer <code>prev</code> will be copied in the <code>insert()</code> scoop(stored in the <code>stack</code> segment, will be collected in the end of the function). Therefore, the actual value <code>prev</code> pointer has not been modified.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
-<li><a href="https://blog.csdn.net/whzhaochao/article/details/12891329" target="_blank" rel="noopener">details</a></li>
-<li><a href="https://www.zhihu.com/question/51582974" target="_blank" rel="noopener">zhihu</a></li>
+        <h1 id="1-Github仓库branch设置"><a href="#1-Github仓库branch设置" class="headerlink" title="1. Github仓库branch设置"></a>1. Github仓库branch设置</h1><hr>
+<p>要实现自动将generated public文件夹自动push到相应分支上，我们需要在GitHub的仓库上使用两个分支：</p>
+<ul>
+<li><code>src</code>用于存储Hexo相关文件和我们所写的blog源文件（即md文件）。</li>
+<li><code>master/gh-pages</code>用于存储构建出来的public文件夹里面的文件（即生成的静态网站相关文件）。</li>
 </ul>
+<p>这里需要说明的是，如果你使用的是默认的GitHub pages（即<user>.github.io），或者绑定了自己的域名（例如我的hellscript.cc)，想要让blog的地址就是自己的域名地址，而不是自己域名地址下的一个子文件夹，那么必须使用<code>master</code>作为GitHub pages的source，详情看<a href="https://help.github.com/en/github/working-with-github-pages/about-github-pages#publishing-sources-for-github-pages-sites" target="_blank" rel="noopener">here</a>。例如，我想要我的博客直接部署到我的域名hellscript.cc下，那么我必须在对应的repo（我的是gzrjzcx.github.io）中使用<code>master</code>作为source。但是对于我的gitbook，部署在hellscript.cc/Pointer2SSP/下，即hellscript.cc的一个子文件夹，只需要在gitbook对应的repo中新建一个<code>gh-pages</code>分支即可部署，该分支则是部署source。</user></p>
+<p>因此，我们最终需要实现的目标是：</p>
+<ol>
+<li>在本地写md文件并push到<code>src</code>分支。</li>
+<li>Travis自动克隆<code>src</code>并在服务器上生成静态网站相关文件（即public文件夹），并push到<code>master</code>分支。</li>
+</ol>
+<h3 id="Hexo所需文件解释"><a href="#Hexo所需文件解释" class="headerlink" title="Hexo所需文件解释"></a>Hexo所需文件解释</h3><p>在这里有必要说明一下Hexo构建静态网站所需要的文件，也即是我们需要在<code>src</code>分支上存储什么文件。根据Hexo的<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档</a>。安装好Hexo后，初始化Hexo：</p>
+<pre><code class="shell">$ hexo init blog #将初始化的文件目录放到blog的根目录下
+</code></pre>
+<p>上述init命令会将<code>blog</code>作为Hexo的根目录，并且生成如下目录结构：</p>
+<pre><code class="reStructuredText">.
+├── _config.yml
+├── package.json
+├── scaffolds
+├── source
+|   ├── _drafts
+|   └── _posts
+└── themes
+
+</code></pre>
+<p>这是Hexo官网列出的目录，然而实际上如果需要成功build，还需要<code>node_modules</code>和<code>themes</code>两个文件夹。其中<code>node_modules</code>主要是各种dependencies, <code>themes</code>则主要是所用到的主题文件。其中，<code>node_modules</code>文件夹被官方写入了<code>.gitignore</code>，也就是说并不会被git记录，所以我们在后面Travis的配置文件中需要install dependencies。至于<code>themes</code>，因为大部分使用的主题也都是从别人repo上克隆下来的，所以在此我采用了submodule的方法。以常用的Next主题为例，具体操作方法为：</p>
+<ol>
+<li><p>fork <a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">next</a>主题repo到自己的GitHub上。</p>
+</li>
+<li><p>在<code>blog</code>目录下添加submodule：</p>
+<pre><code class="shel">$ git submodule add https://github.com/theme-next/hexo-theme-next next
+$ git remote add upstream https://github.com/theme-next/hexo-theme-next
+</code></pre>
+</li>
+<li><p>将fork到我们自己GitHub上的repo添加为submodule后，则可以按照我们自己的想法修改配置并push到fork过来的仓库。同时，将fork过来的仓库设置upstream为原仓库，这样原仓库有更新的话我们也可以获取到更新。具体的更新方法在此不详细说明。将<code>themes</code>添加为submodule后，Travis在clone的时候则会自动采用<code>recursive</code>的方式将submodule一起克隆，所以<code>themes</code>文件夹也会被克隆到<code>src</code>下，最终build静态网站的所需文件全部克隆到<code>src</code>下，可以保证build的成功。</p>
+</li>
+</ol>
+<p>另外<code>public</code>文件夹则是Hexo根据我们写好的md文章构建出来的部署静态网站相关文件夹，只需要push其中内容到<code>master</code>分支上就行，并不需要push到<code>src</code>上进行存储。</p>
+<h1 id="2-配置Travis"><a href="#2-配置Travis" class="headerlink" title="2. 配置Travis"></a>2. 配置Travis</h1><hr>
+<p>Travis是Github提供的一个持续集成服务，说白了就是每次当push文件到GitHub仓库的时候，Travis都会被调用。你可以用它来进行测试，例如C++的编译等等。在此，我们利用它来进行自动部署，也就是说让它帮我们执行：</p>
+<pre><code class="shell">$ hexo g -d
+</code></pre>
+<p>除了Hexo，我的<a href="https://www.hellscript.cc/Pointer2SSP/">Gitbook</a>也配置了Travi来进行自动部署，教程就在首页。另外，在此还记录下使用评论插件<code>Gitalk</code>踩过的坑。</p>
+<p>首先，我们需要正确配置Travis才能够使用Travis提供的服务。这里需要注意的是一旦Travis开启服务，<code>只需要将相关.travis.yml文件push到相应分支即可以实现CI</code>。具体配置分为以下3个步骤：</p>
+<ol>
+<li>给新建的仓库开启<code>Travis</code>服务，这篇博客很详细<a href="https://www.jianshu.com/p/3b8d86f25ee2" target="_blank" rel="noopener">here</a>。</li>
+<li>因为我们需要push新生成的文件到仓库，所以需要生成GitHub的security token来获取更改仓库的权限<a href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line" target="_blank" rel="noopener">here</a>。</li>
+<li>设置好token后则可以给仓库<a href="https://docs.travis-ci.com/user/deployment/pages/" target="_blank" rel="noopener">配置<code>yml</code>文件</a>。注意一旦开启了Travis服务，只需要将yml文件上传到仓库则会自动激活Travis的服务。我自己用的yml文件可以在下方代码：</li>
+</ol>
+<pre><code class="yml">sudo: false
+language: node_js
+node_js:
+  - 10 # use nodejs v10 LTS
+cache: npm
+branches:
+  only:
+    - src # build src branch only
+install:
+  - npm install -g hexo-cli
+script:
+  - cd blog
+  - npm install # install dependencies, becaseu git ignore node-modules directory
+  - hexo generate # generate static files
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $TOKEN # generated github secure token
+  keep-history: true
+  on:
+    branch: src
+  local-dir: ./blog/public
+  target_branch: master
+</code></pre>
+<p>Travis配置完毕后，只需要在本地写好md文件，push到<code>src</code>分支，Travis则会自己在虚拟机上克隆我们的仓库，包括<code>themes</code>的子模块，以及安装build所需的依赖，最后generate静态网站，并push到<code>master</code>分支上进行部署。另外，如果想使用评论模块，可以查看<a href>here</a>来查看教程。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -507,12 +508,12 @@ void insert(node *root, node *cur, node **prev)
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Pass parameters in function</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">565</span></p>
+    <p><span class="copy-title">文章标题:</span>Travis: Automatically build and deploy to github pages</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-02-22, 23:57:46</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-03, 11:29:19</p>
     <p><span class="copy-title">最后更新:</span>2019-11-03, 10:43:21</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/02/22/subposts_c/pass-parameters-in-function/" title="Pass parameters in function">www.hellscript.cc/2019/02/22/subposts_c/pass-parameters-in-function/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/03/subposts_tools/Travis-Automatically-build-and-deploy-to-github-pages/" title="Travis: Automatically build and deploy to github pages">www.hellscript.cc/2019/11/03/subposts_tools/Travis-Automatically-build-and-deploy-to-github-pages/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
