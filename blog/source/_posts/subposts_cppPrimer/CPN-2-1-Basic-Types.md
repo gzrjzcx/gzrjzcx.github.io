@@ -115,6 +115,6 @@ for(unsigned u=10; u>=0; --u)
 
 ![](/Users/alex/Documents/gitRepo/gzrjzcx.github.io/blog/source/res/cppPrimer/Type_conversions.png)
 
-在这个实际编程题中，我们首先声明4个坐标变量`x,y,a,b`为`int`型，根据题目描述其取值范围为100000，所以`int`型没问题。但是，当我们在计算两个坐标之间的距离时，也就是在计算`sqrt((x-a)*(x-a) + (y-b)*(y-b))`时，其中间变量`(x-a)*(x-a)`或者`(y-b)*(y-b)`是有可能超过`int`（因为表达式的结果被强制转换为`int`型）型的取值范围的。比如x=100000，a=0，则(100000*100000) > $$10^9$$。所以此时计算得到的值是`undefined`。改正方法就是将`x,y,a,b`都声明为`long long`类型。
+在这个实际编程题中，我们首先声明4个坐标变量`x,y,a,b`为`int`型，根据题目描述其取值范围为100000，所以`int`型没问题。但是，当我们在计算两个坐标之间的距离时，也就是在计算`sqrt((x-a)*(x-a) + (y-b)*(y-b))`时，其中间变量`(x-a)*(x-a)`或者`(y-b)*(y-b)`是有可能超过`int`（因为表达式的结果被强制转换为`int`型）型的取值范围的。比如x=100000，a=0，则(100000*100000) > 10^9。所以此时计算得到的值是`undefined`。改正方法就是将`x,y,a,b`都声明为`long long`类型。
 
 另外，在此还需要注意的是`math.h`中的`double sqrt(double x)`函数要求形参为`double`类型，所以此时其实还是发生了类型转换（即将`long long`强制转换为`double`）。
