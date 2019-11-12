@@ -1,8 +1,8 @@
 ---
-title: 'CPN 2-2: Variables'
+title: 'C++Primer 2.2: Variables'
 date: 2019-11-12 14:21:29
-categories: cppPrimer
 tags: cpp
+categories: cppPrimer
 ---
 
 # Chapter 2.2: Variables
@@ -48,7 +48,7 @@ int j; // declares and defines j
 extern double pi = 3.1416; // definition
 ```
 
-如上述例子，只有使用`extern`关键字修饰**且没有提供`initializer`**的方式算作是变量的声明，其余均是变量的定义。即使是使用了了`extern`关键字，但是同时提供了`initializer`，`extern`关键字也会被重载从而变成变量定义。
+如上述例子，只有使用`extern`关键字修饰**且没有提供`initializer`**的方式算作是变量的声明，其余均是变量的定义。即使是使用了了`extern`关键字，但是同时提供了`initializer`，`extern`关键字也会被重载从而变成变量定义。总结就是：**只要有initializer，都是定义；只有extern且没initializer才是声明**。
 
 ## 3. Variable Scope
 

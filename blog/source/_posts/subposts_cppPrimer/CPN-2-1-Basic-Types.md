@@ -1,8 +1,8 @@
 ---
-title: 'CPN 2.1: Basic Types'
+title: 'C++Primer 2.1: Basic Types'
 date: 2019-11-08 10:25:41
-categories: cppPrimer
 tags: cpp
+categories: cppPrimer
 ---
 
 # Chapter 2: Variables and Basic Types
