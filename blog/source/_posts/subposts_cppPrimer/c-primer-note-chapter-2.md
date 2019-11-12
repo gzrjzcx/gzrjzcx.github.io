@@ -1,5 +1,5 @@
 ---
-title: 'c++primer note: chapter 2'
+title: 'CPN 2.1: Basic Types'
 date: 2019-11-08 10:25:41
 categories: cppPrimer
 tags: cpp
