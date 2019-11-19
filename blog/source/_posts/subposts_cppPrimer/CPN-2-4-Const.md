@@ -1,5 +1,5 @@
 ---
-title: 'CPN 2-4: Const'
+title: 'C++Primer 2.4: const'
 date: 2019-11-19 16:46:47
 categories: cppPrimer
 tags: cpp

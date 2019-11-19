@@ -1,7 +1,7 @@
 ---
 title: Singly-Linked List
 date: 2019-10-03 12:27:40
-tags: c
+tags: DataStructure
 categories: DataStructure
 hide: true
 ---

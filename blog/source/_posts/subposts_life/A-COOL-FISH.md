@@ -1,7 +1,7 @@
 ---
 title: A Cool Fish
 date: 2019-03-24 00:28:22
-tags: life
+tags: Life
 categories: Life
 hide: true
 ---
