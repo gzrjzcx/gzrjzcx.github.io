@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
 <meta property="og:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-12T15:11:48.970Z">
+<meta property="og:updated_time" content="2019-11-19T15:18:44.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Alex&#39;s Epitaph">
 <meta name="twitter:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
@@ -89,7 +89,7 @@
 
 
 <ul>
-    <li><div class="all active">All<small>(27)</small></div></li>
+    <li><div class="all active">All<small>(29)</small></div></li>
     
         
             
@@ -109,7 +109,7 @@
     
         
             
-            <li><div data-rel="cppPrimer">cppPrimer<small>(3)</small></div>
+            <li><div data-rel="cppPrimer">cppPrimer<small>(4)</small></div>
                 
             </li>
             
@@ -117,7 +117,7 @@
     
         
             
-            <li><div data-rel="Interview">Interview<small>(8)</small></div>
+            <li><div data-rel="Interview">Interview<small>(9)</small></div>
                 
             </li>
             
@@ -157,8 +157,8 @@
     </div>
     <div><a class="about  hasFriend  site_url" href="/about">About</a><a style="width: 50%" class="friends">Friends</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="27">
-<input type="hidden" id="yelog_site_word_count" value="20.7k">
+<input type="hidden" id="yelog_site_posts_number" value="29">
+<input type="hidden" id="yelog_site_word_count" value="23.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -295,6 +295,11 @@
             <span class="post-date" title="2019-11-12 16:49:07">2019/11/12</span>
         </a>
         
+        <a class="cppPrimer " href="/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/" data-tag="cpp" data-author>
+            <span class="post-title" title="CPN 2-4: Const">CPN 2-4: Const</span>
+            <span class="post-date" title="2019-11-19 16:46:47">2019/11/19</span>
+        </a>
+        
         <a class="Interview " href="/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/" data-tag="Interview" data-author>
             <span class="post-title" title="ByteDance: Clinet Developer First Interview">ByteDance: Clinet Developer First Interview</span>
             <span class="post-date" title="2019-11-01 11:06:19">2019/11/01</span>
@@ -318,6 +323,11 @@
         <a class="Interview " href="/2019/04/05/subposts_interview/OJ-IO/" data-tag="Interview" data-author>
             <span class="post-title" title="OJ IO">OJ IO</span>
             <span class="post-date" title="2019-04-05 22:34:12">2019/04/05</span>
+        </a>
+        
+        <a class="Interview " href="/2019/11/16/subposts_interview/Tencent-GameAI-First-Interview/" data-tag="Interview" data-author>
+            <span class="post-title" title="Tencent GameAI First Interview">Tencent GameAI First Interview</span>
+            <span class="post-date" title="2019-11-16 12:57:35">2019/11/16</span>
         </a>
         
         <a class="Interview " href="/2019/02/24/subposts_interview/Tencent-Timi/" data-tag="Interview" data-author>
@@ -396,12 +406,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-12 15:11:48">2019-11-12 16:49</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-19 15:18:44">2019-11-12 16:49</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:74</span>
+        <span>字数:1.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -431,7 +441,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-2-3-Compound-Types"><span class="toc-text">Chapter 2-3: Compound Types</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Reference"><span class="toc-text">1. Reference</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-2-3-Compound-Types"><span class="toc-text">Chapter 2-3: Compound Types</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Reference"><span class="toc-text">1. Reference</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Pointer"><span class="toc-text">2. Pointer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Compound-Type-Declarations"><span class="toc-text">3. Compound Type Declarations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Pointer-vs-Reference"><span class="toc-text">4. Pointer vs. Reference</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -451,7 +461,55 @@
 <p>Compound types is a type that is defined in terms of another type.</p>
 </blockquote>
 <p>复合类型指的是根据另一种类型定义的数据类型，C++中最常见的两种就是引用（reference）和指针（pointer）。注意一般情况下我们说的reference，都是<code>lvalue reference</code>。</p>
-<h2 id="1-Reference"><a href="#1-Reference" class="headerlink" title="1. Reference"></a>1. Reference</h2>
+<h2 id="1-Reference"><a href="#1-Reference" class="headerlink" title="1. Reference"></a>1. Reference</h2><blockquote>
+<p>A <code>Reference</code> defines an alternative name for an object.  A reference is an <code>Alias</code>.</p>
+</blockquote>
+<p><code>引用</code>定义了一个object的<code>别名</code>。可以将引用看作是这个object。<strong><code>一个reference不是一个object，一个reference只是另一个已经存在的object的别名，因此引用不需要内存（这里存疑），也没有内存地址</code></strong>。当我们定义一个引用的时候，并不是将intializer的值copy给变量，而是<code>将引用绑定（bind）到initializer</code>。引用的定义示例如下，注意一个常见的declaration具有如下格式：<code>base type + declarator + identifier = initializer;</code></p>
+<pre><code class="c">int i = 1024, j = 2048;
+int &amp;ri = i;  //ri refers to i, a declaration includes:
+// base type(int) declarator(&amp;) identifier(ri) = initializer(i)
+&amp;ri = j // error: a reference cannot be rebind a different object
+int &amp;ri2; // error: a reference must be initialized
+int &amp;ri3 = NULL; // error: a reference cannot be NULL
+double &amp;ri4 = i; // error: a reference type must mactch exactly
+int &amp;ri5 = 10; // error: a reference must be initialized to an object
+int &amp;ri6 = ri // ok, ri4 refers to the i(ri is bound);
+int &amp;ri7 = i, &amp;ri6 = j; // ok, two references need two declarator respectively
+</code></pre>
+<p>注意<code>引用不能为空</code>这个说法比较模糊，准确地说应该是<code>引用</code>不能bind to空指针指向的值（会造成undefined行为），但是<code>引用</code>可以bind to空指针，详情<a href="https://bbs.csdn.net/topics/370082407" target="_blank" rel="noopener">here</a>。另外，在定义<code>引用</code>的过程中不会用到address-of操作，即<code>&amp;</code>不会出现在右值上。</p>
+<h2 id="2-Pointer"><a href="#2-Pointer" class="headerlink" title="2. Pointer"></a>2. <a href="https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/">Pointer</a></h2><blockquote>
+<p>A pointer holds the address of another object.</p>
+</blockquote>
+<p>可直接点击标题查看pointer的详细说明。这里有一个编程建议就是对于指针：<code>Initialize all pointers</code>。</p>
+<h2 id="3-Compound-Type-Declarations"><a href="#3-Compound-Type-Declarations" class="headerlink" title="3. Compound Type Declarations"></a>3. Compound Type Declarations</h2><p>在一个变量的声明中往往会有一个base type加上一列declarators，每一个变量都可以使用自己的declarator来决定这个变量是什么类型（指针或引用）。这里有一个coding建议就是：</p>
+<pre><code class="c">int* p; // ok, a pointer p
+int* p1, p2; // ok, p1 is a pointer and p2 is int
+int *p1, p2; // ok, p1 is a pointer and p2 is int
+</code></pre>
+<p>如上述例子，<code>int* p1, p2</code>是很容易造成误解的一种写法，这会让人觉得所有的identifier（p1 和 p2）都是被declarator修饰，然而实际上只有第一个identifier（p1）被declarator修饰，所以第二个identifier（p2）是int类型而不是指针。所以， 推荐使用下面那种定义方式，即将declarator和identifier放在一块。<code>每个identifier都有自己的declarator</code>。</p>
+<p>另外，我们有指针的指针（a pointer to a pointer），有指针引用（reference to pointer），但是<code>没有引用指针（pointer to reference）</code>。因为<code>a reference is not an object</code>，在内存中没有地址，所以指针不能指向一个引用。下面是一个指针引用的例子：</p>
+<pre><code class="c">int *p;
+int *&amp;r = p; // r is a reference to a pointer(the pointer = p)
+</code></pre>
+<p>注意这里是<code>从右往左</code>读，<strong>而不是</strong>像我们习惯性地读作：<del><code>&amp;*r</code> a reference（&amp;）to a pointer（*r）</del>。</p>
+<h2 id="4-Pointer-vs-Reference"><a href="#4-Pointer-vs-Reference" class="headerlink" title="4. Pointer vs. Reference"></a>4. Pointer vs. Reference</h2><ol>
+<li><p>从语言层面上看，<code>引用</code>可以看作是<code>const指针</code>，即引用必须初始化，且不能初始化为0（NULL），且引用初始化bind过后就不能再rebind到另一个不同的object上。对引用的操作都可以看做是对绑定对象的操作。</p>
+</li>
+<li><p>从内存分配上看，<code>指针</code>是一个真实的object，系统需要为其分配内存来存储它。但是<code>引用</code>是一个object的别名，从理论上说<code>引用</code> 并不需要分配内存。<strong>但是，在当前很多编译器对于<code>引用</code>的implementation，都是<code>通过指针来实现引用</code></strong>。所以<code>引用</code>到底需不需要分配内存，取决于编译器（或者说取决于<code>引用</code> 如何实现），因为C++标准并没有规定引用如何实现。在我自己64位的MAC上测试，使用icc编译器：</p>
+<pre><code class="c">struct test{
+  int &amp;r;
+}
+cout&lt;&lt;sizeof(int &amp;)&lt;&lt;endl; // 4
+cout&lt;&lt;sizeof(test)&lt;&lt;endl; // 8
+</code></pre>
+<p>在64位机器上<code>sizeof(int) == 4</code>，所以<code>sizeof(int &amp;) == 4</code>，因为<code>sizeof（引用类型）</code>得到的结果是引用类型的大小。但是<code>sizeof(test)</code>得到的结果却是8，这说明<code>test</code>里面是一个<code>指针</code>的偏移量。也就是说，在我的icc编译器上<code>引用</code>是通过<code>指针</code>来实现的，所以也要给它分配内存空间，<a href="https://bbs.csdn.net/topics/320095541" target="_blank" rel="noopener">here</a>。</p>
+</li>
+<li><p>从编译上看，在编译时会分别将<code>指针</code>和<code>引用</code>都添加到符号表上，符号表上记录的是变量名和对应的地址。<code>指针</code>变量在符号表上的地址值为<code>指针变量的地址值</code>，但是<code>引用</code>变量在符号表上的地址值为<code>所引用对象的地址值</code>。</p>
+</li>
+<li><p>实际使用上，<code>引用</code>因为其<code>const</code>的属性，所以不会为NULL，所以作为函数形参的时候也不需要进行空值检查，所以相对会更方便安全。</p>
+</li>
+</ol>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
     </div>
@@ -465,10 +523,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>C++Primer 2.3: Compound Types</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">74</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-12, 16:49:07</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-12, 15:11:48</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-19, 15:18:44</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/12/subposts_cppPrimer/CPN-2-3-Compound-Types/" title="C++Primer 2.3: Compound Types">www.hellscript.cc/2019/11/12/subposts_cppPrimer/CPN-2-3-Compound-Types/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

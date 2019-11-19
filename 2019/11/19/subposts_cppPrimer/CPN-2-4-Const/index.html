@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>ByteDance: Clinet Developer First Interview | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" Interview ">
-  <meta name="description" content="ByteDance: Clinet Developer First Interview | Alex&#39;s Epitaph">
+  <title>CPN 2-4: Const | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" cpp ">
+  <meta name="description" content="CPN 2-4: Const | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -382,9 +382,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_interview/ByteDance-Clinet-Developer-First-Interview" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_cppPrimer/CPN-2-4-Const" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">ByteDance: Clinet Developer First Interview</h1>
+        <h1 class="article-title">CPN 2-4: Const</h1>
     
     <div class="article-meta">
         
@@ -392,26 +392,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="Interview">Interview</a>
+                <a href="javascript:" data-rel="cppPrimer">cppPrimer</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">Interview</a>
+            <a href="javascript:" class="color4">cpp</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-19 15:18:44">2019-11-01 11:06</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-19 15:18:44">2019-11-19 16:46</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:655</span>
+        <span>字数:395</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -441,7 +441,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字节跳动客户端开发一面"><span class="toc-text">字节跳动客户端开发一面</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-static关键字的作用"><span class="toc-text">1. static关键字的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-pointer-VS-reference"><span class="toc-text">2. pointer VS. reference</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-C-实现智能指针"><span class="toc-text">3. C++实现智能指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-有一个随机数生成器能够生成-1-5-的随机数，问如何使用它产生-1-7-的随机数生成器？"><span class="toc-text">4. 有一个随机数生成器能够生成[1-5]的随机数，问如何使用它产生[1-7]的随机数生成器？</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#const-Qualifier"><span class="toc-text">const Qualifier</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-const变量的scope"><span class="toc-text">1. const变量的scope</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么const变量是文件级局部变量？"><span class="toc-text">为什么const变量是文件级局部变量？</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -457,19 +457,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="字节跳动客户端开发一面"><a href="#字节跳动客户端开发一面" class="headerlink" title="字节跳动客户端开发一面"></a>字节跳动客户端开发一面</h1><p>总体来说一面大部分都是基础问题，但是因为我很久没用C++了，所以手写代码的时候没用写出来，结果凉凉。</p>
-<h2 id="1-static关键字的作用"><a href="#1-static关键字的作用" class="headerlink" title="1. static关键字的作用"></a>1. <code>static</code>关键字的作用</h2><p>常见问题，但是有一点回答的时候还是不太确定。那就是<code>static</code>修饰的函数（静态函数）一般情况下只能被定义它的源文件所调用，因为其他文件找不到它的地址。但是，如果通过间接调用，也是可以强行调用这个静态函数，只要拿到这个函数的地址。以下有两种方法：</p>
-<ul>
-<li>通过函数指针拿到静态函数的地址，则可以调用该函数。</li>
-<li>或者直接在定义静态函数的<code>.c</code>文件中来定义一个非静态函数来调用这个静态函数，然后在<code>main</code>函数中调用这个非静态函数即可。</li>
-</ul>
-<p>不过就我个人理解，<code>static</code>的本意即为了限制作用域，这样虽然可以强行在别的文件中（即非定义静态函数的源文件）调用静态函数，但是并不是符合函数最初设计的。另外，<strong><code>extern</code>是不能作用在<code>static</code>上的</strong>。</p>
-<h2 id="2-pointer-VS-reference"><a href="#2-pointer-VS-reference" class="headerlink" title="2. pointer VS. reference"></a>2. <code>pointer</code> VS. <code>reference</code></h2><p><a href="https://www.hellscript.cc/2019/02/22/subposts_c/reference-Vs-pointer/">Here</a></p>
-<h2 id="3-C-实现智能指针"><a href="#3-C-实现智能指针" class="headerlink" title="3. C++实现智能指针"></a>3. C++实现智能指针</h2><h2 id="4-有一个随机数生成器能够生成-1-5-的随机数，问如何使用它产生-1-7-的随机数生成器？"><a href="#4-有一个随机数生成器能够生成-1-5-的随机数，问如何使用它产生-1-7-的随机数生成器？" class="headerlink" title="4. 有一个随机数生成器能够生成[1-5]的随机数，问如何使用它产生[1-7]的随机数生成器？"></a>4. 有一个随机数生成器能够生成[1-5]的随机数，问如何使用它产生[1-7]的随机数生成器？</h2><ol>
-<li>先生成一个[1-5]的随机数<code>a</code>，然后<code>a-=1</code>即可得到一个[0-4]的随机数<code>a~(0,1,2,3,4)</code>，在生成另一个[1-5]的随机数<code>b~(1,2,3,4,5)</code>，所以可以得到一个[1-25]的随机数<code>c=5*a+b</code>。例如，<code>a=1</code>时则<code>c</code>可以是<code>6,7,8,9,10</code>。也即是通过此操作可以获得一个1-25的均匀随机数生成器，为了采样效率更高，可以将<code>1,2,3</code>映射为<code>1</code>，<code>4,5,6</code>映射为<code>2</code>… 依次类推。如果得到的数大于21，则重新生成即可。</li>
-<li>用[1-5]的随机数生成器生成3个随机数<code>a,b,c</code>，其中<code>1,2 -&gt; 0, 4,5 -&gt; 1, 3重置</code>。用这三个数分别表示为一个二进制位，则<code>a,b,c</code>三个数可以表示为[1-8]的三个数（因为&amp;&amp;2^3=8&amp;&amp;）。例如，三次生成得到的随机数分别为<code>a=1,b=1,c=1</code>，则最终得到的随机数为7。</li>
-</ol>
-<p>如果是[0-5]的随机数生成器，则需要先+1变成[1-6]，然后在减1。</p>
+        <h1 id="const-Qualifier"><a href="#const-Qualifier" class="headerlink" title="const Qualifier"></a><code>const</code> Qualifier</h1><p><code>const</code>是个比较复杂的关键字，它的需求来自于：当我们需要定义一个<code>其值不会改变的变量（Variable）</code>时，就需要用到<code>const</code>关键字：</p>
+<pre><code class="c">const int bufSize = 512; // ok, initialized at compile time
+const int bufSize = get_size(); // ok, initialized at run time
+const int bufSize; // error, const must be initialized
+</code></pre>
+<p><code>const</code>定义的变量必须进行<strong>初始化</strong>，因为<code>const</code>变量在创建之后就不能更改了。其实现是在编译阶段时compiler会将<code>const</code>类型的变量替换为其对于的值（即initializer）。例如，对于上述代码，编译器会用<code>512</code>替换<code>bufSize</code>。</p>
+<h2 id="1-const变量的scope"><a href="#1-const变量的scope" class="headerlink" title="1. const变量的scope"></a>1. <code>const</code>变量的scope</h2><blockquote>
+<p>By default, <code>const objects</code> are <strong>local to a File</strong>. </p>
+</blockquote>
+<h3 id="为什么const变量是文件级局部变量？"><a href="#为什么const变量是文件级局部变量？" class="headerlink" title="为什么const变量是文件级局部变量？"></a>为什么const变量是文件级局部变量？</h3><p>因为compiler在编译阶段需要将const变量替换为其初始化的值（initializer），所以compiler必须能够知道这个initializer。为了让compiler知道这个initializer，这个const变量在每个使用到它的File中都需要定义。因此，为了让compiler知道const变量的initializer，同时避免重复定义（duplicate definition）的错误，<code>const变量被定义为local to the file</code>。也就是说，如果我们在不同的Files中定义一个同名的const变量，这个变量在每个File中都是一个单独的变量。</p>
+<p>如果想定义一个<code>全局的const变量</code>（a single instance of a const Variable），我们可以使用<code>extern</code>关键字。<strong>注意，对于全局<code>const</code>变量，其定义（definition）和声明（declaration）都需要明确使用<code>extern</code>。</strong></p>
+<pre><code class="c">// main.c defines and initializes a const variable that is accessible to other files
+extern const int bufSize = f();
+// file_1.h declares the const variable
+extern const int bufSize;
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -483,12 +486,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>ByteDance: Clinet Developer First Interview</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">655</span></p>
+    <p><span class="copy-title">文章标题:</span>CPN 2-4: Const</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">395</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-11-01, 11:06:19</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-19, 16:46:47</p>
     <p><span class="copy-title">最后更新:</span>2019-11-19, 15:18:44</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/" title="ByteDance: Clinet Developer First Interview">www.hellscript.cc/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/" title="CPN 2-4: Const">www.hellscript.cc/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
