@@ -3,6 +3,7 @@ title: 'C++Primer 2.1: Basic Types'
 date: 2019-11-08 10:25:41
 tags: cpp
 categories: cppPrimer
+mathjax: true
 ---
 
 # Chapter 2: Variables and Basic Types
@@ -30,7 +31,7 @@ C++中的内置变量主要包含两部分：`算数类型(Arithmetic Types)` + 
 
 
 
-![](/Users/alex/Documents/gitRepo/gzrjzcx.github.io/blog/source/res/cppPrimer/Arithmetic_Types.png)
+![](../../res/cppPrimer/Arithmetic_Types.png)
 
 
 
@@ -38,7 +39,7 @@ C/C++中常见的内置类型如图所示，在此需要说明的是后面所示
 
 图中，`char`也是整形（注意整形(`integral Types`)不是`int`），`char`是和单个机器字节相同尺寸的数据类型(A char is the same size as a single machine byte)。也就是说，`char`占一个字节8位。字节也是最小的内存可寻址单位，通常将存储中最小的存储单位称为`word`，一个`word`一般包含4个字节（32位机器中）或8个字节（64位机器中）。通常一个`floating-point`被认为是一个`word(32 bits)`，一个`double`被认为是2个`word(32 bits)`。
 
-对于整形`integral types`，除了布尔类型都有`signed`和`unsgined`之分。**通常`unsigned int`被简写为`unsigned`。** `signed`类型取值范围为$$(-2^{bit-1}, 2^{bit-1}-1)$$。例如，`int`的取值范围可以被计算为$$(-2^{31}, 2^{31}-1)$$。
+对于整形`integral types`，除了布尔类型都有`signed`和`unsgined`之分。**通常`unsigned int`被简写为`unsigned`。** `signed`类型取值范围为$(-2^{bit-1}, 2^{bit-1}-1)$。例如，`int`的取值范围可以被计算为$(-2^{31}, 2^{31}-1)$。
 
 对于`bool`类型来说，其是C++的标准，只有两个值：非零值为true, 零值为false。注意此时是非零值也是true，也就是说负数如-42也会被判为ture。`BOOL`类型则是VC++（Visual C++）提供的自定义类型，其实际上是**`int`**类型（并不是布尔类型）。只有当`BOOL == 1`时可看作true，当`BOOL == 0`时可看作false。且如果`BOOL x = -100; cout<<x<<endl`的结果为-100； `BOOL x = 30; cout<<x<<endl`的结果为30。
 
@@ -113,7 +114,7 @@ for(unsigned u=10; u>=0; --u)
 
 #### 错误实例2
 
-![](/Users/alex/Documents/gitRepo/gzrjzcx.github.io/blog/source/res/cppPrimer/Type_conversions.png)
+![](../../res/cppPrimer/Type_conversions.png)
 
 在这个实际编程题中，我们首先声明4个坐标变量`x,y,a,b`为`int`型，根据题目描述其取值范围为100000，所以`int`型没问题。但是，当我们在计算两个坐标之间的距离时，也就是在计算`sqrt((x-a)*(x-a) + (y-b)*(y-b))`时，其中间变量`(x-a)*(x-a)`或者`(y-b)*(y-b)`是有可能超过`int`（因为表达式的结果被强制转换为`int`型）型的取值范围的。比如x=100000，a=0，则(100000*100000) > 10^9。所以此时计算得到的值是`undefined`。改正方法就是将`x,y,a,b`都声明为`long long`类型。
 
