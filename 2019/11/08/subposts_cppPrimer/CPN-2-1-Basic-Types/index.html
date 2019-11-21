@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
 <meta property="og:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-19T17:02:18.927Z">
+<meta property="og:updated_time" content="2019-11-21T09:05:49.451Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Alex&#39;s Epitaph">
 <meta name="twitter:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
@@ -158,7 +158,7 @@
     <div><a class="about  hasFriend  site_url" href="/about">About</a><a style="width: 50%" class="friends">Friends</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="29">
-<input type="hidden" id="yelog_site_word_count" value="23.2k">
+<input type="hidden" id="yelog_site_word_count" value="24.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -168,7 +168,7 @@
     <div class="nav-right">
         <div class="friends-area">
     <div class="friends-title">
-        友情链接
+        Link Exchange
         <i class="back-title-list"></i>
     </div>
     <div class="friends-content">
@@ -296,13 +296,8 @@
         </a>
         
         <a class="cppPrimer " href="/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/" data-tag="cpp" data-author>
-            <span class="post-title" title="C++Primer 2.4: const">C++Primer 2.4: const</span>
+            <span class="post-title" title="C++Primer 2.4: Const">C++Primer 2.4: Const</span>
             <span class="post-date" title="2019-11-19 16:46:47">2019/11/19</span>
-        </a>
-        
-        <a class="Interview " href="/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/" data-tag="Interview" data-author>
-            <span class="post-title" title="ByteDance: Clinet Developer First Interview">ByteDance: Clinet Developer First Interview</span>
-            <span class="post-date" title="2019-11-01 11:06:19">2019/11/01</span>
         </a>
         
         <a class="Interview " href="/2019/02/27/subposts_interview/Game-Categroy/" data-tag="Interview" data-author>
@@ -328,6 +323,11 @@
         <a class="Interview " href="/2019/11/16/subposts_interview/Tencent-GameAI-First-Interview/" data-tag="Interview" data-author>
             <span class="post-title" title="Tencent GameAI First Interview">Tencent GameAI First Interview</span>
             <span class="post-date" title="2019-11-16 12:57:35">2019/11/16</span>
+        </a>
+        
+        <a class="Interview " href="/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/" data-tag="Interview" data-author>
+            <span class="post-title" title="ByteDance: Clinet Developer First Interview">ByteDance: Clinet Developer First Interview</span>
+            <span class="post-date" title="2019-11-01 11:06:19">2019/11/01</span>
         </a>
         
         <a class="Interview " href="/2019/02/24/subposts_interview/Tencent-Timi/" data-tag="Interview" data-author>
@@ -406,7 +406,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-19 17:02:18">2019-11-08 10:25</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-21 09:05:49">2019-11-08 10:25</time>
         
     </div>
     <div class="article-meta">
@@ -425,17 +425,6 @@
             </span>
         </span>
         
-        
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                评论:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
-        </span>
         
     </div>
     
@@ -469,10 +458,10 @@ int b[n] = {0};
 </code></pre>
 <p>C++也一样，对于变量的类型要求在编译时就知道。</p>
 <h2 id="1-Primitive-Built-in-Types"><a href="#1-Primitive-Built-in-Types" class="headerlink" title="1. Primitive Built-in Types"></a>1. Primitive Built-in Types</h2><p>C++中的内置变量主要包含两部分：<code>算数类型(Arithmetic Types)</code> + <code>void类型</code>。其中，算数类型指的是字符（characters）， 整形（integers），布尔型（boolean）和浮点型（floating-point）。</p>
-<h3 id="Arithmetic-Types-Integral-types-Floating-point-types"><a href="#Arithmetic-Types-Integral-types-Floating-point-types" class="headerlink" title="Arithmetic Types: Integral types + Floating-point types"></a>Arithmetic Types: <code>Integral types</code> + <code>Floating-point types</code></h3><p><img src="/Users/alex/Documents/gitRepo/gzrjzcx.github.io/blog/source/res/cppPrimer/Arithmetic_Types.png" alt></p>
+<h3 id="Arithmetic-Types-Integral-types-Floating-point-types"><a href="#Arithmetic-Types-Integral-types-Floating-point-types" class="headerlink" title="Arithmetic Types: Integral types + Floating-point types"></a>Arithmetic Types: <code>Integral types</code> + <code>Floating-point types</code></h3><p><img src="../../res/cppPrimer/Arithmetic_Types.png" alt></p>
 <p>C/C++中常见的内置类型如图所示，在此需要说明的是后面所示的大小范围为<strong>最小size</strong>。不同类型的数据size指的是<code>the number of bits in</code>，这会因为在不同机器上而出现不同的值。例如，在16位机器上<code>int</code> 只占2字节(2 byets)，<code>long</code>则占4字节(4 bytes)。但是在32位机器上，<code>int</code>和<code>long</code>都是4字节；在64位机器上，<code>int</code>还是4字节，但是<code>long</code>则变成了8字节64位。因此，<strong>他们都是机器相关的内置类型，机器不同和编译器不同都会影响到其size（The size varies across machines）</strong>。总结就是在C/C++标准只定义了各种类型的最小size，例如<code>sizeof(int) &lt;= sizeof(long)</code>。</p>
 <p>图中，<code>char</code>也是整形（注意整形(<code>integral Types</code>)不是<code>int</code>），<code>char</code>是和单个机器字节相同尺寸的数据类型(A char is the same size as a single machine byte)。也就是说，<code>char</code>占一个字节8位。字节也是最小的内存可寻址单位，通常将存储中最小的存储单位称为<code>word</code>，一个<code>word</code>一般包含4个字节（32位机器中）或8个字节（64位机器中）。通常一个<code>floating-point</code>被认为是一个<code>word(32 bits)</code>，一个<code>double</code>被认为是2个<code>word(32 bits)</code>。</p>
-<p>对于整形<code>integral types</code>，除了布尔类型都有<code>signed</code>和<code>unsgined</code>之分。<strong>通常<code>unsigned int</code>被简写为<code>unsigned</code>。</strong> <code>signed</code>类型取值范围为$$(-2^{bit-1}, 2^{bit-1}-1)$$。例如，<code>int</code>的取值范围可以被计算为$$(-2^{31}, 2^{31}-1)$$。</p>
+<p>对于整形<code>integral types</code>，除了布尔类型都有<code>signed</code>和<code>unsgined</code>之分。<strong>通常<code>unsigned int</code>被简写为<code>unsigned</code>。</strong> <code>signed</code>类型取值范围为$(-2^{bit-1}, 2^{bit-1}-1)$。例如，<code>int</code>的取值范围可以被计算为$(-2^{31}, 2^{31}-1)$。</p>
 <p>对于<code>bool</code>类型来说，其是C++的标准，只有两个值：非零值为true, 零值为false。注意此时是非零值也是true，也就是说负数如-42也会被判为ture。<code>BOOL</code>类型则是VC++（Visual C++）提供的自定义类型，其实际上是<strong><code>int</code></strong>类型（并不是布尔类型）。只有当<code>BOOL == 1</code>时可看作true，当<code>BOOL == 0</code>时可看作false。且如果<code>BOOL x = -100; cout&lt;&lt;x&lt;&lt;endl</code>的结果为-100； <code>BOOL x = 30; cout&lt;&lt;x&lt;&lt;endl</code>的结果为30。</p>
 <h2 id="2-类型转换"><a href="#2-类型转换" class="headerlink" title="2. 类型转换"></a>2. 类型转换</h2><p>在这里我们主要强调不同类型的变量进行操作会导致类型转换（Type Conversions），但不涉及具体的类型转换的方法介绍。<strong>因为变量的类型定义了该变量能够存放什么类型的数据以及进行什么样的操作</strong>，所以在对变量进行操作的时候应当注意变量的数据类型是否合适。</p>
 <h3 id="赋值时强制类型转换"><a href="#赋值时强制类型转换" class="headerlink" title="赋值时强制类型转换"></a>赋值时强制类型转换</h3><p>例如，在赋值操作时就会自动产生类型转换：</p>
@@ -519,7 +508,7 @@ cout&lt;&lt;u+i&lt;&lt;endl;  // （4294967296 - 42） + 10 = 4294967264
   cout&lt;&lt;u&lt;&lt;endl;
 </code></pre>
 <p>因为在最后一次循环体执行结束后，此时u=0然后<code>--u</code>，则u=-1会被隐式类型转换为4294967295，也就是说此时该循环不会结束。可以使用<code>while</code>解决，也可以使用<code>int</code>作为循环变量。</p>
-<h4 id="错误实例2"><a href="#错误实例2" class="headerlink" title="错误实例2"></a>错误实例2</h4><p><img src="/Users/alex/Documents/gitRepo/gzrjzcx.github.io/blog/source/res/cppPrimer/Type_conversions.png" alt></p>
+<h4 id="错误实例2"><a href="#错误实例2" class="headerlink" title="错误实例2"></a>错误实例2</h4><p><img src="../../res/cppPrimer/Type_conversions.png" alt></p>
 <p>在这个实际编程题中，我们首先声明4个坐标变量<code>x,y,a,b</code>为<code>int</code>型，根据题目描述其取值范围为100000，所以<code>int</code>型没问题。但是，当我们在计算两个坐标之间的距离时，也就是在计算<code>sqrt((x-a)*(x-a) + (y-b)*(y-b))</code>时，其中间变量<code>(x-a)*(x-a)</code>或者<code>(y-b)*(y-b)</code>是有可能超过<code>int</code>（因为表达式的结果被强制转换为<code>int</code>型）型的取值范围的。比如x=100000，a=0，则(100000*100000) &gt; 10^9。所以此时计算得到的值是<code>undefined</code>。改正方法就是将<code>x,y,a,b</code>都声明为<code>long long</code>类型。</p>
 <p>另外，在此还需要注意的是<code>math.h</code>中的<code>double sqrt(double x)</code>函数要求形参为<code>double</code>类型，所以此时其实还是发生了类型转换（即将<code>long long</code>强制转换为<code>double</code>）。</p>
 
@@ -539,7 +528,7 @@ cout&lt;&lt;u+i&lt;&lt;endl;  // （4294967296 - 42） + 10 = 4294967264
     <p><span class="copy-title">文章字数:</span><span class="post-count">1.7k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-08, 10:25:41</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-19, 17:02:18</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-21, 09:05:49</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/08/subposts_cppPrimer/CPN-2-1-Basic-Types/" title="C++Primer 2.1: Basic Types">www.hellscript.cc/2019/11/08/subposts_cppPrimer/CPN-2-1-Basic-Types/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -571,6 +560,44 @@ cout&lt;&lt;u+i&lt;&lt;endl;  // （4294967296 - 42） + 10 = 4294967264
 
 
 
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js" value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
 
     
 
@@ -824,7 +851,7 @@ cout&lt;&lt;u+i&lt;&lt;endl;  // （4294967296 - 42） + 10 = 4294967264
         width: 100%;
         height: 100%;
         opacity: 0.3;
-        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background: url("https://raw.githubusercontent.com/gzrjzcx/AlexsImageHosting/master/images/2019-11-21-16-56-44-bg_blog5.png");
         background-repeat: no-repeat;
         background-position: 50% 0;
         -ms-background-size: cover;

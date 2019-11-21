@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>C++Primer 2.4: const | Alex&#39;s Epitaph</title>
+  <title>C++Primer 2.4: Const | Alex&#39;s Epitaph</title>
   <meta name="keywords" content=" cpp ">
-  <meta name="description" content="C++Primer 2.4: const | Alex&#39;s Epitaph">
+  <meta name="description" content="C++Primer 2.4: Const | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
 <meta property="og:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-19T17:02:18.927Z">
+<meta property="og:updated_time" content="2019-11-21T09:05:49.451Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Alex&#39;s Epitaph">
 <meta name="twitter:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
@@ -158,7 +158,7 @@
     <div><a class="about  hasFriend  site_url" href="/about">About</a><a style="width: 50%" class="friends">Friends</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="29">
-<input type="hidden" id="yelog_site_word_count" value="23.2k">
+<input type="hidden" id="yelog_site_word_count" value="24.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -168,7 +168,7 @@
     <div class="nav-right">
         <div class="friends-area">
     <div class="friends-title">
-        友情链接
+        Link Exchange
         <i class="back-title-list"></i>
     </div>
     <div class="friends-content">
@@ -296,13 +296,8 @@
         </a>
         
         <a class="cppPrimer " href="/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/" data-tag="cpp" data-author>
-            <span class="post-title" title="C++Primer 2.4: const">C++Primer 2.4: const</span>
+            <span class="post-title" title="C++Primer 2.4: Const">C++Primer 2.4: Const</span>
             <span class="post-date" title="2019-11-19 16:46:47">2019/11/19</span>
-        </a>
-        
-        <a class="Interview " href="/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/" data-tag="Interview" data-author>
-            <span class="post-title" title="ByteDance: Clinet Developer First Interview">ByteDance: Clinet Developer First Interview</span>
-            <span class="post-date" title="2019-11-01 11:06:19">2019/11/01</span>
         </a>
         
         <a class="Interview " href="/2019/02/27/subposts_interview/Game-Categroy/" data-tag="Interview" data-author>
@@ -328,6 +323,11 @@
         <a class="Interview " href="/2019/11/16/subposts_interview/Tencent-GameAI-First-Interview/" data-tag="Interview" data-author>
             <span class="post-title" title="Tencent GameAI First Interview">Tencent GameAI First Interview</span>
             <span class="post-date" title="2019-11-16 12:57:35">2019/11/16</span>
+        </a>
+        
+        <a class="Interview " href="/2019/11/01/subposts_interview/ByteDance-Clinet-Developer-First-Interview/" data-tag="Interview" data-author>
+            <span class="post-title" title="ByteDance: Clinet Developer First Interview">ByteDance: Clinet Developer First Interview</span>
+            <span class="post-date" title="2019-11-01 11:06:19">2019/11/01</span>
         </a>
         
         <a class="Interview " href="/2019/02/24/subposts_interview/Tencent-Timi/" data-tag="Interview" data-author>
@@ -384,7 +384,7 @@
     <div class="pjax">
         <article id="post-subposts_cppPrimer/CPN-2-4-Const" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">C++Primer 2.4: const</h1>
+        <h1 class="article-title">C++Primer 2.4: Const</h1>
     
     <div class="article-meta">
         
@@ -406,12 +406,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-19 17:02:18">2019-11-19 16:46</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-21 09:05:49">2019-11-19 16:46</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:395</span>
+        <span>字数:1.4k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -426,22 +426,11 @@
         </span>
         
         
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                评论:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
-        </span>
-        
     </div>
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#const-Qualifier"><span class="toc-text">const Qualifier</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-const变量的scope"><span class="toc-text">1. const变量的scope</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么const变量是文件级局部变量？"><span class="toc-text">为什么const变量是文件级局部变量？</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#const-Qualifier"><span class="toc-text">const Qualifier</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-const变量的scope"><span class="toc-text">1. const变量的scope</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么const变量是文件级局部变量？"><span class="toc-text">为什么const变量是文件级局部变量？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-A-reference-to-const"><span class="toc-text">2. A reference to const</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-A-pointer-to-const"><span class="toc-text">3. A pointer to const</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -467,13 +456,56 @@ const int bufSize; // error, const must be initialized
 <p>By default, <code>const objects</code> are <strong>local to a File</strong>. </p>
 </blockquote>
 <h3 id="为什么const变量是文件级局部变量？"><a href="#为什么const变量是文件级局部变量？" class="headerlink" title="为什么const变量是文件级局部变量？"></a>为什么const变量是文件级局部变量？</h3><p>因为compiler在编译阶段需要将const变量替换为其初始化的值（initializer），所以compiler必须能够知道这个initializer。为了让compiler知道这个initializer，这个const变量在每个使用到它的File中都需要定义。因此，为了让compiler知道const变量的initializer，同时避免重复定义（duplicate definition）的错误，<code>const变量被定义为local to the file</code>。也就是说，如果我们在不同的Files中定义一个同名的const变量，这个变量在每个File中都是一个单独的变量。</p>
-<p>如果想定义一个<code>全局的const变量</code>（a single instance of a const Variable），我们可以使用<code>extern</code>关键字。<strong>注意，对于全局<code>const</code>变量，其定义（definition）和声明（declaration）都需要明确使用<code>extern</code>。</strong></p>
-<pre><code class="c">// main.c defines and initializes a const variable that is accessible to other files
-extern const int bufSize = f();
-// file_1.h declares the const variable
-extern const int bufSize;
-</code></pre>
+<p>如果想定义一个<code>全局的const变量</code>（a single instance of a const Variable），我们可以使用<code>extern</code>关键字。<strong>注意，对于全局<code>const</code>变量，其定义（definition）和声明（declaration）都需要明确使用<code>extern</code>。</strong> </p>
+<p><strong>注意这里的文件级实际上指的是一个编译单元。一个编译单元指的是它的<code>.c</code>文件和所有include的<code>.h</code>文件展开后的内容（因为预编译程序会将头文件在包含它的源文件中展开）。</strong> 一个简单的实例是：</p>
+<pre><code class="c">/*  test.h  */
+const int ci = 42;
+extern const int ci_global = 100;
 
+/*  test.c  */
+#include &quot;test.h&quot;
+
+/*  main.c  */
+const int ci = 1;
+extern const int ci_global;
+cout&lt;&lt;ci&lt;&lt;endl;  // 1, ci is defined in the main.c file
+cout&lt;&lt;ci_global&lt;&lt;endl;  // 42, the global const which defined in the test.h file
+</code></pre>
+<h2 id="2-A-reference-to-const"><a href="#2-A-reference-to-const" class="headerlink" title="2. A reference to const"></a>2. A reference to const</h2><blockquote>
+<p>A <code>reference to const</code>(const reference), which is a reference that refers to a <code>const type</code>.</p>
+</blockquote>
+<p>注意，通常我们说<code>const reference</code>指的就是<code>a reference to const</code>。因为从本质上说，reference并不是一个object，所以reference本身是不能被const修饰的。另外，因为reference一旦初始化便不能在修改，所以从某种意义上说reference本身就是带有const性质的（reference在某种程度上可以看做是const指针）。总的来说，<strong>const 修饰reference时其const属性是限制我们通过reference来做什么，而不是reference本身，也不是bound object</strong>。</p>
+<p>注意<code>const reference</code>有一个特殊情况就是reference不需要match它所引用的object的type：const reference可以被非const object或literal或expression初始化。例如：</p>
+<pre><code class="c">int i = 42;
+const int &amp;ri = i; // ok
+const int &amp;r2 = 42; // ok
+const int &amp;r3 = ri * 2; // ok
+int &amp;r4 = ri * 2; // error: r4 is not a const reference
+</code></pre>
+<p>上述const reference都能被不match的initializer初始化，但是<strong>非</strong>const reference则不能被const reference初始化。实际上，这种操作之所以被允许是因为<code>compiler将const reference绑定到了一个临时变量上</code>，如下代码：</p>
+<pre><code class="c">double f = 3.14;
+const int &amp;rf = f;
+/*  transfer to:
+    const int temp = f;  // floating-point is clipped
+    const int &amp;rf = temp;  // rf refers to a temp object
+*/
+// int &amp;rf2 = f;  // error: compiler don&#39;t transfer the code
+cout&lt;&lt;rf&lt;&lt;endl; // 3
+</code></pre>
+<p>实际上，之所以能够用不匹配的类型来初始化const reference（注意只有const reference，普通的reference不行），是因为compiler实际上会创建一个未命名的临时变量来保存正在计算的表达式的中间结果。因此，一个temporary const int object <code>temp</code>被用来存储double <code>f</code>，注意此时已经发生了隐式类型转行，floating-point被截断为int；然后const reference <code>ri</code>会被绑定到<code>这个临时变量temp，而不是原始initializer f</code>。因此，此时const reference可以被不匹配类型的initializer初始化，即最终rf输出为3。但是<strong>非const reference不会进行这种转换</strong>，因为<code>此时ri所引用的object并不是我们真正想要绑定的object</code>。如果我们想要通过引用来修改真正的object的值，这样是达不到想要的效果的，所以此时编译器会将这种情况视为error。</p>
+<p>关于const reference需要在此强调的一点是，一个const reference有可能引用到一个非const object。例如：</p>
+<pre><code class="c">int i = 42;
+int &amp;r1 = i; // r1 bound to i
+const int &amp;r2 = i; // r2 also bound to i, but cannot be used to change i
+r1 = 0; // ok
+r2 = 0; // error, r2 is a reference to const
+</code></pre>
+<p>上面的例子可以看出const reference的作用：a reference to const（此时虽然被绑定的object不是const，但是其实还是a reference to const，因为这个reference被绑定到了一个const的临时变量）只是限制了我们是否能够通过引用来修改被绑定的object。<code>绑定一个const reference到一个object上，并不意味着被绑定的object它本身就是const</code>。例如，我们不能通过<code>r2</code>来修改<code>i</code>，但是<code>i</code>还是可以被其他方法修改。</p>
+<blockquote>
+<p>Conclusion:</p>
+<p>当我们定义了一个const reference，不是说这个reference本身是const（因为实际上reference本身不是object，不能被const修饰），也不能说明其绑定的object是const的（有可能不是，因为const reference会有可能转化为绑定到临时变量）。A reference to const只能说明通过定义了const reference，<code>限制了我们不能通过这个reference去修改the bound object</code>。</p>
+</blockquote>
+<h2 id="3-A-pointer-to-const"><a href="#3-A-pointer-to-const" class="headerlink" title="3. A pointer to const"></a>3. A pointer to const</h2>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
     </div>
@@ -486,12 +518,12 @@ extern const int bufSize;
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>C++Primer 2.4: const</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">395</span></p>
+    <p><span class="copy-title">文章标题:</span>C++Primer 2.4: Const</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.4k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-19, 16:46:47</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-19, 17:02:18</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/" title="C++Primer 2.4: const">www.hellscript.cc/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/</a>
+    <p><span class="copy-title">最后更新:</span>2019-11-21, 09:05:49</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/" title="C++Primer 2.4: Const">www.hellscript.cc/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
@@ -775,7 +807,7 @@ extern const int bufSize;
         width: 100%;
         height: 100%;
         opacity: 0.3;
-        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background: url("https://raw.githubusercontent.com/gzrjzcx/AlexsImageHosting/master/images/2019-11-21-16-56-44-bg_blog5.png");
         background-repeat: no-repeat;
         background-position: 50% 0;
         -ms-background-size: cover;
