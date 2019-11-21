@@ -29,11 +29,7 @@ C++中的内置变量主要包含两部分：`算数类型(Arithmetic Types)` + 
 
 ### Arithmetic Types: `Integral types` + `Floating-point types`
 
-
-
-![](../../res/cppPrimer/Arithmetic_Types.png)
-
-
+![Arithmetic_Types](https://raw.githubusercontent.com/gzrjzcx/AlexsImageHosting/master/images/2019-11-21-23-21-07-Arithmetic_Types.png)
 
 C/C++中常见的内置类型如图所示，在此需要说明的是后面所示的大小范围为**最小size**。不同类型的数据size指的是`the number of bits in`，这会因为在不同机器上而出现不同的值。例如，在16位机器上`int` 只占2字节(2 byets)，`long`则占4字节(4 bytes)。但是在32位机器上，`int`和`long`都是4字节；在64位机器上，`int`还是4字节，但是`long`则变成了8字节64位。因此，**他们都是机器相关的内置类型，机器不同和编译器不同都会影响到其size（The size varies across machines）**。总结就是在C/C++标准只定义了各种类型的最小size，例如`sizeof(int) <= sizeof(long)`。
 
@@ -114,7 +110,7 @@ for(unsigned u=10; u>=0; --u)
 
 #### 错误实例2
 
-![](../../res/cppPrimer/Type_conversions.png)
+![Type_conversions](https://raw.githubusercontent.com/gzrjzcx/AlexsImageHosting/master/images/2019-11-21-23-05-03-Type_conversions.png)
 
 在这个实际编程题中，我们首先声明4个坐标变量`x,y,a,b`为`int`型，根据题目描述其取值范围为100000，所以`int`型没问题。但是，当我们在计算两个坐标之间的距离时，也就是在计算`sqrt((x-a)*(x-a) + (y-b)*(y-b))`时，其中间变量`(x-a)*(x-a)`或者`(y-b)*(y-b)`是有可能超过`int`（因为表达式的结果被强制转换为`int`型）型的取值范围的。比如x=100000，a=0，则(100000*100000) > 10^9。所以此时计算得到的值是`undefined`。改正方法就是将`x,y,a,b`都声明为`long long`类型。
 

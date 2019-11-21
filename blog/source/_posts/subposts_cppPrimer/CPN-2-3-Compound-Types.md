@@ -57,7 +57,9 @@ int *p;
 int *&r = p; // r is a reference to a pointer(the pointer = p)
 ```
 
-注意这里是`从右往左`读，**而不是**像我们习惯性地读作：~~`&*r` a reference（&）to a pointer（*r）~~。
+注意这里是`从右往左`读，**而不是**像我们习惯性地读作：~~`&*r` a reference（&）to a pointer（*r）~~。具体解读如图：
+
+![reference2pointer](https://raw.githubusercontent.com/gzrjzcx/AlexsImageHosting/master/images/2019-11-21-22-58-56-reference2pointer.jpg)
 
 ## 4. Pointer vs. Reference
 

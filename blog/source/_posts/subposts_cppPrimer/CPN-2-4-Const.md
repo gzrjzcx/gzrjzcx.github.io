@@ -95,5 +95,9 @@ r2 = 0; // error, r2 is a reference to const
 
 
 
-## 3. A pointer to const
+## 3. Pointers and const
+
+A pointer to const和a pointer to reference不一样，因为指针是一个实际的object，所以`const`既可以修饰指针本身，也可以修饰指针所指向的object。一个`常量指针`（const pointer）`必须被初始化`，并且它的值（即所指向object的地址）不能被改变。`const`修饰指针的两种情况可以由下图所示：
+
+![const_pointer](https://raw.githubusercontent.com/gzrjzcx/AlexsImageHosting/master/images/2019-11-21-22-56-58-const_pointer.jpg)
 
