@@ -129,7 +129,7 @@ const int *p3 = p; // ok: p3 has the same low-level const qualification as p
 
 > A `constant expression`(常量表达式) is an expression whose value  cannot change and that `can be evaluated at compile time`.
 
-例如，一个literal（e.g. 1，'c'，3.14）是一个constant expression，一个被constant expression初始化的`const`object也是一个constant expression， 例如：
+例如，一个literal（e.g. 1，'c'，3.14）是一个constant expression，一个被constant expression初始化的`const` object也是一个constant expression， 例如：
 
 ```c
 const int max_files = 20; // max_files is a constant expression
@@ -153,8 +153,7 @@ const int con_gi = 1;
 int main()
 {
   const int ci = 100;
-  constexpr int *pci = &ci; 
-  // error: ci is a local variable, cannot be determined at compile stage
+  constexpr int *pci = &ci; // error: ci is a local variable, cannot be determined at compile stage
 	constexpr int *pgi = &gi; // ok: gi is a global variable; pgi is top-level const
   constexpr int *pcon_gi = &con_gi; 
   // error: pcon_gi is top-level const, but the con_gi is const
