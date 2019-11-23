@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>Pass parameters in function | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" c ">
-  <meta name="description" content="Pass parameters in function | Alex&#39;s Epitaph">
+  <title>C++Primer 2-5: Dealing with Types | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" cpp ">
+  <meta name="description" content="C++Primer 2-5: Dealing with Types | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -387,9 +387,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_c/pass-parameters-in-function" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_cppPrimer/CPN-2-5-Dealing-with-Types" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Pass parameters in function</h1>
+        <h1 class="article-title">C++Primer 2-5: Dealing with Types</h1>
     
     <div class="article-meta">
         
@@ -397,26 +397,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="C">C</a>
+                <a href="javascript:" data-rel="cppPrimer">cppPrimer</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">c</a>
+            <a href="javascript:" class="color4">cpp</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-23 09:32:27">2019-02-22 23:57</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-23 09:32:27">2019-11-23 12:57</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:565</span>
+        <span>字数:2.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -435,7 +435,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer"><span class="toc-text">pass by value Vs. pass by reference Vs. pass by pointer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pass-by-value"><span class="toc-text">pass by value</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-by-reference"><span class="toc-text">pass by reference</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-by-pointer"><span class="toc-text">pass by pointer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dealing-with-Types"><span class="toc-text">Dealing with Types</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Type-Aliases"><span class="toc-text">1. Type Aliases</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#typedef关键字"><span class="toc-text">typedef关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#using关键字"><span class="toc-text">using关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-autoType-Specifier"><span class="toc-text">2. autoType Specifier</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-decltype-Type-Specifier"><span class="toc-text">3. decltype Type Specifier</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -451,80 +451,113 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>If you are not clear about the concept of <code>pointer</code>, please click <a href="https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/">here</a>:</p>
-<h1 id="pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer"><a href="#pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer" class="headerlink" title="pass by value Vs. pass by reference Vs. pass by pointer"></a>pass by value Vs. pass by reference Vs. pass by pointer</h1><p>Firstly, in <code>C</code> language, there is only <strong><code>pass by value</code></strong> method to pass parameters. Therefore, we must use <code>pointer</code> to access the local variable of other function. <code>pass by reference</code> is the strategy supported by <code>C++</code>.</p>
-<h2 id="pass-by-value"><a href="#pass-by-value" class="headerlink" title="pass by value"></a>pass by value</h2><pre><code class="c">void f( int  p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12ff44
-    printf(&quot;\n%x&quot;,p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12fef4
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //10
-}
+        <h1 id="Dealing-with-Types"><a href="#Dealing-with-Types" class="headerlink" title="Dealing with Types"></a>Dealing with Types</h1><p>随着我们的程序变得越来越复杂，各种types的名字变得越来越复杂。有些types变得越来越难拼写，有些types的含义变得越来越难以理解（或歧义）。因此，我们需要一些方法来让简化types的名字。</p>
+<h2 id="1-Type-Aliases"><a href="#1-Type-Aliases" class="headerlink" title="1. Type Aliases"></a>1. Type Aliases</h2><blockquote>
+<p>A <code>type alias</code> is a name that is a synonym(同义词) for another type.</p>
+</blockquote>
+<p>Type alias实际上就是给一个类型取别名（alias）。使用shell的人应该熟悉别名的意思，比如给一个复杂的command取一个简单的别名，方便下次键入。同时，给type取别名还能让我们更加突出这个type的意义。</p>
+<h3 id="typedef关键字"><a href="#typedef关键字" class="headerlink" title="typedef关键字"></a><code>typedef</code>关键字</h3><p>一个传统的取别名的方法是通过<code>typedef</code>关键字。与定义变量类似，<code>typedef</code>关键字定义一个<code>type alias</code>，但是要注意此时declarators（即<code>*</code>和<code>&amp;</code>）指的是这个别名本身是什么type。例如：</p>
+<pre><code class="c">    typedef int price;  // price is an alias of int
+    typedef price cost, *pointer;  
+    // cost is an alias of cost, pointer is an alias of price *(i.e. int *);
+    price b1 = 100;  // b1 is int type
+    pointer p = &amp;b1;  // p is int * type
+    cout&lt;&lt;*p&lt;&lt;endl;
 </code></pre>
-<p>In terms of the <code>passing by value</code> strategy, the variable will be copy to the memory as a new local variable(this is why the address of <code>a</code> is different than the <code>p</code>). Therefore, modifying the value of the <code>p</code> in the function <code>f</code> cannot modify the value of the <code>a</code>.</p>
-<h3 id="pass-by-reference"><a href="#pass-by-reference" class="headerlink" title="pass by reference"></a>pass by reference</h3><pre><code class="c">void f( int  &amp;p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12ff44
-    printf(&quot;\n%x&quot;,p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12ff44
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //ff
-}
+<h3 id="using关键字"><a href="#using关键字" class="headerlink" title="using关键字"></a><code>using</code>关键字</h3><p>C++11提供了一种通过<code>using</code>关键字的新方法定义type alias：</p>
+<pre><code class="c">using price = int;  // price is an alias of int
 </code></pre>
-<p><code>passing by reference</code> strategy will pass the address of the actual parameter to the formal parameter, therefore, in fact, the variable <code>p</code> in the function <code>c</code> is same as the variable <code>a</code>. If we modify the value of <code>p</code>, the value of <code>a</code> also could be modified. This is why the address of both <code>p</code> and <code>a</code> are <code>12ff44</code>, and the value of <code>a</code> has been modified to <code>ff</code> after calling the function <code>f</code>.</p>
-<h3 id="pass-by-pointer"><a href="#pass-by-pointer" class="headerlink" title="pass by pointer"></a>pass by pointer</h3><pre><code class="c">void f( int  *p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12fef4
-    printf(&quot;\n%x&quot;,p);            //12ff44
-    printf(&quot;\n%x&quot;,*p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12ff44
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //ff
-}
-</code></pre>
-<p><code>pass by pointer</code> will also pass the address of the variable <code>a</code> to the <code>pointer p</code> in the function <code>f</code>. <strong>Note</strong> that <code>12fef4</code> is the actual address of the <code>pointer p</code> itself. And then the value of the pointer is <code>12ff44</code>, i.e. the address of the <code>a</code>. Therefore the <strong>dereference</strong> operation will get the value of the variable <code>a</code>. And this method will also can change the value of <code>a</code> after calling the function <code>f</code>.</p>
-<p><code>**Note: If you want to modify the value of a pointer, you still need to pass the address of this pointer to the other context(function).**</code></p>
-<pre><code class="c">typedef struct ListNode
-{
-    char word[100];
-    struct ListNode *next;
-}node;
+<p>个人感觉虽然<code>typedef</code>是从C就开始使用的方法，但是新的关键字<code>using</code>使用起来更加直观。另外，<code>typedef</code>看上去用宏<code>#define</code>也可以实现类似效果，但是这两个并不一样，例如：</p>
+<pre><code class="c">#define m_price int *
 
-int main()
-{
-    ...
-    node *prev;
-    insert(root, cur, &amp;prev); // must pass the address of the pointer
-}
+int main(int argc, char* argv[]){
+    int i = 42;
+    m_price pi1 = &amp;i, pi2 = i; 
+  // --&gt; `int * pi1, pi2;`  pi1 is a pointer, pi2 is an int
+    cout&lt;&lt;*pi1&lt;&lt;&quot; &quot;&lt;&lt;pi2&lt;&lt;endl;
 
-void insert(node *root, node *cur, node **prev)
-{
-    ...
-    *prev = cur;
-    // must pass the address of the pointer so as to modify the value of the original pointer
+    typedef int *t_price;
+    t_price tpi1 = &amp;i, tpi2 = &amp;i; // both tpi1 and tpi2 are pointers
+    cout&lt;&lt;*tpi1&lt;&lt;&#39; &#39;&lt;&lt;*tpi2&lt;&lt;endl;
 }
 </code></pre>
-<p>Here, if you only pass the <code>prev</code> instead of the <code>&amp;prev</code>, it will be the <code>pass by value</code>. The pointer <code>prev</code> will be copied in the <code>insert()</code> scoop(stored in the <code>stack</code> segment, will be collected in the end of the function). Therefore, the actual value <code>prev</code> pointer has not been modified.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
-<li><a href="https://blog.csdn.net/whzhaochao/article/details/12891329" target="_blank" rel="noopener">details</a></li>
-<li><a href="https://www.zhihu.com/question/51582974" target="_blank" rel="noopener">zhihu</a></li>
+<p>可以看到，<code>#define</code>只是简单的文本替换，所以<code>pi1</code>是指针，但是<code>pi2</code>却是int类型。但是<code>typedef</code>则是定义了一个类型的别名，<code>并不是简单的文本替换</code>，所以使用别名<code>t_price</code>定义的变量<code>tpi1</code>和<code>tpi2</code>都是指针。同时，因为<code>typedef</code>不是简单的文本替换，所以当其定义了一个指针变量的别名且和<code>const</code>关键字搭配的时候得到的是一个<code>top-level const</code>的指针，即指针本身是const类型。例如：</p>
+<pre><code class="c">    typedef int *pointer;
+    const pointer p = nullptr;  // p is a constant pointer
+    pointer const p1 = nullptr;  // same as above
+    int i = 42;
+    p = &amp;i;  // error: p is a top-level const pointer
+
+    typedef int &amp;ref;
+    const ref r = i;
+    r = 1;  // ok: can change i through r
+    cout&lt;&lt;r&lt;&lt;endl; // 1
+</code></pre>
+<p>注意，<strong><code>typedef</code>不是简单的文本替换</strong>，所以不能将<code>p</code>读成：<del><code>const int * p</code></del>。<code>p</code>实际上是一个<code>top-level const</code>类型的指针，即指针本身是const。因为<code>typedef int *pointer</code>指的是定义了一个<code>int</code>类型的别名<code>pointer</code>，<strong>并且这个别名<code>pointer</code>是指针，即可以说<code>pointer是int型指针</code></strong>。所以<code>const</code>在修饰<code>pointer</code>的时候实际上修饰的是<code>int型指针</code>，所以<code>p</code>是一个const pointer而不是指向const的object。通俗地说，就是使用<code>typedef</code>定义的新类型<code>*pointer</code>会被看作是一个整体，当<code>const</code>修饰<code>pointer</code>的时候即是修饰这个整体（但不是文本替换），即修饰这个指针本身。</p>
+<p>另外，对于引用，因为引用本身不是object，所以<code>const</code>虽然修饰的也是<code>&amp;ref</code>整体（即引用本身），但是引用本身并不存在<code>const</code>的context。所以，最终得到的是一个普通的引用（非const引用），这也是为什么虽然定义了<code>const ref r = i</code>，但是还是可以通过<code>r</code>来修改<code>i</code>。这个情况和<code>constexpr</code>关键字一样，详情可以查看<a href="https://www.hellscript.cc/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/">here</a>。</p>
+<blockquote>
+<p><strong>Conclusions:</strong></p>
+<p><code>typedf</code>不是简单的文本替换，在对type取别名时会将declarator一起看作是一个整体类型，所以<code>const</code>是修饰这个整体别名而不是将其拆开单独修饰。</p>
+</blockquote>
+<h2 id="2-autoType-Specifier"><a href="#2-autoType-Specifier" class="headerlink" title="2. autoType Specifier"></a>2. <code>auto</code>Type Specifier</h2><blockquote>
+<p><code>auto</code> tells the compiler to deduce the type from the <code>initializer</code>。</p>
+</blockquote>
+<p>因为<code>auto</code>从它的<code>initializer</code>推断数据类型，所以这要求使用<code>auto</code>定义变量的时候必须初始化（有<code>initializer</code>）。在一个declaration中也可以使用<code>auto</code>定义多个变量，但这要求所有的变量的<code>initializer</code>必须是同一种type。换句话说，在一个declaration中，<code>auto</code>只能被推断成一种type。例如：</p>
+<pre><code class="c">auto i = 0, *p = &amp;i;  // ok: i is int and p is a pointer to int
+auto i = 42, f = 3.14; 
+// error: &quot;auto&quot; type is &quot;double&quot; for `f` entity, but was previously implied to be &quot;int&quot;
+</code></pre>
+<p>对于复合类型（compound types）和<code>const</code>类型的推断，<code>auto</code>有可能被推断为与<code>initializer</code>不一致的类型。因为compiler会按照常规的初始化规则来调整推断的类型：</p>
+<ul>
+<li><code>auto</code>对于引用类型会被推断为其所绑定的object的类型。</li>
+<li><code>auto</code>对于<code>const</code>会忽略掉<code>top-level const</code>，即自身<code>const</code>的initializer会被推断为普通的base type。</li>
 </ul>
+<p>例如：</p>
+<pre><code class="c">int i = 42;
+const int ci = i, &amp;cri = ci;
+auto b = ci; // b is an int, top-level const in ci is dropped
+auto c = cri; // cri is an int, top-level const in ci(bound object) is dropped
+auto d = &amp;i; // d is an int* (a pointer)
+auto e = &amp;ci; // e is an const int* (a const pointer), low-level const is kept
+/*  specify top-level const or reference explicitly  */
+const auto f = ci; // f is a const int
+auto &amp;g = ci; // g is a const int &amp;(top-level is kept)
+</code></pre>
+<p>上例中需要注意的是当我们明确要求<code>auto</code>推断为引用类型时，<code>top-level const</code>是不会被忽略的。也就是说<code>g</code>是<code>const int &amp;</code>，因为其绑定的对象<code>ci</code>是<code>top-level const</code>类型。另外，关于<code>const reference</code>，其指的是不能通过<code>reference</code>去修改被绑定的值，而不是说被绑定的object是const类型，具体可以看<a href="https://www.hellscript.cc/2019/11/19/subposts_cppPrimer/CPN-2-4-Const/">here</a>。</p>
+<h2 id="3-decltype-Type-Specifier"><a href="#3-decltype-Type-Specifier" class="headerlink" title="3. decltype Type Specifier"></a>3. <code>decltype</code> Type Specifier</h2><p>因为<code>auto</code>只能从initializer中推断类型，但是有时候我们希望compiler能够为我们从一个非initializer的表达式中推断变量类型。所以C++11提供了一个新的关键字<code>decltype</code>用来从expression中推断类型，但是<strong><code>不执行这个表达式</code></strong>。例如：</p>
+<pre><code class="c">decltype(f()) sum = x; // sum has whatever type f returns
+</code></pre>
+<p><code>sum</code>的类型将会是<code>f()</code>的返回值的类型。<strong><code>特别需要注意此时并不会执行f()，只是从其返回值的类型推断类型</code></strong>。<code>decltype</code>关键字并不会忽略<code>top-level const</code>和<code>reference</code>，例如：</p>
+<pre><code class="c">const int ci = 42, &amp;rci = ci;
+decltype(ci) x = 0; // x is const int, top-level is kept
+decltype(rci) y = x; // y is const int &amp;, is bound to x
+decltype(rci) z; // error: z is const int &amp;, must be initialized
+</code></pre>
+<p>注意，在当前C++11标准中，<code>reference</code>只有在<code>decltype</code>的context中被当做是reference本身，其余情况下一个引用都会被当做是其所引用的对象的别名来对待。</p>
+<p>当用一个expression让<code>decltype</code>进行类型推断时，其有可能推断出表达式结果的类型，也有可能推断出一个<code>reference</code>类型。一般来说，<strong>如果expression产生的结果能够放在赋值操作的左边</strong>，那么<code>decltype</code>将得到一个引用类型。例如：</p>
+<pre><code class="c">int i = 42, *p = &amp;i, &amp;r = i;
+decltype(r + 0) b; // b is an int because expression yields an int result
+decltype(*p) c; 
+// error: c is int &amp; and must be initilized, because derefence p get an object can be assigned
+</code></pre>
+<p>对于<code>b</code>，虽然<code>r</code>是一个引用，但是这是一个expression <code>(r+0)</code>，最终得到的结果是<code>(42+0)</code>即<code>42</code>，是一个<code>int</code>类型，所以此时<code>b</code>被推断为<code>int</code>类型。因为在<code>decltype</code>语境中引用并不等于被绑定的object的别名，所以如果我们想要通过<code>decltype</code>得到一个引用所绑定的对象的类型，我们可以将其作为表达式<code>(r+0)</code>来推断类型。</p>
+<p>对于<code>*p</code>，因为<code>p</code>指针dereference的结果为<code>i</code>，是一个可以被赋值的object（即可以出现在赋值操作<code>=</code>左边的object），所以此时<code>decltype</code>推断得到的结果是一个引用，即<code>c</code>是一个<code>int &amp;</code>类型。</p>
+<p>另外，我们也可以强制<code>decltype</code>产生一个<code>reference</code>类型的推断：</p>
+<pre><code class="c">decltype((i)) d; // error: d is int &amp; and must be initialized
+decltype(i) e;  // ok: e is an int
+int a, b = 2;
+decltype(a = b) f; // error: f is int &amp; and must be initialized
+</code></pre>
+<p>因为对于变量<code>i</code>，如果我们用括号将其括起来即<code>(i)</code>，那么compiler会将其视为expression，即这个expression <code>(i)</code>产生的结果是一个可以被赋值的object（变量<code>i</code>可以被赋值），所以<code>decltype</code>会将其推断为引用类型。同理，在赋值表达式<code>a=b</code>中产生的结果为<code>a</code>，是一个可以被赋值的object，所以<code>f</code>是一个引用类型。<strong><code>但是一定要注意此时a=b的操作并没有被执行</code></strong>，即<code>a</code>还是原来的值而不是<code>b</code>的值。</p>
+<blockquote>
+<p><strong>Conclusions:</strong></p>
+<ul>
+<li><code>auto</code>从initializer中推断数据类型，<code>decltype</code>从非initializer的表达式中推断数据类型。</li>
+<li><code>auto</code>会自动忽略<code>top-level const</code>，<code>decltype</code>不会。</li>
+<li><code>auto</code>会将引用类型推断为其绑定对象的类型，<code>decltype</code>会将引用类型推断为引用类型（想推断为其绑定对象类型可以用表达式<code>(r+0)</code>）。</li>
+<li><code>decltype</code>推断为引用类型还是expression结果本身的类型取决于这个expression的结果是不是可以被赋值的对象，且<strong><code>必须记住这个表达式实际上没有被执行</code></strong>。</li>
+</ul>
+</blockquote>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -538,12 +571,12 @@ void insert(node *root, node *cur, node **prev)
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Pass parameters in function</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">565</span></p>
+    <p><span class="copy-title">文章标题:</span>C++Primer 2-5: Dealing with Types</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">2.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-02-22, 23:57:46</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-23, 12:57:03</p>
     <p><span class="copy-title">最后更新:</span>2019-11-23, 09:32:27</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/02/22/subposts_c/pass-parameters-in-function/" title="Pass parameters in function">www.hellscript.cc/2019/02/22/subposts_c/pass-parameters-in-function/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/23/subposts_cppPrimer/CPN-2-5-Dealing-with-Types/" title="C++Primer 2-5: Dealing with Types">www.hellscript.cc/2019/11/23/subposts_cppPrimer/CPN-2-5-Dealing-with-Types/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
