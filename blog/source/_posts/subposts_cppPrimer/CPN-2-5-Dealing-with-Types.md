@@ -74,9 +74,9 @@ int main(int argc, char* argv[]){
 
 > **Conclusions:**
 >
-> `typedf`不是简单的文本替换，在对type取别名时会将declarator一起看作是一个整体类型，所以`const`是修饰这个整体别名而不是将其拆开单独修饰。
+> `typedef`不是简单的文本替换，在对type取别名时会将declarator一起看作是一个整体类型，所以`const`是修饰这个整体别名而不是将其拆开单独修饰。
 
-## 2. `auto`Type Specifier
+## 2. `auto` Type Specifier
 
 > `auto` tells the compiler to deduce the type from the `initializer`。
 
@@ -126,7 +126,9 @@ decltype(rci) y = x; // y is const int &, is bound to x
 decltype(rci) z; // error: z is const int &, must be initialized
 ```
 
-注意，在当前C++11标准中，`reference`只有在`decltype`的context中被当做是reference本身，其余情况下一个引用都会被当做是其所引用的对象的别名来对待。
+> **Tips:**
+>
+> 在当前C++11标准中，`reference`只有在`decltype`的context中被当做是reference本身，其余情况下一个引用都会被当做是其所引用的对象的别名来对待。
 
 当用一个expression让`decltype`进行类型推断时，其有可能推断出表达式结果的类型，也有可能推断出一个`reference`类型。一般来说，**如果expression产生的结果能够放在赋值操作的左边**，那么`decltype`将得到一个引用类型。例如：
 
