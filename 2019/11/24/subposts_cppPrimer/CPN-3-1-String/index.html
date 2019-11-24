@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>scanf and its left white-space character problem | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" c ">
-  <meta name="description" content="scanf and its left white-space character problem | Alex&#39;s Epitaph">
+  <title>CPN 3-1: String | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" cpp ">
+  <meta name="description" content="CPN 3-1: String | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -397,9 +397,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_c/scanf" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_cppPrimer/CPN-3-1-String" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">scanf and its left white-space character problem</h1>
+        <h1 class="article-title">CPN 3-1: String</h1>
     
     <div class="article-meta">
         
@@ -407,26 +407,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="C">C</a>
+                <a href="javascript:" data-rel="cppPrimer">cppPrimer</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">c</a>
+            <a href="javascript:" class="color4">cpp</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-24 10:30:38">2019-10-04 14:13</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-24 10:30:38">2019-11-24 13:19</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:618</span>
+        <span>字数:1.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -445,7 +445,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Several-tricks-of-scanf"><span class="toc-text">Several tricks of scanf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Consume-the-left-‘-n’"><span class="toc-text">Consume the left ‘\n’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ignore-the-left-‘-n’"><span class="toc-text">Ignore the left ‘\n’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#References-and-relative-reading"><span class="toc-text">References and relative reading:</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#String"><span class="toc-text">String</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Namespace-using-Declarations"><span class="toc-text">1. Namespace using Declarations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Library-string-Type"><span class="toc-text">2. Library string Type</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#string-Definition-and-Initializing"><span class="toc-text">string Definition and Initializing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-Operations"><span class="toc-text">string Operations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-IO"><span class="toc-text">string IO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-size-type-Type"><span class="toc-text">string::size_type Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-Comparison"><span class="toc-text">string Comparison</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-Addition"><span class="toc-text">string Addition</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -461,94 +461,157 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Several-tricks-of-scanf"><a href="#Several-tricks-of-scanf" class="headerlink" title="Several tricks of scanf"></a>Several tricks of scanf</h1><p>The <code>scanf</code> function is used to scan input from the stdin stream according to the format specification. In some cases, the collocation of other input functions(e.g., <code>gets</code>) will cause some problems. Assuming we will read below contents from the stdin to the program:</p>
-<pre><code>3
-cap
-to
-cat
-</code></pre><p>A common method is taking advantage of the <code>scanf</code> function to read the integer firstly; thereafter, read the string for each line. The codes are shown below:</p>
-<pre><code class="c">int main()
-{
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
-    printf(&quot;%d\n&quot;, n);
-    while(n--)
-    {
-        char str[100];
-        gets(str);
-        printf(&quot;%s\n&quot;, str);
-    }
-    /* results:
-    3
-
-    cap
-    to
-    */
-}
-</code></pre>
-<p>Obviously, there is an unexpected <code>\n</code> after the first <code>scanf</code>. The reason is the <code>scanf(&quot;%d&quot;)</code> will stop reading when it encountered the WSC(white-space characters, i.e. <strong>white-space, tab, newline</strong>). The first input(i.e. 3) in the input file can be presented as <code>3\n</code>. Therefore, the <code>scanf</code> has only read the <code>3</code>, but the <code>\n</code> has been left in the stream buffer. However, the <code>gets()</code> function read the string from the buffer until encountering the <code>\n</code>. Therefore, the first <code>gets</code> read the <code>\n</code> which left in the first <code>scanf</code>.</p>
-<h3 id="Consume-the-left-‘-n’"><a href="#Consume-the-left-‘-n’" class="headerlink" title="Consume the left ‘\n’"></a>Consume the left ‘\n’</h3><p>In conclusion, to get the correct input, we need to clean the left <code>\n</code> in the buffer. There are two methods to do this:</p>
-<pre><code class="c">int main()
-{
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
-    getchar();  // use getchar() to consume the left &#39;\n&#39;
-    /* 
-    char ch;
-    scanf(&quot;%c&quot;, ch); // or use scanf to consume the left &#39;\n&#39;
-                     // scanf(&quot;%c&quot;) or scanf(&quot;%d&quot;) can recognize the WSC
-    */
-    printf(&quot;%d\n&quot;, n);
-    while(n--)
-    {
-        char str[100];
-        gets(str);
-        printf(&quot;%s\n&quot;, str);
-    }
-}
-</code></pre>
-<blockquote>
-<p><code>fflush(stdin)</code> cannot clean the buffer in Linux system because it is not a standard function and supported by all compiler.</p>
+        <h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><p>在C++中，除了内置的基本类型，还有很多库定义了抽象数据类型。其中最重要之一就是<code>string</code>，支持可变长度字符串（variable-length character strings）。</p>
+<h2 id="1-Namespace-using-Declarations"><a href="#1-Namespace-using-Declarations" class="headerlink" title="1. Namespace using Declarations"></a>1. Namespace <code>using</code> Declarations</h2><blockquote>
+<p><code>scope operator(::)</code> tells compiler to look in the scoop of the left-hand operand for the name of the right-hand operand.</p>
 </blockquote>
-<h3 id="Ignore-the-left-‘-n’"><a href="#Ignore-the-left-‘-n’" class="headerlink" title="Ignore the left ‘\n’"></a>Ignore the left ‘\n’</h3><p>Alternatively, we can force the <code>scanf</code> to ignore the left ‘\n’:</p>
-<pre><code class="c">int main()
-{
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
-    printf(&quot;%d\n&quot;, n);
-    while(n--)
-    {
-        char str[100];
-        scanf(&quot;%s&quot;, str);
-        printf(&quot;%s\n&quot;, str);
-    }
-}
+<p>范围操作符（<code>::</code>）会告诉compiler去哪个namespace寻找变量的定义。</p>
+<p>我们可以在文件头使用<code>using</code>关键字来声明我们想要用的namespace members，这样在后续的代码中都不需要在指定<code>cin</code>或者<code>cout</code>是来自<code>std namespace</code>：</p>
+<pre><code class="c">using std::cin;
+using std::cout;
 </code></pre>
-<p>The core idea is that the <code>scanf(&quot;%s&quot;)</code> will match a sequence of non-white-space characters. In other words, it can skip the left <code>\n</code>.</p>
-<pre><code class="c">int main()
-{
-    int n;
-    scanf(&quot;%d\n&quot;, &amp;n); // equal to scanf(&quot;%d &quot;, &amp;n);
-    printf(&quot;%d\n&quot;, n);
-    while(n--)
-    {
-        char str[100];
-        gets(str);
-        printf(&quot;%s\n&quot;, str);
-    }
-}
+<p>也可以直接在程序中通过<code>::</code>来指定namespace：</p>
+<pre><code class="c">std::cout&lt;&lt;&quot;Hello world&quot;&lt;&lt;std::endl;
 </code></pre>
-<p>An alternative is adding the WSC to the format string of <code>scanf</code>.</p>
+<p>注意通常我们<strong>不能</strong>在头文件中使用<code>using</code>关键字来指明想要使用的<code>namespace</code>，因为头文件会被展开到包含它的源文件，这样每个包含它的源文件就会使用到这个<code>namespace</code>里面所定义的operation，这是不对的。</p>
 <blockquote>
-<p>Note: the meaning of the WSC in the format string of <code>scanf</code> is to explicitly read and ignore as many whitespace characters as it can<a href="https://stackoverflow.com/questions/19499060/what-is-the-effect-of-trailing-white-space-in-a-scanf-format-string" target="_blank" rel="noopener">[1]</a>, instead of expecting a <code>\n</code> new line sign. Therefore, the <code>scanf(&quot;%d\n&quot;)</code> means after reading an integer, it will continue to read characters, discarding all whitespace until it sees a non-whitespace character on the input. That non-whitespace character will be left as the next character to be read by an input function.</p>
+<p><strong>Tips:</strong></p>
+<p>不要在头文件（<code>.h</code>）文件中使用<code>using</code>来指定<code>namespace</code>。</p>
 </blockquote>
-<p>Therefore, the first <code>scanf(&quot;%d\n&quot;)</code> will read the integer <code>3</code> and discard the <code>\n</code>, then encounter the next non-white-space character(i.e. <code>c</code>) and stop. But the <code>c</code> will be left to the buffer to the next input function(e.g. <code>gets()</code>).</p>
-<p><strong>Note:</strong> <code>gets()</code> is unsafe because it is potential to cause overflow for the string. Therefore, we can try to use <code>fgets(str,MAXLEN,stdin);</code></p>
-<h3 id="References-and-relative-reading"><a href="#References-and-relative-reading" class="headerlink" title="References and relative reading:"></a>References and relative reading:</h3><ul>
-<li><a href="https://blog.csdn.net/xuelongyinyue/article/details/47358193" target="_blank" rel="noopener">scanf detail</a></li>
-<li><a href="https://blog.csdn.net/Wmll1234567/article/details/82463573" target="_blank" rel="noopener">scanf(“%c”) vs scanf(“%s”)</a></li>
-<li><a href="http://www.man7.org/linux/man-pages/man3/scanf.3.html" target="_blank" rel="noopener">man scanf</a></li>
+<h2 id="2-Library-string-Type"><a href="#2-Library-string-Type" class="headerlink" title="2. Library string Type"></a>2. Library <code>string</code> Type</h2><blockquote>
+<p>A <code>string</code> is a <strong>variable-length</strong>（可变长度）sequence of characters.</p>
+</blockquote>
+<p>要使用<code>string</code>type，我们必须包含<code>string</code>头文件。且因为<code>string</code>是库的一部分，被定义在<code>std</code>namespace中，所以在我们代码中如果想要使用<code>string</code>，需要如下代码：</p>
+<pre><code class="c">#include &lt;string&gt;
+using std::string;
+</code></pre>
+<h3 id="string-Definition-and-Initializing"><a href="#string-Definition-and-Initializing" class="headerlink" title="string Definition and Initializing"></a><code>string</code> Definition and Initializing</h3><p><code>string</code>的初始化可以分为两种：</p>
+<ul>
+<li><code>copy initialize</code>：通过赋值操作符<code>=</code>将<code>right-hand initializer</code> <strong>copy</strong> 到被创建的<code>left-hand variable</code>。新创建的object是initializer的一份copy。复制初始化总是调用复制构造函数。</li>
+<li><code>direct initialize</code>：不通过赋值操作符<code>=</code>，而是通过调用与实参相匹配的构造函数。</li>
 </ul>
+<p>关于<code>copy initialize</code>和<code>direct initialize</code>的具体区别，可以查看<a href="https://blog.csdn.net/ljianhui/article/details/9245661" target="_blank" rel="noopener">here</a>。因为其中涉及到构造函数等知识，会在后面详细提到。<code>string</code>具体的定义与初始化例子如下：</p>
+<pre><code class="c">string s1; // default initialization; s1 is an empty string
+string s2 = s1; // copy initialize
+string s2(s1); // direct initialize
+string s3 = &quot;hello world&quot;; // copy initialize; s3 is a copy of the literal
+string s3(&quot;hello world&quot;); // direct initialize; s3 is a copy of the literal
+string s4(10, &#39;c&#39;); // direct initialize; s4 has 10 copies of the character &#39;c&#39;
+</code></pre>
+<p>注意<code>s4</code>的这种初始化方法只能通过<code>direct initialize</code>实现。即最终得到<code>s4</code>为<code>cccccccccc</code>。</p>
+<h3 id="string-Operations"><a href="#string-Operations" class="headerlink" title="string Operations"></a><code>string</code> Operations</h3><p>常见的<code>string</code>操作总结如下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Operations</th>
+<th style="text-align:left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">os &lt;&lt; <code>s</code></td>
+<td style="text-align:left">Writes <code>s</code> onto output string os. Return os.</td>
+</tr>
+<tr>
+<td style="text-align:left">is &gt;&gt; <code>s</code></td>
+<td style="text-align:left">Reads <code>whitespace-separated</code> string from <code>is</code> to <code>s</code>. Return is.</td>
+</tr>
+<tr>
+<td style="text-align:left">getline(is, <code>s</code>)</td>
+<td style="text-align:left">Reads a <code>line</code> of input from <code>is</code> to <code>s</code>. Return <code>is</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s</code>.empty()</td>
+<td style="text-align:left">Returns <code>true</code> if <code>s</code> is empty; otherwise return <code>false</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s</code>.size()</td>
+<td style="text-align:left">Returns the number of characters in <code>s</code>. Compatible with STL container.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s</code>.length()</td>
+<td style="text-align:left">Equivalent to s.size(). Compatible with C style.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s</code>[n]</td>
+<td style="text-align:left">Returns a <code>reference</code> to the <code>char</code> at position of <code>n</code> in s. <code>**Position starts at 0.**</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s1</code> + <code>s2</code></td>
+<td style="text-align:left">Returns a string that is the <code>concatenation</code> of s1 and s2.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s1</code> == <code>s2</code></td>
+<td style="text-align:left">s1 and s2 are equal if they <code>contain the same characters</code>. <strong>Case-sensitive</strong>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;</code>,<code>&lt;=</code>,<code>&gt;=</code>,<code>&gt;</code></td>
+<td style="text-align:left">Comparisions are <code>case-sensitive</code> and use <code>dictionary ordering</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>s</code>.substr(start, length)</td>
+<td style="text-align:left">Returns a substring in <code>s</code>, from <code>start</code> to <code>start + length</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>上述常见操作需要注意的几点：</p>
+<ul>
+<li><code>cin&gt;&gt;s</code>读取<code>stdin</code>输入是<code>whitespace-separated</code>，即碰到空白字符就会结束，如果想要读取一整个句子（即忽略空白符），要使用<code>getline()</code>。</li>
+<li><code>s.size()</code>和<code>s.length()</code>都是得到<code>s</code>的字符个数，只不过<code>size()</code>是为了兼容STL容器习惯，<code>length()</code>是为了兼容C的<code>strlen()</code>习惯。</li>
+<li>两个字符串相加相当于合并两个字符串，<strong><code>string</code>并没有重载<code>-</code>操作</strong>。想要得到一个<code>string</code>的子串可以使用<code>substr()</code>。</li>
+</ul>
+<h3 id="string-IO"><a href="#string-IO" class="headerlink" title="string IO"></a><code>string</code> IO</h3><p>在OJ模式的编程题中（例如牛客网），我们需要自己处理输入输出，所以在此说一说<code>string</code>如何处理输入输出：</p>
+<pre><code class="c">string s;
+while(cin&gt;&gt;s)     // read until end-of-file, whitespace is separator
+  cout&lt;&lt;s&lt;&lt;endl;
+
+while(getline(cin, s))    
+  // read input a line at a time until end-of-file, ignore whitespace
+  cout&lt;&lt;s&lt;&lt;endl;
+</code></pre>
+<p>注意这里需要说明一下为什么可以通过<code>cin</code>来判断是否到达end-of-file。首先，<code>cin</code>是一个<code>istream</code>类型的object，其用于从输入流中（<code>stdin</code>）读取数据。然后，在<code>istream</code>类中对操作符<code>&gt;&gt;</code>进行了重载，分别定义了包括<code>bool</code>，<code>int</code>，<code>unsigned</code>等在内的多种格式化输入。详细地说，操作符<code>&gt;&gt;</code>被定义为接受两个operands（操作对象）：</p>
+<ul>
+<li>left-hand operand必须是一个<code>istream</code>类型的object，即<code>cin</code>。</li>
+<li>right-hand operand是一个接收<code>cin</code>中的值的object，即<code>s</code>。</li>
+</ul>
+<p>所以，<code>&gt;&gt;</code>操作符的含义就是从左边的<code>cin</code>中读取标准输入流中的值，并且赋值给右边的<code>s</code>，同时<strong><code>return left-hand operand，即返回istream类型的对象cin</code></strong>。因为input operator(i.e. <code>&gt;&gt;</code>)返回值为<code>cin</code>（注意是<code>&gt;&gt;</code>操作符的返回值而不是<code>cin</code>的返回值，<code>cin</code>本身是一个object，不存在返回值），所以可以在一条单独的语句中进行多次读取操作：</p>
+<pre><code class="c">std::cin &gt;&gt; v1 &gt;&gt; v2;
+// equavilent to below:
+(std::cin &gt;&gt; v1) &gt;&gt; v2;
+</code></pre>
+<p>简单来说，就是<code>std::cin</code>中有两个输入值，第一个<code>&gt;&gt;</code>操作符从<code>cin</code>中读取第一个输入值并赋给<code>v1</code>，第二个<code>&gt;&gt;</code>操作符从<code>cin</code>中读取第二个输入值并赋给<code>v2</code>。</p>
+<p>同时，流<code>istream</code>类中定义了4个标志位来表示流的状态：<code>badbit</code>，<code>eofbit</code>，<code>failbit</code>和<code>goodbit</code>。当从流中读取到<code>EOF</code>结束符时则会将<code>eofbit</code>置为<code>ture</code>，或者读取到错误数据（例如类型不一致）等，<code>failbit</code>也会被置为<code>true</code>，这个时候<code>cin</code>作为返回值其结果不再是<code>true</code>，所以整个输入流程会结束。具体可以看<a href="https://blog.csdn.net/hou09tian/article/details/78335548" target="_blank" rel="noopener">here</a>。</p>
+<h3 id="string-size-type-Type"><a href="#string-size-type-Type" class="headerlink" title="string::size_type Type"></a><code>string::size_type</code> Type</h3><p> 为了能够在各种不同类型的机器上使用library types，一个类通常会定义一些伴生类型（companion types）。例如，<code>string::size_type</code>就是一个伴生类型，尽管我们不能知道这个类型的精确定义，但是我们知道它是一个<code>unsigned type</code>，以保证它足够大来保存任何<code>string</code>的size。我们可以直接定义这个类型，也可以让compiler帮助我们推断：</p>
+<pre><code class="c">string::size_type len = s.size();
+auto len = s.size();
+</code></pre>
+<p>需要注意的是因为<code>len</code>是<code>unsigned</code>，所以如果我们在进行<code>if(len &lt; n)</code>比较的时候，如果<code>n</code>是<code>int</code>类型且为负数，那么会发生隐式类型转换，<code>n</code>会变为最大的<code>unsigned</code>，也就是说这个条件判断永远为<code>true</code>。</p>
+<h3 id="string-Comparison"><a href="#string-Comparison" class="headerlink" title="string Comparison"></a><code>string</code> Comparison</h3><p>从上面的<code>string</code>常用操作表中可以看到<code>string</code> class重载了比较操作符，这也就说明比较两个<code>string</code>是有意义的：</p>
+<ul>
+<li>两个<code>string</code>相等指的是这两个<code>string</code>的<strong><code>size相同，每个字符也相同（case-sensitive）</code></strong>。</li>
+<li>字符串<code>s1 &gt; s2</code>的意义为：<ul>
+<li><code>s1</code>与<code>s2</code>的第一个不相同的字符<code>c1 &gt; c2</code>(ascii code)。</li>
+<li><code>s1.size() &gt; s2.size()</code>且较短的字符串<code>s2</code>与较长的字符串<code>s1</code>的子串相等。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Conclusions:</strong></p>
+<p>两个字符串比较即比较其每一个字符。谁的第一个不相同的字符大谁就大。</p>
+</blockquote>
+<h3 id="string-Addition"><a href="#string-Addition" class="headerlink" title="string Addition"></a><code>string</code> Addition</h3><p>两个<code>string</code>结合可以直接使用重载的操作符<code>+</code>，非常方便。但是将一个<code>literal</code>与<code>string</code>相加则有可能出现问题：</p>
+<pre><code class="c">string s1 = &quot;hello&quot;, s2 = &quot;world&quot;;
+string s3 = s1 + &#39;,&#39; + s2 + &#39;\n&#39;;  // ok
+string s4 = s1 + &quot;, &quot;;  // ok, adding string s1 and a literal
+string s5 = &quot;hello&quot; + &quot;, &quot;;  // error: two literal cannot add
+string s6 = s1 + &quot;, &quot; + &quot;world&quot;;  // ok, s1 is string
+string s7 = &quot;hello&quot; + &quot;, &quot; + s2; // error: &quot;hello&quot; cannot add to &quot;, &quot;
+</code></pre>
+<p>其中<code>s7</code>不能编译通过是因为这个表达式的运算顺序为<code>(&quot;hello + &quot;, &quot;) + s2</code>，第一个加法操作是没有意义（不能操作，编译器不知道如何操作）的。因为对于<code>string literal</code>，是没有重载<code>+</code>操作符的。</p>
+<blockquote>
+<p><strong>Conclusions:</strong></p>
+<p>只有<code>string</code>才能进行加法操作，这要求<code>+</code>操作符两边至少有一个是<code>string</code>类型。</p>
+</blockquote>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -562,12 +625,12 @@ cat
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>scanf and its left white-space character problem</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">618</span></p>
+    <p><span class="copy-title">文章标题:</span>CPN 3-1: String</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.9k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-04, 14:13:44</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-24, 13:19:35</p>
     <p><span class="copy-title">最后更新:</span>2019-11-24, 10:30:38</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/04/subposts_c/scanf/" title="scanf and its left white-space character problem">www.hellscript.cc/2019/10/04/subposts_c/scanf/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/24/subposts_cppPrimer/CPN-3-1-String/" title="CPN 3-1: String">www.hellscript.cc/2019/11/24/subposts_cppPrimer/CPN-3-1-String/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
