@@ -1,5 +1,5 @@
 ---
-title: 'CPN 3-1: String'
+title: 'C++Primer 3-1: String'
 date: 2019-11-24 13:19:35
 categories: cppPrimer
 tags: cpp

@@ -1,11 +1,11 @@
 ---
-title: 'CPN 2-6: Custom Data Structure'
+title: 'C++Primer 2-6: Custom Data Structure'
 date: 2019-11-24 12:04:25
 categories: cppPrimer
 tags: cpp
 ---
 
-# Defining Our Own Data Structure
+# Defining Our own Data Structure
 
 通常来说，一个data structure指的是如何组织相关数据的方法和如何操作这些数据的策略。在C++中，我们通过`class`或者`struct`来定义我们自己的数据结构：
 
