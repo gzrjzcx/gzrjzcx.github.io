@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>Alex&#39;s Epitaph</title>
-  <meta name="keywords" content>
-  <meta name="description" content="Alex&#39;s Epitaph">
+  <title>C++Primer 3-3: Vector | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" cpp ">
+  <meta name="description" content="C++Primer 3-3: Vector | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -52,7 +52,7 @@
 </div>
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/avatar.jpg">
@@ -405,12 +405,57 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-subposts_cppPrimer/CPN-3-3-Vector" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Alex-s-Epitaph"><span class="toc-text">Alex`s Epitaph</span></a></li></ol>
+        <h1 class="article-title">C++Primer 3-3: Vector</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="cppPrimer">cppPrimer</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color4">cpp</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title="更新时间: 2019-11-25 15:39:50">2019-11-25 16:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:437</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Library-vector-Type"><span class="toc-text">Library vector Type</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vector-Definition-and-Initializition"><span class="toc-text">vector Definition and Initializition</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -423,21 +468,63 @@
     }
 </style>
 </div>
-            <h1 id="Alex-s-Epitaph"><a href="#Alex-s-Epitaph" class="headerlink" title="Alex`s Epitaph"></a>Alex`s Epitaph</h1><p>大隐隐于此。</p>
-<blockquote>
-<p>The future is independent of the past given the present. </p>
-<p>在理想主义者眼中，什么都是马尔科夫链。</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Library-vector-Type"><a href="#Library-vector-Type" class="headerlink" title="Library vector Type"></a>Library <code>vector</code> Type</h1><blockquote>
+<p>a <code>vector</code> is a collection of <strong>objects</strong>, all of which have the <strong><code>same type</code></strong>.</p>
 </blockquote>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+<p>在C++中，一个<code>vector</code>就是<code>一系列相同类型的objects</code>。通常，<code>vector</code>也被称为容器(container)，因为它就像是一个容器来盛放其它objects。</p>
+<p><code>vector</code>是一个类模板（class template），因此我们在使用的时候必须要提供额外的信息来创建这个类。<code>模板（templates）</code>不是方法（function）或者类（class），而可以看作是指导compiler如何产生类或函数的<strong>指令</strong>（instructions），或者说规则。而compiler从模板中产生类或者方法的过程叫作<code>实例化（instantiation）</code>。当我们要使用一个目标来实例化类的时候，需要指明（即提供额外信息）我们想要实例化哪一种类或方法。模板是一个比较复杂的东西，我们会在之后详细说到它。</p>
+<blockquote>
+<p><strong>Tips:</strong></p>
+<ul>
+<li><code>vector</code>是一个<code>template</code>，不是一个type。但是从<code>vector</code>模板中生成的包含element type的如<code>vector&lt;int&gt;</code>则是type。</li>
+<li>因为<code>reference</code>不是object，所以<code>vector</code>并不能用来盛放<code>reference</code>。</li>
+</ul>
+</blockquote>
+<h2 id="vector-Definition-and-Initializition"><a href="#vector-Definition-and-Initializition" class="headerlink" title="vector Definition and Initializition"></a><code>vector</code> Definition and Initializition</h2><p>与其他class type一样，<code>vector</code>有很多种初始化方法，同时C++11还提供了<code>list initialize</code>：</p>
+<pre><code class="c">vector&lt;int&gt; iv;  // definition, iv is an empty vector
+vector&lt;int&gt; iv2(iv);  // copy elements of iv into iv2
+vector&lt;int&gt; iv2 = iv;  // equivalent to the above
+vector&lt;string&gt; sv(iv);  // error: sv holds strings not int;
 
-        </article>
-        
-        <p>
-            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+vector&lt;int&gt; iv3(10, -1);  // ten int elements, each initialized to -1
+vector&lt;int&gt; iv4(10);  // ten elements, each initialized to 0
+vector&lt;string&gt; sv2(10, &quot;hi!&quot;); // ten string elements, each initialized to &quot;hi!&quot;
+vector&lt;string&gt; sv3(10); // ten string elements, each initialized to empty
+
+/*  list initializer  */
+vector&lt;string&gt; v1{&quot;a&quot;, &quot;an&quot;, &quot;the&quot;};
+// three elements, the first holds &quot;a&quot;, the second holds &quot;an&quot;, the third holds &quot;the&quot;. Must use curly braces.
+
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>C++Primer 3-3: Vector</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">437</span></p>
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-25, 16:00:53</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-25, 15:39:50</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/25/subposts_cppPrimer/CPN-3-3-Vector/" title="C++Primer 3-3: Vector">www.hellscript.cc/2019/11/25/subposts_cppPrimer/CPN-3-3-Vector/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 <script type="text/javascript" src="https://raw.githack.com/gzrjzcx/Pointer2SSP/src/md5.min.js"></script>
@@ -458,6 +545,13 @@
         gitalk.render('comments')
     })
 </script>
+
+
+
+
+    
+
+
 
 
     </div>
