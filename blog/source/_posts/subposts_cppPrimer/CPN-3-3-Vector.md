@@ -20,7 +20,7 @@ tags: cpp
 
 ## `vector` Definition and Initializition
 
-与其他class type一样，`vector`有很多种初始化方法，同时C++11还提供了`list initialize`：
+与其他class type一样，`vector`有很多种初始化方法，同时C++11还提供了`list initializer`：
 
 ```c
 vector<int> iv;  // definition, iv is an empty vector
@@ -28,14 +28,34 @@ vector<int> iv2(iv);  // copy elements of iv into iv2
 vector<int> iv2 = iv;  // equivalent to the above
 vector<string> sv(iv);  // error: sv holds strings not int;
 
+/*  parentheses initializer (count, value)  */
 vector<int> iv3(10, -1);  // ten int elements, each initialized to -1
 vector<int> iv4(10);  // ten elements, each initialized to 0
 vector<string> sv2(10, "hi!"); // ten string elements, each initialized to "hi!"
 vector<string> sv3(10); // ten string elements, each initialized to empty
 
 /*  list initializer  */
-vector<string> v1{"a", "an", "the"};
+vector<string> sv4{"a", "an", "the"};
 // three elements, the first holds "a", the second holds "an", the third holds "the". Must use curly braces.
+vector<string> sv4("a", "an", "the");  // error: must use {}
 
+/*  mixed curly braces initializer {} and parentheses initializer ()  */
+vector<int> iv5(10);  // ten elements with value 0
+vector<int> iv6{10};  // one element with value 10
+vector<int> iv7(10, 1);  // ten elements with value 1
+vector<int> iv8{10, 1};  // two elements with value 10 and 1
+vector<string> sv5{"hi"};  // list initialization, one element
+vector<string> sv5("hi");  // error: can't construct a vector from a string literal
+vector<string> sv6{10};  // ten elements with empty string
+vector<string> sv7{10, "hi"}  // ten elements with value "hi"
 ```
 
+首先，如果使用一个`vector`来初始化另一个`vector`，不管是`copy initialization`还是`direct initialization`，其含义都是**拷贝initializer中所有的elements到新创建的这个vector中**。注意新vector中的每一个元素都是initializer中对应的每一个元素的`copy`，而不是`reference`。
+
+因为C++11中新增了`list initializer`，即使用curly braces`{...}`来作为initializer，所以要区分其与`direct initializer`（即使用parenthesis`()`）的区别。尤其是当initializer和vector的类型不一致的时候。例如，`sv5`，`sv6`和`sv7`都使用了`{}`，但是只有`sv5`是`list initialization`。**因为并不能使用`10`作为initializer value来初始化`sv6`，所以此时compiler会尝试使用`parenthesis initializer`的方法来初始话这个vector。**
+
+> **Conclusions:**
+>
+> - `list initializer`表示的是使用`{}`中的每一个value来进行初始化，**`{}`中有几个值则vector中有几个elements，每个element的值是`{}`中对应的value。**
+> - `parenthesis`表示的是使用`in-class initializer`即`()`作为initializer。`()`中有两个参数：`(count, value)`。
+> - 当使用`list initializer`来初始化，但是`{}`中的值并不能初始化vector时，即`vector<type>`中的`type`与`{}`中的值的type不一致时（例如`sv6`），compiler则会考虑使用其他初始化方法。这种情况只针对`list initializer`，对于`parenthesis`则不会，类型不对时则会直接报错。
