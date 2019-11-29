@@ -1,5 +1,5 @@
 ---
-title: 'C++Primer 3-3: Vector'
+title: 'C++Primer 3.3: Vector'
 date: 2019-11-25 16:00:53
 categories: cppPrimer
 tags: cpp

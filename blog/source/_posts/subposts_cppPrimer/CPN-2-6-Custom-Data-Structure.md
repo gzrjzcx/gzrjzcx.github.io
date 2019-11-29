@@ -1,5 +1,5 @@
 ---
-title: 'C++Primer 2-6: Custom Data Structure'
+title: 'C++Primer 2.6: Custom Data Structure'
 date: 2019-11-24 12:04:25
 categories: cppPrimer
 tags: cpp

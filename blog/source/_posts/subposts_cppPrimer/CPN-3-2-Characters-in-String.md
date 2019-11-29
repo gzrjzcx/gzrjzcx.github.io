@@ -1,5 +1,5 @@
 ---
-title: 'C++Primer 3-2: Characters in String'
+title: 'C++Primer 3.2: Characters in String'
 date: 2019-11-25 12:32:38
 categories: cppPrimer
 tags: cpp

@@ -1,5 +1,5 @@
 ---
-title: 'C++Primer 2-5: Dealing with Types'
+title: 'C++Primer 2.5: Dealing with Types'
 date: 2019-11-23 12:57:03
 categories: cppPrimer
 tags: cpp
