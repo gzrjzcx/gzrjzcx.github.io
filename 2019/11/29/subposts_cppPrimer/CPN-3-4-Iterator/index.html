@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>Pass parameters in function | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" c ">
-  <meta name="description" content="Pass parameters in function | Alex&#39;s Epitaph">
+  <title>C++Primer 3.4: Iterator | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" cpp ">
+  <meta name="description" content="C++Primer 3.4: Iterator | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -412,9 +412,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_c/pass-parameters-in-function" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_cppPrimer/CPN-3-4-Iterator" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Pass parameters in function</h1>
+        <h1 class="article-title">C++Primer 3.4: Iterator</h1>
     
     <div class="article-meta">
         
@@ -422,26 +422,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="C">C</a>
+                <a href="javascript:" data-rel="cppPrimer">cppPrimer</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">c</a>
+            <a href="javascript:" class="color4">cpp</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-29 10:37:23">2019-02-22 23:57</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-29 10:37:23">2019-11-29 12:40</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:565</span>
+        <span>字数:1.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -460,7 +460,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer"><span class="toc-text">pass by value Vs. pass by reference Vs. pass by pointer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pass-by-value"><span class="toc-text">pass by value</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-by-reference"><span class="toc-text">pass by reference</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass-by-pointer"><span class="toc-text">pass by pointer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Iterator"><span class="toc-text">Iterator</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-Iterators"><span class="toc-text">Using Iterators</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -476,80 +476,89 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>If you are not clear about the concept of <code>pointer</code>, please click <a href="https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/">here</a>:</p>
-<h1 id="pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer"><a href="#pass-by-value-Vs-pass-by-reference-Vs-pass-by-pointer" class="headerlink" title="pass by value Vs. pass by reference Vs. pass by pointer"></a>pass by value Vs. pass by reference Vs. pass by pointer</h1><p>Firstly, in <code>C</code> language, there is only <strong><code>pass by value</code></strong> method to pass parameters. Therefore, we must use <code>pointer</code> to access the local variable of other function. <code>pass by reference</code> is the strategy supported by <code>C++</code>.</p>
-<h2 id="pass-by-value"><a href="#pass-by-value" class="headerlink" title="pass by value"></a>pass by value</h2><pre><code class="c">void f( int  p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12ff44
-    printf(&quot;\n%x&quot;,p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12fef4
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //10
-}
-</code></pre>
-<p>In terms of the <code>passing by value</code> strategy, the variable will be copy to the memory as a new local variable(this is why the address of <code>a</code> is different than the <code>p</code>). Therefore, modifying the value of the <code>p</code> in the function <code>f</code> cannot modify the value of the <code>a</code>.</p>
-<h3 id="pass-by-reference"><a href="#pass-by-reference" class="headerlink" title="pass by reference"></a>pass by reference</h3><pre><code class="c">void f( int  &amp;p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12ff44
-    printf(&quot;\n%x&quot;,p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12ff44
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //ff
-}
-</code></pre>
-<p><code>passing by reference</code> strategy will pass the address of the actual parameter to the formal parameter, therefore, in fact, the variable <code>p</code> in the function <code>c</code> is same as the variable <code>a</code>. If we modify the value of <code>p</code>, the value of <code>a</code> also could be modified. This is why the address of both <code>p</code> and <code>a</code> are <code>12ff44</code>, and the value of <code>a</code> has been modified to <code>ff</code> after calling the function <code>f</code>.</p>
-<h3 id="pass-by-pointer"><a href="#pass-by-pointer" class="headerlink" title="pass by pointer"></a>pass by pointer</h3><pre><code class="c">void f( int  *p){
-    printf(&quot;\n%x&quot;,&amp;p);            //12fef4
-    printf(&quot;\n%x&quot;,p);            //12ff44
-    printf(&quot;\n%x&quot;,*p);            //10
-    p=0xff;
-}
-void main()
-{
-    int a=0x10;
-    printf(&quot;\n%x&quot;,&amp;a);            //12ff44
-    printf(&quot;\n%x\n&quot;,a);            //10
-    f(a);
-    printf(&quot;\n%x\n&quot;,a);            //ff
-}
-</code></pre>
-<p><code>pass by pointer</code> will also pass the address of the variable <code>a</code> to the <code>pointer p</code> in the function <code>f</code>. <strong>Note</strong> that <code>12fef4</code> is the actual address of the <code>pointer p</code> itself. And then the value of the pointer is <code>12ff44</code>, i.e. the address of the <code>a</code>. Therefore the <strong>dereference</strong> operation will get the value of the variable <code>a</code>. And this method will also can change the value of <code>a</code> after calling the function <code>f</code>.</p>
-<p><code>**Note: If you want to modify the value of a pointer, you still need to pass the address of this pointer to the other context(function).**</code></p>
-<pre><code class="c">typedef struct ListNode
-{
-    char word[100];
-    struct ListNode *next;
-}node;
-
-int main()
-{
-    ...
-    node *prev;
-    insert(root, cur, &amp;prev); // must pass the address of the pointer
-}
-
-void insert(node *root, node *cur, node **prev)
-{
-    ...
-    *prev = cur;
-    // must pass the address of the pointer so as to modify the value of the original pointer
-}
-</code></pre>
-<p>Here, if you only pass the <code>prev</code> instead of the <code>&amp;prev</code>, it will be the <code>pass by value</code>. The pointer <code>prev</code> will be copied in the <code>insert()</code> scoop(stored in the <code>stack</code> segment, will be collected in the end of the function). Therefore, the actual value <code>prev</code> pointer has not been modified.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
-<li><a href="https://blog.csdn.net/whzhaochao/article/details/12891329" target="_blank" rel="noopener">details</a></li>
-<li><a href="https://www.zhihu.com/question/51582974" target="_blank" rel="noopener">zhihu</a></li>
+        <h1 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h1><p>迭代器（iterator）实际上是一种对<code>遍历容器</code>操作的抽象和封装。因为STL中提供了各种各样的容器，很多算法都需要<code>遍历容器中的所有元素</code>来实现。但是这些容器的底层实现各不相同，例如<code>vector</code>依靠数组就可以实现，因此<code>vector</code>的迭代器是一个<code>Random access iterator</code>；但是<code>list</code>的迭代器则是一个<code>Bidirectional（双向） iterator</code>，其并不像<code>vector</code>那样可以直接通过<code>subscript</code>操作取得任意位置的element（因为数组是连续内存，但是链表并不是存储在一块连续内存）。由此可见，<strong>不同类型的容器对于<code>遍历容器（access any elements in a container）</code>这个操作的implementation是不同的。</strong>因此，可以看到，迭代器实际上就是对这一操作过程进行了封装，使得不同的容器在实现各种算法时不需要考虑其具体的遍历操作如何实现。换句话说，<strong>STL中通过迭代器将容器和算法解耦，将容器和算法有机地结合起来。</strong>实际上，这也是一种设计模式——<code>迭代器模式</code>，即将遍历序列的操作和序列底层的实现相分离。</p>
+<p>迭代器（iterator）的具体实现其实没有规定，不过STL的迭代器一般情况下都通过对泛型指针进行封装来实现。在STL中通过对一些操作符例如<code>-&gt;</code>，<code>*</code>，<code>++</code>进行重载，从而实现了类似指针的操作方式。但是迭代器本身是一个<code>class template</code>，而C中的指针则是一个<code>data type</code>。迭代器根据其可执行的操作（即重载不同的操作符），可以分为5种<a href="http://www.cplusplus.com/reference/iterator/" target="_blank" rel="noopener">类型</a>。其中<code>Random access iterator</code>类型和C中的指针（pointer）操作基本相同。因此，可以说<strong>C语言中的指针实际上是一个 <code>Random access iterator</code>。</strong></p>
+<blockquote>
+<p><strong>Conclusions:</strong></p>
+<ul>
+<li><code>iterator</code>是<code>class template</code>，但是<code>pointer</code>是<code>data type</code>。</li>
 </ul>
+</blockquote>
+<h2 id="Using-Iterators"><a href="#Using-Iterators" class="headerlink" title="Using Iterators"></a>Using Iterators</h2><p>对于<code>Random access iterator</code>，其常用操作可以总结如下：</p>
+<table>
+<thead>
+<tr>
+<th>Operations</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>v</code>.begin()</td>
+<td>Returns an iterator <strong>pointing to the <code>first element</code></strong> in the sequence.</td>
+</tr>
+<tr>
+<td><code>v</code>.end()</td>
+<td>Returns an iterator <strong>pointing to the <code>off-the-end</code></strong> element in the sequence.</td>
+</tr>
+<tr>
+<td><code>*</code>iter</td>
+<td>Returns a <code>reference</code> to the element denoted by the iterator <code>iter</code>.</td>
+</tr>
+<tr>
+<td>iter<code>-&gt;</code>mem</td>
+<td>Deferences <code>iter</code> and fetches the member named <code>mem</code> from the undelying element. Equivalent to <code>(*iter).mem</code>.</td>
+</tr>
+<tr>
+<td><code>++</code>iter</td>
+<td>Increments <code>iter</code> to refer to the next element in the container.</td>
+</tr>
+<tr>
+<td><code>--</code>iter</td>
+<td>Decrements <code>iter</code> to refer to the previous element in the container.</td>
+</tr>
+<tr>
+<td>iter1 <code>==</code> iter2</td>
+<td>Two iterators are equal if they denote the same element or if they are the <code>off-the-end</code> iterator for the same container.</td>
+</tr>
+<tr>
+<td>iter1 <code>&lt;</code>iter2</td>
+<td>One iterator is less than another if it refers to an element whose <code>position in the container is ahead of the one</code> referred to by the other iterator. <strong>The iterators must refer to elements in the same container or one <code>off-the-end</code> of the container.</strong></td>
+</tr>
+<tr>
+<td>iter <code>+/-</code> n</td>
+<td>Adding(substracting) an integral value <code>n</code> to(from) an iterator yields an <code>iterator</code> that many elements forward(backward) within the contains. The resulting iterator must <strong>denote elements in the same container or off-the-end element</strong>.</td>
+</tr>
+<tr>
+<td>iter <code>+=/-=</code> n</td>
+<td>Assigns to <code>iter</code> the value of adding <code>n</code> to, or substrcating <code>n</code> from, <code>iter</code>.</td>
+</tr>
+<tr>
+<td>iter1 <code>-</code> iter2</td>
+<td>Returns the <code>distance</code> between two iterators. The <code>distance</code> means the <code>position difference</code> between two elements w.r.t. two iterators. Two iterators must <strong>denote elements in the same container or off-the-end element</strong>. The reuslt is a <code>signed</code> integel type.</td>
+</tr>
+</tbody>
+</table>
+<p>首先要说的是，<code>begin()</code>和<code>end()</code>两个方法都是会返回一个<code>iterator</code>，例如：</p>
+<pre><code class="c">vector&lt;int&gt; v{0,1,2,3,4};
+auto b = v.begin();  // b points to the first element
+vector&lt;int&gt;::iterator e = v.end();  // must use `vector&lt;int&gt;`
+// e points to the `off-the-end`
+</code></pre>
+<p>使用<code>auto</code>关键字要求compiler自动推断<code>b</code>的类型，<code>b</code>则会被推断为<code>vector&lt;int&gt;::iterator</code>迭代器类型，并且<code>b</code>指向了第一个element，即<code>0</code>。但是<code>end()</code>则会返回一个指向<code>off-the-end</code> element的迭代器。注意这个<code>off-the-end</code> element是一个<strong>并不存在</strong>的element，它只是被用来作为已经处理完了所有elements的一个标记。也就是说，<strong><code>off-the-end</code> element是最后一个element的下一个element。</strong> 如果一个container为空，那么<code>begin()</code>和<code>end()</code>返回的迭代器都指向<code>off-the-end</code> element，这样的迭代器也被叫做<code>off-the-end iterators</code>。</p>
+<p>因为STL中的iterator是通过对泛型指针进行封装来实现，所以其重载了<code>*</code>操作符来实现<code>dereference</code>操作，即通过<code>*</code>可以取得迭代器所指向的underlying object。同样地，<code>-&gt;</code>也被重载为获取<code>deference</code>和<code>member access</code>的结合。另外，需要注意的是对于迭代器，其<code>++</code>和<code>--</code>操作都是被重载为<strong><code>指向下一个element或上一个element</code></strong>，即将迭代器的位置向前后向后移动一位，也就是说类似于指针的加法。例如：</p>
+<pre><code class="c">vector&lt;string&gt; sv{&quot;hello&quot;, &quot;world&quot;};
+for(auto it = sv.begin(); it!=sv.end(); ++it)
+{
+  if(!it-&gt;empty())  //  equivalent to (*it).empty()
+    cout&lt;&lt;*it&lt;&lt;endl;
+}
+</code></pre>
+<p>上例中<code>++it</code>指的是让迭代器<code>it</code>指向下一个element，即从<code>hello</code>变为<code>world</code>。另外，<code>it-&gt;empty()</code>则完全等同于<code>*(it).empty()</code>。因为<code>*it</code>得到的结果是一个<code>string</code>，在access这个<code>string</code>的内部成员<code>empty()</code>。</p>
+<blockquote>
+<p><strong>Tips:</strong></p>
+<p>对于STL容器，尽量使用<code>it.begin() != it.end()</code>的形式来判断循环结束，而不是<code>it &lt; it.end()</code>。因为只有<code>Random access iterator</code>重载了<code>&lt;</code>，<code>&gt;</code>等运算法，其他的容器可能没有重载此操作符。但是所有的库容器都重载了<code>==</code>和<code>!=</code>操作符。</p>
+</blockquote>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -563,12 +572,12 @@ void insert(node *root, node *cur, node **prev)
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Pass parameters in function</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">565</span></p>
+    <p><span class="copy-title">文章标题:</span>C++Primer 3.4: Iterator</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-02-22, 23:57:46</p>
+    <p><span class="copy-title">发布时间:</span>2019-11-29, 12:40:33</p>
     <p><span class="copy-title">最后更新:</span>2019-11-29, 10:37:23</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/02/22/subposts_c/pass-parameters-in-function/" title="Pass parameters in function">www.hellscript.cc/2019/02/22/subposts_c/pass-parameters-in-function/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/29/subposts_cppPrimer/CPN-3-4-Iterator/" title="C++Primer 3.4: Iterator">www.hellscript.cc/2019/11/29/subposts_cppPrimer/CPN-3-4-Iterator/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
