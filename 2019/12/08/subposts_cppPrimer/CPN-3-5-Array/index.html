@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>scanf and its left white-space character problem | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" c ">
-  <meta name="description" content="scanf and its left white-space character problem | Alex&#39;s Epitaph">
+  <title>C++Primer 3.5: Array | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" cpp ">
+  <meta name="description" content="C++Primer 3.5: Array | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -417,9 +417,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_c/scanf" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_cppPrimer/CPN-3-5-Array" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">scanf and its left white-space character problem</h1>
+        <h1 class="article-title">C++Primer 3.5: Array</h1>
     
     <div class="article-meta">
         
@@ -427,26 +427,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="C">C</a>
+                <a href="javascript:" data-rel="cppPrimer">cppPrimer</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">c</a>
+            <a href="javascript:" class="color4">cpp</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-12-08 09:08:47">2019-10-04 14:13</time>
+        创建时间:<time class="date" title="更新时间: 2019-12-08 09:08:47">2019-12-08 12:40</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:618</span>
+        <span>字数:2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -465,7 +465,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Several-tricks-of-scanf"><span class="toc-text">Several tricks of scanf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Consume-the-left-‘-n’"><span class="toc-text">Consume the left ‘\n’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ignore-the-left-‘-n’"><span class="toc-text">Ignore the left ‘\n’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#References-and-relative-reading"><span class="toc-text">References and relative reading:</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Arrays"><span class="toc-text">Arrays</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#array-intialization"><span class="toc-text">array intialization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Accessing-the-elements-of-an-array"><span class="toc-text">Accessing the elements of an array</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -481,94 +481,81 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Several-tricks-of-scanf"><a href="#Several-tricks-of-scanf" class="headerlink" title="Several tricks of scanf"></a>Several tricks of scanf</h1><p>The <code>scanf</code> function is used to scan input from the stdin stream according to the format specification. In some cases, the collocation of other input functions(e.g., <code>gets</code>) will cause some problems. Assuming we will read below contents from the stdin to the program:</p>
-<pre><code>3
-cap
-to
-cat
-</code></pre><p>A common method is taking advantage of the <code>scanf</code> function to read the integer firstly; thereafter, read the string for each line. The codes are shown below:</p>
-<pre><code class="c">int main()
-{
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
-    printf(&quot;%d\n&quot;, n);
-    while(n--)
-    {
-        char str[100];
-        gets(str);
-        printf(&quot;%s\n&quot;, str);
-    }
-    /* results:
-    3
+        <h1 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h1><p>数组（array）是和<code>vector</code>类似的一种数据结构，也是用于存储一系列同类型的objects。但是相比于<code>vector</code>，<code>array offers a different trade-off between performance and flexibility</code>。也就是说，<code>vector</code>是<strong>可变长度</strong>的容器，其更注重于<code>flexibility</code>；<code>array</code>是<strong>固定长度</strong>的容器，对于一些固定场合其更拥有更好地<code>performance</code>。</p>
+<blockquote>
+<p><strong>Tips:</strong></p>
+<p>当我们无法在编译时就确定数组的长度时，最好使用<code>vector</code>。</p>
+</blockquote>
+<p>因为数组是固定长度的容器，所以数组在定义时其<code>dimension</code>必须是在编译期间就可知，即<code>dimension</code>必须是一个<code>constat expression</code>，例如：</p>
+<pre><code class="c">unsigned cnt = 42;
+constexpr unsigned sz = 42;
+int a[10];  // an array of ten int elements
+int *pa[sz];  // an array of 42 pointers elements, each points to an int
+int a2[cnt];  // error, cnt is not a constant expression
+string s[get_size()];  // ok if get_size() is constexpr, error otherwise.
+</code></pre>
+<p>上例中需要注意的是<code>sz</code>是<code>constexpr</code>，因此其可以用来作为数组初始化的<code>dimension</code>；<code>cnt</code>则不是<code>constant expression</code>，因此编译会报错。默认情况下，数组里的<code>elements</code>会被默认初始化：全局的数组会被默认初始化为0，局部的数组会被默认初始化为<code>undefined values</code>。 另外，和<code>vector</code>一样，数组也是<code>objects</code>的容器，所以数组里的<code>elements</code> 不可能是<code>reference</code>，因为引用不是object。</p>
+<h2 id="array-intialization"><a href="#array-intialization" class="headerlink" title="array intialization"></a><code>array</code> intialization</h2><pre><code class="c">int a[3] = {0,1,2};  // an array of three int elemetns with value 0,1,2
+int a2[] = {0,1,2};  // an array of three int elements with value 0,1,2
+int a3[5] = {0,1,2};  // an array of 5 int elements, the first three elements have value 0,1,2; the last two elements have default value
+string a4[3] = {&quot;hello&quot;, &quot;world&quot;};  // an array of 3 string elements, the first two elements have value &quot;hello&quot; and &quot;world&quot;, the last one is an empty string.
+int a5[2] = {0,1,2};  // error, too many initializers
+int a6[10] = {0};  // all elements have value of 0
+int a7[10] = {1};  // the first elements has value 1, others are 0
 
-    cap
-    to
-    */
-}
+char s1[] = {&#39;c&#39;, &#39;+&#39;, &#39;+&#39;};  // list initialization, no &#39;\0&#39;, length = 3
+char s2[] = {&#39;c&#39;, &#39;+&#39;, &#39;+&#39;, &#39;\0&#39;};  // explicit &#39;\0&#39;, length = 4
+char s3[] = &quot;c++&quot;;  // string literals initializer, &#39;\0&#39; added automatically, length = 4;
+char s4[6] = &quot;Daniel&quot;;  // error, no space for null &#39;\0&#39;
+
+int a[] = {0,1,2};  // array of three ints
+int a2[] = a;  // error, cannot initialize an array with another
+a2 = a;  // error, cannot assign one array to another
+
+int *ptra[10];  // ptra is an array of ten pointers elements to int
+int (*pa)[10];  // pa is a pointer to an array of ten int elements
+int &amp;refa[10];  // error, no arrays of references
+int (&amp;ra)[10];  // ok, ra is a reference, binds to an array of ten ints
+int *(&amp;a)[10];  // ok, a is a reference to an array of ten pointers
 </code></pre>
-<p>Obviously, there is an unexpected <code>\n</code> after the first <code>scanf</code>. The reason is the <code>scanf(&quot;%d&quot;)</code> will stop reading when it encountered the WSC(white-space characters, i.e. <strong>white-space, tab, newline</strong>). The first input(i.e. 3) in the input file can be presented as <code>3\n</code>. Therefore, the <code>scanf</code> has only read the <code>3</code>, but the <code>\n</code> has been left in the stream buffer. However, the <code>gets()</code> function read the string from the buffer until encountering the <code>\n</code>. Therefore, the first <code>gets</code> read the <code>\n</code> which left in the first <code>scanf</code>.</p>
-<h3 id="Consume-the-left-‘-n’"><a href="#Consume-the-left-‘-n’" class="headerlink" title="Consume the left ‘\n’"></a>Consume the left ‘\n’</h3><p>In conclusion, to get the correct input, we need to clean the left <code>\n</code> in the buffer. There are two methods to do this:</p>
-<pre><code class="c">int main()
-{
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
-    getchar();  // use getchar() to consume the left &#39;\n&#39;
-    /* 
-    char ch;
-    scanf(&quot;%c&quot;, ch); // or use scanf to consume the left &#39;\n&#39;
-                     // scanf(&quot;%c&quot;) or scanf(&quot;%d&quot;) can recognize the WSC
-    */
-    printf(&quot;%d\n&quot;, n);
-    while(n--)
-    {
-        char str[100];
-        gets(str);
-        printf(&quot;%s\n&quot;, str);
-    }
-}
-</code></pre>
-<blockquote>
-<p><code>fflush(stdin)</code> cannot clean the buffer in Linux system because it is not a standard function and supported by all compiler.</p>
-</blockquote>
-<h3 id="Ignore-the-left-‘-n’"><a href="#Ignore-the-left-‘-n’" class="headerlink" title="Ignore the left ‘\n’"></a>Ignore the left ‘\n’</h3><p>Alternatively, we can force the <code>scanf</code> to ignore the left ‘\n’:</p>
-<pre><code class="c">int main()
-{
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
-    printf(&quot;%d\n&quot;, n);
-    while(n--)
-    {
-        char str[100];
-        scanf(&quot;%s&quot;, str);
-        printf(&quot;%s\n&quot;, str);
-    }
-}
-</code></pre>
-<p>The core idea is that the <code>scanf(&quot;%s&quot;)</code> will match a sequence of non-white-space characters. In other words, it can skip the left <code>\n</code>.</p>
-<pre><code class="c">int main()
-{
-    int n;
-    scanf(&quot;%d\n&quot;, &amp;n); // equal to scanf(&quot;%d &quot;, &amp;n);
-    printf(&quot;%d\n&quot;, n);
-    while(n--)
-    {
-        char str[100];
-        gets(str);
-        printf(&quot;%s\n&quot;, str);
-    }
-}
-</code></pre>
-<p>An alternative is adding the WSC to the format string of <code>scanf</code>.</p>
-<blockquote>
-<p>Note: the meaning of the WSC in the format string of <code>scanf</code> is to explicitly read and ignore as many whitespace characters as it can<a href="https://stackoverflow.com/questions/19499060/what-is-the-effect-of-trailing-white-space-in-a-scanf-format-string" target="_blank" rel="noopener">[1]</a>, instead of expecting a <code>\n</code> new line sign. Therefore, the <code>scanf(&quot;%d\n&quot;)</code> means after reading an integer, it will continue to read characters, discarding all whitespace until it sees a non-whitespace character on the input. That non-whitespace character will be left as the next character to be read by an input function.</p>
-</blockquote>
-<p>Therefore, the first <code>scanf(&quot;%d\n&quot;)</code> will read the integer <code>3</code> and discard the <code>\n</code>, then encounter the next non-white-space character(i.e. <code>c</code>) and stop. But the <code>c</code> will be left to the buffer to the next input function(e.g. <code>gets()</code>).</p>
-<p><strong>Note:</strong> <code>gets()</code> is unsafe because it is potential to cause overflow for the string. Therefore, we can try to use <code>fgets(str,MAXLEN,stdin);</code></p>
-<h3 id="References-and-relative-reading"><a href="#References-and-relative-reading" class="headerlink" title="References and relative reading:"></a>References and relative reading:</h3><ul>
-<li><a href="https://blog.csdn.net/xuelongyinyue/article/details/47358193" target="_blank" rel="noopener">scanf detail</a></li>
-<li><a href="https://blog.csdn.net/Wmll1234567/article/details/82463573" target="_blank" rel="noopener">scanf(“%c”) vs scanf(“%s”)</a></li>
-<li><a href="http://www.man7.org/linux/man-pages/man3/scanf.3.html" target="_blank" rel="noopener">man scanf</a></li>
+<p>上述例子说明了几种数组的初始化情况，首先是数组的<code>list initializer</code>。当使用<code>list initializer</code>对数组进行初始化时，可以省略掉<code>dimension</code>，此时compiler会根据<code>list initializer</code>的elements数量来推断数组的size，这样会出现三种情况（假设<code>list initializer</code>中有<code>n</code>个elements）：</p>
+<ul>
+<li>如果<code>dimension == n</code>，那么数组中每个element的值等于<code>list initializer</code>中每个element对应的值；</li>
+<li>如果<code>dimension &gt; n</code>，那么数组中前<code>n</code>个elements的值等于<code>list initializer</code>中每个element对应的值，<strong>数组中剩下的elements（即position大于<code>n</code>的elements）都被置为0</strong>。</li>
+<li>如果<code>dimension &lt; n</code>，那么编译错误。 </li>
 </ul>
+<blockquote>
+<p><strong>Tips:</strong></p>
+<p>可以使用<code>int a[100] = {0}</code>的形式将局部数组快速初始化为0。<br>因为对于<code>list initializer</code>，其会将<code>list</code>中与<code>array</code>对应的element进行赋值（即第<code>a</code>中的第一个element被<code>list</code>中的第一个元素初始化为0），<strong>并且将后续的element的值置为0</strong>（<code>a</code>中的其余elements被默认初始化为0）。但是这不能将数组所有elements都初始化为非0值，例如上例中的<code>a7[10]</code>，只有第一个element为1，其余为0。实际上，可以直接使用<code>int a[100] = {}</code>初始化所有元素为0，即list中不提供任何element，所有元素都会被默认初始化为0。</p>
+</blockquote>
+<p>另外，还需要注意的就是对于<code>char</code>类型的数组，除了<code>list initializer</code>，还可以直接使用<code>string literal</code>进行初始化。但是需要注意的是<strong><code>list initializer</code>初始化时不会在末尾加上结束符<code>&#39;\0&#39;</code>，<code>string literal</code>初始化时则会自动在末尾加上结束符<code>&#39;\0&#39;</code></strong>。</p>
+<p>最后，不存在引用数组，即数组中的element不能是<code>reference</code>，因为<code>reference</code>本身不是object，但是数组是盛放object的容器。对于<code>int *(&amp;a)[10]</code>这类比较复杂的定义，通常解析的顺序为<code>由里到外，由右到左</code>。例如，此时<code>a</code>首先是一个<code>reference</code>，这个引用refer to一个size=10的数组，这个数组有10个pointers元素，每个指针指向一个int类型。</p>
+<h2 id="Accessing-the-elements-of-an-array"><a href="#Accessing-the-elements-of-an-array" class="headerlink" title="Accessing the elements of an array"></a>Accessing the elements of an <code>array</code></h2><p>对于<code>built-in array</code>，我们有三种方法来处理数组内部的elements：<code>range-for</code>和<code>subscript</code>和<code>pointer（iterator）</code>。其中<code>range-for</code>适用于从头到尾遍历数组内的所有元素，而不需要我们自己管理<code>index</code>（因为<code>dimension</code>本身就是数组的一部分，所有系统知道数组的<code>dimension</code>）；<code>subscript</code>则和<code>vector</code>的<code>subscript</code>类似，可以实现<code>random access</code>。</p>
+<p>为了说明如何使用<code>pointer</code>来遍历数组，我们需要先说明指针和数组的关系。在C++中，指针（pointers）和数组（arrays）是很容易混淆的概念。实际上，在大部分情况下，compiler会<strong>将数组object转换为一个指向数组第一个元素的指针</strong>。例如，如果使用<code>auto</code>对数组进行推断：</p>
+<pre><code class="c">int a[3] = {0,1,2};
+auto pa(a); // pa is an int* that points to the first element in a
+// equivalent to :
+auto pa(&amp;a[0]);
+decltype(a) pa2; // pa2 is an array of ten ints
+</code></pre>
+<p>如上例，当我们使用数组名<code>a</code>时，compiler往往会将其替换成<code>&amp;a[0]</code>，即指向第一个元素的指针。因此，<code>auto</code>推断得到的结果是一个指针。但是这里需要说明的是使用<code>decltype</code>对数组进行类型推断时得到的还是一个<code>array</code>，这是<code>decltype</code>的特性，类似于对<code>reference</code>推断也会得到一个<code>reference</code>。</p>
+<p>知道了数组名在使用时会被转化为指针后，我们可以利用指针作为迭代器来遍历数组。需要做的就是得到一个指向数组第一个元素的<code>pointer</code>（类似于<code>begin()</code>返回的<code>iterator</code>）和指向最后一个元素的下一个元素的<code>pointer</code>（类似于<code>end()</code>返回的<code>iterator</code>）：</p>
+<pre><code class="c">int a[10] = {0,1,2,3,4,5,6,7,8,9};
+int *b = a;  // b points to the first element in a
+int *e = &amp;a[10];  // e points to the element which past the last element in a
+for(int *p = b; p!=e; ++p)
+  cout&lt;&lt; *p &lt;&lt;endl;
+</code></pre>
+<p>上例中，其实与<code>vector</code>中的迭代器遍历方法类似，<code>b</code>通过数组名会被转化为指向数组内第一个元素的指针的特性得到一个指向数组第一个元素的指针；<code>e</code>通过指针的加法得到一个指向最后一个元素的下一个元素的指针（<code>off-the-end pointer</code>）。至此，我们实现了通过指针（迭代器）遍历数组的方法。需要注意的是<code>off-the-end pointer</code>实际上并不指向数组中任何<code>element</code>，因此<strong>不能对<code>off-the-end pointer</code>进行dereference操作和increment等操作</strong>。只能通过<code>address-of operation &#39;&amp;&#39;</code>对其进行取地址操作。</p>
+<p>另外，尽管上述方法可以得到指向首元素的指针和<code>off-the-end</code>指针，但是并不是很直观。C++11在<code>iterator.h</code>中提供了两个方法来更方便地获取两个所需的指针：</p>
+<pre><code class="c">int a[10] = {0,1,2,3,4,5,6,7,8,9};
+int *b = begin(a);  // takes argument 
+int *e = end(a);  // takes argument
+for(int *p=b; p!=e; ++p)
+  cout&lt;&lt; *p &lt;&lt;endl;
+</code></pre>
+<p>这两个方法并不是container里的成员函数，而是定义在<code>iterator.h</code>里的方法。因此注意这两个方法需要传入这个数组作为参数。</p>
+<p>利用指针作为<code>iterator</code>来遍历数组的方法依赖于指针的算术意义。实际上，在<a href="https://www.hellscript.cc/2019/11/29/subposts_cppPrimer/CPN-3-4-Iterator/">iterator</a>中我们介绍了C风格的指针实际上是一种<code>random access iterator</code>，因此在那篇文章中介绍的<code>iterator arithmetic</code>同样适用于<code>pointer arithmetic</code>。例如，<strong>在同一个数组中</strong>比较两个指针的大小实际上是比较两个指针所指向的element在数组中的位置的大小。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -582,12 +569,12 @@ cat
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>scanf and its left white-space character problem</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">618</span></p>
+    <p><span class="copy-title">文章标题:</span>C++Primer 3.5: Array</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">2k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-04, 14:13:44</p>
+    <p><span class="copy-title">发布时间:</span>2019-12-08, 12:40:29</p>
     <p><span class="copy-title">最后更新:</span>2019-12-08, 09:08:47</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/04/subposts_c/scanf/" title="scanf and its left white-space character problem">www.hellscript.cc/2019/10/04/subposts_c/scanf/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/08/subposts_cppPrimer/CPN-3-5-Array/" title="C++Primer 3.5: Array">www.hellscript.cc/2019/12/08/subposts_cppPrimer/CPN-3-5-Array/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
