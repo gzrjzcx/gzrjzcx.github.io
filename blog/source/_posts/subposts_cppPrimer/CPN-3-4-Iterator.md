@@ -28,7 +28,7 @@ tags: cpp
 | `++`iter         | Increments `iter` to refer to the next element in the container. |
 | `--`iter         | Decrements `iter` to refer to the previous element in the container. |
 | iter1 `==` iter2 | Two iterators are equal if they denote the same element or if they are the `off-the-end` iterator for the same container. |
-| iter1 `< `iter2  | One iterator is less than another if it refers to an element whose `position in the container is ahead of the one` referred to by the other iterator. **The iterators must refer to elements in the same container or one `off-the-end` of the container.** |
+| iter1 `< ` iter2 | One iterator is less than another if it refers to an element whose `position in the container is ahead of the one` referred to by the other iterator. **The iterators must refer to elements in the same container or one `off-the-end` of the container.** |
 | iter `+/-` n     | Adding(substracting) an integral value `n` to(from) an iterator yields an `iterator` that many elements forward(backward) within the contains. The resulting iterator must **denote elements in the same container or off-the-end element**. |
 | iter `+=/-=` n   | Assigns to `iter` the value of adding `n` to, or substrcating `n` from, `iter`. |
 | iter1 `-` iter2  | Returns the `distance` between two iterators. The `distance` means the `position difference` between two elements w.r.t. two iterators. Two iterators must **denote elements in the same container or off-the-end element**. The reuslt is a `signed` integel type. |
@@ -37,7 +37,9 @@ tags: cpp
 
 ```c
 vector<int> v{0,1,2,3,4};
+const vector<int> cv{0,1,2};
 auto b = v.begin();  // b points to the first element
+auto cb = cv.begin(); // return a const_iterator cb points to the first element
 vector<int>::iterator e = v.end();  // must use `vector<int>`
 // e points to the `off-the-end`
 ```

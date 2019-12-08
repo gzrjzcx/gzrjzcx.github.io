@@ -160,3 +160,4 @@ decltype(a = b) f; // error: f is int & and must be initialized
 > - `auto`会自动忽略`top-level const`，`decltype`不会。
 > - `auto`会将引用类型推断为其绑定对象的类型，`decltype`会将引用类型推断为引用类型（想推断为其绑定对象类型可以用表达式`(r+0)`）。
 > - `decltype`推断为引用类型还是expression结果本身的类型取决于这个expression的结果是不是可以被赋值的对象，且**`必须记住这个表达式实际上没有被执行`**。
+> - `auto`对于`array`会推断为`pointer`类型；`decltype`对于`array`会推断为`array`类型。
