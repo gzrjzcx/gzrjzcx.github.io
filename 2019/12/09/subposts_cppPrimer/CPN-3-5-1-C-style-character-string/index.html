@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>NetEasy RL Interview | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" Interview ">
-  <meta name="description" content="NetEasy RL Interview | Alex&#39;s Epitaph">
+  <title>C++Primer 3.5.1: C-style character string | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" cpp ">
+  <meta name="description" content="C++Primer 3.5.1: C-style character string | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -422,9 +422,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_interview/NetEasy-RL-Interview" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_cppPrimer/CPN-3-5-1-C-style-character-string" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">NetEasy RL Interview</h1>
+        <h1 class="article-title">C++Primer 3.5.1: C-style character string</h1>
     
     <div class="article-meta">
         
@@ -432,26 +432,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="Interview">Interview</a>
+                <a href="javascript:" data-rel="cppPrimer">cppPrimer</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">Interview</a>
+            <a href="javascript:" class="color4">cpp</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-12-09 13:50:36">2019-11-01 14:54</time>
+        创建时间:<time class="date" title="更新时间: 2019-12-09 13:50:36">2019-12-09 13:45</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:1.2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -470,7 +470,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-Style-Character-Strings"><span class="toc-text">C-Style Character Strings</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-library-string-functions"><span class="toc-text">C library string functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mixing-library-strings-and-C-Style-Strings"><span class="toc-text">Mixing library strings and C-Style Strings</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -486,7 +486,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="C-Style-Character-Strings"><a href="#C-Style-Character-Strings" class="headerlink" title="C-Style Character Strings"></a>C-Style Character Strings</h1><blockquote>
+<p><code>C-Style strings</code> are not a type. They are a <strong>convention</strong> for how to represent and use character strings.</p>
+</blockquote>
+<p><code>C-Style strings</code>指的是一种指定如何表示和使用<code>character strings</code>的规定。该规定要求：</p>
+<ul>
+<li><code>character strings</code>存储在<code>character array</code>中；</li>
+<li><code>null terminated</code>。即该<code>character array</code>最后一个element为<code>null character &#39;\0&#39;（ansii = 0）</code>。</li>
+</ul>
+<p>例如，C++中的<code>string literals</code>就是一个<code>C-Style string</code>（从C中继承而来），也就是说，在C++中<code>string literals</code>是<code>null terminated</code>。注意在这里出现了几个很容易混淆的定义，我们需要通过实际例子来辨析：</p>
+<pre><code class="c">&#39;a&#39;  // a character &#39;a&#39;
+&quot;hello, world&quot;;  // a string literal, has &#39;\0&#39;
+char sa[] = {&#39;h&#39;,&#39;e&#39;,&#39;l&#39;,&#39;l&#39;,&#39;o&#39;};  // sa is a character array, no &#39;\0&#39;
+char *p = &quot;hello, world&quot;;  // p is a pointer to a string literal &quot;hello, world&quot;， p points to the first element of this string literal
+string s(&quot;hello, world&quot;);  // s is a string(library type)
+</code></pre>
+<p>首先，<code>string literals</code>指的就是一个字符串字面量，其是一个常量，存储在<code>DS</code>段。因为C/C++中的<code>string literals</code>都遵循<code>C-Style Strings</code>规定，因此C/C++中的<code>string literals</code>都是存储在一个<code>character array</code>中，且这个<code>character array</code>的最后一个元素是<code>&#39;\0&#39;</code>。</p>
+<p>其次，<code>sa</code>是一个<code>charater array</code>数组，也就是常说的字符数组（<code>char数组</code>）。数组中的每个element都是一个<code>character</code>，也就是常说的字符（<code>char</code>）。字符数组并不遵循<code>C-Style strings</code>规则，所以其并不要求最后一个元素是<code>&#39;\0&#39;</code>，即并不是<code>null terminated</code>。但是需要注意的是，尽管<code>sa</code>在进行操作时会被compiler转换为一个<code>指向首元素的指针</code>，但是<strong>其是一个char * const的指针，即指针自身不能被修改</strong>，所以并不能给<code>sa</code>赋值。同理，也不能再次使用<code>string literals</code>给<code>sa</code>赋值（注意这里如果使用<code>string literals</code>给<code>sa</code>进行初始化是可以的）。</p>
+<p>类似的，<code>p</code>是一个<code>char</code>类型的指针，也就是常说的<code>char *</code>，其指向一个<code>string literals</code>常量，更准确的说是指向该<code>hello, world</code>的首元素（即<code>h</code>字符）。因为<code>string literals</code>是一个<code>character array</code>，所以可以通过这个指向首元素的指针来实现<code>subscript</code>操作。但是需要注意的是，因为此时<code>hello, world</code>是一个常量，所以尽管可以通过取下标获得其中某个element，但是并不能修改这个element。更多关于<code>char*</code>和<code>char[]</code>的区别可以查看<a href="https://www.hellscript.cc/2019/02/22/subposts_c/charPointer-VS-charArray/">here</a>。</p>
+<p>最后，就是<code>string</code>类，其是<code>library type</code>，相应的操作符都在类中被重载。注意，在C++11标准中，明确规定了<code>string</code>也是<code>null terminated</code>，即以<code>&#39;\0&#39;</code>结尾，<a href="https://www.zhihu.com/question/33312840" target="_blank" rel="noopener">here</a>。</p>
+<h2 id="C-library-string-functions"><a href="#C-library-string-functions" class="headerlink" title="C library string functions"></a>C library string functions</h2><p>因为C standard library并没有重载诸如<code>+</code>，<code>==</code>等操作符，所以并不能用C++中的<code>string</code>类中重载这些操作符对<code>C-Style string</code>进行操作。相反，C中提供了一系列functions来操作<code>C-Style string</code>。例如：</p>
+<table>
+<thead>
+<tr>
+<th>Functions</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str<code>len</code>(p)</td>
+<td>Returns the length of <code>p</code>, <strong>not couting the null</strong></td>
+</tr>
+<tr>
+<td>str<code>cmp</code>(p1, p2)</td>
+<td>Compares <code>p1</code> and <code>p2</code> for equality. Returns 0 if <code>p1 == p2</code>, a positive value if <code>p1 &gt; p2</code>, a negative value if <code>p1 &lt; p2</code>.</td>
+</tr>
+<tr>
+<td>str<code>cat</code>(p1, p2)</td>
+<td>Appends <code>p2</code> to <code>p1</code>. <strong>Returns <code>p1</code></strong>.</td>
+</tr>
+<tr>
+<td>str<code>cpy</code>(p1, p2)</td>
+<td>Copies <code>p2</code> into <code>p1</code>. <strong>Returns <code>p1</code>.</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>其中这些函数的实参必须是指向<code>null terminated array</code></strong>的指针。如果传入的指针不是指向<code>null terminated array</code>，那么会出现<code>undefined</code>的情况。例如<code>strlen</code>，则会不断循环直到找到<code>null</code>。</p>
+<p>在C++中，因为<code>string</code>已经重载了很多操作符，所以使用起来很方便。例如，当我们想拼接两个字符串时：</p>
+<pre><code class="c">/*  c++  */
+string s1(&quot;hello&quot;);
+string s2(&quot;world&quot;);
+string largeStr = s1 + &#39; &#39; + s2;
+
+/*  c  */
+char s1[] = &quot;hello&quot;;
+char s2[] = &quot;world&quot;;
+char largeStr[12];
+strcpy(largeStr, s1);
+strcat(largeStr, &quot; &quot;); // can&#39;t use &#39; &#39;, because &quot; &quot; is a string literal, can be converted to pointer 
+strcat(largeStr, s2);
+</code></pre>
+<p>可以看到，在C中想要实现拼接字符串非常麻烦，需要定义一个<code>largeStr</code>来接收拼接好的字符串；并且还需要计算好新的字符串的长度。但是在C++中如果使用<code>string</code>类的话则可以直接使用重载的<code>+</code>进行操作。</p>
+<h2 id="Mixing-library-strings-and-C-Style-Strings"><a href="#Mixing-library-strings-and-C-Style-Strings" class="headerlink" title="Mixing library strings and C-Style Strings"></a>Mixing <code>library strings</code> and <code>C-Style Strings</code></h2><p>通常来说，在任何要求使用<code>string literal</code>的地方，我们都可以使用<code>null-terminated array</code>。但是反过来却不行，即我们不能在要求使用<code>C-Style Strings</code>的地方使用<code>library strings</code>。</p>
+<pre><code class="c">string s(&quot;hello, world&quot;);
+char *str = s;  // error, can&#39;t initialize a char* from a string
+const char *str = s.c_str();  // ok
+</code></pre>
+<p>但是<code>string</code>类中提供了一个member function来返回一个<code>C-Style string</code>。具体来说，<code>c_str()</code>函数返回一个<code>指向一个null-terminated数组首元素的指针</code>，其中这个数组具有与<code>string</code>一样的elements。换句话说，<code>c_str()</code>提供了一个方法来获得<code>C-Style string</code>，这个返回的<code>null-terminated</code>数组与<code>string</code>中的内容一样。但是需要注意的是，<code>c_str()</code>并不能保证一直有效，任何有可能改变<code>s</code>的值的操作都会使这个返回的数组失效。</p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
     </div>
@@ -499,12 +567,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>NetEasy RL Interview</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">0</span></p>
+    <p><span class="copy-title">文章标题:</span>C++Primer 3.5.1: C-style character string</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.2k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-11-01, 14:54:50</p>
+    <p><span class="copy-title">发布时间:</span>2019-12-09, 13:45:32</p>
     <p><span class="copy-title">最后更新:</span>2019-12-09, 13:50:36</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/01/subposts_interview/NetEasy-RL-Interview/" title="NetEasy RL Interview">www.hellscript.cc/2019/11/01/subposts_interview/NetEasy-RL-Interview/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/09/subposts_cppPrimer/CPN-3-5-1-C-style-character-string/" title="C++Primer 3.5.1: C-style character string">www.hellscript.cc/2019/12/09/subposts_cppPrimer/CPN-3-5-1-C-style-character-string/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
