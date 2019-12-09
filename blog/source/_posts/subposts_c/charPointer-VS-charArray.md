@@ -8,7 +8,7 @@ hide: true
 
 # Conclusion
 `char*` and `char[]` are different **types** in most cases, but it's not immediately apparent in all cases. Essentially, `char*` means a pointer to a constant stored in the `.data` segment, `char[]` is a `character array` data type.
-  
+
 More information about the difference between `array` and `pointer` [here](https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/).
 
 ## Implementation
@@ -22,24 +22,28 @@ When executing the above instruction, there are 3 steps in total:
 3. Return the address of this memory as the value and assign to the pointer `a`.
 Finally, it is a `char*` pointer to an initialized data stored in `DS` segment. 
   
-In fact, if now we set `char* aa = "abc"`, then only will execute the step 1 and 3, because the string constant `abc` has been created in the `DS` segment. 
-  
+
+In fact, if now we set `char* aa = "abc"`, then will only execute the step 1 and 3, because the string constant `abc` has been created in the `DS` segment. 
+
 Therefore, it is can be assigned other string like below operation:
 ```c
-a = "def"; // It is legal because a is a pointer
+a = "def"; // ok, because a is a pointer
 ```
-However, because the `abc` is constant, stored in the **`DS`** segment(i.e. `data segment`), **it can not be modified**. In other words, the **subscript operation** are illegal in the below example:
+However, because the `abc` is a constant, stored in the **`DS`** segment(i.e. `data segment`), **it can not be modified**. In other words, we can access the underlying elements via `subscript` operations in the below example, **but we cannot modify the element**:
 ```c
 char* a = "abc";
-printf("%c\n", a[0]); // It is illegal because a is a pointer
+printf("%c\n", a[0]); // ok, print 'a'
+a[0] = 'A'; // error, can compile but will crash
+a = "def";  // ok, because a is a pointer
 ```
 
 #### Method 2: `char[]`
 ```c
-char b[3] = "abc";              // it is string, has '\0' in the end as default
-char b[3] = {'a','b','c'};      // it is character array, has no '\0' in the end as default
+char b[3] = "abc";              // it is a string literal, has '\0' in the end as default
+char b[3] = {'a','b','c'};      // it is a character array, has no '\0' in the end as default
 ```
-`char[]` is the **character array** in C language. When executing the above instruction, there are only 2 steps in total:
+`char[]` is a **character array** in C language. When executing the above instruction, there are only 2 steps in total:
+
 1. Declare an array with `char` type, please note in this context `b` is an array, if you are not clear about the difference between `array` and `pointer`, [click here](https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/). This moment, the array variable `b` stored in the `stack` segment, and: **`&b == b == &b[0]`**.
 2. Assign each character of `123` to the each element of array `b`.
 Finally, the value of this **array** is equal to `abc`, instead of a pointer to point the constant like `char*`. Because it is an `array` type, it is contrary with `char*`: the assignment with string constant is illegal, but the subscript operation is legal.
@@ -48,9 +52,12 @@ b = "def"; // reassign with string constant will cause crash
 printf("%c\n", b[0]); //legal
 ```
 
+ `array` can be viewed as a `char * const` pointer; therefore, we cannot reassign the `string literal` or other `array` to `b`. Otherwise, you will get an error: `cannot modify lvalue`.
+
 ### Array decay
+
 In terms of a special situation, like using they as the **function parameters**. Specifically, if an expression of type `char[]` is provided where one of type `char*` is expected, the compiler automatically converts the `array` into a `pointer` to its first element.
-  
+
 For example, in the function `printSomething` expects a pointer is passed, but if you try to pass an array to it like this:
 ```c
 char s[10] = "hello";

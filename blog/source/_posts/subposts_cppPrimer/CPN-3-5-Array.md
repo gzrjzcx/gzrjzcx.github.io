@@ -40,7 +40,10 @@ int a7[10] = {1};  // the first elements has value 1, others are 0
 char s1[] = {'c', '+', '+'};  // list initialization, no '\0', length = 3
 char s2[] = {'c', '+', '+', '\0'};  // explicit '\0', length = 4
 char s3[] = "c++";  // string literals initializer, '\0' added automatically, length = 4;
-char s4[6] = "Daniel";  // error, no space for null '\0'
+char s4[6] = "Daniel";  // error, no space for null '\0', "Daniel" can be viewed as list initializer {'D', 'a', 'n', 'i', 'e', 'l'}
+char s5 = s3; // error, initialization with "{...}" expected for aggregate object
+char s6[4];
+s6 = s3;  // error, s6 is a constant
 
 int a[] = {0,1,2};  // array of three ints
 int a2[] = a;  // error, cannot initialize an array with another
@@ -51,6 +54,7 @@ int (*pa)[10];  // pa is a pointer to an array of ten int elements
 int &refa[10];  // error, no arrays of references
 int (&ra)[10];  // ok, ra is a reference, binds to an array of ten ints
 int *(&a)[10];  // ok, a is a reference to an array of ten pointers
+
 ```
 
 上述例子说明了几种数组的初始化情况，首先是数组的`list initializer`。当使用`list initializer`对数组进行初始化时，可以省略掉`dimension`，此时compiler会根据`list initializer`的elements数量来推断数组的size，这样会出现三种情况（假设`list initializer`中有`n`个elements）：
@@ -65,6 +69,8 @@ int *(&a)[10];  // ok, a is a reference to an array of ten pointers
 > 因为对于`list initializer`，其会将`list`中与`array`对应的element进行赋值（即第`a`中的第一个element被`list`中的第一个元素初始化为0），**并且将后续的element的值置为0**（`a`中的其余elements被默认初始化为0）。但是这不能将数组所有elements都初始化为非0值，例如上例中的`a7[10]`，只有第一个element为1，其余为0。实际上，可以直接使用`int a[100] = {}`初始化所有元素为0，即list中不提供任何element，所有元素都会被默认初始化为0。
 
 另外，还需要注意的就是对于`char`类型的数组，除了`list initializer`，还可以直接使用`string literal`进行初始化。但是需要注意的是**`list initializer`初始化时不会在末尾加上结束符`'\0'`，`string literal`初始化时则会自动在末尾加上结束符`'\0'`**。
+
+同时，**一个数组不能被另一个数组初始化**。例如`s5`不能被`s3`初始化，因为`initializer`必须要求是一个`aggregate object`。并且，**一个数组也不能被重新赋值**，因为`array`本身是一个常量，数组名可以看作是一个`char const *`的指向首地址的指针。因此，一旦数组被初始化过后，便不能在被赋值。这也是为什么`initialized array`不能被`string literal`赋值。
 
 最后，不存在引用数组，即数组中的element不能是`reference`，因为`reference`本身不是object，但是数组是盛放object的容器。对于`int *(&a)[10]`这类比较复杂的定义，通常解析的顺序为`由里到外，由右到左`。例如，此时`a`首先是一个`reference`，这个引用refer to一个size=10的数组，这个数组有10个pointers元素，每个指针指向一个int类型。
 
@@ -109,3 +115,75 @@ for(int *p=b; p!=e; ++p)
 这两个方法并不是container里的成员函数，而是定义在`iterator.h`里的方法。因此注意这两个方法需要传入这个数组作为参数。
 
 利用指针作为`iterator`来遍历数组的方法依赖于指针的算术意义。实际上，在[iterator](https://www.hellscript.cc/2019/11/29/subposts_cppPrimer/CPN-3-4-Iterator/)中我们介绍了C风格的指针实际上是一种`random access iterator`，因此在那篇文章中介绍的`iterator arithmetic`同样适用于`pointer arithmetic`。例如，**在同一个数组中**比较两个指针的大小实际上是比较两个指针所指向的element在数组中的位置的大小。
+
+另外还有一点需要注意的是，与`vector`和`string`等`library types`不同的是，`built-in array`的`subscript`操作是C++语言自身的一部分，而不是在类里重载的操作符。因此，`array`的`subscript`操作并不要求`index`是`unsigned value`。但是，其同样要求`subscript`的结果必须指向数组里的一个element（或者`one past the end of`）。
+
+```c 
+int a[10] = {0,1,2,3,4,5,6,7,8,9};
+int i = a[2];  
+/*  equivalent to :
+		int *p = a;
+		i = *(p + 2);  */
+
+int *p = &a[2];  // p points to the element indexed by 2
+int j = p[1];  // equivalent to *(p+1), p points to the element a[3]
+int k = p[-2];  // p[-2] is the element a[0]
+```
+
+上例中对于数组的取下标操作，实际上可以看作两步：
+
+- 先取得指向数组首元素的指针`p`；
+- 对指针`p`进行指针运算，取到相应位置上的`element`。
+
+因为内置数组中C++并不规定`index`必须要是`unsigned`，所以其也可以是负数。即`p[-2]`表示的是`p`所指向的`element`的position往前两个元素。
+
+## `array` VS. `pointer`
+
+在C/C++中，数组和指针是两个非常容易混淆的概念，尤其是`数组名`和`指针`。 实际上，数组是数组，指针是指针，两者是不同的概念。
+
+```c
+int a[3];  // an array
+a++;  // error
+int *p;  // a pointer
+p++;  // ok
+p = a;  // p points to the first element in a
+```
+
+当定义一个数组`int a[3]`时，数组名`a`是数组的首地址，**是一个地址，在汇编上看是一个常量。**因为大部分compilers在碰到数组定义的时候都会将其相关信息（`dimension`，`type`，`initial_addr` etc.）存储在符号表中。也就是说，数组定义后其位置就固定了，因此其**首地址在编译阶段是可以确定的**。当每次遇到数组名`a`这个标识符时，compiler就会从符号表中取出这个`initial_addr`来代替数组名`a`。例如`a`的`initial_addr = 0x01`，那么每次碰到标识符时，例如`subscript`操作：`a[1]`会被替换为`*(0x01 + 1)`。因此，可以说在汇编层面上数组名完全被转化为了一个`constant`，即固定的值。这也是为什么不能对数组名`a`进行自加自减操作。详细[here](http://www.spongeliu.com/28.html)。但是，对于指针`p`，其本身是一个变量，是一个`object`，它的值存储在`&p`的地址（即`p`本身的地址）上。**`p`的值在编译阶段是不能确定的，**所以其可以进行自加自减操作。
+
+因为这个原因，当我们进行`subscript`操作（e.g. `a[1]`）时，只需要访问内存一次：因为`a`是常量，只需要从符号表中取出`a`的值进行`+1`的操作后，从内存中取出相应位置的element。但是`*(p+1)`则需要访问内存两次：先从内存中`&p`（i.e. `p`本身的地址）这个地址中取出`p`的值（i.e. `&a[0]`），然后根据`&a[0]`的地址从内存中取出相应位置的element。
+
+另外，之前也说到过，在大部分情况下，`array`会被compiler转换为指向数组首元素的`top-level pointer`。但是，还是存在几种特殊情况，C11 standard (ISO/IEC 9899:2011):  6.7.6.2 Array declarators (p: 130-132)规定了：
+
+Any [lvalue expression](https://link.zhihu.com/?target=https%3A//en.cppreference.com/w/c/language/value_category) of array type, when used in any context other than 
+
+- as the operand of the [address-of operator](https://link.zhihu.com/?target=https%3A//en.cppreference.com/w/c/language/operator_member_access)
+- as the operand of [sizeof](https://link.zhihu.com/?target=https%3A//en.cppreference.com/w/c/language/sizeof)
+- as the string literal used for [array initialization](https://link.zhihu.com/?target=https%3A//en.cppreference.com/w/c/language/array_initialization)
+- as the operand of [_Alignof](https://link.zhihu.com/?target=https%3A//en.cppreference.com/w/c/language/_Alignof)
+
+undergoes an [implicit conversion](https://link.zhihu.com/?target=https%3A//en.cppreference.com/w/c/language/conversion) to the pointer to its first element. The result is not an lvalue.
+
+也就是说，`sizeof`和`&`操作时`array`都不会被转换为指针。首先看对`array`取地址的情况：
+
+```c
+	int a[3] = {1,2,3};
+	cout<<a<<endl;  // 0x7ffee674e788
+	cout<<&a<<endl; // 0x7ffee674e788
+	cout<<a+1<<endl;  // 0x7ffee674e78c
+	cout<<&a+1<<endl;  // 0x7ffee674e794
+
+ sizeof(a);  // 12
+```
+
+可以看到，`a`此时被转换为了指向第一个元素的指针，所以指针`a`输出的结果是数组的首地址，即第一个元素的地址；`&a`拿到的地址和`a`拿到的地址相同，但是并不是说指针`a`和指针`&a`相同！因为`a+1`得到是指向`数组内`的下一个元素（即`2`）的地址，但是`&a+1`拿到的却是指向`该数组之后`的下一个元素（`undefined`）的指针。换句话说，`a`和`&a`的**类型不同**（指针的类型决定了compiler如何解释指针，详细可以查看[here](https://www.hellscript.cc/2019/02/22/subposts_c/The-nature-of-pointer/)，`a`是指向数组第一个元素的指针（即`int *a`，其实也就是`&a[0]`），`&a`则是指向整个数组的指针（即`int (*a)[3]`），但是他们的值都相同（都是数组的首地址）。参考[here](https://blog.csdn.net/daniel_ice/article/details/6857019)。另外，`sizeof(a)`得到的却是整个数组的大小，因为此时`a`并没有被隐式转换为指针。
+
+> **Conclusions:**
+>
+> - 在编译层面上`array`可以看作是一个地址**常量**，指针则是一个变量。
+> - 大部分情况下`array`会被隐式转换为一个`指向该数组的首元素的指针，即&a[0]`。但是有四种情况不会（这里说明常见的两种）：
+>   - 因为`array`是常量，所以取地址符`address-of '&'`对于`array`的含义为**决定指针的类型**，但是它们的值都是数组的首地址：
+>     - `a`：`int*`类型，即一个普通指针，也就是`&a[0]`。
+>     - `&a`：`int (*a)[]`类型，即一个数组指针，其指向整个数组。
+>   - `sizeof(a)`得到的是整个数组的大小。因此此时`a`并没有被转换为指针。
+

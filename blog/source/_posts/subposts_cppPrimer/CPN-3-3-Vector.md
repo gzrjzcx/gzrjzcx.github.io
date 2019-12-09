@@ -122,6 +122,11 @@ vector<string> sv5{"hi"};  // list initialization, one element
 vector<string> sv5("hi");  // error: can't construct a vector from a string literal
 vector<string> sv6{10};  // ten elements with empty string
 vector<string> sv7{10, "hi"}  // ten elements with value "hi"
+
+/*  use array as initializer  */
+int a[] = {0,1,2,3,4,5};
+vector<int> vi(begin(a), end(a));  // vi has six elements, each is a copy of the corresponding element in array a
+vector<int> subVi(a+1, a+4);  // subVi has three elements, from a[1] to a[3]
 ```
 
 首先，如果使用一个`vector`来初始化另一个`vector`，不管是`copy initialization`还是`direct initialization`，其含义都是**拷贝initializer中所有的elements到新创建的这个vector中**。注意新vector中的每一个元素都是initializer中对应的每一个元素的`copy`，而不是`reference`。
