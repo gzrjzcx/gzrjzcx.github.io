@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
 <meta property="og:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-09T13:50:36.458Z">
+<meta property="og:updated_time" content="2019-12-10T14:11:35.215Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Alex&#39;s Epitaph">
 <meta name="twitter:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
@@ -89,7 +89,7 @@
 
 
 <ul>
-    <li><div class="all active">All<small>(37)</small></div></li>
+    <li><div class="all active">All<small>(38)</small></div></li>
     
         
             
@@ -109,7 +109,7 @@
     
         
             
-            <li><div data-rel="cppPrimer">cppPrimer<small>(12)</small></div>
+            <li><div data-rel="cppPrimer">cppPrimer<small>(13)</small></div>
                 
             </li>
             
@@ -157,8 +157,8 @@
     </div>
     <div><a class="about  hasFriend  site_url" href="/about">About</a><a style="width: 50%" class="friends">Friends</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="37">
-<input type="hidden" id="yelog_site_word_count" value="40.8k">
+<input type="hidden" id="yelog_site_posts_number" value="38">
+<input type="hidden" id="yelog_site_word_count" value="42.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -224,6 +224,11 @@
 
     
     <nav id="title-list-nav">
+        
+        <a class="cppPrimer " href="/2019/12/10/subposts_cppPrimer/CPN-3-6-2-d-Arrays/" data-tag="cpp" data-author>
+            <span class="post-title" title="C++Primer 3-6: 2-d Arrays">C++Primer 3-6: 2-d Arrays</span>
+            <span class="post-date" title="2019-12-10 12:47:52">2019/12/10</span>
+        </a>
         
         <a class="cppPrimer " href="/2019/12/09/subposts_cppPrimer/CPN-3-5-1-C-style-character-string/" data-tag="cpp" data-author>
             <span class="post-title" title="C++Primer 3.5.1: C-style character string">C++Primer 3.5.1: C-style character string</span>
@@ -446,7 +451,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-12-09 13:50:36">2019-12-08 12:40</time>
+        创建时间:<time class="date" title="更新时间: 2019-12-10 14:11:35">2019-12-08 12:40</time>
         
     </div>
     <div class="article-meta">
@@ -491,7 +496,7 @@
 <p><strong>Tips:</strong></p>
 <p>当我们无法在编译时就确定数组的长度时，最好使用<code>vector</code>。</p>
 </blockquote>
-<p>因为数组是固定长度的容器，所以数组在定义时其<code>dimension</code>必须是在编译期间就可知，即<code>dimension</code>必须是一个<code>constat expression</code>，例如：</p>
+<p>因为数组是固定长度的容器，所以数组在定义时其<code>dimension</code>必须是在编译期间就可知，即<code>dimension</code>必须是一个<code>constant expression</code>，例如：</p>
 <pre><code class="c">unsigned cnt = 42;
 constexpr unsigned sz = 42;
 int a[10];  // an array of ten int elements
@@ -511,7 +516,7 @@ int a7[10] = {1};  // the first elements has value 1, others are 0
 char s1[] = {&#39;c&#39;, &#39;+&#39;, &#39;+&#39;};  // list initialization, no &#39;\0&#39;, length = 3
 char s2[] = {&#39;c&#39;, &#39;+&#39;, &#39;+&#39;, &#39;\0&#39;};  // explicit &#39;\0&#39;, length = 4
 char s3[] = &quot;c++&quot;;  // string literals initializer, &#39;\0&#39; added automatically, length = 4;
-char s4[6] = &quot;Daniel&quot;;  // error, no space for null &#39;\0&#39;, &quot;Daniel&quot; can be viewed as list initializer {&#39;D&#39;, &#39;a&#39;, &#39;n&#39;, &#39;i&#39;, &#39;e&#39;, &#39;l&#39;}
+char s4[6] = &quot;Daniel&quot;;  // error, no space for null &#39;\0&#39;, &quot;Daniel&quot; can be viewed as a list initializer {&#39;D&#39;, &#39;a&#39;, &#39;n&#39;, &#39;i&#39;, &#39;e&#39;, &#39;l&#39;}
 char s5 = s3; // error, initialization with &quot;{...}&quot; expected for aggregate object
 char s6[4];
 s6 = s3;  // error, s6 is a constant
@@ -531,17 +536,17 @@ int *(&amp;a)[10];  // ok, a is a reference to an array of ten pointers
 <ul>
 <li>如果<code>dimension == n</code>，那么数组中每个element的值等于<code>list initializer</code>中每个element对应的值；</li>
 <li>如果<code>dimension &gt; n</code>，那么数组中前<code>n</code>个elements的值等于<code>list initializer</code>中每个element对应的值，<strong>数组中剩下的elements（即position大于<code>n</code>的elements）都被置为0</strong>。</li>
-<li>如果<code>dimension &lt; n</code>，那么编译错误。 </li>
+<li>如果<code>dimension &lt; n</code>，那么编译错误（C++中，C中是可能编译通过的）。 </li>
 </ul>
 <blockquote>
 <p><strong>Tips:</strong></p>
 <p>可以使用<code>int a[100] = {0}</code>的形式将局部数组快速初始化为0。<br>因为对于<code>list initializer</code>，其会将<code>list</code>中与<code>array</code>对应的element进行赋值（即第<code>a</code>中的第一个element被<code>list</code>中的第一个元素初始化为0），<strong>并且将后续的element的值置为0</strong>（<code>a</code>中的其余elements被默认初始化为0）。但是这不能将数组所有elements都初始化为非0值，例如上例中的<code>a7[10]</code>，只有第一个element为1，其余为0。实际上，可以直接使用<code>int a[100] = {}</code>初始化所有元素为0，即list中不提供任何element，所有元素都会被默认初始化为0。</p>
 </blockquote>
-<p>另外，还需要注意的就是对于<code>char</code>类型的数组，除了<code>list initializer</code>，还可以直接使用<code>string literal</code>进行初始化。但是需要注意的是<strong><code>list initializer</code>初始化时不会在末尾加上结束符<code>&#39;\0&#39;</code>，<code>string literal</code>初始化时则会自动在末尾加上结束符<code>&#39;\0&#39;</code></strong>。</p>
-<p>同时，<strong>一个数组不能被另一个数组初始化</strong>。例如<code>s5</code>不能被<code>s3</code>初始化，因为<code>initializer</code>必须要求是一个<code>aggregate object</code>。并且，<strong>一个数组也不能被重新赋值</strong>，因为<code>array</code>本身是一个常量，数组名可以看作是一个<code>char const *</code>的指向首地址的指针。因此，一旦数组被初始化过后，便不能在被赋值。这也是为什么<code>initialized array</code>不能被<code>string literal</code>赋值。</p>
-<p>最后，不存在引用数组，即数组中的element不能是<code>reference</code>，因为<code>reference</code>本身不是object，但是数组是盛放object的容器。对于<code>int *(&amp;a)[10]</code>这类比较复杂的定义，通常解析的顺序为<code>由里到外，由右到左</code>。例如，此时<code>a</code>首先是一个<code>reference</code>，这个引用refer to一个size=10的数组，这个数组有10个pointers元素，每个指针指向一个int类型。</p>
+<p>另外，还需要注意的就是对于<code>char</code>类型的数组，除了<code>list initializer</code>，还可以直接使用<code>string literal</code>进行初始化。但是需要注意的是<strong><code>list initializer</code>初始化时不会在末尾加上结束符<code>&#39;\0&#39;</code>，<code>string literal</code>初始化时则会自动在末尾加上结束符<code>&#39;\0&#39;</code></strong>。这是因为<code>string literal</code>作为<code>initializer</code>时会被转换为以<code>null</code>结尾的<code>character array</code>。 </p>
+<p>同时，<strong>一个数组不能被另一个数组初始化</strong>。例如<code>s5</code>不能被<code>s3</code>初始化，因为<code>initializer</code>必须要求是一个<code>aggregate object</code>。并且，<strong>一个数组也不能被重新赋值</strong>，因为<code>array</code>本身是一个常量，数组名可以看作是一个<code>char const *</code>的指向首元素的指针。因此，一旦数组被初始化过后，便不能在被赋值。这也是为什么已经被定义过的<code>array</code>不能再次被<code>string literal</code>赋值。</p>
+<p>最后，不存在引用数组，即数组中的element不能是<code>reference</code>，因为<code>reference</code>本身不是object，但是数组是盛放object的容器。对于<code>int *(&amp;a)[10]</code>这类比较复杂的定义，通常解析的顺序为<code>由里到外，由右到左</code>。例如，此时<code>a</code>首先是一个<code>reference</code>，这个引用refer to一个size=10的数组，这个数组有10个pointer elements，每个指针指向一个int类型。</p>
 <h2 id="Accessing-the-elements-of-an-array"><a href="#Accessing-the-elements-of-an-array" class="headerlink" title="Accessing the elements of an array"></a>Accessing the elements of an <code>array</code></h2><p>对于<code>built-in array</code>，我们有三种方法来处理数组内部的elements：<code>range-for</code>和<code>subscript</code>和<code>pointer（iterator）</code>。其中<code>range-for</code>适用于从头到尾遍历数组内的所有元素，而不需要我们自己管理<code>index</code>（因为<code>dimension</code>本身就是数组的一部分，所有系统知道数组的<code>dimension</code>）；<code>subscript</code>则和<code>vector</code>的<code>subscript</code>类似，可以实现<code>random access</code>。</p>
-<p>为了说明如何使用<code>pointer</code>来遍历数组，我们需要先说明指针和数组的关系。在C++中，指针（pointers）和数组（arrays）是很容易混淆的概念。实际上，在大部分情况下，compiler会<strong>将数组object转换为一个指向数组第一个元素的指针</strong>。例如，如果使用<code>auto</code>对数组进行推断：</p>
+<p>为了说明如何使用<code>pointer</code>来遍历数组，我们需要先说明指针和数组的关系。在C++中，指针（pointers）和数组（arrays）是很容易混淆的概念。实际上，在大部分情况下，compiler会<strong>将数组object转换为一个指向数组第一个元素的<code>Top-level</code>指针</strong>。例如，如果使用<code>auto</code>对数组进行推断：</p>
 <pre><code class="c">int a[3] = {0,1,2};
 auto pa(a); // pa is an int* that points to the first element in a
 // equivalent to :
@@ -556,7 +561,7 @@ int *e = &amp;a[10];  // e points to the element which past the last element in 
 for(int *p = b; p!=e; ++p)
   cout&lt;&lt; *p &lt;&lt;endl;
 </code></pre>
-<p>上例中，其实与<code>vector</code>中的迭代器遍历方法类似，<code>b</code>通过数组名会被转化为指向数组内第一个元素的指针的特性得到一个指向数组第一个元素的指针；<code>e</code>通过指针的加法得到一个指向最后一个元素的下一个元素的指针（<code>off-the-end pointer</code>）。至此，我们实现了通过指针（迭代器）遍历数组的方法。需要注意的是<code>off-the-end pointer</code>实际上并不指向数组中任何<code>element</code>，因此<strong>不能对<code>off-the-end pointer</code>进行dereference操作和increment等操作</strong>。只能通过<code>address-of operation &#39;&amp;&#39;</code>对其进行取地址操作。</p>
+<p>上例中，其实与<code>vector</code>中的迭代器遍历方法类似，<code>b</code>通过数组名会被转化为指向数组内第一个元素的指针的特性得到一个指向数组第一个元素的指针；<code>e</code>通过指针与整形的运算得到一个指向最后一个元素的下一个元素的指针（<code>off-the-end pointer</code>）。至此，我们实现了通过指针（迭代器）遍历数组的方法。需要注意的是<code>off-the-end pointer</code>实际上并不指向数组中任何<code>element</code>，因此<strong>不能对<code>off-the-end pointer</code>进行dereference操作和increment等操作</strong>。只能通过<code>address-of operation &#39;&amp;&#39;</code>对其进行取地址操作。</p>
 <p>另外，尽管上述方法可以得到指向首元素的指针和<code>off-the-end</code>指针，但是并不是很直观。C++11在<code>iterator.h</code>中提供了两个方法来更方便地获取两个所需的指针：</p>
 <pre><code class="c">int a[10] = {0,1,2,3,4,5,6,7,8,9};
 int *b = begin(a);  // takes argument 
@@ -564,7 +569,7 @@ int *e = end(a);  // takes argument
 for(int *p=b; p!=e; ++p)
   cout&lt;&lt; *p &lt;&lt;endl;
 </code></pre>
-<p>这两个方法并不是container里的成员函数，而是定义在<code>iterator.h</code>里的方法。因此注意这两个方法需要传入这个数组作为参数。</p>
+<p>这两个方法并不是<code>container</code>里的成员函数，而是定义在<code>iterator.h</code>里的方法。因此注意这两个方法需要传入这个数组作为参数。</p>
 <p>利用指针作为<code>iterator</code>来遍历数组的方法依赖于指针的算术意义。实际上，在<a href="https://www.hellscript.cc/2019/11/29/subposts_cppPrimer/CPN-3-4-Iterator/">iterator</a>中我们介绍了C风格的指针实际上是一种<code>random access iterator</code>，因此在那篇文章中介绍的<code>iterator arithmetic</code>同样适用于<code>pointer arithmetic</code>。例如，<strong>在同一个数组中</strong>比较两个指针的大小实际上是比较两个指针所指向的element在数组中的位置的大小。</p>
 <p>另外还有一点需要注意的是，与<code>vector</code>和<code>string</code>等<code>library types</code>不同的是，<code>built-in array</code>的<code>subscript</code>操作是C++语言自身的一部分，而不是在类里重载的操作符。因此，<code>array</code>的<code>subscript</code>操作并不要求<code>index</code>是<code>unsigned value</code>。但是，其同样要求<code>subscript</code>的结果必须指向数组里的一个element（或者<code>one past the end of</code>）。</p>
 <pre><code class="c">int a[10] = {0,1,2,3,4,5,6,7,8,9};
@@ -590,7 +595,7 @@ int *p;  // a pointer
 p++;  // ok
 p = a;  // p points to the first element in a
 </code></pre>
-<p>当定义一个数组<code>int a[3]</code>时，数组名<code>a</code>是数组的首地址，<strong>是一个地址，在汇编上看是一个常量。</strong>因为大部分compilers在碰到数组定义的时候都会将其相关信息（<code>dimension</code>，<code>type</code>，<code>initial_addr</code> etc.）存储在符号表中。也就是说，数组定义后其位置就固定了，因此其<strong>首地址在编译阶段是可以确定的</strong>。当每次遇到数组名<code>a</code>这个标识符时，compiler就会从符号表中取出这个<code>initial_addr</code>来代替数组名<code>a</code>。例如<code>a</code>的<code>initial_addr = 0x01</code>，那么每次碰到标识符时，例如<code>subscript</code>操作：<code>a[1]</code>会被替换为<code>*(0x01 + 1)</code>。因此，可以说在汇编层面上数组名完全被转化为了一个<code>constant</code>，即固定的值。这也是为什么不能对数组名<code>a</code>进行自加自减操作。详细<a href="http://www.spongeliu.com/28.html" target="_blank" rel="noopener">here</a>。但是，对于指针<code>p</code>，其本身是一个变量，是一个<code>object</code>，它的值存储在<code>&amp;p</code>的地址（即<code>p</code>本身的地址）上。<strong><code>p</code>的值在编译阶段是不能确定的，</strong>所以其可以进行自加自减操作。</p>
+<p>当定义一个数组<code>int a[3]</code>时，数组名<code>a</code>是数组的首地址，<strong>是一个地址，在汇编层面上看是一个常量。</strong>因为大部分compilers在碰到数组定义的时候都会将其相关信息（<code>dimension</code>，<code>type</code>，<code>initial_addr</code> etc.）存储在符号表中。也就是说，数组定义后其位置就固定了，因此其<strong>首地址在编译阶段是可以确定的</strong>。当每次遇到数组名<code>a</code>这个标识符时，compiler就会从符号表中取出这个<code>initial_addr</code>来代替数组名<code>a</code>。例如<code>a</code>的<code>initial_addr = 0x01</code>，那么每次碰到标识符时，例如<code>subscript</code>操作：<code>a[1]</code>会被替换为<code>*(0x01 + 1)</code>。因此，可以说在汇编层面上数组名完全被转化为了一个<code>constant</code>，即固定的值。这也是为什么不能对数组名<code>a</code>进行自加自减操作。详细<a href="http://www.spongeliu.com/28.html" target="_blank" rel="noopener">here</a>。但是，对于指针<code>p</code>，其本身是一个变量，是一个<code>object</code>，它的值存储在<code>&amp;p</code>的地址（即<code>p</code>本身的地址）上。<strong><code>p</code>的值在编译阶段是不能确定的，</strong>所以其可以进行自加自减操作。</p>
 <p>因为这个原因，当我们进行<code>subscript</code>操作（e.g. <code>a[1]</code>）时，只需要访问内存一次：因为<code>a</code>是常量，只需要从符号表中取出<code>a</code>的值进行<code>+1</code>的操作后，从内存中取出相应位置的element。但是<code>*(p+1)</code>则需要访问内存两次：先从内存中<code>&amp;p</code>（i.e. <code>p</code>本身的地址）这个地址中取出<code>p</code>的值（i.e. <code>&amp;a[0]</code>），然后根据<code>&amp;a[0]</code>的地址从内存中取出相应位置的element。</p>
 <p>另外，之前也说到过，在大部分情况下，<code>array</code>会被compiler转换为指向数组首元素的<code>top-level pointer</code>。但是，还是存在几种特殊情况，C11 standard (ISO/IEC 9899:2011):  6.7.6.2 Array declarators (p: 130-132)规定了：</p>
 <p>Any <a href="https://link.zhihu.com/?target=https%3A//en.cppreference.com/w/c/language/value_category" target="_blank" rel="noopener">lvalue expression</a> of array type, when used in any context other than </p>
@@ -643,7 +648,7 @@ p = a;  // p points to the first element in a
     <p><span class="copy-title">文章字数:</span><span class="post-count">3.6k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
     <p><span class="copy-title">发布时间:</span>2019-12-08, 12:40:29</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-09, 13:50:36</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-10, 14:11:35</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/08/subposts_cppPrimer/CPN-3-5-Array/" title="C++Primer 3.5: Array">www.hellscript.cc/2019/12/08/subposts_cppPrimer/CPN-3-5-Array/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
