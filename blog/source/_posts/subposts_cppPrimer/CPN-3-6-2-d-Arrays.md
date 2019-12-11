@@ -97,9 +97,36 @@ int main(int argc, char* argv[]){
 
 上例中，如果把`void print2d(int **a)`函数改为`void print2d(int (*)[3])`，那么可以得到正确的结果。另外，这个例子也可以看出，局部的二维数组是**在栈上的一块连续的内存**。因为线程的栈上的空间有限（一般默认为1M），所以我们也可以使用`内存动态分配`的方法在堆上模拟创建二维数组。
 
+关于数组指针和二级指针的区别，我们还可以在看一个例子：
+
+```c
+	int a[3][3] = {{1,2,3}, {4,5,6}, {7,8,9}};
+	int **pp;
+	int (*pa)[3] = a;  // use 2-d array a as a initializer, must specify the lower dimension
+	cout<<sizeof(pp)<<endl;  // 8, a pointer to pointer
+	cout<<sizeof(pa)<<endl;  // 8, a pointer to array
+	cout<<sizeof(a)<<endl;   // 36, now a is a 2-d array instead of a pointer
+
+	pp = (int **)a;  // convert (*)[3] to **
+	cout<<a<<endl;  // 0x7ffeeb806690
+	cout<<a+1<<endl; // 0x7ffeeb80669c
+	cout<<**a<<endl;  // the first element 1
+	cout<<pp<<endl;  // 0x7ffeeb806690
+	cout<<pp+1<<endl;  // 0x7ffeeb806698
+	cout<<**pp<<endl;  // segmentation fault
+```
+
+从上例中可以看到，不管是数组指针`int (*pa)[3]`还是二级指针`int **p`，**他们都是一个指针，**其`sizeof`都为8。但是对于`sizeof(a)`，根据之前的解释，数组在`sizeof`操作的时候并不会被转化为指向首元素的指针，所以此时得到的结果是整个数组的size。但是当我们使用`a`来初始化一个数组指针的时候，此时数组指针的`dimension`一定要与该数组的较低一个`dimension`相匹配。详细来说，`int (*pa)[] = a`在`icc`下并不能编译通过，因为`(*)[]`和`(*)[3]`也被编译器认为不是同一种类型。实际上，`(*)[3]`提供了更多的信息给编译器，它说明了指针`pa`指向的数组的类型是`int [3]`。所以，如果想要利用一个指针来access二维数组内的值，那这个指针必须是和`a`一样的类型，也就是`int (*pa)[3]`。这样就可以通过这个数组指针`pa`来获取数组内部的元素，例如`*(*(pa+1)+2)`得到的结果就是`6`。注意此时并没有使用`a`转换而来的指针来获取数组内部元素。
+
+再看，如果我们强制将`a`转换为一个二级指针`pp`，这样虽然其`a`和`pp`的值（即所存放的地址）都是一样的（都是数组首地址），但是会导致编译器解析这段内存失败（寻址错误）。因为`a`和`pp`的值都是这个数组的首地址，所以这段内存应该按照定义这个数组`a`的方式解析，即第一个元素应该是一个`int [3]`的数组（因为是`int [3][3]`的二维数组），其地址为`0x7ffeeb806690`；第二个元素是另一个`int [3]`的数组，其地址是`0x7ffeeb80669c`...此时如果是通过数组指针`a`，即`(*)[3]`来寻址，将会是正确的解析结果。但是如果是通过被强转过来的二级指针`pp`进行寻址，其第一个元素的地址是`0x7ffeeb806690`，但是第二个元素的地址是`0x7ffeeb806698`，并不是正确的解析结果，所以会导致`segmentation fault`。这是因为指针的大小是固定的，即`sizeof(pointer) = 8`。所以通过二级指针来解析这段内存的话，第二个元素的地址会是`0x7ffeeb806690+8`。但是实际上这段内存的正确解析应该是第二个元素的地址为`0x7ffeeb806690+12`，因为`sizeof(int [3]) = 12`。
+
+>**Conclusions:**
+>
+>数组指针是数组指针，二级指针是二级指针。两者是不同的东西，不能混用。即使有时候他们两保存了相同的地址，但是因为类型不同，其解析也不一样。
+
 ## Memory Dynamic Allocation for 2-d Array
 
-
+我们已经知道，在C/C++中并不存在真正的二维数组，而是数组的数组。所以，其实除了使用数组的数组的方法，我们也可以通过动态分配内存的方式实现二维数组。
 
 ## Initializing the Elements of a Multidimensional Array
 
