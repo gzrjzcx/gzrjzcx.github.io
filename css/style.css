@@ -1498,6 +1498,60 @@ div.ac > ul > li:before,
 .post .pjax article p {
   margin: 0 0 16px;
 }
+.post .pjax article .colorquote {
+  position: relative;
+  padding: 0.1em 1.5em;
+  color: #4a4a4a;
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+.post .pjax article .colorquote:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: -14.5px;
+  margin-top: -12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  background-size: 16px 16px;
+  background-position: 4px 4px;
+  background-repeat: no-repeat;
+}
+.post .pjax article .colorquote.info {
+  border-color: #209cee;
+  background-color: #def0fd;
+}
+.post .pjax article .colorquote.info:before {
+  background-color: #209cee;
+  background-image: url("../../img/info.svg");
+}
+.post .pjax article .colorquote.success {
+  border-color: #23d160;
+  background-color: #cbf6da;
+}
+.post .pjax article .colorquote.success:before {
+  background-color: #23d160;
+  background-image: url("../../img/check.svg");
+}
+.post .pjax article .colorquote.warning {
+  border-color: #ffdd57;
+  background-color: #fff6d1;
+}
+.post .pjax article .colorquote.warning:before {
+  background-color: #ffdd57;
+  background-image: url("../../img/question.svg");
+}
+.post .pjax article .colorquote.danger {
+  border-color: #ff3860;
+  background-color: #ffb3c2;
+}
+.post .pjax article .colorquote.danger:before {
+  background-color: #ff3860;
+  background-image: url("../../img/alert.svg");
+}
 .post .pjax article .inner-toc {
   border: #e2dede solid 1px;
   border-radius: 10px;

@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>struct VS. class | Alex&#39;s Epitaph</title>
+  <title>Memory Dynamic Allocation for 2-d Array | Alex&#39;s Epitaph</title>
   <meta name="keywords" content=" c ">
-  <meta name="description" content="struct VS. class | Alex&#39;s Epitaph">
+  <meta name="description" content="Memory Dynamic Allocation for 2-d Array | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -432,9 +432,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_c/struct-VS-class" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_c/Memory-Dynamic-Allocation-for-2-d-Array" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">struct VS. class</h1>
+        <h1 class="article-title">Memory Dynamic Allocation for 2-d Array</h1>
     
     <div class="article-meta">
         
@@ -456,12 +456,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-12-11 12:57:27">2019-02-23 01:03</time>
+        创建时间:<time class="date" title="更新时间: 2019-12-11 12:57:27">2019-12-11 16:37</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:236</span>
+        <span>字数:16</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -480,7 +480,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-struct-Vs-class"><span class="toc-text">C++: struct Vs. class</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Accessibility"><span class="toc-text">Accessibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#When-to-use"><span class="toc-text">When to use:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-struct-as-lambda-function"><span class="toc-text">Using struct as lambda function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Constructor"><span class="toc-text">Constructor</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Memory-Dynamic-Allocation-for-2-d-Array"><span class="toc-text">Memory Dynamic Allocation for 2-d Array</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -496,38 +496,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-struct-Vs-class"><a href="#C-struct-Vs-class" class="headerlink" title="C++: struct Vs. class"></a>C++: <code>struct</code> Vs. <code>class</code></h1><p>Firstly, in <code>C++</code>, <strong>Both <code>class</code> and <code>struct</code> declare a class</strong>. The <code>struct</code> is intended for backward compatibility with <code>C</code>(different with <code>C</code>, because it is a class).</p>
-<h2 id="Accessibility"><a href="#Accessibility" class="headerlink" title="Accessibility"></a>Accessibility</h2><ul>
-<li><code>struct:</code> have default <strong><code>public</code></strong> members and bases. It means when inheriting, <code>struct</code> defaults to <code>public</code> inheritance.</li>
-<li><code>class:</code> have default <strong><code>private</code></strong> members and bases. It means when inheriting, <code>class</code> defaults to <code>private</code> inheritance.</li>
-</ul>
-<p>Both directives allows a mixture of <code>public</code>, <code>protected</code> and <code>private</code> data and member functions.<br>In fact, two formats below are absolutely equivalent in every way except their name:</p>
-<pre><code class="c">struct Foo
-{
-    int x;
-};
-
-class Bar
-{
-    public:
-        int x;
-};
-</code></pre>
-<h2 id="When-to-use"><a href="#When-to-use" class="headerlink" title="When to use:"></a>When to use:</h2><ul>
-<li>If we want to use structs as plain-old-data(POD) structures without any class-like features, then we need to use <code>struct</code>. <strong>Note</strong>, the <code>POD</code> means that is a class (whether defined with the keyword struct or the keyword class) without <code>constructors</code>, <code>destructors</code> and <code>virtual members functions</code>.</li>
-<li>Then other situations is suitable to use <code>class</code>.</li>
-</ul>
-<h2 id="Using-struct-as-lambda-function"><a href="#Using-struct-as-lambda-function" class="headerlink" title="Using struct as lambda function"></a>Using <code>struct</code> as <code>lambda</code> function</h2><pre><code class="c">struct Compare {bool operator() {...}};
-std::sort(collection.begin(), collection.end(), Compare());
-</code></pre>
-<p>However, the <code>lambda</code> function has been supported in <code>C++11</code> by all the major compilers.</p>
-<h2 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h2><p>Since both directives are <code>class</code>, both are able to have <code>constructor</code> and <code>destructor</code>.<br>But some people would like to stick with the <code>struct</code> keyword for classes without member functions, because the resulting definition “looks like” a simple structure from C.</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a href="https://stackoverflow.com/questions/54585/when-should-you-use-a-class-vs-a-struct-in-c/54596#54596" target="_blank" rel="noopener">when to use</a></li>
-<li><a href="https://stackoverflow.com/questions/146452/what-are-pod-types-in-c" target="_blank" rel="noopener">POD</a></li>
-<li><a href="https://stackoverflow.com/questions/1127396/struct-constructor-in-c" target="_blank" rel="noopener">Constructor</a></li>
-<li><a href="https://stackoverflow.com/questions/32719880/why-is-there-not-an-stdis-struct-type-trait/34108140#34108140" target="_blank" rel="noopener">overflow</a></li>
-</ul>
+        <h1 id="Memory-Dynamic-Allocation-for-2-d-Array"><a href="#Memory-Dynamic-Allocation-for-2-d-Array" class="headerlink" title="Memory Dynamic Allocation for 2-d Array"></a>Memory Dynamic Allocation for 2-d Array</h1><blockquote class="colorquote info"><p>Hello World.</p>
+</blockquote>
+<blockquote class="colorquote success"><p>Hello World.</p>
+</blockquote>
+<blockquote class="colorquote warning"><p>Hello World.</p>
+</blockquote>
+<blockquote class="colorquote danger"><p>Hello World.</p>
+</blockquote>
+<blockquote>
+<p>Block quote</p>
+</blockquote>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -541,12 +520,12 @@ std::sort(collection.begin(), collection.end(), Compare());
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>struct VS. class</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">236</span></p>
+    <p><span class="copy-title">文章标题:</span>Memory Dynamic Allocation for 2-d Array</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">16</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-02-23, 01:03:10</p>
+    <p><span class="copy-title">发布时间:</span>2019-12-11, 16:37:49</p>
     <p><span class="copy-title">最后更新:</span>2019-12-11, 12:57:27</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/02/23/subposts_c/struct-VS-class/" title="struct VS. class">www.hellscript.cc/2019/02/23/subposts_c/struct-VS-class/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/11/subposts_c/Memory-Dynamic-Allocation-for-2-d-Array/" title="Memory Dynamic Allocation for 2-d Array">www.hellscript.cc/2019/12/11/subposts_c/Memory-Dynamic-Allocation-for-2-d-Array/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
