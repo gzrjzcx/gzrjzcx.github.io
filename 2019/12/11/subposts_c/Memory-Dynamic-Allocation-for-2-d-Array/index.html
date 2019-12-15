@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
 <meta property="og:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-11T12:57:27.092Z">
+<meta property="og:updated_time" content="2019-12-15T13:04:46.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Alex&#39;s Epitaph">
 <meta name="twitter:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
@@ -158,7 +158,7 @@
     <div><a class="about  hasFriend  site_url" href="/about">About</a><a style="width: 50%" class="friends">Friends</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="39">
-<input type="hidden" id="yelog_site_word_count" value="43.3k">
+<input type="hidden" id="yelog_site_word_count" value="45k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -456,12 +456,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-12-11 12:57:27">2019-12-11 16:37</time>
+        创建时间:<time class="date" title="更新时间: 2019-12-15 13:04:46">2019-12-11 16:37</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:16</span>
+        <span>字数:1.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -480,7 +480,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Memory-Dynamic-Allocation-for-2-d-Array"><span class="toc-text">Memory Dynamic Allocation for 2-d Array</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Memory-Dynamic-Allocation-for-2-d-Array"><span class="toc-text">Memory Dynamic Allocation for 2-d Array</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过二级指针实现内存不连续的二维数组："><span class="toc-text">通过二级指针实现内存不连续的二维数组：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过二级指针实现内存连续的二维数组："><span class="toc-text">通过二级指针实现内存连续的二维数组：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过一维数组来实现二维数组"><span class="toc-text">通过一维数组来实现二维数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过一个数组指针来实现二维数组"><span class="toc-text">通过一个数组指针来实现二维数组</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -496,17 +496,113 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Memory-Dynamic-Allocation-for-2-d-Array"><a href="#Memory-Dynamic-Allocation-for-2-d-Array" class="headerlink" title="Memory Dynamic Allocation for 2-d Array"></a>Memory Dynamic Allocation for 2-d Array</h1><blockquote class="colorquote info"><p>Hello World.</p>
+        <h1 id="Memory-Dynamic-Allocation-for-2-d-Array"><a href="#Memory-Dynamic-Allocation-for-2-d-Array" class="headerlink" title="Memory Dynamic Allocation for 2-d Array"></a>Memory Dynamic Allocation for 2-d Array</h1><blockquote class="colorquote info"><p>因为在C++中并不存在真正的<a href="https://www.hellscript.cc/2019/12/10/subposts_cppPrimer/CPN-3-6-2-d-Arrays/">2-d array</a>，所以往往通过不同的方法来模拟实现二维数组。又因为栈上的空间有限，所以实际上我们通常通过以下4种方法在堆上动态分配内存来模拟实现二维数组。</p>
 </blockquote>
-<blockquote class="colorquote success"><p>Hello World.</p>
-</blockquote>
-<blockquote class="colorquote warning"><p>Hello World.</p>
-</blockquote>
-<blockquote class="colorquote danger"><p>Hello World.</p>
-</blockquote>
-<blockquote>
-<p>Block quote</p>
-</blockquote>
+<p>一般来说，我们主要通过不同的<code>操纵内存的方式</code>是实现二维数组。例如，我们可以通过一个<code>二级指针</code>来实现实现内存空间连续的二维数组；也可以通过一个<code>二级指针</code>来实现内存空间不连续的二维数组。这只有取决于我们<code>如何分配内存空间</code>。通常，我们有以下四种分配内存空间的方式，下面四种方法都以三行三列（<code>ROW = 3, COL = 3</code>）的二级数组为例：</p>
+<h2 id="通过二级指针实现内存不连续的二维数组："><a href="#通过二级指针实现内存不连续的二维数组：" class="headerlink" title="通过二级指针实现内存不连续的二维数组："></a>通过<code>二级指针</code>实现<code>内存不连续</code>的二维数组：</h2><pre><code class="c">void print2d(int **a)
+{
+    for(int i=0; i&lt;ROW; i++)
+    {
+        for(int j=0; j&lt;COL; j++)
+            printf(&quot;%p &quot;, *(a+i)+j);
+        printf(&quot;\n&quot;);
+    }
+}
+
+void malloc2d_1(int **p)
+{
+    p = (int **)malloc(ROW * sizeof(int *));
+    for(int i=0; i&lt;ROW; i++)
+        *(p+i) = (int *)malloc(COL * sizeof(int));
+
+    print2d(p);
+
+    for(int i=0; i&lt;ROW; i++)
+        free(*(p+i));
+    free(p);    
+}
+
+int main(int argc, char* argv[]){
+    int **p = NULL;
+    malloc2d_1(p);
+    p = NULL;
+}
+/*  results : 
+*(p):   0x7f8f59c00630 0x7f8f59c00634 0x7f8f59c00638 
+*(p+1): 0x7f8f59c00690 0x7f8f59c00694 0x7f8f59c00698 
+*(p+2): 0x7f8f59c006a0 0x7f8f59c006a4 0x7f8f59c006a8  */
+</code></pre>
+<p>因为数组在实际使用中基本上是通过被转换为<code>指向首元素地址</code>的指针来进行<code>subscript</code>等操作，所以我们可以通过一个二级指针来模拟实现二维数组。如上例中，我们定义了一个<code>二级指针 p</code>，并且首先给它分配了<code>3个指针大小</code>的内存空间，它们的值则分别是指向第一维<code>row</code>的三个elements（因为<code>COL=3</code>）的地址。然后在用一个<code>for loop</code>，分别给<code>*(p), *(p+1), *(p+2)</code>分配<code>3个int大小的内存空间</code>，用来存储相应的<code>int</code>数据。总的来说，就是先给一个二级指针分配<code>row</code>个指针大小的空间作为分别指向每个<code>element（数组）</code>的首地址的指针，然后在分别给这每个<code>element（数组）</code>分配<code>col</code>个<code>int</code>大小的内存空间来存储相应的数据。注意此时<code>p</code>是一个二级指针，并不是数组，<code>sizeof(p), sizeof(*p), sizeof(*(p+1))...</code>结果都是8，因为他们都只是一个指针，而不是数组，<strong>这里只是利用指针来模拟数组，并没有出现真正的<code>array</code> type</strong>。同样的，此时如果对<code>p</code>取地址，那么得到的将是这个二级指针的地址，其值与<code>p</code>并不一样。</p>
+<p>另外需要注意这种分配内存的方式得到的<strong>每个“一维数组”内存地址并不是连续的</strong>。从输出的结果可以看到，<code>*p</code>的第三个element的地址是<code>0x7f8f59c00638</code>，但是<code>*(p+1)</code>第一个element的地址则变成了<code>0x7f8f59c00690</code>。换句话说，这种方式只保证了每个一维数组中的元素是连续存储的，但是每个一维数组间并不是连续存储。这从实际分配内存的代码上也可以看到，其是通过在<code>for loop</code>里面每次都重新对每一行数组进行一次内存分配，而不是一次直接将所有的elements所需内存分配好。因此，在释放这段内存的时候也需要先用<code>for loop</code>将每一行数组先释放，最后在释放这个二级指针所指向的内存。其内存方式如图：</p>
+<p><img src="https://raw.githubusercontent.com/gzrjzcx/AlexsImageHosting/master/images/2019-12-15-20-26-05-IMG_0009.PNG.png" alt="IMG_0009.PNG"></p>
+<p>从图中可以看到，其总共调用了4次<code>malloc</code>，每次<code>malloc</code>都会返回一个指向该段内存首地址的指针。因此，此时<code>memory 2</code>，<code>memory 3</code>和<code>memory 4</code>都<strong>不是连续的内存空间</strong>，这也是这种内存分配方式最大的特点。注意图中的灰色方块指的是地址（即指针的值），而不是这个指针所指向地址的值（即解引用得到的<code>underlying object</code>）。例如，<code>memory 2</code>中的指针<code>*(p+1)</code>的值是<code>0x7f8f59c00690</code>，对这个指针解引用则会得到<code>*(*p+1)</code>，即<code>p[1][0]</code>。</p>
+<h2 id="通过二级指针实现内存连续的二维数组："><a href="#通过二级指针实现内存连续的二维数组：" class="headerlink" title="通过二级指针实现内存连续的二维数组："></a>通过<code>二级指针</code>实现<code>内存连续</code>的二维数组：</h2><pre><code class="c">void print2d(int **a)
+{
+    for(int i=0; i&lt;ROW; i++)
+    {
+        for(int j=0; j&lt;COL; j++)
+            printf(&quot;%p &quot;, *(a+i)+j);
+        printf(&quot;\n&quot;);
+    }
+}
+
+void malloc2d_2(int **p)
+{
+    p = (int **)malloc(ROW * sizeof(int *));
+    *p = (int *)malloc(ROW * COL * sizeof(int));
+    for(int i=1; i&lt;ROW; i++)
+        *(p+i) = *(p+i-1) + COL;
+    print2d(p);
+    free(*p);
+    free(p);    
+}
+
+int main(int argc, char* argv[]){
+    int **p = NULL;
+    malloc2d_1(p);
+    p = NULL;
+}
+/*  results : 
+*p:     0x7f8f59c02a70 0x7f8f59c02a74 0x7f8f59c02a78 
+*(p+1): 0x7f8f59c02a7c 0x7f8f59c02a80 0x7f8f59c02a84 
+*(p+2): 0x7f8f59c02a88 0x7f8f59c02a8c 0x7f8f59c02a90 */
+</code></pre>
+<p>同样是使用二级指针来模拟二维数组，与上述方法不同的是使用<code>malloc</code>一次申请了<code>ROW * COL</code>大小的内存空间，而不是像之前一样每次只申请<code>COL</code>大小的内存空间，然后申请<code>ROW</code>次，所以，这样得到的是<strong>连续的内存空间</strong>。但是，这种方式还需要手动将<code>*(p+1)</code>与<code>*(p+2)</code>等后续指针指向内存中相应的位置，这样才能正确得到二维数组。</p>
+<p><img src="https://raw.githubusercontent.com/gzrjzcx/AlexsImageHosting/master/images/2019-12-15-20-26-42-IMG_0008.PNG.png" alt="IMG_0008.PNG"></p>
+<h2 id="通过一维数组来实现二维数组"><a href="#通过一维数组来实现二维数组" class="headerlink" title="通过一维数组来实现二维数组"></a>通过<code>一维数组</code>来实现<code>二维数组</code></h2><p>除了使用二级指针，我们也可以直接使用一个一维数组（或一级指针）来模拟实现二维数组。这是因为， 数组的<strong>内存空间是连续的</strong>，所以我们只要手动使用两个<code>index</code>即可实现二维数组。但是因为栈上的空间有限，所以通常我们会在堆上申请空间。</p>
+<pre><code class="c">void malloc2d_3(int *p)
+{
+    p = (int *)malloc(ROW * COL * sizeof(int));
+    for(int i=0; i&lt;ROW; i++)
+        for(int j=0; j&lt;COL; j++)
+            printf(&quot;%p\n&quot;, p+(i*COL+j));
+    free(p);
+}
+
+int main(int argc, char* argv[]){
+    int *p = NULL;
+    malloc2d_3(p);
+    p = NULL;
+}
+</code></pre>
+<p>这种方法比较简单，就是通过<code>malloc</code>一次性申请<code>ROW * COL</code>大小的内存空间，然后通过<code>i</code>和<code>j</code>两个<code>index</code>来拿到相应位置的element。很明显，这样的二维数组其内存空间也是连续的。</p>
+<h2 id="通过一个数组指针来实现二维数组"><a href="#通过一个数组指针来实现二维数组" class="headerlink" title="通过一个数组指针来实现二维数组"></a>通过一个<code>数组指针</code>来实现<code>二维数组</code></h2><p>我们也可以采用真正的二维数组（<code>数组的数组</code>）的方式来实现动态内存分配的二维数组，即通过一个数组指针来实现。</p>
+<pre><code class="c">void malloc2d_4(int (*p)[ROW])
+{
+    p = (int (*)[ROW])malloc(ROW * COL * sizeof(int));
+    for(int i=0; i&lt;ROW; i++)
+        for(int j=0; j&lt;COL; j++)
+            printf(&quot;%p\n&quot;, *(p+i)+j);
+    free(p);
+}
+
+int main(int argc, char* argv[]){
+    int (*p)[ROW] = NULL;
+    malloc2d_4(p);
+    p = NULL;
+}
+</code></pre>
+<p>这其实和在栈上直接使用<code>数组的数组</code>的方式来实现二维数组一样，只不过现在是在堆上开辟了内存空间。因为其也是使用<code>malloc</code>一次直接申请了<code>ROW * COL</code>大小的内存空间，所以其也是内存连续的二维数组。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -521,10 +617,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>Memory Dynamic Allocation for 2-d Array</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">16</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.7k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
     <p><span class="copy-title">发布时间:</span>2019-12-11, 16:37:49</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-11, 12:57:27</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-15, 13:04:46</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/11/subposts_c/Memory-Dynamic-Allocation-for-2-d-Array/" title="Memory Dynamic Allocation for 2-d Array">www.hellscript.cc/2019/12/11/subposts_c/Memory-Dynamic-Allocation-for-2-d-Array/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
