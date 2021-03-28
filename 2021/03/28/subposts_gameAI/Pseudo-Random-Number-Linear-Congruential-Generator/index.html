@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>struct VS. class | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" c ">
-  <meta name="description" content="struct VS. class | Alex&#39;s Epitaph">
+  <title>Pseudo Random Number: Linear Congruential Generator | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" GameAI ">
+  <meta name="description" content="Pseudo Random Number: Linear Congruential Generator | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -449,9 +449,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_c/struct-VS-class" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_gameAI/Pseudo-Random-Number-Linear-Congruential-Generator" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">struct VS. class</h1>
+        <h1 class="article-title">Pseudo Random Number: Linear Congruential Generator</h1>
     
     <div class="article-meta">
         
@@ -459,26 +459,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="C">C</a>
+                <a href="javascript:" data-rel="GameAI">GameAI</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">c</a>
+            <a href="javascript:" class="color2">GameAI</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2021-03-28 10:49:39">2019-02-23 01:03</time>
+        创建时间:<time class="date" title="更新时间: 2021-03-28 10:49:39">2021-03-28 15:18</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:236</span>
+        <span>字数:707</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -497,7 +497,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-struct-Vs-class"><span class="toc-text">C++: struct Vs. class</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Accessibility"><span class="toc-text">Accessibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#When-to-use"><span class="toc-text">When to use:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-struct-as-lambda-function"><span class="toc-text">Using struct as lambda function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Constructor"><span class="toc-text">Constructor</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#伪随机数：-线性同余法的应用"><span class="toc-text">伪随机数： 线性同余法的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-背景"><span class="toc-text">1. 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-线性同余法"><span class="toc-text">2. 线性同余法</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -513,38 +513,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-struct-Vs-class"><a href="#C-struct-Vs-class" class="headerlink" title="C++: struct Vs. class"></a>C++: <code>struct</code> Vs. <code>class</code></h1><p>Firstly, in <code>C++</code>, <strong>Both <code>class</code> and <code>struct</code> declare a class</strong>. The <code>struct</code> is intended for backward compatibility with <code>C</code>(different with <code>C</code>, because it is a class).</p>
-<h2 id="Accessibility"><a href="#Accessibility" class="headerlink" title="Accessibility"></a>Accessibility</h2><ul>
-<li><code>struct:</code> have default <strong><code>public</code></strong> members and bases. It means when inheriting, <code>struct</code> defaults to <code>public</code> inheritance.</li>
-<li><code>class:</code> have default <strong><code>private</code></strong> members and bases. It means when inheriting, <code>class</code> defaults to <code>private</code> inheritance.</li>
-</ul>
-<p>Both directives allows a mixture of <code>public</code>, <code>protected</code> and <code>private</code> data and member functions.<br>In fact, two formats below are absolutely equivalent in every way except their name:</p>
-<pre><code class="c">struct Foo
-{
-    int x;
-};
-
-class Bar
-{
-    public:
-        int x;
-};
-</code></pre>
-<h2 id="When-to-use"><a href="#When-to-use" class="headerlink" title="When to use:"></a>When to use:</h2><ul>
-<li>If we want to use structs as plain-old-data(POD) structures without any class-like features, then we need to use <code>struct</code>. <strong>Note</strong>, the <code>POD</code> means that is a class (whether defined with the keyword struct or the keyword class) without <code>constructors</code>, <code>destructors</code> and <code>virtual members functions</code>.</li>
-<li>Then other situations is suitable to use <code>class</code>.</li>
-</ul>
-<h2 id="Using-struct-as-lambda-function"><a href="#Using-struct-as-lambda-function" class="headerlink" title="Using struct as lambda function"></a>Using <code>struct</code> as <code>lambda</code> function</h2><pre><code class="c">struct Compare {bool operator() {...}};
-std::sort(collection.begin(), collection.end(), Compare());
-</code></pre>
-<p>However, the <code>lambda</code> function has been supported in <code>C++11</code> by all the major compilers.</p>
-<h2 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h2><p>Since both directives are <code>class</code>, both are able to have <code>constructor</code> and <code>destructor</code>.<br>But some people would like to stick with the <code>struct</code> keyword for classes without member functions, because the resulting definition “looks like” a simple structure from C.</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a href="https://stackoverflow.com/questions/54585/when-should-you-use-a-class-vs-a-struct-in-c/54596#54596" target="_blank" rel="noopener">when to use</a></li>
-<li><a href="https://stackoverflow.com/questions/146452/what-are-pod-types-in-c" target="_blank" rel="noopener">POD</a></li>
-<li><a href="https://stackoverflow.com/questions/1127396/struct-constructor-in-c" target="_blank" rel="noopener">Constructor</a></li>
-<li><a href="https://stackoverflow.com/questions/32719880/why-is-there-not-an-stdis-struct-type-trait/34108140#34108140" target="_blank" rel="noopener">overflow</a></li>
-</ul>
+        <h1 id="伪随机数：-线性同余法的应用"><a href="#伪随机数：-线性同余法的应用" class="headerlink" title="伪随机数： 线性同余法的应用"></a>伪随机数： 线性同余法的应用</h1><h2 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h2><p>在传统游戏AI业务中，经常会用到随机数来避免机械化的行为。比如，以行为树（BehaviourDesigner）实现的AI需要使用到随机数来产生随机行为，从而避免重复动作，增加AI行为的多样性。同时，又因为帧同步的要求，需要保证在不同设备或者回放（重新跑帧逻辑）时产生的结果是一致的。所以，我们通常会选择伪随机数发生器来完成随机要求。</p>
+<p>另外，在我们项目中，对于产生的伪随机数还有一些额外要求：</p>
+<ol>
+<li>在同一帧内，不同AI个体产生的随机数结果要相互独立（i.e. 也就是A个体的随机结果和B个体的随机结果间不能存在某种关系）。这样可以避免多个AI走同一套AI逻辑时，如果所处环境很类似，会产生一样的行为的情况。视觉看上去这是多个AI出现了行为一致，很容易被看出来是AI。</li>
+<li>在同一帧内，同一AI个体多次调用随机数接口产生的随机数结果应该保持不变。这是因为我们的AI模块中会有难度设置，不同难度下需要通过一个随机概率来调节AI做出某种行为的概率。例如，低难度下AI做出进攻行为的条件应该是$A的攻击力(100)*调节概率(0.8) &gt; threshold$。此时的调节概率是随机出来的值，但是该节点可能会在一帧内执行多次，或者一帧内会有多个节点会使用到这个调节概率。所以，为了保持一帧内的结果一致，需要保证一帧内同一AI个体多次调用随机数接口时产生的结果一致。</li>
+<li>在不同帧内，同一AI个体产生的结果应该独立。这是最基本最常见的随机数的使用要求。一般来说，只要合理选择线性同余发生器的参数，则可以在其周期范围内认为其产生的结果是均匀的。</li>
+</ol>
+<h2 id="2-线性同余法"><a href="#2-线性同余法" class="headerlink" title="2. 线性同余法"></a>2. 线性同余法</h2><p>线性同余法应该是使用最多的伪随机数方法，如果能够选择合适的参数，对于一般的随机要求是足够的。其核心原理则是通过不断取模在一个模数范围内取得每次的值。只要模数足够大，且是满周期，则可以认为在这个模数范围内取得任一值的概率是相等的。其核心公式为：</p>
+<p>$$X_n = (a*X_n-1 + c) % m$$.</p>
+<p>这里我们从gcc的实现上来看：</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -558,12 +536,12 @@ std::sort(collection.begin(), collection.end(), Compare());
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>struct VS. class</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">236</span></p>
+    <p><span class="copy-title">文章标题:</span>Pseudo Random Number: Linear Congruential Generator</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">707</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-02-23, 01:03:10</p>
+    <p><span class="copy-title">发布时间:</span>2021-03-28, 15:18:12</p>
     <p><span class="copy-title">最后更新:</span>2021-03-28, 10:49:39</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/02/23/subposts_c/struct-VS-class/" title="struct VS. class">https://www.hellscript.cc/2019/02/23/subposts_c/struct-VS-class/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/03/28/subposts_gameAI/Pseudo-Random-Number-Linear-Congruential-Generator/" title="Pseudo Random Number: Linear Congruential Generator">https://www.hellscript.cc/2021/03/28/subposts_gameAI/Pseudo-Random-Number-Linear-Congruential-Generator/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
