@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>C++Primer 3.3: Vector | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" cpp ">
-  <meta name="description" content="C++Primer 3.3: Vector | Alex&#39;s Epitaph">
+  <title>星与心愿 | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" Life ">
+  <meta name="description" content="星与心愿 | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -454,9 +454,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_cppPrimer/CPN-3-3-Vector" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_life/Star-And-Wish" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">C++Primer 3.3: Vector</h1>
+        <h1 class="article-title">星与心愿</h1>
     
     <div class="article-meta">
         
@@ -464,26 +464,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="cppPrimer">cppPrimer</a>
+                <a href="javascript:" data-rel="Life">Life</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">cpp</a>
+            <a href="javascript:" class="color5">Life</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2021-04-25 06:31:34">2019-11-25 16:00</time>
+        创建时间:<time class="date" title="更新时间: 2021-04-25 06:31:34">2021-04-25 14:22</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:3k</span>
+        <span>字数:46</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -502,7 +502,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Library-vector-Type"><span class="toc-text">Library vector Type</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vector-Summary"><span class="toc-text">vector Summary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector-Definition-and-Initializition"><span class="toc-text">vector Definition and Initializition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector-Common-Operations"><span class="toc-text">vector Common Operations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector-size-type"><span class="toc-text">vector size_type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Range-for"><span class="toc-text">Range for</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#subscrit-operations"><span class="toc-text">subscrit operations</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#星-与-心-愿"><span class="toc-text">星 与 心 愿</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -518,205 +518,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Library-vector-Type"><a href="#Library-vector-Type" class="headerlink" title="Library vector Type"></a>Library <code>vector</code> Type</h1><blockquote>
-<p>a <code>vector</code> is a collection of <strong>objects</strong>, all of which have the <strong><code>same type</code></strong>.</p>
-</blockquote>
-<p>在C++中，一个<code>vector</code>就是<code>一系列相同类型的objects</code>。通常，<code>vector</code>也被称为容器(container)，因为它就像是一个容器来盛放其它objects。</p>
-<p><code>vector</code>是一个类模板（class template），因此我们在使用的时候必须要提供额外的信息来创建这个类。<code>模板（templates）</code>不是方法（function）或者类（class），而可以看作是指导compiler如何产生类或函数的<strong>指令</strong>（instructions），或者说规则。而compiler从模板中产生类或者方法的过程叫作<code>实例化（instantiation）</code>。当我们要使用一个目标来实例化类的时候，需要指明（即提供额外信息）我们想要实例化哪一种类或方法。模板是一个比较复杂的东西，我们会在之后详细说到它。</p>
-<blockquote>
-<p><strong>Tips:</strong></p>
-<ul>
-<li><code>vector</code>是一个<code>template</code>，不是一个type。但是从<code>vector</code>模板中生成的包含element type的如<code>vector&lt;int&gt;</code>则是type。</li>
-<li>因为<code>reference</code>不是object，所以<code>vector</code>并不能用来盛放<code>reference</code>。</li>
-</ul>
-</blockquote>
-<h2 id="vector-Summary"><a href="#vector-Summary" class="headerlink" title="vector Summary"></a><code>vector</code> Summary</h2><p><code>vector</code>作为一种可变长度的STL容器，其底层数据结构为<code>数组</code>。因此，<code>vector</code>也具有<code>O(1)</code>时间的快速访问效率；同时，因为其是<code>顺序存储（连续的内存空间）</code>，所以插入(insert)和删除(erase)效率都较低（<code>O(N)</code>）。</p>
-<p>相比于传统的<code>数组(array)</code>，<code>vector</code>的优势在于可以动态调整大小，其扩容规则一般以2倍扩大的方式增长。例如：</p>
-<pre><code class="c">    vector&lt;int&gt; v;
-    cout&lt;&lt;&quot;initial capacity = &quot;&lt;&lt; v.capacity()&lt;&lt;endl; 
-    cout&lt;&lt;&quot;initial size = &quot; &lt;&lt; v.size()&lt;&lt;endl;
-    cout&lt;&lt;&quot;==========&quot;&lt;&lt;endl;
-
-    for(int i=0; i&lt;5; i++)
-    {
-        v.push_back(i);
-        cout&lt;&lt;&quot;capacity = &quot; &lt;&lt; v.capacity()&lt;&lt;endl;
-        cout&lt;&lt;&quot;size = &quot;&lt;&lt;v.size()&lt;&lt;endl;
-        cout&lt;&lt;&quot;---------&quot;&lt;&lt;endl;
-    }
-
-/*  results  */
-
-initial capacity = 0
-initial size = 0
-==========
-capacity = 1
-size = 1
----------
-capacity = 2
-size = 2
----------
-capacity = 4  //  2 * 2 = 4
-size = 3
----------
-capacity = 4
-size = 4
----------
-capacity = 8  //  4 * 2 = 8
-size = 5
----------
-</code></pre>
-<p> 注意上述<code>size()</code>指的是<code>vector</code>中elements的数量，<code>capacity</code>则指的是<code>vector</code>的容量。在新建一个<code>vector</code>的时候，其初始大小<code>capacity = 0</code>，随着第一个元素<code>0</code>被push进去，其大小扩充为<code>capacity = 1</code>；随着第二个元素被push进去，其大小扩充为<code>capacity = 2</code>，随着第三个元素被push进去，其大小扩充为<code>capacity = 2*2 = 4</code>… 另外，需要注意的是其具体的扩充方式为：</p>
-<ul>
-<li>首先重新申请一个2倍大小的<code>连续内存空间</code> ；</li>
-<li>然后将原内存空间的内容<code>copy</code>过来；</li>
-<li>最后将原空间内容进行释放，将内存空间交还给OS。</li>
-</ul>
-<p>这也是为什么如果<code>vector</code>发生了扩容，那么所有的迭代器的都会失效的原因。</p>
-<p>另外，对于一般的<code>vector</code>初始化:</p>
-<pre><code class="c">vector&lt;int&gt; v;
-cout&lt;&lt;sizeof(v)&lt;&lt;endl;  // 24
-
-/*  data member of vector  */
-iterator start;  // points to the start of the used memory
-iterator finish;  //  points to the end of the used memory
-iterator end_of_storage;  // points to the end of the whole allocated continuous memory
-</code></pre>
-<p>其<code>sizeof</code>得到的结果是其自身的大小。因为<code>sizeof</code>得到的是object本身的大小，而<code>vector&lt;int&gt;</code>本身是<code>vector</code>这个<code>class template</code>的实例化，所以<code>sizeof(v)</code>得到的是这个类<code>vector&lt;int&gt;</code>创建的对象<code>v</code>本身的大小，其与compiler有关。可以看到<code>vector</code>一般有3个成员变量，每个大小为8，所以在我这icc下<code>sizeof</code>为24。</p>
-<p>另外，<strong><code>vector</code>中的elements会被存放到堆（heap）上</strong>，也就是说不管其中有多少个elements，<code>sizeof</code>的结果不会改变，具体<a href="https://blog.csdn.net/theonegis/article/details/50533770" target="_blank" rel="noopener">here</a>。即使element在栈（stack）上被创建，在<code>v.push_back()</code>的时候会调用object的copy constructor将element拷贝到堆上进行存储，并且<code>vector</code>内部通过指针来访问这个object的地址，具体<a href="https://cloud.tencent.com/developer/article/1386030" target="_blank" rel="noopener">here</a>。</p>
-<p>也就是说，<code>vector</code>中其实保存的并不是<code>object</code>本身，而是在<code>push_back()</code>时通过<code>object</code>自身的<code>copy constructor</code>将这个object拷贝到堆上（即<code>std::move</code>）<code>finish</code>迭代器（此时可以理解为指针）所指向的内存（也即是<code>vector</code>的<code>capacity</code>大小的连续内存中的一块）。这个过程涉及到了<code>vector</code>的底层实现的源码，在此不展开，有兴趣可以查看<a href="https://blog.csdn.net/cxc576502021/article/details/83020617" target="_blank" rel="noopener">here</a>。</p>
-<blockquote>
-<p><strong>Conclusions:</strong></p>
-<p>从宏观上来说，<code>vector</code>内部维护了三个iterator（此时可看作指针），来控制堆上的一块连续内存。elements被存储在堆上的这块连续内存上，vector本身则存储在栈上（默认情况下）。说objecs被存放在<code>vector</code>中只是一种从作用和效果上考虑的说法，实际上vector中并没有存放objects。</p>
-<p>所以，<code>vector</code>可以看作是通过几个迭代器（封装好就是<code>vector</code>）来操纵一个堆上的数组，只不过通常这几个迭代器在栈上，这个数组在堆上。</p>
-</blockquote>
-<h2 id="vector-Definition-and-Initializition"><a href="#vector-Definition-and-Initializition" class="headerlink" title="vector Definition and Initializition"></a><code>vector</code> Definition and Initializition</h2><p>与其他class type一样，<code>vector</code>有很多种初始化方法，同时C++11还提供了<code>list initializer</code>：</p>
-<pre><code class="c">vector&lt;int&gt; iv;  // definition, iv is an empty vector
-vector&lt;int&gt; iv2(iv);  // copy elements of iv into iv2
-vector&lt;int&gt; iv2 = iv;  // equivalent to the above
-vector&lt;string&gt; sv(iv);  // error: sv holds strings not int;
-
-/*  parentheses initializer (count, value)  */
-vector&lt;int&gt; iv3(10, -1);  // ten int elements, each initialized to -1
-vector&lt;int&gt; iv4(10);  // ten elements, each initialized to 0
-vector&lt;string&gt; sv2(10, &quot;hi!&quot;); // ten string elements, each initialized to &quot;hi!&quot;
-vector&lt;string&gt; sv3(10); // ten string elements, each initialized to empty
-
-/*  list initializer  */
-vector&lt;string&gt; sv4{&quot;a&quot;, &quot;an&quot;, &quot;the&quot;};
-// three elements, the first holds &quot;a&quot;, the second holds &quot;an&quot;, the third holds &quot;the&quot;. Must use curly braces.
-vector&lt;string&gt; sv4(&quot;a&quot;, &quot;an&quot;, &quot;the&quot;);  // error: must use {}
-
-/*  mixed curly braces initializer {} and parentheses initializer ()  */
-vector&lt;int&gt; iv5(10);  // ten elements with value 0
-vector&lt;int&gt; iv6{10};  // one element with value 10
-vector&lt;int&gt; iv7(10, 1);  // ten elements with value 1
-vector&lt;int&gt; iv8{10, 1};  // two elements with value 10 and 1
-vector&lt;string&gt; sv5{&quot;hi&quot;};  // list initialization, one element
-vector&lt;string&gt; sv5(&quot;hi&quot;);  // error: can&#39;t construct a vector from a string literal
-vector&lt;string&gt; sv6{10};  // ten elements with empty string
-vector&lt;string&gt; sv7{10, &quot;hi&quot;}  // ten elements with value &quot;hi&quot;
-
-/*  use array as initializer  */
-int a[] = {0,1,2,3,4,5};
-vector&lt;int&gt; vi(begin(a), end(a));  // vi has six elements, each is a copy of the corresponding element in array a
-vector&lt;int&gt; subVi(a+1, a+4);  // subVi has three elements, from a[1] to a[3]
-</code></pre>
-<p>首先，如果使用一个<code>vector</code>来初始化另一个<code>vector</code>，不管是<code>copy initialization</code>还是<code>direct initialization</code>，其含义都是<strong>拷贝initializer中所有的elements到新创建的这个vector中</strong>。注意新vector中的每一个元素都是initializer中对应的每一个元素的<code>copy</code>，而不是<code>reference</code>。</p>
-<p>因为C++11中新增了<code>list initializer</code>，即使用curly braces<code>{...}</code>来作为initializer，所以要区分其与<code>direct initializer</code>（即使用parenthesis<code>()</code>）的区别。尤其是当initializer和vector的类型不一致的时候。例如，<code>sv5</code>，<code>sv6</code>和<code>sv7</code>都使用了<code>{}</code>，但是只有<code>sv5</code>是<code>list initialization</code>。<strong>因为并不能使用<code>10</code>作为initializer value来初始化<code>sv6</code>，所以此时compiler会尝试使用<code>parenthesis initializer</code>的方法来初始话这个vector。</strong></p>
-<blockquote>
-<p><strong>Conclusions:</strong></p>
-<ul>
-<li><code>list initializer</code>表示的是使用<code>{}</code>中的每一个value来进行初始化，<strong><code>{}</code>中有几个值则vector中有几个elements，每个element的值是<code>{}</code>中对应的value。</strong>即<code>list initializer</code>一次可以提供多个初始值，<code>{}</code>中每个element都是一个初始值，但是<code>parenthesis</code>只能提供一个初始值。</li>
-<li><code>parenthesis</code>表示的是使用<code>in-class initializer</code>即<code>()</code>作为initializer。<code>()</code>中有两个参数：<code>(count, value)</code>。</li>
-<li>当使用<code>list initializer</code>来初始化，但是<code>{}</code>中的值并不能初始化vector时，即<code>vector&lt;type&gt;</code>中的<code>type</code>与<code>{}</code>中的值的type不一致时（例如<code>sv6</code>），compiler则会考虑使用其他初始化方法。这种情况只针对<code>list initializer</code>，对于<code>parenthesis</code>则不会，类型不对时则会直接报错。</li>
-</ul>
-</blockquote>
-<p>实际上，尽管我们可以在<code>vector</code>创建时通过初始化直接给<code>vector</code>添加元素并赋值，但是<code>vector</code>更多地适用于数组大小未知的情况。因此，大部分情况下我们都会定义一个空的<code>vector</code>然后通过<code>push_back()</code>来给这个<code>vector</code>添加元素。事实上，因为C++标准对于<code>vector</code>的implementation有效率要求，所以在创建<code>vector</code>时如果指定了<code>vector</code>的大小反而有可能对效率造成影响（除非所有的elements都是一样的值）。在C中，一般对于不知道数组大小的情况，我们通常通过单链表来解决；在C++中则可以很方便地使用<code>vector</code>。</p>
-<h2 id="vector-Common-Operations"><a href="#vector-Common-Operations" class="headerlink" title="vector Common Operations"></a><code>vector</code> Common Operations</h2><table>
-<thead>
-<tr>
-<th>Functions</th>
-<th>Explanation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>v</code>.empty()</td>
-<td>Returns <code>true</code>if <code>v</code> is empty; otherwise returns false.</td>
-</tr>
-<tr>
-<td><code>v</code>.size()</td>
-<td>Returns the <code>number of elements</code> of <code>v</code>.</td>
-</tr>
-<tr>
-<td><code>v</code>.capacity()</td>
-<td>Returns the <strong>current</strong> maximum <code>available memory space</code> for elements <code>(expressed in terms of elements)</code>.</td>
-</tr>
-<tr>
-<td><code>v</code>.push_back(<code>t</code>)</td>
-<td>Adds an element with value <code>t</code> to end of <code>v</code>.</td>
-</tr>
-<tr>
-<td><code>v.</code>pop_back()</td>
-<td>Removes the last element in the vector, effectively <code>reducing the container size by one</code>.</td>
-</tr>
-<tr>
-<td><code>v</code>[n]</td>
-<td>Returns a reference to the element at position <code>n</code> in <code>v</code>.</td>
-</tr>
-<tr>
-<td><code>v1</code> = <code>v2</code></td>
-<td>Replaces the elements in <code>v1</code> with <strong>a copy</strong> of the elements in <code>v2</code>.</td>
-</tr>
-<tr>
-<td><code>v</code> = {a, b, c…}</td>
-<td>Replaces the elements in <code>v</code> with <strong>a copy</strong> of the elements in the comma-separated list.</td>
-</tr>
-<tr>
-<td><code>v1</code> == <code>v2</code></td>
-<td><code>v1</code> and <code>v2</code> are equal if they have same <code>size()</code> and each element in <code>v1</code> is equal to the corresponding element in <code>v2</code>.</td>
-</tr>
-</tbody>
-</table>
-<p>在此需要对<code>v.push_back(t)</code>和<code>v.pop_back()</code>函数进行一些说明：</p>
-<pre><code class="c">    vector&lt;int&gt; v;
-    int i = 42;
-    v.push_back(i);
-    v[0] = 1;
-    cout&lt;&lt;v[0]&lt;&lt;endl;  // 1
-    cout&lt;&lt;i&lt;&lt;endl;  // 42
-    v.pop_back();
-    cout&lt;&lt;v.size()&lt;&lt;endl;  // 0
-</code></pre>
-<p>如之前所说，<code>vector</code>中的elements实际上是存放在堆上的一块连续内存，通过<code>vector</code>中的3个迭代器来指向该段内存来实现增删等操作。简单来说，<code>v.push_back(t)</code>会经历以下几个步骤（不考虑空间不足时的扩容操作）：</p>
-<ul>
-<li>给<code>vector</code>添加一个<code>element</code>，因为此时内存足够，所以在堆上的那块连续内存中不需要执行什么操作。</li>
-<li>调用object <code>t</code>的<code>copy constructor</code>将<code>t</code>拷贝到<code>vector</code>新添加的<code>element</code>所指向的地址。注意此时是<strong>深拷贝</strong>，即添加到<code>element</code>所指向地址的objec并不是原来的<code>t</code>。</li>
-</ul>
-<p>这也是为什么<code>push_bacn(t)</code>的作用是<code>Adds an element with value t to end of v.</code>因为添加进堆上的object并不是<code>t</code>，只是<code>t</code>的拷贝，拥有<code>t</code>的值而已。这也是为什么代码示例中<code>i</code>输出还是42的原因。</p>
-<p>同样，<code>pop_back()</code>并不需要传入参数，因为其作用是移除<code>v</code>中的最后一个元素（即<code>--finish</code>迭代器减少1），并且调用该元素中的<code>object</code>的析构函数进行析构。但是如果该<code>objec</code>没有合适的析构函数，例如基本类型<code>int</code>，<code>bool</code>等，则不会进行其他操作。**但是即使调用了析构函数也只是清除了这段内存上的内容（地址仍保留），但是并没有用<code>deallocate</code>回收这段内存，因此仍然可以强制通过<code>subscript</code>来拿到这段内存，<a href="https://blog.csdn.net/tangle001/article/details/47026989" target="_blank" rel="noopener">here</a>， <a href="https://blog.csdn.net/fao9001/article/details/76255206" target="_blank" rel="noopener">here</a>。</p>
-<h2 id="vector-size-type"><a href="#vector-size-type" class="headerlink" title="vector size_type"></a><code>vector size_type</code></h2><p>类似<code>string</code>，<code>vector</code>也有自己的<code>size_type</code>。也就是说，<code>v.size()</code>返回的结果是<code>vector&lt;int&gt;::size_type</code>类型（可以理解为<code>unsigned</code>）。但是需要注意的是，如果想要explicitly使用 <code>vector&lt;int&gt;::size_type</code>，那么需要指明这个<code>vector</code>中的element的类型：</p>
-<pre><code class="c">vector&lt;int&gt;::size_type size; // ok
-vector::size_type size;  // error
-</code></pre>
-<h2 id="Range-for"><a href="#Range-for" class="headerlink" title="Range for"></a><code>Range for</code></h2><pre><code class="c">vector&lt;int&gt; v{1,2,3,4};
-for(auto &amp;i : v)  // using reference to modify the elements
-  i *= i;
-for(auto i : v)  // just printf the value of each element
-  cout&lt;&lt;i&lt;&lt;endl;
-</code></pre>
-<h2 id="subscrit-operations"><a href="#subscrit-operations" class="headerlink" title="subscrit operations"></a><code>subscrit</code> operations</h2><p>和<code>string</code>一样，也可以通过下标操作来获取<code>vector</code>中相应位置的element。不过需要注意的是在C中一般对于数组会利用<code>for</code>循环直接给数组赋值，但是在<code>vector</code>中不能这样，而是需要通过<code>push_back()</code>来添加<code>element</code>，在copy值到这个<code>element</code>上。例如：</p>
-<pre><code class="c">int a[10];
-for(int i=0; i&lt;10; i++)  // ok, assign value to each element in an array
-  a[i] = i;
-
-vector&lt;int&gt; v;
-for(int i=0; i!=10; i++)  //  error, becasue v is an empty vector
-  v[i] = i;
-// v.push_back(i);  //  need to use push_back(i) to add element;
-</code></pre>
-<p>另外，<code>vector</code>的下标操作也需要注意<code>index</code>必须是一个可以取到的值，不然就是<code>buffer overflow</code>问题，这也是leetcode中最常见的崩溃错误。</p>
+        <h2 id="星-与-心-愿"><a href="#星-与-心-愿" class="headerlink" title="星 与 心 愿"></a>星 与 心 愿</h2><p>我划过天空<br>看到了闭着眼的人类<br>我赶紧<br>悄悄默念我的心愿</p>
+<p>妈妈说<br>这个时候许下的心愿<br>总是会实现</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -730,12 +533,12 @@ for(int i=0; i!=10; i++)  //  error, becasue v is an empty vector
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>C++Primer 3.3: Vector</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">3k</span></p>
+    <p><span class="copy-title">文章标题:</span>星与心愿</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">46</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-11-25, 16:00:53</p>
+    <p><span class="copy-title">发布时间:</span>2021-04-25, 14:22:29</p>
     <p><span class="copy-title">最后更新:</span>2021-04-25, 06:31:34</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/25/subposts_cppPrimer/CPN-3-3-Vector/" title="C++Primer 3.3: Vector">https://www.hellscript.cc/2019/11/25/subposts_cppPrimer/CPN-3-3-Vector/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/04/25/subposts_life/Star-And-Wish/" title="星与心愿">https://www.hellscript.cc/2021/04/25/subposts_life/Star-And-Wish/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
