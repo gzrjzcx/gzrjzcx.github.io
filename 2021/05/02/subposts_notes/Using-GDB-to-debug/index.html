@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>C++Primer 2.2: Variables | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" cpp ">
-  <meta name="description" content="C++Primer 2.2: Variables | Alex&#39;s Epitaph">
+  <title>Using GDB to debug | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" Notes ">
+  <meta name="description" content="Using GDB to debug | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -471,9 +471,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_cppPrimer/CPN-2-2-Variables" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_notes/Using-GDB-to-debug" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">C++Primer 2.2: Variables</h1>
+        <h1 class="article-title">Using GDB to debug</h1>
     
     <div class="article-meta">
         
@@ -481,21 +481,21 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="cppPrimer">cppPrimer</a>
+                <a href="javascript:" data-rel="Notes">Notes</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">cpp</a>
+            <a href="javascript:" class="color1">Notes</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2021-05-05 09:01:26">2019-11-12 14:21</time>
+        创建时间:<time class="date" title="更新时间: 2021-05-05 09:01:26">2021-05-02 20:55</time>
         
     </div>
     <div class="article-meta">
@@ -519,7 +519,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-2-2-Variables"><span class="toc-text">Chapter 2.2: Variables</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Variables-Definitions"><span class="toc-text">1. Variables Definitions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Variable-Declarations"><span class="toc-text">2. Variable Declarations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Variable-Scope"><span class="toc-text">3. Variable Scope</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#记一次使用GDB查问题的过程"><span class="toc-text">记一次使用GDB查问题的过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-背景"><span class="toc-text">1. 背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-过程"><span class="toc-text">2. 过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-断点到该位置，查看需要关注的变量"><span class="toc-text">1. 断点到该位置，查看需要关注的变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-监视变量"><span class="toc-text">2. 监视变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-总结"><span class="toc-text">3. 总结</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -535,50 +535,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Chapter-2-2-Variables"><a href="#Chapter-2-2-Variables" class="headerlink" title="Chapter 2.2: Variables"></a>Chapter 2.2: Variables</h1><blockquote>
-<p>A variable provides us with named storage that our programs can maniplage.</p>
-</blockquote>
-<p>变量给我们提供了一个程序可以操作的命名存储内存。每个变量都有类型（即上篇笔记提到的type）。变量的<code>类型（type）</code>决定了这个变量的<code>size</code>（即在内存中占多少字节）,<code>layout</code>（即在内存中的存储布局），该变量能够存储的<code>value</code> 以及能够应用在此变量上的<code>operations</code>。</p>
-<p>注意，在此书中<code>object</code>与<code>variable</code>是可以互换的概念。<code>object</code>指的是一片包含数据且具有类型的内存区域，而不单单是指<code>class</code>实例化出来的对象。</p>
-<blockquote>
-<p>An <code>object</code> is a region of memory that can contain data and has a type.</p>
-</blockquote>
-<h2 id="1-Variables-Definitions"><a href="#1-Variables-Definitions" class="headerlink" title="1. Variables Definitions"></a>1. Variables Definitions</h2><p>变量的定义（definition）总是包含着初始化（intialization）。如果给定了初始化的值（initializers），则被定义的变量将会在<strong>它被创建的时候</strong>得到这个值；如果没有给定初始化的值（without initializers），则被定义的变量将会被<code>default initialized</code>，也就是说被定义的变量将会被给予默认值。C++内置的全局变量（定义在函数外的变量）将会被初始化为0，C++的内置的局部变量（定义在函数内的变量）则是<code>uninitilized</code>，它的值是<code>undefined</code>。变量定义的例子：</p>
-<pre><code class="c">double price = 109.99, discount = price * 0.16; // ok
-</code></pre>
-<p>注意在同一个定义中，用一个更早定义的变量来初始化后面定义的变量是可行的。即在上述例子中<code>discount</code>可以用来初始化<code>price</code>，因为<code>discount</code>此时已经被定义完成且其值为initializer。正如之前我们所说，初始化会让变量在其被创建的时候得到initializer的值（初始值）。变量的定义包括如下3个动作：</p>
-<ul>
-<li>指明变量的名字（name）和类型（type）。</li>
-<li>给变量申请内存空间。</li>
-<li><code>(Optional)</code>指定初始值（initializer），没有的话则是默认初始值。</li>
-</ul>
-<p>另外，需要注意的是变量定义中的初始化（initialization）和赋值（assignment）是不同的。</p>
-<blockquote>
-<p>初始化指的是在变量<code>被创建时</code>给定其初始值（initializer），赋值则指的是消除一个变量当前的值，并用新的值来取代该值。</p>
-</blockquote>
-<h2 id="2-Variable-Declarations"><a href="#2-Variable-Declarations" class="headerlink" title="2. Variable Declarations"></a>2. Variable Declarations</h2><p>变量的声明（declaration）与变量的定义（definition）有着本质的区别。变量的声明主要是为了告诉编译器这个变量已经被定义过了，使用别的地方的定义来解释此变量。因为C++支持单独编译（separate compilation），所以变量的声明主要是为了<code>share code across those files</code>。变量的声明其实就是变量定义的第一个动作，即指明变量的名字（name）和类型（type），并且告诉编译器此变量已经被定义在其他文件。变量定义与声明的区别如下：</p>
-<blockquote>
-<ul>
-<li>定义包含了声明。声明只是指明了变量的名字和类型，但是定义还为变量申请了内存空间，并且可能赋予初始值（即创建了相关的实体（entity））。</li>
-<li>一个变量只能有一个定义，可以有多个声明（实际上每个include定义某个变量头文件的文件都需要声明此变量）。</li>
-</ul>
-</blockquote>
-<p>另外，需要注意的是，变量的声明（declaration）只有一种方式：</p>
-<pre><code class="c">extern int i; // declares but does not define i
-int j; // declares and defines j
-extern double pi = 3.1416; // definition
-</code></pre>
-<p>如上述例子，只有使用<code>extern</code>关键字修饰<strong>且没有提供<code>initializer</code></strong>的方式算作是变量的声明，其余均是变量的定义。即使是使用了了<code>extern</code>关键字，但是同时提供了<code>initializer</code>，<code>extern</code>关键字也会被重载从而变成变量定义。总结就是：<strong>只要有initializer，都是定义；只有extern且没initializer才是声明</strong>。</p>
-<h2 id="3-Variable-Scope"><a href="#3-Variable-Scope" class="headerlink" title="3. Variable Scope"></a>3. Variable Scope</h2><p>在编程的语境（context）中，<code>a scope is a part of the program in which a name has a particular meaning</code>。因此，我们需要注意所定义的变量是在什么范围内有效。在C++中，通常使用一对大括号定义一个scope，在这个scope内声明的变量都只会在这个scope内有效（注意此时的有效指的是visable, 即编译器能够找到它的定义）。例如：</p>
-<pre><code class="c">int reused = 42;
-int main()
+        <h2 id="记一次使用GDB查问题的过程"><a href="#记一次使用GDB查问题的过程" class="headerlink" title="记一次使用GDB查问题的过程"></a>记一次使用GDB查问题的过程</h2><h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h3><pre><code class="c">void ModuleMgr::OnFinish(int result)
 {
-  int reused = 0;
-  cout&lt;&lt;reused&lt;&lt;endl;  // 0
-  cout&lt;&lt;::reused&lt;&lt;endl; // 42, globla scope has no name
+    for(int i = 0; i &lt; vAppList.size(); i++)
+    {
+        vAppList[i]-&gt;Finish();
+    }
 }
 </code></pre>
-<p>虽然定义了全局变量<code>reused</code>，但是也定义了一个局部变量<code>reused</code>在<code>main</code>这个scope内，所以在<code>main</code>这个scope内<code>reused</code>指的是local的变量。但是需要注意的是，<code>global::reused</code>这个变量并不是被<code>local::reused</code>替换了，只是在<code>main</code>这个scope内<code>global::reused</code>这个变量不可见了。但是我们依然可以强行调用它，只需要知道它是哪个scope即可。注意全局的scope没有名字，所以调用全局scope的变量可以直接用scope操作符，即<code>::reused</code>。</p>
+<p>最近项目中碰到一个问题：在一个<code>list</code>中有多个对象，当其中一个对象调用了一系列函数后，其后续对象并不能按照预想继续执行，而是直接退出了函数。具体从以上代码来看，<code>appList</code>里有两个对象：<code>obj_1</code>和<code>obj_2</code>，当<code>obj_1</code>调用其成员函数<code>Finish()</code>后，<code>obj_2</code>并不能正常继续调用其自己的<code>Finish()</code>函数，而是直接退出了循环。从表现上看，像是<code>obj_1</code>在执行自己的逻辑的时候，把<code>appList</code>的内存写坏了。一般情况下，这种现象都是因为数组的越界操作从而导致写坏内存引起。所以，我们尝试使用GDB来进行Debug，找到真正出问题的地方。</p>
+<h3 id="2-过程"><a href="#2-过程" class="headerlink" title="2. 过程"></a>2. 过程</h3><p>因为之前我们推测有可能是<code>obj_1</code>把其后续内存写乱了，但是也有可能直接把<code>List</code>的结构给弄坏了，所以在GDB的时候我们不仅要关注<code>obj_2</code>的地址，还需要关注这个<code>list</code>本身的结构有没有变化。因为从逻辑上看，这个列表里的内容不应该在这里改变。</p>
+<h4 id="1-断点到该位置，查看需要关注的变量"><a href="#1-断点到该位置，查看需要关注的变量" class="headerlink" title="1. 断点到该位置，查看需要关注的变量"></a>1. 断点到该位置，查看需要关注的变量</h4><p>结合我们之前的推测，我们需要看这个<code>obj_1</code>和<code>obj_2</code>的地址有没有发生改变，以及<code>list</code>本身的结构是否发生了改变。又通过GDB的<code>ptype</code>（可以查看具体类型）得知<code>list</code>其实是<code>vector</code>，也就是说其结构中包括<code>start</code>和<code>finish</code>两个指针。所以，先打印出这四个值：</p>
+<p><img src="/res/notes/UsingGDBToDebug/gdb_1.png" alt="gdb_1"></p>
+<p>从图中可看到，<code>vAppList</code>中有两个元素<code>obj_1</code>和<code>obj_2</code>，其地址也分别打印了出来。同时，<code>vAppList</code>的<code>start</code>和<code>finish</code>指针的值也分别打印了出来。因为我们怀疑这四个值可能被修改了，所以可以通过<code>watch</code>指令来看是否发生了改变，以及发生了改变时的具体的值。我们也可以首先自己断点到<code>obj_1</code>的<code>Finish()</code>代码中单步调试，看看是执行到那里，导致这四个值发生了改变。</p>
+<p>如图，通过单步调试，以及GDB中的<code>f 1</code>命令跳到上一层函数context中，我们可以看到在执行了<code>obj_1</code>的<code>Finish</code>函数时，<code>vAppList</code>的<code>start</code>和<code>finish</code>值发生了改变。也就是说，<code>vAppList</code>的结构发行了变化，<code>size</code>也因此变为了0。</p>
+<p><img src="/res/notes/UsingGDBToDebug/gdb_2.png" alt="gdb_2"></p>
+<h4 id="2-监视变量"><a href="#2-监视变量" class="headerlink" title="2. 监视变量"></a>2. 监视变量</h4><p>可见，确实是<code>obj_1</code>内部的<code>Finish()</code>函数中的某一段导致了<code>vAppList</code>的结构发生了变化。通常来说，这种情况都是因为操作到了不正确的内存块。最常见的情况就是数组越界，导致操作了其他的内存。但是具体是哪一行代码出错我们现在并不知道，但是可以通过<code>watch vAppList._M_impl._M_Start</code>来监视<code>start</code>指针，一旦该指针发生了变化，则会打印出此时具体的行号。（这里需要注意<code>start</code>和<code>finish</code>不能同时watch，我也不知道为什么）。</p>
+<p><img src="/res/notes/UsingGDBToDebug/gdb_3.png" alt="gdb_3"></p>
+<p>从图上可以看到，<code>watch</code>指令直接将<code>start</code>指针的变化打印了出来，其值从<code>0x68476a0</code>变为了<code>0x0</code>。也就是说，在<code>Monitor</code>这个文件的1978行，将<code>vAppList</code>的结构进行了非法赋值。去查看代码可知，里面确实有一处数组越界操作，有可能操作到这一块内存。</p>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>在使用GDB查问题时，最好是先根据问题的表现推测是什么原因才可能导致出现这样的现象。然后，通过断点和监视来找到确切的代码段。像类似的内存非法修改的问题，其实是一个确定的问题。也就是说，每次非法修改时，其偏移量都是固定的。换句话说，这个问题是可复现的问题，相对没那么复杂。</p>
+<p>当时还看了出问题代码文件的最近一段时间的修改记录，发现这个越界以前其实也早就存在。但是一直没出现问题，而是最近才导致问题。这很有可能是因为<code>obj_1</code>的内存布局一直在变化（因为代码一直在修改）。以前可能也有非法修改内存，但是并没有踩到重要的地方，所以没出现明显的问题。但是这次，刚好<code>obj_1</code>这个类的修改，导致其内存布局发生了改变，也就是说刚好这次越界就踩到了<code>vAppList</code>那一块的内存。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
@@ -592,12 +568,12 @@ int main()
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>C++Primer 2.2: Variables</p>
+    <p><span class="copy-title">文章标题:</span>Using GDB to debug</p>
     <p><span class="copy-title">文章字数:</span><span class="post-count">1.2k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-11-12, 14:21:29</p>
+    <p><span class="copy-title">发布时间:</span>2021-05-02, 20:55:55</p>
     <p><span class="copy-title">最后更新:</span>2021-05-05, 09:01:26</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/12/subposts_cppPrimer/CPN-2-2-Variables/" title="C++Primer 2.2: Variables">https://www.hellscript.cc/2019/11/12/subposts_cppPrimer/CPN-2-2-Variables/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/05/02/subposts_notes/Using-GDB-to-debug/" title="Using GDB to debug">https://www.hellscript.cc/2021/05/02/subposts_notes/Using-GDB-to-debug/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
