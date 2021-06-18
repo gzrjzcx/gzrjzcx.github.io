@@ -28,7 +28,7 @@ Jobflow起来之后，会创建若干个pod，每个pod都是一个`worker`。�
 
 #### (1). 同步server
 
-Python自带的`[http.server](https://docs.python.org/3/library/http.server.html)`是一个基本的TCPServer框架（在python2中为`BaseHTTPServer`库），通过提供一个`BaseHTTPRequestHandler`类，可以实现对不同HTTP请求的处理。例如，每次有`GET`请求过来，则会实例化一次这个handler类，并调用对应的`do_GET()`来处理该请求。
+Python自带的[http.server](https://docs.python.org/3/library/http.server.html)是一个基本的TCPServer框架（在python2中为`BaseHTTPServer`库），通过提供一个`BaseHTTPRequestHandler`类，可以实现对不同HTTP请求的处理。例如，每次有`GET`请求过来，则会实例化一次这个handler类，并调用对应的`do_GET()`来处理该请求。
 
 ```python
 import http.server
@@ -224,7 +224,7 @@ sysctl -p
 
 还是很遗憾，这些改动并没有太大作用，测试发现同时100个请求，还是会丢失20个左右，较之之前并没有太大改动。我也试过修改`http.server`框架的`request_queue_size`参数，结果也是一样。不知道这里是不是我哪里设置有问题，如果哪里不对请告诉我。另外因为是TCP连接，总不会是丢包吧？所以只能抓抓包看看是不是TCP连接的时候就有问题。
 
-![Structure](/res/tools/pythonServer/bta_task.png)
+![Structure](/res/tools/pythonServer/tcpdump.png)
 
 使用`tcpdump`抓包后在用`wireshark`GUI工具在本地跟踪流，通过之前的`request_id`定位到那些发送出去，但是server端没有收到的连接，跟踪发现它们确实在第一次握手之后，客户端发送出了HTTP请求，然后服务端直接给拒绝了，并置了RST包。到此，我还是不知道到底是什么原因导致了server直接返回了RST。但是这里可以确定的是，这确实是因为系统或者框架自身的原因导致了请求直接被拒绝，与业务逻辑无关。所以如果有人知道这里具体是什么原因，也请通过左侧导航栏邮箱告诉我，或者直接在下面留言，查了几天都没有结果，真的很想知道是什么原因。
 
