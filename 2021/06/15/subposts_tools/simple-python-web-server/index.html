@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
-  <title>C++Primer 3-6: 2-d Arrays | Alex&#39;s Epitaph</title>
-  <meta name="keywords" content=" cpp ">
-  <meta name="description" content="C++Primer 3-6: 2-d Arrays | Alex&#39;s Epitaph">
+  <title>Simple python web server | Alex&#39;s Epitaph</title>
+  <meta name="keywords" content=" Tools ">
+  <meta name="description" content="Simple python web server | Alex&#39;s Epitaph">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:type" content="website">
@@ -476,9 +476,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-subposts_cppPrimer/CPN-3-6-2-d-Arrays" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-subposts_tools/simple-python-web-server" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">C++Primer 3-6: 2-d Arrays</h1>
+        <h1 class="article-title">Simple python web server</h1>
     
     <div class="article-meta">
         
@@ -486,26 +486,26 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="cppPrimer">cppPrimer</a>
+                <a href="javascript:" data-rel="Tools">Tools</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color4">cpp</a>
+            <a href="javascript:" class="color1">Tools</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2021-06-18 07:42:03">2019-12-10 12:47</time>
+        创建时间:<time class="date" title="更新时间: 2021-06-18 07:42:03">2021-06-15 15:17</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:2.4k</span>
+        <span>字数:4.2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -524,7 +524,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Multi-dimensional-Arrays"><span class="toc-text">Multi-dimensional Arrays</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-d-array-Vs-secondary-pointer"><span class="toc-text">2-d array Vs. secondary pointer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vs"><span class="toc-text">(*)[] Vs. **</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-Dynamic-Allocation-for-2-d-Array"><span class="toc-text">Memory Dynamic Allocation for 2-d Array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Initializing-the-Elements-of-a-Multidimensional-Array"><span class="toc-text">Initializing the Elements of a Multidimensional Array</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python搭建简易server实现生产消费模式的任务分配"><span class="toc-text">Python搭建简易server实现生产消费模式的任务分配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-背景"><span class="toc-text">1. 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-整体结构"><span class="toc-text">2. 整体结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Server端代码"><span class="toc-text">3. Server端代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-同步server"><span class="toc-text">(1). 同步server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-异步server以及问题调试"><span class="toc-text">(2). 异步server以及问题调试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Tornado异步server"><span class="toc-text">(3). Tornado异步server</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Client端代码"><span class="toc-text">4. Client端代码</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -540,106 +540,325 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Multi-dimensional-Arrays"><a href="#Multi-dimensional-Arrays" class="headerlink" title="Multi-dimensional Arrays"></a>Multi-dimensional Arrays</h1><blockquote>
-<p>严格来说，<strong>在C++中并不存在多维数组，当我们说多维数组时其实是在说<code>数组的数组</code></strong>，数组的数组指的就是一个数组，但是其element也是一个数组。</p>
-</blockquote>
-<p>例如：</p>
-<pre><code class="c">int a[3][4]; // a is an array of size 3; each element is an array of size 4
-int arr[10][20][30]; // arr is an array of size 10; each element is an array of size 20; each element of this 20-element array is an array of ints of size 30
-</code></pre>
-<p>从上述定义可以看到，当我们定义多维数组时，通常都是定义<code>element</code>也是数组的数组。我们可以从左往右理解多维数组的定义。例如<code>arr</code>，</p>
-<ul>
-<li>首先看其是<code>arr[10]</code>，是一个有10个<code>element</code>的数组；</li>
-<li>然后看<code>arr[10][20]</code>，<code>arr[10]</code>这个数组的每个<code>element</code>都是一个有20个<code>element</code>的数组；</li>
-<li>最后看<code>arr[10][20][30]</code>，从<code>arr[10][20]</code>这些数组中每个<code>element</code>都是一个有30个<code>ints element</code>的数组；</li>
-</ul>
-<p>对于一个二维数组，通常我们将其<code>first dimension</code>称为<code>row</code>，<code>second dimension</code>称为<code>column</code>。即从左往右看第一维是<code>行</code>，第二维是<code>列</code>。</p>
-<h2 id="2-d-array-Vs-secondary-pointer"><a href="#2-d-array-Vs-secondary-pointer" class="headerlink" title="2-d array Vs. secondary pointer"></a><code>2-d array</code> Vs. <code>secondary pointer</code></h2><p>对于<code>array</code>，一定要明确的的一点就是<strong>数组是数组，指针是指针，两者是不同的<code>data type</code></strong>。尽管在大部分情况下compiler会将<code>数组名</code>转换为<code>指向首元素的指针</code>，但是他们本质还是不同的类型。这一点对于多维数组同样适用，也就是说<code>二维数组</code>并不是<code>二级指针</code>，注意这里说的<code>二维数组</code>指的是数组的数组，<strong>C++中只有一维数组！</strong>。例如：</p>
-<pre><code class="c">int a[3][3];
-cout&lt;&lt; a &lt;&lt;endl;  // 0x7ffeef5e2708, int (*)[3]
-cout&lt;&lt; &amp;a &lt;&lt;endl;  // 0x7ffeef5e2708, int (*)[3][3]
-cout&lt;&lt; a[0] &lt;&lt;endl;  // 0x7ffeef5e2708, int * 
-cout&lt;&lt; &amp;a[0] &lt;&lt;endl;  // 0x7ffeef5e2708, int (*)[3]
-cout&lt;&lt; &amp;a[0][0] &lt;&lt;endl;  // 0x7ffeef5e2708, int *
-</code></pre>
-<p>这里首先要先深入理解对于一维数组取地址操作的结果，不懂可以先看<a href="https://www.hellscript.cc/2019/12/08/subposts_cppPrimer/CPN-3-5-Array/">here</a>。我们知道大部分情况下一维数组会被编译器转换为指向数组首元素的指针，即一个普通指针<code>int *</code>；但是当我们对一维数组进行取地址时，得到的是一个指向整个数组的指针，即数组指针<code>(*)[]</code>。这也适应于多维数组。以二维数组为例，我们来分析上面例子。</p>
-<p>首先，因为二维数组实际上是<strong>一个其element也为数组的一维数组</strong>，所以该二维数组的数组名<code>a</code>也会被compiler转为一个指向数组首元素的指针。但是，<strong>因为这第一个element也是一个数组</strong>，所以<code>a</code>被转换为一个<strong>指向数组的指针<code>int (*)[3]</code>（也就是数组指针）</strong>。类似于一维数组，对<code>a</code>在取地址实际上得到的指向整块内存的指针（也就是整个二维数组），所以其类型为<code>int (*)[3][3]</code>。同样地，<code>sizeof(a) == 36</code>，也就是整个二维数组的大小。</p>
-<p>然后，对于<code>a[0]</code>，其实也就是<code>*(a+0)</code>，也就是对于<code>a</code>的解引用，得到的是<code>a</code>的第一个element，<strong>因为这第一个element也是一个数组</strong>，所以compiler也会将这个数组转换为指向这个数组首元素的指针。此时其实已经回到了一维数组的情况，这个指针类型为<code>int *</code>。同样地，对这个一维数组转为的指针取地址，则会得到一个<code>指向整个数组的指针</code>，也就是说<code>&amp;a[0]</code>得到的指针是<code>int (*)[3]</code>，与<code>a</code>相同，且<code>sizeof(a[0]) == 12</code>，也就是<code>a</code>的第一个<code>element</code>对应的数组的大小。</p>
-<blockquote>
-<p><strong>Conclusions:</strong></p>
-<ul>
-<li><p>对于二维数组，其是一个<code>element</code>也是数组的一维数组。所以，<code>subscript</code>操作得到的是对应<code>position</code>的数组。</p>
-</li>
-<li><p>上述几种操作得到的指针，尽管地址都一样，但是根据<strong>类型不同</strong>我们可以有如下关系：</p>
-<ul>
-<li><code>a == &amp;a[0]</code>;</li>
-<li><code>a[0] == &amp;a[0][0]</code></li>
-</ul>
-<p>但是<code>a</code>和<code>&amp;a[0]</code>并不等于<code>a[0]</code>，因为它们的类型不同。</p>
-</li>
-</ul>
-</blockquote>
-<h2 id="Vs"><a href="#Vs" class="headerlink" title="(*)[] Vs. **"></a><code>(*)[]</code> Vs. <code>**</code></h2><p>上述分析中可以看到，二维数组<code>a</code>会被转换为一个<code>指向数组的指针</code>，即数组指针。注意这个数组指针（<code>(*pointer)[]</code>）和二级指针（<code>**pointer</code>指向指针的指针）是两个不同的类型，并不能通过强制转换来混用。</p>
-<ul>
-<li>数组指针指的是一个<strong>指向数组的指针</strong>，即<code>(*)[]</code>。</li>
-<li>二级指针指的是一个<strong>指向指针的指针</strong>，即<code>**</code>。</li>
-</ul>
-<p>例如，如果函数的形参是数组指针，但是传入的实参是二级指针，那么<code>icc</code>下编译的话会报错：<code>argument of type &quot;int (*)[3]&quot; is incompatible with parameter of type &quot;int **&quot;</code>。如果强制将数组指针转为二级指针，编译可以通过，但是所得到的地址是不对的，此时如果解引用的话有可能出现<code>segmentation fault</code>。例如：</p>
-<pre><code class="c">void print2d(int **a)  // a pointer to pointer
-{
-    for(int i=0; i&lt;3; i++)
-    {
-        for(int j=0; j&lt;3; j++)
-            printf(&quot;%d &quot;, *(*(a+i)+j));
-        printf(&quot;\n&quot;);
-    }    
-}
+        <h1 id="Python搭建简易server实现生产消费模式的任务分配"><a href="#Python搭建简易server实现生产消费模式的任务分配" class="headerlink" title="Python搭建简易server实现生产消费模式的任务分配"></a>Python搭建简易server实现生产消费模式的任务分配</h1><h2 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h2><p>在我们的监控系统中，需要每周跑一次100万场gamecore的任务来确保本周的游戏表现正常。对于这种计算密集型任务，自然是需要放到分布式的计算平台上去跑。因此，自然也需要一个任务分配规则来规定每个pod应该跑哪几场gamecore。我们可以用一个很简单直接的规则，假如总共用1000个pod，那么每个pod则需要跑<code>100w / 1000</code>场gamecore。只需要根据pod的唯一id来为每个pod平均分配好它的任务即可。但是这样的分配方式局限性比较大：在每个pod启动前就已经规定好了它需要跑的场次，如果这个pod挂掉，那么分配到它的对局就会丢失（假设pod没有重启机制，且每场对局都是不一样的）。另外，实际情况下并不是每个pod跑gamecore的情况都一模一样，有的可能会快，有的可能会因为各种问题卡住，所以这种分配方式也会导致很多跑完了的pod就空闲下来，等待未完成的pod去跑完它们的任务而不是帮忙完成任务。</p>
+<p>因此，这其实是一个很典型的生产消费者场景。我们需要一个<code>master</code>来统一管理分发任务，每个<code>worker</code>每次都向<code>master</code>取一定数量任务，直到<code>master</code>那里所有任务完成。这样每个<code>worker</code>并不需要知道自己总共需要跑多少场gamecore，只要从<code>master</code>那里取不到任务时，则可以任务任务已经结束。实际上，只有<code>master</code>才知道什么时候任务已经完成。</p>
+<p>这里需要注意的是，我们这个任务与一般机器学习的训练任务有所不同。我们的结束条件是跑完所有的100w场对局，是在任务开始之前就已知总共要跑多少对局。而机器学习训练则一般是根据某个参数是否达到阈值来判断训练是否结束，在训练开始前是不知道总共需要跑到少次对局。</p>
+<h2 id="2-整体结构"><a href="#2-整体结构" class="headerlink" title="2. 整体结构"></a>2. 整体结构</h2><p><img src="/res/tools/pythonServer/bta_task.png" alt="Structure"></p>
+<p>整个任务流程如图，在web上输入相应参数后，会通过启动脚本<code>run_task.py</code>来创建一个<code>JobMaster</code>和<code>BTAServer</code>，同时将输入的参数存入redis。其中<code>BTAServer</code>用于相应pod发过来的请求，并将该pod此次需要跑的任务返回给它。<code>JobMaster</code>则负责主要和K8s平台交互，通过读取redis里存入的参数，修改jobflow的参数并启动jobflow。同时，<code>JobMaster</code>里包括了管理此次任务的总体进度，即在<code>AssignRoomInfos()</code>函数将每个pod需要跑的任务，通过<code>BTAServer</code>传递给每个pod。</p>
+<p>Jobflow起来之后，会创建若干个pod，每个pod都是一个<code>worker</code>。每个pod都会像<code>BTAServer</code>发送请求，获取它们此时需要跑的gamecore参数，然后自己完成自己的任务之后再次请求。当server处返回的值为空时，则表明此时总任务已经完成，<code>worker</code>则会停止请求，变为success，然后每个<code>worker</code>都会将自己产生的统计文件打包上传到s3上，供后续分析任务使用。</p>
+<h2 id="3-Server端代码"><a href="#3-Server端代码" class="headerlink" title="3. Server端代码"></a>3. Server端代码</h2><h4 id="1-同步server"><a href="#1-同步server" class="headerlink" title="(1). 同步server"></a>(1). 同步server</h4><p>Python自带的<code>[http.server](https://docs.python.org/3/library/http.server.html)</code>是一个基本的TCPServer框架（在python2中为<code>BaseHTTPServer</code>库），通过提供一个<code>BaseHTTPRequestHandler</code>类，可以实现对不同HTTP请求的处理。例如，每次有<code>GET</code>请求过来，则会实例化一次这个handler类，并调用对应的<code>do_GET()</code>来处理该请求。</p>
+<pre><code class="python">import http.server
+import json
+from io import BytesIO
+from job_master import JobMaster
 
-int main(int argc, char* argv[]){
-    int a[3][3] = {{1,2,3}, {4,5,6}, {7,8,9}};
-    for(int i=0; i&lt;3; i++)
-    {
-        for(int j=0; j&lt;3; j++)
-            printf(&quot;%p &quot;, (*(a+i)+j));
-        printf(&quot;\n&quot;);
-    }
-    printf(&quot;%s\n&quot;, &quot;-------------------&quot;);
+class RequestHandler(http.server.BaseHTTPRequestHandler):
+    def __init__(self, job_master, request, client_address, server):
+        self.job_master = job_master
+        http.server.BaseHTTPRequestHandler.__init__(self, request, client_address, server)
 
-    print2d((int **)a);  // a is a pointer to array, is converted to a pointer to pointer
-}
+    def do_GET(self):
+        room_infos = self.job_master.assign_room_infos()
+        self.send_response(200)
+        self.end_headers()
+        response = BytesIO()
+        response.write(json.dumps(room_infos).encode(&#39;utf-8&#39;))
+        self.wfile.write(response.getvalue())
 
-/*  results:
-0x7ffeeb62e700 0x7ffeeb62e704 0x7ffeeb62e708 
-0x7ffeeb62e70c 0x7ffeeb62e710 0x7ffeeb62e714 
-0x7ffeeb62e718 0x7ffeeb62e71c 0x7ffeeb62e720 
--------------------
-[1]    4355 segmentation fault  ./bin/leetcode */
+if __name__ == &#39;__main__&#39;:
+    serverAddress = (&#39;&#39;, 8081)
+    master = JobMaster()
+    def myHandler(*args):
+        RequestHandler(master, *args)
+    server = http.server.HTTPServer(serverAddress, myHandler)
+    server.serve_forever()
 </code></pre>
-<p>上例中，如果把<code>void print2d(int **a)</code>函数改为<code>void print2d(int (*)[3])</code>，那么可以得到正确的结果。另外，这个例子也可以看出，局部的二维数组是<strong>在栈上的一块连续的内存</strong>。因为线程的栈上的空间有限（一般默认为1M），所以我们也可以使用<code>内存动态分配</code>的方法在堆上模拟创建二维数组。</p>
-<p>关于数组指针和二级指针的区别，我们还可以在看一个例子：</p>
-<pre><code class="c">    int a[3][3] = {{1,2,3}, {4,5,6}, {7,8,9}};
-    int **pp;
-    int (*pa)[3] = a;  // use 2-d array a as a initializer, must specify the lower dimension
-    cout&lt;&lt;sizeof(pp)&lt;&lt;endl;  // 8, a pointer to pointer
-    cout&lt;&lt;sizeof(pa)&lt;&lt;endl;  // 8, a pointer to array
-    cout&lt;&lt;sizeof(a)&lt;&lt;endl;   // 36, now a is a 2-d array instead of a pointer
+<p>上述代码用基本的http.server库实现了一个简单的server，可以响应通过TCP发送过来的HTTP的<code>GET</code>请求，并返回<code>jobMaster</code>中管理的当前任务场次信息给发送请求的pod。这里需要注意三点：</p>
+<ul>
+<li>通过请求发送和返回的数据都是<code>byte</code>类型，所以读取和写入的时候都需要注意转换为<code>utf-8</code>。</li>
+<li>如果想要传入参数到我们自己的Handler里面，可以如上代码一样，再定义一个函数<code>myHandler()</code>，将<code>jobMaster</code>在函数内传入给<code>RequestHandler</code>的构造函数，然后在手动调用基类的构造函数。</li>
+<li><code>HTTPServer</code>并不能异步处理请求，每一个请求都必须处理完才能处理另一个请求。<code>request_queue_size</code>则是表示的是请求队列的长度，默认为5。如果超过这个长度则会返回Connection denied错误。如果想要实现并发，则需要使用多进程或者多线程来处理请求，具体可以查看<a href="https://docs.python.org/3/library/socketserver.html#socketserver.ThreadingMixIn" target="_blank" rel="noopener">here</a>。</li>
+</ul>
+<p>实际使用该同步server时会有很多问题，其中最明显的就是耗时。测试发现这个server处理一个请求将会耗时0.14s，也就是说1s种只可以处理8个请求，这显然是不能接受的。我们可以通过log，看一下具体耗时在哪里：</p>
+<ul>
+<li>从log看出，每个请求在server端处理完毕后，在返回到pod这里的耗时，大概有30ms，这显然是不太合理的。查看了server所在的地区和worker的地区，发现一个在华东一个在华南，跨地区必然会带来时间上的增加，所以第一步是将两者放到一个地区，以避免跨地区带来的开销。</li>
+<li>在业务逻辑中，看到虽然有一些计算，但其实时间开销很少。其中会有4次调用<code>redis.set()</code>，其中每次都会导致10ms的消耗，这显然也是不能接受的。因为每次set，都会完成一整次的和redis的通信，所以耗时会很高。这里可以采用redis提供的<code>pipeline</code>方法，一次set掉所有4个参数，就会只和redis通信一次。也可以直接采用多线程，将set操作放到一个新线程里处理。后续我们采用多线程的方法。</li>
+</ul>
+<h4 id="2-异步server以及问题调试"><a href="#2-异步server以及问题调试" class="headerlink" title="(2). 异步server以及问题调试"></a>(2). 异步server以及问题调试</h4><p>因为我们在<code>assign_room_infos()</code>函数中会将当前总共跑了多少场gamecore等数据存入redis的操作，实际上会比较耗时，所以基本的同步server并不能满足我们的需求。因此，我们需要使用<code>ThreadingMixIn</code>类来实现异步请求处理。</p>
+<pre><code class="python">import http.server
+import socketserver
+import json
+import urllib.parse as urlparse
+from io import BytesIO
+from job_master import JobMaster
 
-    pp = (int **)a;  // convert (*)[3] to **
-    cout&lt;&lt;a&lt;&lt;endl;  // 0x7ffeeb806690
-    cout&lt;&lt;a+1&lt;&lt;endl; // 0x7ffeeb80669c
-    cout&lt;&lt;**a&lt;&lt;endl;  // the first element 1
-    cout&lt;&lt;pp&lt;&lt;endl;  // 0x7ffeeb806690
-    cout&lt;&lt;pp+1&lt;&lt;endl;  // 0x7ffeeb806698
-    cout&lt;&lt;**pp&lt;&lt;endl;  // segmentation fault
+
+logging.getLogger().setLevel(logging.INFO)
+logging.basicConfig(format=&#39;[%(asctime)s][%(levelname)s][%(module)s::%(lineno)d]: %(message)s&#39;,
+                    datefmt=&quot;%Y-%m-%d %H:%M:%S&quot;,
+                    filename=&#39;server_log.txt&#39;)
+
+request_stack = 0
+request_count = 0
+
+class ThreadedHTTPServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
+    pass
+
+class RequestHandler(http.server.BaseHTTPRequestHandler):
+    def __init__(self, job_master, request, client_address, server):
+        self.job_master = job_master
+        http.server.BaseHTTPRequestHandler.__init__(self, request, client_address, server)
+
+    def do_GET(self):
+        # check task_id
+        global request_count
+        global request_stack
+        request_count += 1
+        request_stack += 1
+        start = time.time()
+        parsed_path = urlparse.urlparse(self.path)
+        request_id = parsed_path.query.split(&#39;=&#39;)[1]
+        logging.info(&#39;Start deal with request: {}, request_count = {}, request_stack = {}&#39;.format(request_id, request_count, request_stack))
+
+        room_infos = self.job_master.assign_room_infos()
+
+        self.send_response(200)
+        self.end_headers()
+        response = BytesIO()
+        response.write(json.dumps(room_infos).encode(&#39;utf-8&#39;))
+        self.wfile.write(response.getvalue())
+        request_stack -= 1
+        logging.info(&#39;End deal with request: {}, request_count = {}, time consuming = {}, request_stack = {}&#39;.format(request_id, request_count, time.time() - start, request_stack))
+
+if __name__ == &#39;__main__&#39;:
+    serverAddress = (&#39;&#39;, 8081)
+    master = JobMaster()
+    def myHandler(*args):
+        RequestHandler(master, *args)
+    server = ThreadedHTTPServer(serverAddress, myHandler)
+    server.serve_forever()
 </code></pre>
-<p>从上例中可以看到，不管是数组指针<code>int (*pa)[3]</code>还是二级指针<code>int **p</code>，<strong>他们都是一个指针，</strong>其<code>sizeof</code>都为8。但是对于<code>sizeof(a)</code>，根据之前的解释，数组在<code>sizeof</code>操作的时候并不会被转化为指向首元素的指针，所以此时得到的结果是整个数组的size。但是当我们使用<code>a</code>来初始化一个数组指针的时候，此时数组指针的<code>dimension</code>一定要与该数组的较低一个<code>dimension</code>相匹配。详细来说，<code>int (*pa)[] = a</code>在<code>icc</code>下并不能编译通过，因为<code>(*)[]</code>和<code>(*)[3]</code>也被编译器认为不是同一种类型。实际上，<code>(*)[3]</code>提供了更多的信息给编译器，它说明了指针<code>pa</code>指向的数组的类型是<code>int [3]</code>。所以，如果想要利用一个指针来access二维数组内的值，那这个指针必须是和<code>a</code>一样的类型，也就是<code>int (*pa)[3]</code>。这样就可以通过这个数组指针<code>pa</code>来获取数组内部的元素，例如<code>*(*(pa+1)+2)</code>得到的结果就是<code>6</code>。注意此时并没有使用<code>a</code>转换而来的指针来获取数组内部元素。</p>
-<p>再看，如果我们强制将<code>a</code>转换为一个二级指针<code>pp</code>，这样虽然其<code>a</code>和<code>pp</code>的值（即所存放的地址）都是一样的（都是数组首地址），但是会导致编译器解析这段内存失败（寻址错误）。因为<code>a</code>和<code>pp</code>的值都是这个数组的首地址，所以这段内存应该按照定义这个数组<code>a</code>的方式解析，即第一个元素应该是一个<code>int [3]</code>的数组（因为是<code>int [3][3]</code>的二维数组），其地址为<code>0x7ffeeb806690</code>；第二个元素是另一个<code>int [3]</code>的数组，其地址是<code>0x7ffeeb80669c</code>…此时如果是通过数组指针<code>a</code>，即<code>(*)[3]</code>来寻址，将会是正确的解析结果。但是如果是通过被强转过来的二级指针<code>pp</code>进行寻址，其第一个元素的地址是<code>0x7ffeeb806690</code>，但是第二个元素的地址是<code>0x7ffeeb806698</code>，并不是正确的解析结果，所以会导致<code>segmentation fault</code>。这是因为指针的大小是固定的，即<code>sizeof(pointer) = 8</code>。所以通过二级指针来解析这段内存的话，第二个元素的地址会是<code>0x7ffeeb806690+8</code>。但是实际上这段内存的正确解析应该是第二个元素的地址为<code>0x7ffeeb806690+12</code>，因为<code>sizeof(int [3]) = 12</code>。</p>
-<blockquote>
-<p><strong>Conclusions:</strong></p>
-<p>数组指针是数组指针，二级指针是二级指针。两者是不同的东西，不能混用。即使有时候他们两保存了相同的地址，但是因为类型不同，其解析也不一样。</p>
-</blockquote>
-<h2 id="Memory-Dynamic-Allocation-for-2-d-Array"><a href="#Memory-Dynamic-Allocation-for-2-d-Array" class="headerlink" title="Memory Dynamic Allocation for 2-d Array"></a>Memory Dynamic Allocation for 2-d Array</h2><p>我们已经知道，在C/C++中并不存在真正的二维数组，而是数组的数组。所以，其实除了使用数组的数组的方法，我们也可以通过动态分配内存的方式实现二维数组。</p>
-<h2 id="Initializing-the-Elements-of-a-Multidimensional-Array"><a href="#Initializing-the-Elements-of-a-Multidimensional-Array" class="headerlink" title="Initializing the Elements of a Multidimensional Array"></a>Initializing the Elements of a Multidimensional Array</h2>
+<p>从代码上可以看到，我们只需要继承这个<code>ThreadingMixIn</code>类则可以通过多线程来实现请求的异步处理。每次有新的请求到来时，都会产生一个新的线程来处理这个请求。但是，在实际测试中，发现一旦pod数量超过100（最大可能同时有100个请求来到服务端），就总是会有一些请求会丢失掉。具体的表现为<code>worker</code>这边发送了请求后，长时间没有收到回复，导致出现timeout错误。为此，我们需要通过log来检查到底是哪里出了问题（看代码）。</p>
+<p>首先，我们需要知道客户端这里到底有没有发送请求，以及<code>server</code>端到底有没有接受到请求。所以我们给客户端发送的每个请求都加上一个唯一id，并在服务端这里解析id打印出来。结果显示，客户端确实每次都成功发送了所有的请求，但是服务端却并不是每个请求都成功分发到了<code>GET</code>方法。也就是说，服务端总是会有部分请求丢失。</p>
+<p>然后，初步怀疑是因为同时请求过多导致了服务端不能处理，这可能是由于linux系统某些系统参数设置导致。所以我们增加了两个全局变量<code>request_count</code>和<code>request_stack</code>来记录到达服务端的请求情况。其中，每到达一个请求，则<code>request_count</code>和<code>request_stack</code>都加1，每处理完一个请求<code>request_stack</code>减1。如果是因为socket参数的设置导致一些过多的请求会被丢弃，那么我们只需要观察每次丢失请求时，<code>request_stack</code>是不是都会到一个比较接近的值。</p>
+<p>同时，为了方便测试，我们需要一个能够异步发送请求的脚本，来模拟多个pod同时请求的情况。Python3中的<code>asyncio</code>携程可以很好的满足需求。</p>
+<pre><code class="python">import sys
+import os
+import logging
+import subprocess
+import json
+import time
+import requests
+import threading
+import asyncio
+from aiohttp import ClientSession
+from requests import exceptions
+from requests.adapters import HTTPAdapter
+
+logging.getLogger().setLevel(logging.INFO)
+logging.basicConfig(format=&#39;[%(asctime)s][%(levelname)s][%(module)s::%(lineno)d]: %(message)s&#39;, datefmt=&quot;%Y-%m-%d %H:%M:%S&quot;)
+
+request_id = 0
+
+class Worker():
+    async def get(self):
+        session = ClientSession()
+        global request_id
+        request_id += 1
+        logging.info(&#39;Worker: request roominfo, {}&#39;.format(request_id))
+        res = await session.get(&#39;http://9.xx.xx.xxx:8081&#39;)
+        result = await res.text()
+        await session.close()
+        return result
+
+    async def request_room_infos(self):
+        global request_id
+        request_id += 1
+        data = {&#39;request_id&#39;: request_id}
+        room_infos = {}
+        try:
+            t1 = time.time()
+            logging.info(&#39;Worker: request roominfo, {}&#39;.format(request_id))
+            r = await self.get()
+            t2 = time.time()
+        except exceptions.Timeout as e:
+            logging.error(&#39;Time Out: &#39; + str(e))
+        except exceptions.HTTPError as e:
+            logging.error(&#39;Http Request Error: &#39; + str(e))
+        except exceptions.ConnectionError as e:
+            logging.error(&#39;Connection Error: &#39; + str(e))
+        else:
+            logging.info(&#39;Request room infos time consuming = {}s&#39;.format(t2 - t1))
+            if r.status_code == 200:
+                room_infos = r.json()
+            else:
+                logging.error(&#39;Request Error: &#39; + str(r.status_code) + &#39;,&#39; + str(r.reason))
+        return room_infos
+
+    def run_gamecore(self, sleep_time):
+        time.sleep(sleep_time)
+
+if __name__ == &#39;__main__&#39;:
+    worker = Worker()
+    request_count = int(sys.argv[1])
+    tasks = [asyncio.ensure_future(worker.request_room_infos()) for i in range(request_count)]
+    start = time.time()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(asyncio.wait(tasks))
+    logging.info(&quot;Coroutine tasks finished, time = {}s&quot;.format(time.time() - start))
+    logging.info(&#39;Task finished!!! Run {} games in total.&#39;.format(worker.total_finished_room_count))
+</code></pre>
+<p>上述测试脚本，模拟了多个pod同时给server端发送请求的情形。但是很遗憾，通过测试脚本发现，即使只是100个请求，server端也会丢弃掉20个左右的请求。虽然log显示<code>request_stack</code>最大能够到1000多，但是实际上能够同时处理的请求最大也就到80个左右。并不知道是因为什么原因导致了请求丢失，怀疑可能是Linux某些系统设置导致了请求直接被丢弃。比如<code>net.core.somaxconn</code>参数表示的是系统同时发起的TCP连接数，超过时会导致超时或者重连。我尝试着将这些参数都改大（<a href="https://my.oschina.net/lijialong/blog/111823" target="_blank" rel="noopener">具体参数说明</a>）：</p>
+<pre><code class="bash">echo &quot;net.ipv4.tcp_max_syn_backlog = 40000&quot; &gt;&gt; /etc/sysctl.conf
+echo &quot;net.core.rmem_max = 52428800&quot;   &gt;&gt; /etc/sysctl.conf
+echo &quot;net.core.wmem_max = 52428800&quot;   &gt;&gt; /etc/sysctl.conf
+echo &quot;net.core.somaxconn = 10240&quot; &gt;&gt; /etc/sysctl.conf
+echo &quot;net.ipv4.tcp_timestamps = 0&quot; &gt;&gt; /etc/sysctl.conf
+echo &quot;net.ipv4.tcp_sack = 1&quot; &gt;&gt; /etc/sysctl.conf
+echo &quot;net.ipv4.tcp_window_scaling = 1&quot; &gt;&gt; /etc/sysctl.conf
+echo &quot;net.ipv4.tcp_fin_timeout = 15&quot; &gt;&gt; /etc/sysctl.conf
+echo &quot;net.ipv4.tcp_keepalive_intvl = 30&quot; &gt;&gt; /etc/sysctl.conf
+echo &quot;net.ipv4.tcp_tw_reuse = 1&quot; &gt;&gt; /etc/sysctl.conf
+echo &quot;kernel.core_pattern = /data/corefile/core_%e_%t&quot; &gt;&gt; /etc/sysctl.conf
+echo &quot;kernel.core_pipe_limit = 0&quot; &gt;&gt; /etc/sysctl.conf
+sysctl -p
+</code></pre>
+<p>还是很遗憾，这些改动并没有太大作用，测试发现同时100个请求，还是会丢失20个左右，较之之前并没有太大改动。我也试过修改<code>http.server</code>框架的<code>request_queue_size</code>参数，结果也是一样。不知道这里是不是我哪里设置有问题，如果哪里不对请告诉我。另外因为是TCP连接，总不会是丢包吧？所以只能抓抓包看看是不是TCP连接的时候就有问题。</p>
+<p><img src="/res/tools/pythonServer/bta_task.png" alt="Structure"></p>
+<p>使用<code>tcpdump</code>抓包后在用<code>wireshark</code>GUI工具在本地跟踪流，通过之前的<code>request_id</code>定位到那些发送出去，但是server端没有收到的连接，跟踪发现它们确实在第一次握手之后，客户端发送出了HTTP请求，然后服务端直接给拒绝了，并置了RST包。到此，我还是不知道到底是什么原因导致了server直接返回了RST。但是这里可以确定的是，这确实是因为系统或者框架自身的原因导致了请求直接被拒绝，与业务逻辑无关。所以如果有人知道这里具体是什么原因，也请通过左侧导航栏邮箱告诉我，或者直接在下面留言，查了几天都没有结果，真的很想知道是什么原因。</p>
+<h4 id="3-Tornado异步server"><a href="#3-Tornado异步server" class="headerlink" title="(3). Tornado异步server"></a>(3). Tornado异步server</h4><p>虽然不确定到底是系统的问题，还是<code>http.server</code>框架自身的问题（或是使用框架的方法不对），但是因为与业务逻辑无关，所以决定尝试换一个第三方框架试试。Tornado是一个python上多进程非阻塞式server框架，很适合我们这种可能同时有上千个请求同时到达的场景。</p>
+<pre><code class="python">import tornado.httpserver
+import tornado.ioloop
+import tornado.options
+import tornado.web
+import json
+import logging
+import time
+from job_master import JobMaster
+from tornado.options import define, options
+define(&#39;port&#39;, default=8081, help=&#39;Running Port&#39;, type=int)
+
+
+logging.getLogger().setLevel(logging.INFO)
+logging.basicConfig(format=&#39;[%(asctime)s][%(levelname)s][%(module)s::%(lineno)d]: %(message)s&#39;,
+                    datefmt=&quot;%Y-%m-%d %H:%M:%S&quot;,
+                    filename=&#39;server_log.txt&#39;)
+
+request_stack = 0
+request_count = 0
+
+class IndexFun(tornado.web.RequestHandler):
+    def initialize(self, job_master):
+        self.job_master = job_master
+
+    def get(self):
+        request_id = self.get_argument(&#39;request_id&#39;, &#39;-1&#39;)
+        global request_count
+        global request_stack
+        request_count += 1
+        request_stack += 1
+        start = time.time()
+        logging.info(&#39;Start deal with request: {}, request_count = {}, request_stack = {}&#39;.format(request_id, request_count, request_stack))
+        room_infos = self.job_master.assign_room_infos(&#39;999&#39;)
+        self.write(json.dumps(room_infos))
+        request_stack -= 1
+        logging.info(&#39;End deal with request: {}, request_count = {}, time consuming = {}, request_stack = {}&#39;.format(request_id, request_count, time.time() - start, request_stack))
+
+if __name__ == &#39;__main__&#39;:
+    tornado.options.parse_command_line()
+    master = JobMaster()
+    app = tornado.web.Application(handlers=[(r&quot;/&quot;, IndexFun, dict(job_master=master))])
+    server = tornado.httpserver.HTTPServer(app)
+    server.listen(options.port)
+    tornado.ioloop.IOLoop.instance().start()
+
+</code></pre>
+<p>与<code>http.server</code>类似，<code>tornado</code>同样提供了一个requestHandler来处理各种请求。我们也可以通过重写<code>initialize</code>方法来将<code>jobMaster</code>参数传入到这个handler类中。使用上述的测试脚本对该server进行测试，发现该框架下最高可以同时处理5000个请求而没有出现请求丢失的情况。从这里看，之前的问题可能还是和server框架本身有关。最终，决定采用该框架作为服务端代码。</p>
+<h2 id="4-Client端代码"><a href="#4-Client端代码" class="headerlink" title="4. Client端代码"></a>4. Client端代码</h2><p>客户端直接使用requests库即可：</p>
+<pre><code class="python">import sys
+import os
+import logging
+import subprocess
+import json
+import glob
+import shutil
+import time
+import random
+import requests
+from requests import exceptions
+from requests.adapters import HTTPAdapter
+from util import *
+from tenc_config import TENC
+
+logging.getLogger().setLevel(logging.INFO)
+logging.basicConfig(format=&#39;[%(asctime)s][%(levelname)s][%(module)s::%(lineno)d]: %(message)s&#39;, datefmt=&quot;%Y-%m-%d %H:%M:%S&quot;)
+
+request_id = 0
+
+class Worker():
+    def __init__(self, run_id):
+        self.run_id = run_id  # todo: 同时跑多个任务时用于区分不同任务
+        self.worker_name = get_worker_name()
+        self.total_finished_room_count = 0
+        self._json_file_dir = None
+        self._byte_file_dir = None
+
+    def _exec_cmd(self, primary, args):
+        # cmd = primary + args
+        cmd_str = primary + &#39; &#39; + &#39; &#39;.join(args)
+        logging.info(&#39; --- &#39; + cmd_str + &#39; --- &#39;)
+        output = subprocess.check_output([primary, *args])
+        return output
+
+    def request_room_infos(self):
+        global request_id
+        data = {&#39;request_id&#39;: request_id}
+        room_infos = {}
+        try:
+            t1 = time.time()
+            logging.info(&#39;Worker: request roominfo, {}&#39;.format(request_id))
+            r = requests.get(TENC.dashboard_ip, params=data, timeout=None)
+            t2 = time.time()
+        except requests.exceptions.Timeout as e:
+            logging.error(&#39;Time Out: &#39; + str(e))
+        except requests.exceptions.HTTPError as e:
+            logging.error(&#39;Http Request Error: &#39; + str(e))
+        except requests.exceptions.ConnectionError as e:
+            logging.error(&#39;Connection Error:&#39; + str(e))
+        except ConnectionResetError as e:
+            logging.error(&#39;Connection Reset Error:&#39; + str(e))
+        except OSError as e:
+            logging.error(&#39;Built-in Timeout Error: &#39; + str(e))
+        else:
+            logging.info(&#39;Request room infos time consuming = {}s&#39;.format(t2 - t1))
+            if r.status_code == 200:
+                room_infos = r.json()
+            else:
+                logging.error(&#39;Request Error: &#39; + str(r.status_code) + &#39;,&#39; + str(r.reason))
+
+        request_id += 1
+        return room_infos
+
+    def run_gamecore(self, room_infos):
+        pass
+
+
+if __name__ == &#39;__main__&#39;:
+    worker = Worker()
+    while True:
+        room_infos = worker.request_room_infos()
+        if len(room_infos) == 0:
+            break
+
+        worker.run_gamecore(room_infos)
+
+    logging.info(&#39;Task finished!!! Run {} games in total.&#39;.format(worker.total_finished_room_count))
+    logging.info(&quot;Start pushing zip files to s3:&quot;)
+    worker.push_data()
+    logging.info(&quot;Pushing zip files successed.&quot;)
+</code></pre>
+<p>至此，服务端和客户端代码都已经实现。服务端支持同时异步处理最大5000个请求而没有丢失。</p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 gzrjzcx@qq.com </span>
     </div>
@@ -652,12 +871,12 @@ int main(int argc, char* argv[]){
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>C++Primer 3-6: 2-d Arrays</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">2.4k</span></p>
+    <p><span class="copy-title">文章标题:</span>Simple python web server</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">4.2k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-12-10, 12:47:52</p>
+    <p><span class="copy-title">发布时间:</span>2021-06-15, 15:17:32</p>
     <p><span class="copy-title">最后更新:</span>2021-06-18, 07:42:03</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/10/subposts_cppPrimer/CPN-3-6-2-d-Arrays/" title="C++Primer 3-6: 2-d Arrays">https://www.hellscript.cc/2019/12/10/subposts_cppPrimer/CPN-3-6-2-d-Arrays/</a>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/06/15/subposts_tools/simple-python-web-server/" title="Simple python web server">https://www.hellscript.cc/2021/06/15/subposts_tools/simple-python-web-server/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
