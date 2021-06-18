@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Alex&#39;s Epitaph">
 <meta property="og:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-06-18T07:42:03.825Z">
+<meta property="og:updated_time" content="2021-06-18T07:50:33.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Alex&#39;s Epitaph">
 <meta name="twitter:description" content="The wolf I will follow into the storm. To find your heart, its passion displaced. To dream of raven locks entwisted, stormy. Of violet eyes, glistening as you weep. ---Hardcore Headache">
@@ -174,7 +174,7 @@
     <div><a class="about  hasFriend  site_url" href="/about">About</a><a style="width: 50%" class="friends">Friends</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="43">
-<input type="hidden" id="yelog_site_word_count" value="53.1k">
+<input type="hidden" id="yelog_site_word_count" value="53k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -500,7 +500,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2021-06-18 07:42:03">2021-06-15 15:17</time>
+        创建时间:<time class="date" title="更新时间: 2021-06-18 07:50:33">2021-06-15 15:17</time>
         
     </div>
     <div class="article-meta">
@@ -546,7 +546,7 @@
 <h2 id="2-整体结构"><a href="#2-整体结构" class="headerlink" title="2. 整体结构"></a>2. 整体结构</h2><p><img src="/res/tools/pythonServer/bta_task.png" alt="Structure"></p>
 <p>整个任务流程如图，在web上输入相应参数后，会通过启动脚本<code>run_task.py</code>来创建一个<code>JobMaster</code>和<code>BTAServer</code>，同时将输入的参数存入redis。其中<code>BTAServer</code>用于相应pod发过来的请求，并将该pod此次需要跑的任务返回给它。<code>JobMaster</code>则负责主要和K8s平台交互，通过读取redis里存入的参数，修改jobflow的参数并启动jobflow。同时，<code>JobMaster</code>里包括了管理此次任务的总体进度，即在<code>AssignRoomInfos()</code>函数将每个pod需要跑的任务，通过<code>BTAServer</code>传递给每个pod。</p>
 <p>Jobflow起来之后，会创建若干个pod，每个pod都是一个<code>worker</code>。每个pod都会像<code>BTAServer</code>发送请求，获取它们此时需要跑的gamecore参数，然后自己完成自己的任务之后再次请求。当server处返回的值为空时，则表明此时总任务已经完成，<code>worker</code>则会停止请求，变为success，然后每个<code>worker</code>都会将自己产生的统计文件打包上传到s3上，供后续分析任务使用。</p>
-<h2 id="3-Server端代码"><a href="#3-Server端代码" class="headerlink" title="3. Server端代码"></a>3. Server端代码</h2><h4 id="1-同步server"><a href="#1-同步server" class="headerlink" title="(1). 同步server"></a>(1). 同步server</h4><p>Python自带的<code>[http.server](https://docs.python.org/3/library/http.server.html)</code>是一个基本的TCPServer框架（在python2中为<code>BaseHTTPServer</code>库），通过提供一个<code>BaseHTTPRequestHandler</code>类，可以实现对不同HTTP请求的处理。例如，每次有<code>GET</code>请求过来，则会实例化一次这个handler类，并调用对应的<code>do_GET()</code>来处理该请求。</p>
+<h2 id="3-Server端代码"><a href="#3-Server端代码" class="headerlink" title="3. Server端代码"></a>3. Server端代码</h2><h4 id="1-同步server"><a href="#1-同步server" class="headerlink" title="(1). 同步server"></a>(1). 同步server</h4><p>Python自带的<a href="https://docs.python.org/3/library/http.server.html" target="_blank" rel="noopener">http.server</a>是一个基本的TCPServer框架（在python2中为<code>BaseHTTPServer</code>库），通过提供一个<code>BaseHTTPRequestHandler</code>类，可以实现对不同HTTP请求的处理。例如，每次有<code>GET</code>请求过来，则会实例化一次这个handler类，并调用对应的<code>do_GET()</code>来处理该请求。</p>
 <pre><code class="python">import http.server
 import json
 from io import BytesIO
@@ -724,7 +724,7 @@ echo &quot;kernel.core_pipe_limit = 0&quot; &gt;&gt; /etc/sysctl.conf
 sysctl -p
 </code></pre>
 <p>还是很遗憾，这些改动并没有太大作用，测试发现同时100个请求，还是会丢失20个左右，较之之前并没有太大改动。我也试过修改<code>http.server</code>框架的<code>request_queue_size</code>参数，结果也是一样。不知道这里是不是我哪里设置有问题，如果哪里不对请告诉我。另外因为是TCP连接，总不会是丢包吧？所以只能抓抓包看看是不是TCP连接的时候就有问题。</p>
-<p><img src="/res/tools/pythonServer/bta_task.png" alt="Structure"></p>
+<p><img src="/res/tools/pythonServer/tcpdump.png" alt="Structure"></p>
 <p>使用<code>tcpdump</code>抓包后在用<code>wireshark</code>GUI工具在本地跟踪流，通过之前的<code>request_id</code>定位到那些发送出去，但是server端没有收到的连接，跟踪发现它们确实在第一次握手之后，客户端发送出了HTTP请求，然后服务端直接给拒绝了，并置了RST包。到此，我还是不知道到底是什么原因导致了server直接返回了RST。但是这里可以确定的是，这确实是因为系统或者框架自身的原因导致了请求直接被拒绝，与业务逻辑无关。所以如果有人知道这里具体是什么原因，也请通过左侧导航栏邮箱告诉我，或者直接在下面留言，查了几天都没有结果，真的很想知道是什么原因。</p>
 <h4 id="3-Tornado异步server"><a href="#3-Tornado异步server" class="headerlink" title="(3). Tornado异步server"></a>(3). Tornado异步server</h4><p>虽然不确定到底是系统的问题，还是<code>http.server</code>框架自身的问题（或是使用框架的方法不对），但是因为与业务逻辑无关，所以决定尝试换一个第三方框架试试。Tornado是一个python上多进程非阻塞式server框架，很适合我们这种可能同时有上千个请求同时到达的场景。</p>
 <pre><code class="python">import tornado.httpserver
@@ -875,7 +875,7 @@ if __name__ == &#39;__main__&#39;:
     <p><span class="copy-title">文章字数:</span><span class="post-count">4.2k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="Alex Zou">Alex Zou</a></p>
     <p><span class="copy-title">发布时间:</span>2021-06-15, 15:17:32</p>
-    <p><span class="copy-title">最后更新:</span>2021-06-18, 07:42:03</p>
+    <p><span class="copy-title">最后更新:</span>2021-06-18, 07:50:33</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/06/15/subposts_tools/simple-python-web-server/" title="Simple python web server">https://www.hellscript.cc/2021/06/15/subposts_tools/simple-python-web-server/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
