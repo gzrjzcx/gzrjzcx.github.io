@@ -2,6 +2,8 @@ backend:
   name: github
   repo: gzrjzcx/gzrjzcx.github.io
   branch: src
+  app_id: Ov23liAOUp9ca9ChKEkg
+  auth_endpoint: auth
 
 media_folder: "blog/source/res"
 public_folder: "blog/source/res"
