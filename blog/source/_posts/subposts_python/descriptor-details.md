@@ -8,7 +8,7 @@ hide: true
 
 ### Python描述符类descriptor详解
 
-> ##### 结论：
+> ### 结论：
 > 
 > - Python中对象的属性以key-value的形式保存在`__dict__`字典中，原始的访问属性的方式为字典lookup；
 > - Python为了实现不同的属性访问方式，提供了**描述符协议（descriptor protocal）**，类似C++中的操作符重载，将`.`操作符从`__dict__[key]`的属性访问方式重载为描述符协议中的`__get__()`函数调用方式，从而实现自动绑定类实例到类成员函数的第一个参数等功能。
@@ -16,7 +16,7 @@ hide: true
 
 
 
-##### 1. 类成员函数如何实现self自动绑定第一个参数？
+### 1. 类成员函数如何实现self自动绑定第一个参数？
 
 ```
 class Fruit():
@@ -130,7 +130,7 @@ def type_getattribute(cls, name):
    * 实例对象调用：`fruit.color`  <==>  `type(fruit).__dict__['color'].__get__(fruit, type(fruit))`
 3. Python中自定义类会默认实现上述功能的function descriptor，所以类内的成员函数可以直接通过实例变量调用，自动绑定对象本身作为第一个参数，不需要在显示传参。
 
-##### 2. 什么是描述符类descriptor
+### 2. 什么是描述符类descriptor
 
 > 定义：一个Python对象中如果实现了下列三个方法中的任意一个，则是描述符对象（descriptor）：
 > 
@@ -141,9 +141,9 @@ def type_getattribute(cls, name):
 
 描述符主要用于**控制对属性的访问方式**：是使用原始的`__dict__`内lookup的方式，还是使用描述符协议内的`__get__`方式，可以实现计算属性，懒加载属性，属性访问控制等功能。
 
-##### 3. 描述符的应用
+### 3. 描述符的应用
 
-###### （1）classmethod
+#### （1）classmethod
 
 了解了描述符协议类的作用，实现`classmethod`的效果非常简单：
 
@@ -162,7 +162,7 @@ class classmethod():
 
 类似地，`@classmethod`装饰器返回一个`classmethod`描述符实例，该描述符的作用就是当类实例变量访问原函数时，首先通过`object_getattribute`调用到上述的描述类`classmethod`，然后其`__get__`将实例`fruit`所属类对象`Fruit`作为第一个参数传入；当直接用类对象访问原函数时，首先通过`type_getattribute`调用到上述`classmethod`，然后其`__get__`直接将`Fruit`作为第一个参数传入。
 
-###### （2）staticmethod
+#### （2）staticmethod
 
 静态方法的实现更加简单，通过`staticmethod`描述符类，不管是类对象还是类实例对象访问属性，都直接返回原属性即可：
 
@@ -177,7 +177,7 @@ class staticmethod():
 
 可以看到，`staticmethod`描述符类中的`__get__`函数，不管传入的实例`obj`如何，都直接返回原函数，不会将传入的实例`obj`或者`obj`所属的类绑定到第一个参数。
 
-###### （3）property
+####（3）property
 
 我们可以自定义一个property描述符类，从而实现当使用`.`操作符访问属性时产生不同的效果。Python官方提供的property描述符类可以简单实现为：
 
@@ -259,7 +259,7 @@ class Fruit():
 
 两种方式达到的效果，都是当使用`.`操作符访问属性时，调用描述符协议类中的`__get__`等方法，而不是原始的字典lookup方法。同时，描述符协议类中的`__get__`方法等可自定义，相当于提供了一种自定义通过`.`操作符去访问类属性的能力。例如，通过自定义`__set__`方法，可以实现对属性赋值时的参数合理性检查。
 
-##### 参考：
+### 参考：
 
 [1](https://docs.python.org/2/howto/descriptor.html#definition-and-introduction)
 [2](https://waynerv.com/posts/python-descriptor-in-detail/)
