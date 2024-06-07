@@ -152,7 +152,7 @@ collections:
     folder: "source/_posts/subposts_notes"
     preview_path: "subposts_notes/{{filename}}/"
     <<: *common_col_conf
-    - name: "subposts_parallel"
+  - name: "subposts_parallel"
     label: "subposts_parallel"
     folder: "source/_posts/subposts_parallel"
     preview_path: "subposts_parallel/{{filename}}/"
