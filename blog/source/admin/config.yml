@@ -1,5 +1,5 @@
 backend:
-  name: GitHub
+  name: github
   repo: gzrjzcx/gzrjzcx.github.io
   branch: src
 
