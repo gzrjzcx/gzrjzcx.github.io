@@ -19,7 +19,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_cppPrimer'
@@ -30,7 +30,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_dataStructure'
@@ -41,7 +41,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_gameAI'
@@ -52,7 +52,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_interview'
@@ -63,7 +63,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_life'
@@ -74,7 +74,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_life'
@@ -85,7 +85,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_notes'
@@ -96,7 +96,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_parallel'
@@ -107,7 +107,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_python'
@@ -118,7 +118,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_tools'
@@ -129,6 +129,6 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
