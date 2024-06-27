@@ -13,7 +13,127 @@ locale: "zh_Hans"
 collections:
   - name: 'subposts_c'
     label: 'Blog'
-    folder: 'blog/source/_posts/subposts_s'
+    folder: 'blog/source/_posts/subposts_c'
+    create: true
+    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Categories", name: "categories", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - name: 'subposts_cppPrimer'
+    label: 'Blog'
+    folder: 'blog/source/_posts/subposts_cppPrimer'
+    create: true
+    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Categories", name: "categories", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - name: 'subposts_dataStructure'
+    label: 'Blog'
+    folder: 'blog/source/_posts/subposts_dataStructure'
+    create: true
+    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Categories", name: "categories", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - name: 'subposts_gameAI'
+    label: 'Blog'
+    folder: 'blog/source/_posts/subposts_gameAI'
+    create: true
+    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Categories", name: "categories", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - name: 'subposts_interview'
+    label: 'Blog'
+    folder: 'blog/source/_posts/subposts_interview'
+    create: true
+    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Categories", name: "categories", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - name: 'subposts_life'
+    label: 'Blog'
+    folder: 'blog/source/_posts/subposts_life'
+    create: true
+    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Categories", name: "categories", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - name: 'subposts_life'
+    label: 'Blog'
+    folder: 'blog/source/_posts/subposts_life'
+    create: true
+    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Categories", name: "categories", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - name: 'subposts_notes'
+    label: 'Blog'
+    folder: 'blog/source/_posts/subposts_notes'
+    create: true
+    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Categories", name: "categories", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - name: 'subposts_parallel'
+    label: 'Blog'
+    folder: 'blog/source/_posts/subposts_parallel'
+    create: true
+    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Categories", name: "categories", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - name: 'subposts_python'
+    label: 'Blog'
+    folder: 'blog/source/_posts/subposts_python'
+    create: true
+    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Tags", name: "tags", widget: "string"},
+      - {label: "Categories", name: "categories", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - name: 'subposts_tools'
+    label: 'Blog'
+    folder: 'blog/source/_posts/subposts_tools'
     create: true
     fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
