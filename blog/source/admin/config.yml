@@ -77,17 +77,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"}
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-  - name: 'subposts_life'
-    label: 'Blog'
-    folder: 'blog/source/_posts/subposts_life'
-    create: true
-    fields: # 这里这些字段对应到你写文章的 markdown 上方的一些文章属性 widget 的配置可以参考官方文档的 widget 部分
-      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
-      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
-      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
-      - {label: "Tags", name: "tags", widget: "string"}
-      - {label: "Categories", name: "categories", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
   - name: 'subposts_notes'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_notes'
