@@ -7,6 +7,9 @@ backend:
 media_folder: "blog/source/res/decap_uploads"
 public_folder: "/artifact/res/decap_uploads"
 
+site_url: "https://www.hellscript.cc/"
+
+locale: "zh_Hans"
 collections:
   - name: 'subposts_c'
     label: 'Blog'
@@ -19,7 +22,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"},
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-collections:
   - name: 'subposts_cppPrimer'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_cppPrimer'
@@ -31,7 +33,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"},
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-collections:
   - name: 'subposts_dataStructure'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_dataStructure'
@@ -43,7 +44,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"},
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-collections:
   - name: 'subposts_gameAI'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_gameAI'
@@ -55,7 +55,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"},
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-collections:
   - name: 'subposts_interview'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_interview'
@@ -67,7 +66,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"},
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-collections:
   - name: 'subposts_life'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_life'
@@ -79,7 +77,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"},
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-collections:
   - name: 'subposts_life'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_life'
@@ -91,7 +88,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"},
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-collections:
   - name: 'subposts_notes'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_notes'
@@ -103,7 +99,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"},
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-collections:
   - name: 'subposts_parallel'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_parallel'
@@ -115,7 +110,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"},
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-collections:
   - name: 'subposts_python'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_python'
@@ -127,7 +121,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "string"},
       - {label: "Categories", name: "categories", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-collections:
   - name: 'subposts_tools'
     label: 'Blog'
     folder: 'blog/source/_posts/subposts_tools'
