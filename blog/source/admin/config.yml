@@ -3,7 +3,7 @@ backend:
   repo: gzrjzcx/gzrjzcx.github.io
   branch: src
   auth_endpoint: auth
-  site_domain: hellscript.netlify.app
+  site_domain: hellscript.cc
 
 media_folder: "blog/source/res/decap_uploads"
 public_folder: "/artifact/res/decap_uploads"
