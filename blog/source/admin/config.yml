@@ -9,7 +9,6 @@ public_folder: "/artifact/res/decap_uploads"
 
 site_url: "https://www.hellscript.cc/"
 
-locale: "zh_Hans"
 collections:
   - name: 'subposts_c'
     label: 'Blog'
