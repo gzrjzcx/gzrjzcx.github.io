@@ -3,6 +3,7 @@ backend:
   repo: gzrjzcx/gzrjzcx.github.io
   branch: src
   auth_endpoint: auth
+  site_domain: gzrjzcx.github.io
 
 media_folder: "blog/source/res/decap_uploads"
 public_folder: "/artifact/res/decap_uploads"
