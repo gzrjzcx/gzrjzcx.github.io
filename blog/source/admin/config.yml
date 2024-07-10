@@ -4,11 +4,10 @@ backend:
   branch: src
   auth_endpoint: auth
   base_url: https://api.netlify.com
+  site_domain: hellscript.netlify.app
 
 media_folder: "/source/res/decap_uploads"
 public_folder: "/blog/source/res/decap_uploads"
-
-site_url: "https://hellscript.cc/"
 
 collections:
   - name: 'subposts_c'
